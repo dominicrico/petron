@@ -1,0 +1,46 @@
+{
+	"petron": "Petron",
+	"claim": "",
+
+	"radio_module": "Radio",
+	"music_module": "Audio",
+	"video_module": "Video",
+	"health_module": "Health",
+	"navigation_module": "Navigation",
+	"settings_module": "Einstellungen",
+
+	"no_file": "Keine verwendbaren Datein gefunden!",
+
+	"petron_playlist_general": "Warteschlange",
+
+	"new_playlist": "Neue Playlist",
+	"delete_playlist": "Playlist löschen",
+	"edit_playlist": "Playlist ändern",
+	"add_to_playlist": "zu Playlist hinzufügen",
+	"delete_from_playlist": "von Playlist entfernen",
+
+	"new_playlist_modal_title": "Wie soll die Playlist heißen?",
+	"new_playlist_modal_ph": "Playlist",
+
+	"playlist_delete_title": "Playlist löschen",
+	"playlist_delete_text": "Wollen Sie diese Playlist wirklich löschen?",
+
+	"add_to_playlist_modal_title": "Zu einer Playlist hinzufügen",
+	"choose_playlist_label": "Playlist wählen",
+	"create_new_playlist": "neue Playlist",
+
+	"modal": {
+		"button_confirm": "Ja",
+		"button_delete": "Löschen",
+		"button_save": "Speichern",
+		"button_cancel": "Abbrechen"
+	},
+
+	"filetree": {
+		"add_to_playlist": "zu Playlist hinzufügen"
+	},
+
+	"videoplayer": {
+
+	}
+}

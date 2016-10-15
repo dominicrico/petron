@@ -1,0 +1,10 @@
+{
+	"petron": "Petron",
+	"claim": "",
+	"radio_module": "Radio",
+	"audio_module": "Audio",
+	"video_module": "Video",
+	"health_module": "Health",
+	"gps_module": "Navigation",
+	"settings_module": "Settings"
+}

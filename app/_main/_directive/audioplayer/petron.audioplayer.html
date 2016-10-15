@@ -1,0 +1,37 @@
+<audio class="c--audio__player" autoplay ng-click="player.audio.play()">
+	<source ng-repeat="file in player.audio.playlist" ng-if="player.audio.playlist && file.play" ng-src="{{ file.path }}" type="audio/{{ file.type}}">
+</audio>
+<section class="c--audio__controls">
+	<button class="button" ng-click="player.audio.daemonize()">
+		<i class="icon-home"></i>
+	</button>
+	<button class="button" ng-click="player.audio.prev()">
+		<i class="icon-media-rewind"></i>
+	</button>
+	<button class="button" ng-click="player.audio.play()">
+		<i class="icon-media-play" ng-if="player.audio.showPlay"></i>
+		<i class="icon-media-pause" ng-if="!player.audio.showPlay"></i>
+	</button>
+	<button class="button" ng-click="player.audio.next()">
+		<i class="icon-media-forward"></i>
+	</button>
+	<button class="button" ng-click="player.audio.loop()" ng-class="{'is-primary': player.audio.controls.loop}">
+		<i class="icon-loop"></i>
+	</button>
+	<button class="button" ng-click="player.audio.shuffle()" ng-class="{'is-primary': player.audio.controls.shuffle}">
+		<i class="icon-shuffle"></i>
+	</button>
+	<button class="button" ng-click="player.audio.repeat()" ng-class="{'is-primary': player.audio.controls.repeat}">
+		<i class="icon-repeat"></i>
+	</button>
+	<input ng-model="player.audio.controls.currentTime" ng-change="player.audio.setTime()" type="range" min="0" max="{{ player.audio.controls.duration }}" step="1" /> {{ player.audio.controls.currentTime | buildTime }}
+	<strong>{{ playler.audio.playlist[playler.audio.currentIndex].name }}</strong><br>
+	<i class="icon-volume-down"></i>
+	<input ng-model="player.audio.controls.volume" ng-change="player.audio.setVolume()" type="range" min="0" max="1" step="0.01" />
+	<i class="icon-volume-up"></i>
+</section>
+<section class="c--audio__playlist">
+	<ul>
+		<li ng-repeat="file in player.audio.playlist" ng-click="player.audio.playFile($index)">{{ file.name }}</li>
+	</ul>
+</section>

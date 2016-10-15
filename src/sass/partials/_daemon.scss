@@ -1,0 +1,19 @@
+petron-daemon {
+	width: 240px;
+	height: 135px;
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+	display: block;
+
+	.c--daemin__container {
+		width: 240px;
+		height: 135px;
+		display: block;
+
+		.c--video__player {
+			max-width: 100%;
+			height: auto;
+		}
+	}
+}

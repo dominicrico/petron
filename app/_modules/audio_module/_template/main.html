@@ -1,0 +1,21 @@
+<button class="button" ng-click="newPlaylist()">{{ 'new_playlist' | translate }}</button>
+<button class="button" ui-sref="audiobox.player" ng-disabled="queue.tracks === undefined || queue.tracks.length < 1">{{ 'play' | translate }}</button>
+
+<hr>
+<petron-filetree files="files" func="func" show="true"></petron-filetree>
+<hr>
+
+<ul>
+	<li ng-repeat="list in playlists">
+		<span ng-click="func.play(list.name)" class="is-vcentered">
+			<span class="icon">
+				<i class="fa icon-playlist"></i>
+			</span>
+			{{ list.name }}
+		</span>
+		<button class="button" ng-click="removePlaylist(list.name, $index)">{{ 'delete_playlist' | translate }}</button>
+	</li>
+</ul>
+
+<button class="button" ng-click="clearCurrentQueue()">{{ 'clear_queue_playlists' | translate }}</button>
+<button class="button" ng-click="deleteAllPlaylists()">{{ 'delete_all_playlists' | translate }}</button>

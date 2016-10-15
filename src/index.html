@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Petron</title>
+
+		<!-- bower:css -->
+		<link rel="stylesheet" href="../app/_vendor/bulma/css/bulma.css" />
+		<link rel="stylesheet" href="../app/_vendor/ng-dialog/css/ngDialog.css" />
+		<link rel="stylesheet" href="../app/_vendor/ng-dialog/css/ngDialog-theme-default.css" />
+		<!-- endbower -->
+
+		<link rel="stylesheet" href="petron.css">
+	</head>
+	<body ng-app="petron">
+		<div ui-view>
+			<div class="container">
+				<header>
+					<h1>
+						Petron is loading...<br>
+						<small>All in One Car System</small>
+					</h1>
+
+				</header>
+				<section class="main"></section>
+				<footer></footer>
+			</div>
+		</div>
+
+		<petron-daemon ng-if="$root.daemon.active" petron-draggable></petron-daemon>
+
+		<!-- bower:js -->
+		<script src="../app/_vendor/angular/angular.js"></script>
+		<script src="../app/_vendor/angular-ui-router/release/angular-ui-router.js"></script>
+		<script src="../app/_vendor/angular-electron/angular-electron.js"></script>
+		<script src="../app/_vendor/angular-sanitize/angular-sanitize.js"></script>
+		<script src="../app/_vendor/angular-translate/angular-translate.js"></script>
+		<script src="../app/_vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+		<script src="../app/_vendor/ng-dialog/js/ngDialog.js"></script>
+		<script src="../app/_vendor/messageformat/messageformat.js"></script>
+		<script src="../app/_vendor/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
+		<!-- endbower -->
+
+		<!-- build:script petron -->
+		<!-- /build -->
+	</body>
+</html>

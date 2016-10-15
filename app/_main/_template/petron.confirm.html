@@ -1,0 +1,18 @@
+<div class="columns">
+	<div class="column">
+		<h3 class="title is-4">
+			{{ title | translate }}
+		</h3>
+	</div>
+</div>
+<div class="columns">
+	<div class="column">
+		<p>{{ text | translate}}</p>
+	</div>
+</div>
+<div class="columns">
+	<div class="column">
+		<button class="button" ng-click="confirm()">{{ ((button) ? button : 'modal.button_confirm')  | translate }}</button>
+		<button class="button" ng-click="closeThisDialog()">{{ 'modal.button_cancel' | translate }}</button>
+	</div>
+</div>

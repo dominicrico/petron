@@ -1,0 +1,61 @@
+{
+  "name": "petron",
+  "productName": "Petron",
+  "version": "0.1.0",
+  "description": "Raspberry Pi Car Computer",
+  "license": "MIT",
+  "repository": "https://github.com/dominic.rico/petron",
+  "author": {
+    "name": "Dominic Rico Gómez",
+    "email": "hello@coderocket.me",
+    "url": "https://www.code-skate.com"
+  },
+  "scripts": {
+    "test": "xo",
+    "start": "grunt && electron .",
+    "build": "electron-packager . --out=dist --asar --overwrite --all"
+  },
+  "files": [
+    "index.js",
+    "index.html",
+    "index.css"
+  ],
+  "keywords": [
+    "petron",
+    "car",
+    "computer",
+    "audio",
+    "video",
+    "navigation",
+    "obd"
+  ],
+  "dependencies": {
+    "bluetooth-obd": "^0.2.3",
+    "diskdb": "^0.1.15",
+    "electron-debug": "^1.0.0",
+    "electron-json-storage": "^2.0.0",
+    "ipc": "0.0.1",
+    "offline-geocoder": "0.0.1",
+    "remote": "^0.2.6",
+    "devtron": "^1.1.0",
+    "electron": "^1.0.1",
+    "electron-connect": "^0.6.0",
+    "electron-packager": "^8.0.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-html-build": "^0.6.1",
+    "grunt-html2js": "^0.3.6",
+    "grunt-wiredep": "^3.0.1",
+    "load-grunt-tasks": "^3.5.2",
+    "xo": "^0.16.0"
+  },
+  "devDependencies": {},
+  "xo": {
+    "esnext": true,
+    "envs": [
+      "node",
+      "browser"
+    ]
+  }
+}
