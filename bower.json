@@ -33,6 +33,11 @@
     "angular-translate": "^2.12.1",
     "angular-translate-loader-static-files": "^2.12.1",
     "ng-dialog": "^0.6.4",
-    "angular-translate-interpolation-messageformat": "^2.12.1"
+    "angular-translate-interpolation-messageformat": "^2.12.1",
+    "async": "^2.1.2",
+    "angular-rangeslider-directive": "^0.0.2",
+    "AngularHammer": "angular-hammerjs#2.1.10",
+    "hammerjs": "^2.0.8",
+    "hammer-time": "^1.1.0"
   }
 }

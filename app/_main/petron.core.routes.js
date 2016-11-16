@@ -8,7 +8,7 @@
 			function($locationProvider, $stateProvider, $urlRouterProvider) {
 				$urlRouterProvider.otherwise('/');
 
-				$stateProvider.state('home', {
+				$stateProvider.state('petron', {
 					url: '/',
 					templateUrl: '_main/_template/petron.home.html',
 					controller: 'controller.main'

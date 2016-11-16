@@ -1,0 +1,8 @@
+<div class="c--daemon__container">
+	<video ng-if="daemon.type === 'video'" class="c--video__player" autoplay>
+		<source ng-repeat="file in video.player.playlist.tracks" ng-if="video.player.playlist.tracks && file.play" ng-src="{{ file.path }}" type="video/{{ file.type}}">
+	</video>
+	<audio ng-if="daemon.type === 'audio'" class="c--audio__player" ng-click="audio.player.play()">
+		<source ng-repeat="file in audio.player.playlist.tracks" ng-if="audio.player.playlist.tracks && file.play" ng-src="{{ file.path }}" type="audio/{{ file.type}}">
+	</audio>
+</div>

@@ -1,0 +1,73 @@
+petron-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  .c--video__player {
+    z-index: 9998;
+    object-fit: cover;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .c--video__controls {
+    z-index: 9999;
+    position: fixed;
+    background: rgba($black, .7);
+    position: fixed;
+    width: 100vw;
+    padding: 20px 35px;
+    color: $white;
+    text-align: center;
+
+    &.c--controls__top {
+      text-align: left;
+      padding: 8px 35px;
+      top: -100%;
+      transition: top .8s ease;
+      &.c--controls__show {
+        top: 0;
+      }
+    }
+
+    &.c--controls__bottom {
+      bottom: -100%;
+      transition: bottom .8s ease;
+      &.c--controls__show {
+        bottom: 0;
+      }
+    }
+
+  	button {
+  		background: transparent;
+  		border: none;
+  		color: $white;
+    	font-size: 20px;
+
+  		&:hover, &:focus {
+  			color: $primary;
+  		}
+
+  		&.is-active {
+  			color: $highlight;
+  		}
+
+  		&.c--video__controls-l {
+  			font-size: 36px;
+  		  position: relative;
+  		  top: -4px;
+  		}
+
+  		&.c--video__controls-xl {
+  			font-size: 74px;
+  	    position: relative;
+  	    top: -22px;
+  	    width: 60px;
+  		}
+  	}
+
+  }
+}

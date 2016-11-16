@@ -6,28 +6,32 @@
 	angular.module('petron.modules.audio')
 		.config(['$stateProvider', function($stateProvider) {
 			$stateProvider
-				.state('audiobox', {
+				.state('petron.audiobox', {
 					abstract: true,
 					url: '/audiobox',
-					templateUrl: '_modules/audio_module/_template/layout.html'
-				}).state('audiobox.main', {
+					views: {
+						'content': {
+							templateUrl: '_modules/audio_module/_template/layout.html'
+						}
+					}
+				}).state('petron.audiobox.main', {
 					url: '/main',
 					views: {
-						'main@audiobox': {
+						'main@petron.audiobox': {
 							templateUrl: '_modules/audio_module/_template/main.html',
 							controller: 'controller.audiobox.main'
 						},
-						'header@audiobox': {
+						'header@petron': {
 							templateUrl: '_main/_template/petron.header.html'
 						}
 					}
-				}).state('audiobox.player', {
+				}).state('petron.audiobox.player', {
 					url: '/player',
 					views: {
-						'main@audiobox': {
+						'main@petron.audiobox': {
 							templateUrl: '_modules/audio_module/_template/player.html'
 						},
-						'header@audiobox': {}
+						'header@petron': {}
 					}
 				});
 		}]);

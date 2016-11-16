@@ -1,0 +1,13 @@
+<a ng-click="newPlaylist()">
+	<span class="icon">
+		<i class="fa icon-plus"></i>
+	</span>
+	<span>{{ 'create_new_playlist' | translate }}</span>
+</a>
+
+<a ng-repeat="list in audio.playlists" ng-click="func.play(list.name)">
+	<span class="icon">
+		<i class="fa icon-th-list"></i>
+	</span>
+	<span>{{ list.name }}</span>
+</a>

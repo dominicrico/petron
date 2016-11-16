@@ -1,0 +1,29 @@
+* {
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: transparent;
+}
+
+body,html  {
+	background: $background_image;
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 100vw;
+	height: 100vh;
+	font-family: $family-sans-serif;
+}
+
+main.container {
+	padding: 35px 55px;
+	height: calc(100vh - 58px);
+	overflow: hidden;
+	box-sizing: border-box;
+
+	& > .c--main {
+		max-height: 100%;
+    overflow-y: scroll;
+	}
+}
+
+.button[disabled], .button.is-disabled {
+  background-color: transparent;
+}

@@ -5,40 +5,78 @@
 		<title>Petron</title>
 
 		<!-- bower:css -->
-		<link rel="stylesheet" href="../app/_vendor/bulma/css/bulma.css" />
-		<link rel="stylesheet" href="../app/_vendor/ng-dialog/css/ngDialog.css" />
-		<link rel="stylesheet" href="../app/_vendor/ng-dialog/css/ngDialog-theme-default.css" />
+		<link rel="stylesheet" href="../app/vendor/ng-dialog/css/ngDialog.css" />
+		<link rel="stylesheet" href="../app/vendor/ng-dialog/css/ngDialog-theme-default.css" />
+		<link rel="stylesheet" href="../app/vendor/angular-rangeslider-directive/angular-range-slider.css" />
 		<!-- endbower -->
 
-		<link rel="stylesheet" href="petron.css">
+		<link rel="stylesheet" href="css/petron.css">
 	</head>
-	<body ng-app="petron">
-		<div ui-view>
-			<div class="container">
-				<header>
-					<h1>
-						Petron is loading...<br>
-						<small>All in One Car System</small>
-					</h1>
+	<body ng-app="petron" ng-cloak>
+		<div class="petron-wrap" ng-class="{'show-left-menu': $root.left_toggle, 'show-right-menu': $root.right_toggle}">
+        <div class="menu-wrap is-left">
+            <nav class="menu">
+                <div class="nav-list">
+                    <a ui-sref="petron.fmbox" ui-sref-active="is-active">
+											<span class="icon"><i class="fa icon-radio"></i></span>
+											<span>{{ 'radio_module' | translate }}</span>
+										</a>
+                    <a ui-sref="petron.audiobox" ui-sref-active="is-active">
+											<span class="icon"><i class="fa icon-notes"></i></span>
+											<span>{{ 'music_module' | translate }}</span>
+										</a>
+                    <a ui-sref="petron.videobox.main" ui-sref-active="is-active">
+											<span class="icon"><i class="fa icon-video"></i></span>
+											<span>{{ 'video_module' | translate }}</span>
+										</a>
+                    <a ui-sref="petron" ui-sref-active="is-active">
+											<span class="icon"><i class="fa icon-location-arrow"></i></span>
+											<span>{{ 'navigation_module' | translate }}</span>
+										</a>
+                    <a ui-sref="petron" ui-sref-active="is-active">
+											<span class="icon"><i class="fa icon-heart"></i></span>
+											<span>{{ 'health_module' | translate }}</span>
+										</a>
+                    <a ui-sref="petron" ui-sref-active="is-active">
+											<span class="icon"><i class="fa icon-cog"></i></span>
+											<span>{{ 'settings_module' | translate }}</span>
+										</a>
+                </div>
+            </nav>
+            <span class="icon is-medium close-button" ng-click="$root.left_toggle = false;">
+					<i class="fa icon-times"></i>
+				</span>
+        </div>
+        <div class="container" ui-view>
 
-				</header>
-				<section class="main"></section>
-				<footer></footer>
-			</div>
-		</div>
-
-		<petron-daemon ng-if="$root.daemon.active" petron-draggable></petron-daemon>
+        </div>
+				<div class="menu-wrap is-right" ng-if="rightMenuShow">
+          <nav class="menu">
+              <div class="nav-list" ui-view="right-menu">
+              </div>
+          </nav>
+          <span class="icon is-medium close-button" ng-click="$root.right_toggle = false;">
+			      <i class="fa icon-times"></i>
+  				</span>
+        </div>
+    </div>
+    <petron-daemon ng-if="$root.daemon.active" petron-draggable></petron-daemon>
 
 		<!-- bower:js -->
-		<script src="../app/_vendor/angular/angular.js"></script>
-		<script src="../app/_vendor/angular-ui-router/release/angular-ui-router.js"></script>
-		<script src="../app/_vendor/angular-electron/angular-electron.js"></script>
-		<script src="../app/_vendor/angular-sanitize/angular-sanitize.js"></script>
-		<script src="../app/_vendor/angular-translate/angular-translate.js"></script>
-		<script src="../app/_vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-		<script src="../app/_vendor/ng-dialog/js/ngDialog.js"></script>
-		<script src="../app/_vendor/messageformat/messageformat.js"></script>
-		<script src="../app/_vendor/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
+		<script src="../app/vendor/angular/angular.js"></script>
+		<script src="../app/vendor/angular-ui-router/release/angular-ui-router.js"></script>
+		<script src="../app/vendor/angular-electron/angular-electron.js"></script>
+		<script src="../app/vendor/angular-sanitize/angular-sanitize.js"></script>
+		<script src="../app/vendor/angular-translate/angular-translate.js"></script>
+		<script src="../app/vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+		<script src="../app/vendor/ng-dialog/js/ngDialog.js"></script>
+		<script src="../app/vendor/messageformat/messageformat.js"></script>
+		<script src="../app/vendor/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
+		<script src="../app/vendor/async/dist/async.js"></script>
+		<script src="../app/vendor/angular-rangeslider-directive/src/angular-range-slider.js"></script>
+		<script src="../app/vendor/hammerjs/hammer.js"></script>
+		<script src="../app/vendor/AngularHammer/angular.hammer.js"></script>
+		<script src="../app/vendor/hammer-time/hammer-time.js"></script>
 		<!-- endbower -->
 
 		<!-- build:script petron -->

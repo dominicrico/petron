@@ -1,0 +1,73 @@
+petron-filetree {
+	overflow-y: scroll;
+  position: relative;
+  display: block;
+	height: 332px;
+	&.has-tabs {
+		height: 285px;
+	}
+}
+
+.c--filetree__list {
+	padding: 0 20px 0 0;
+
+	li {
+		background: rgba($white, .085);
+		padding: 5px;
+		margin-bottom: 2px;
+		min-height: 48px;
+
+		&.is-active {
+			border-left: 5px solid $primary;
+		}
+
+		figure {
+			margin-right: 10px;
+		}
+
+		.columns {
+			margin: 0;
+		}
+
+		.c--filetree__title {
+			padding: 0 10px 0 0;
+			font-weight: 200;
+			white-space: nowrap;
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+			.column {
+				padding: 0;
+				white-space: nowrap;
+			  overflow: hidden;
+			  text-overflow: ellipsis;
+			}
+		}
+
+		.c--filetree__name {
+			padding: 0 10px 0 0;
+			font-weight: 500;
+			white-space: nowrap;
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+			.column {
+				padding: 0;
+				white-space: nowrap;
+			  overflow: hidden;
+			  text-overflow: ellipsis;
+			}
+		}
+
+		.c--filetree__meta {
+			font-weight: 300;
+			font-size: 12px;
+			.meta__hd {
+				color: darken($primary, .8);
+
+				&.is-hd {
+					color: $primary;
+				}
+			}
+		}
+	}
+
+}

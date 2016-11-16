@@ -1,0 +1,267 @@
+#  petron.script - Boot splash plugin for Petron
+#
+#  Copyright (C) 2010 Paolo Bernardi.
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2, or (at your option)
+#  any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+#  02111-1307, USA.
+#
+#  Written by: Dominic Rico Gómez <hello@coderocket.me>
+#
+#  Based on "Ubuntu logo" by:
+#              Alberto Milone <alberto.milone@canonical.com>
+#
+
+Window.SetBackgroundTopColor (0.00, 0.00, 0.00);     # Nice colour on top of the screen fading to
+
+Window.SetBackgroundBottomColor (0.00, 0.00, 0.00);  # an equally nice colour on the bottom
+
+bg_image = Image ("petron-background.png");
+
+screen_ratio = Window.GetHeight() / Window.GetWidth();
+bg_ratio = bg_image.GetHeight() / bg_image.GetWidth();
+
+screen_width = Window.GetWidth ();
+screen_height = Window.GetHeight ();
+
+if (screen_ratio > bg_ratio)
+{
+  scale_factor = Window.GetHeight() / bg_image.GetHeight();
+}
+else
+{
+  scale_factor = Window.GetWidth() / bg_image.GetWidth();
+}
+
+resized_bg_image = bg_image.Scale (bg_image.GetWidth() * scale_factor, bg_image.GetHeight() * scale_factor);
+bg_sprite = Sprite ();
+bg_sprite.SetImage (resized_bg_image);
+bg_sprite.SetY (0);
+bg_sprite.SetX (0);
+bg_sprite.SetOpacity (1);
+
+# Sprites are placed on top corner by default
+welcome_filename = "petron-welcome.png";
+bye_filename = "petron-bye.png";
+logo_filename = "petron-logo.png";
+progress_dot_off_filename = "petron-dot.png";
+progress_dot_on_filename = "petron-dot-active.png";
+
+logo.image = Image (logo_filename);
+logo.image = logo.image.Scale (logo.image.GetWidth() * scale_factor, logo.image.GetHeight() * scale_factor);
+logo.sprite = Sprite ();
+logo.sprite.SetImage (logo.image);
+logo.width = logo.image.GetWidth ();
+logo.height = logo.image.GetHeight ();
+logo.x = Window.GetX () + Window.GetWidth () / 2 - logo.width  / 2;
+logo.y = Window.GetY () + Window.GetHeight () / 2 - logo.height * 1.15;
+logo.z = 1000;
+logo.sprite.SetX (logo.x);
+logo.sprite.SetY (logo.y);
+logo.sprite.SetZ (logo.z);
+logo.sprite.SetOpacity (1);
+
+# Spacing below the logo - in pixels
+logo_spacing = logo.height / 2;
+
+if (Plymouth.GetMode() == "boot")
+{
+		message.image = Image (welcome_filename);
+}
+else
+{
+		message.image = Image (bye_filename);
+}
+message.image = message.image.Scale (message.image.GetWidth() * scale_factor, message.image.GetHeight() * scale_factor);
+message.sprite = Sprite ();
+message.sprite.SetImage (message.image);
+message.width = message.image.GetWidth();
+message.height = message.image.GetHeight();
+message.x = Window.GetX () + Window.GetWidth () / 2 - message.width  / 2;
+message.y = logo.y + logo.height + logo_spacing;
+message.z = 1000;
+message.sprite.SetX (message.x);
+message.sprite.SetY (message.y);
+message.sprite.SetZ (message.z);
+message.sprite.SetOpacity (1);
+
+progress_indicator.bullet_off = Image (progress_dot_off_filename);
+progress_indicator.bullet_on = Image (progress_dot_on_filename);
+bullet_size = progress_indicator.bullet_on.GetWidth() * scale_factor;
+progress_indicator.bullet_on = progress_indicator.bullet_on.Scale (bullet_size, bullet_size);
+progress_indicator.bullet_off = progress_indicator.bullet_off.Scale (bullet_size, bullet_size);
+progress_indicator.bullet_width = progress_indicator.bullet_off.GetWidth ();
+progress_indicator.bullet_height = progress_indicator.bullet_off.GetHeight ();
+progress_indicator.bullet_hspacing = progress_indicator.bullet_width * 1.1;
+progress_indicator.width = progress_indicator.bullet_width * 5;
+progress_indicator.height = progress_indicator.bullet_height;
+progress_indicator.y = message.y + message.height / 2 + logo_spacing;
+progress_indicator.x = Window.GetX () + Window.GetWidth () / 2 - progress_indicator.width / 2; # logo.x + 26;
+
+#-----------------------------------------Logo functions------------------------------
+
+# Call this when updating the screen
+fun draw_logo () {
+    logo.sprite.SetX (logo.x);
+    logo.sprite.SetY (logo.y);
+    logo.sprite.SetZ (logo.z);
+    logo.sprite.SetOpacity (1);
+}
+
+#-----------------------------------------Progress Indicator--------------------------
+fun set_progress_indicator () {
+    # Here we assume that we can store half bullets on each half of the screen
+    # together with some spacing
+    local.x = progress_indicator.x;
+
+    for (index = 0; index <= 2; index++) {
+        # Set the "off" bullets
+        progress_indicator.bullets_off[index].sprite = Sprite (progress_indicator.bullet_off);
+        progress_indicator.bullets_off[index].sprite.SetPosition (local.x + (index*10), progress_indicator.y, 1000);
+        progress_indicator.bullets_off[index].x = local.x + (index*10);
+        progress_indicator.bullets_off[index].y = progress_indicator.y;
+        progress_indicator.bullets_off[index].sprite.SetOpacity (1);
+
+        # Set the "on" bullets on top of the "off" bullets and make them transparent
+        progress_indicator.bullets_on[index].sprite = Sprite (progress_indicator.bullet_on);
+        progress_indicator.bullets_on[index].x = progress_indicator.bullets_off[index].x;
+        progress_indicator.bullets_on[index].y = progress_indicator.bullets_off[index].y;
+        progress_indicator.bullets_on[index].sprite.SetPosition (progress_indicator.bullets_on[index].x, progress_indicator.bullets_on[index].y, 10000);
+
+        progress_indicator.bullets_on[index].sprite.SetOpacity (0);
+
+        local.x += progress_indicator.bullet_hspacing;
+    }
+}
+
+
+# We have 2 bullets, one on top of the other:
+# The white one is on top of the red one and the former should
+# slowly fade so as to get a nice transition effect.
+fun switch_on_bullet (bullets_off, bullets_on, bullet_number, opacity) {
+    local.x = bullets_on[bullet_number].x;
+    local.y = bullets_on[bullet_number].y;
+    local.z = bullets_on[bullet_number].z;
+
+    # Hide the bullets which are off
+    bullets_off[bullet_number].sprite.SetOpacity (0);
+
+    # Show the bullets which are on
+    bullets_on[bullet_number].sprite.SetPosition (local.x, local.y, local.z);
+    bullets_on[bullet_number].sprite.SetOpacity (opacity);
+
+    # Bump the number of times we have switched on bullets
+    global.times_bullets_switched++;
+}
+
+fun switch_off_bullets () {
+    # Debug("Switching off progress indicator");
+
+    set_progress_indicator ();
+    global.times_bullets_switched = 0;
+    global.on_off = 1;
+}
+
+# This is something that we can call when we exit
+fun switch_on_bullets () {
+    # Debug("Switching off progress indicator");
+    if (!global.progress_indicator.bullets_on) set_progress_indicator ();
+    local = global.progress_indicator;
+
+    for (index = 0; bullets_on[index]; index++) {
+        switch_on_bullet (bullets_off, bullets_on, index, 1.0);
+    }
+}
+
+
+# Implement in boot progress callback
+fun animate_progress_indicator (progress, time) {
+    if (global.progress_time == NULL) {
+        global.progress_time = progress;  #time;
+        switch_off_bullets ();
+    }
+
+    if ((progress - global.progress_time) >= 1.0) {
+        global.progress_time = progress;
+
+        if (global.times_bullets_switched == 3) {
+            # Change which bullets are switched on
+            # and which ones are switched off
+            global.on_off = !global.on_off;
+            global.times_bullets_switched = 0;
+        }
+
+        if (global.on_off) {
+            switch_on_bullet (progress_indicator.bullets_off, progress_indicator.bullets_on,
+                              global.times_bullets_switched, 1.0);
+        }
+        else {
+            switch_on_bullet (progress_indicator.bullets_on, progress_indicator.bullets_off,
+                              global.times_bullets_switched, 1.0);
+        }
+    }
+}
+
+
+if (Plymouth.GetMode() == "boot")
+{
+    Plymouth.SetBootProgressFunction (animate_progress_indicator);
+}
+
+fun redraw_screen ()
+{
+		bg_sprite.SetImage (resized_bg_image);
+		logo.sprite.SetImage (logo.image);
+
+		if (Plymouth.GetMode() == "boot")
+		{
+		message.image = Image (welcome_filename);
+		}
+		else
+		{
+		message.image = Image (bye_filename);
+		}
+
+		message.image = message.image.Scale (message.image.GetWidth() * scale_factor, message.image.GetHeight() * scale_factor);
+
+		message.sprite.SetImage (message.image);
+}
+
+#-----------------------------------------Refresh stuff --------------------------------
+#
+# Calling Plymouth.SetRefreshFunction with a function will set that function to be
+# called up to 50 times every second, e.g.
+#
+# NOTE: if a refresh function is not set, Plymouth doesn't seem to be able to update
+#       the screen correctly
+#
+fun refresh_callback ()
+{
+    redraw_screen();
+}
+
+Plymouth.SetRefreshFunction (refresh_callback);
+
+
+#----------------------------------------- Quit --------------------------------
+
+# TODO: Maybe we should also hide any other dialog
+# Show the logo and make the progress indicator look full when on exit
+fun quit_callback ()
+{
+  	redraw_screen();
+    switch_on_bullets ();
+}
+
+Plymouth.SetQuitFunction(quit_callback);

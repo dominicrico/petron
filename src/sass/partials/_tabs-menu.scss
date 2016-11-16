@@ -1,0 +1,27 @@
+.tabs ul.c--tabs__menu {
+	justify-content: space-between;
+	padding: 20px 0;
+	font-weight: bold;
+	color: $primary;
+	background: #141415;
+
+	& > li {
+		text-align: center;
+		flex: 1;
+
+		.icon:first-child {
+			margin-right: 0;
+		}
+
+		&.is-active:after {
+	    content: '';
+	    height: 6px;
+	    background: $primary;
+	    width: 100%;
+	    display: block;
+	    position: relative;
+	    bottom: -20px;
+	    margin-top: -6px;
+		}
+	}
+}

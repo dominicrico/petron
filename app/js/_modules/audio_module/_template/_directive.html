@@ -1,0 +1,78 @@
+<div class="columns">
+	<div class="column has-text-centered c--audio__title">
+		<h1 class="title is-4">
+			{{ playlist.tracks[current].title }}
+		</h1>
+
+		<h2 class="subtitle is-6">
+			{{ playlist.tracks[current].artist }} {{ (playlist.tracks[current].album) ? '- ' + playlist.tracks[current].album : '' }}
+		</h2>
+	</div>
+</div>
+
+<div class="columns">
+	<div class="column is-8 is-offset-2">
+		<figure class="image is-square">
+		  <img ng-if="playlist.tracks[current].image" ng-src="{{ 'data:image/' + playlist.tracks[current].image_type + ';base64,' + playlist.tracks[current].image }}" alt="">
+		  <img ng-if="!playlist.tracks[current].image" src="./images/music_cover_ph.svg" alt="">
+		</figure>
+	</div>
+</div>
+
+<div class="columns">
+	<div class="column has-text-centered">
+		<section class="c--audio__controls">
+			<button class="button" ng-click="shuffle()" ng-class="{'is-active': controls.shuffle}">
+				<i class="icon-shuffle"></i>
+			</button>
+			<button class="button c--audio__controls-l" ng-click="previous()">
+				<i class="icon-media-rewind"></i>
+			</button>
+			<button class="button c--audio__controls-xl" ng-click="play()" ng-class="{'is-active': controls.play}">
+				<i class="icon-media-play" ng-if="!controls.play"></i>
+				<i class="icon-media-pause" ng-if="controls.play"></i>
+			</button>
+			<button class="button c--audio__controls-l" ng-click="next()">
+				<i class="icon-media-forward"></i>
+			</button>
+			<button class="button" ng-click="toggleRepeat()" ng-class="{'is-active': controls.loop || controls.repeat}">
+				<i ng-class="{'icon-loop': controls.loop || (!controls.loop && !controls.repeat) , 'icon-repeat': controls.repeat}"></i>
+			</button>
+		</section>
+	</div>
+</div>
+
+<div class="columns c--audio__timetrack">
+	<div class="column has-text-centered">
+		<input id="timetracker" ng-model="controls.time" ng-change="seek()" type="range" min="0" max="{{ controls.duration }}" step="1" />
+	</div>
+</div>
+
+<div class="columns c--audio__time">
+	<div class="column has-text-left">
+		{{ controls.time | buildTime }}
+	</div>
+	<div class="column has-text-right">
+		{{ controls.duration | buildTime }}
+	</div>
+</div>
+
+<audio class="c--audio__player" preload="auto" ng-click="play()">
+	<source ng-repeat="file in playlist.tracks" ng-if="playlist.tracks && file.play" ng-src="{{ file.path }}" type="audio/{{ file.type}}">
+</audio>
+<!--
+<button class="button" ng-click="player.audio.daemonize()">
+	<i class="icon-home"></i>
+</button>
+
+
+<i class="icon-volume-down"></i>
+<input ng-model="player.audio.controls.volume" ng-change="player.audio.setVolume()" type="range" min="0" max="1" step="0.01" />
+<i class="icon-volume-up"></i>
+
+<section class="c--audio__playlist">
+	<ul>
+		<li ng-repeat="file in player.audio.playlist" ng-click="player.audio.playFile($index)">{{ file.name }}</li>
+	</ul>
+</section>
+-->

@@ -10,3 +10,24 @@
 .is-aligned-center {
 	justify-content: center;
 }
+
+.hero {
+	background: transparent;
+}
+
+.title {
+	color: $white-ter;
+}
+
+.hero.is-fullheight .container {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.hero.is-fullheight .hero-body {
+	padding: 20px;
+}
+
+.is-paddingless {
+	padding: 0 !important;
+}

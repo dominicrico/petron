@@ -1,66 +1,52 @@
-<div class="hero is-fullheight">
+<div class="hero is-fullheight is-medium">
+	<div class="hero-head">
+		<div class="container is-fluid" ui-view="header"></div>
+	</div>
 	<div class="hero-body">
-		<div class="container is-fluid">
-			<div class="columns">
-				<div class="column has-text-centered">
-					<h1 class="title is-1">
-						{{ 'petron' | translate }}
-					</h1>
-				</div>
-			</div>
-			<div class="columns">
-				<div class="column is-6" ui-sref="radiobox.main">
-					<h2 class="title is-2 is-vcentered">
+		<div class="container is-fluid" ui-view="content">
+		</div>
+	</div>
+	<div class="hero-foot">
+		<div class="tabs">
+			<div class="container is-fluid">
+				<ul class="c--tabs__menu">
+					<li ui-sref="" ui-sref-active="is-active">
 						<span class="icon is-large">
 							<i class="fa icon-radio"></i>
 						</span>
-						{{ 'radio_module' | translate }}
-					</h2>
-				</div>
-				<div class="column is-6" ui-sref="navigationbox.main">
-					<h2 class="title is-2 is-vcentered is-aligned-right">
-						{{ 'navigation_module' | translate }}
-						<span class="icon is-large">
-							<i class="fa icon-location-arrow"></i>
-						</span>
-					</h2>
-				</div>
-			</div>
-			<div class="columns">
-				<div class="column is-6" ui-sref="audiobox.main">
-					<h2 class="title is-2 is-vcentered">
+						<div>{{ 'radio_module' | translate }}</div>
+					</li>
+					<li ui-sref="petron.audiobox.main" ui-sref-active="is-active">
 						<span class="icon is-large">
 							<i class="fa icon-notes"></i>
 						</span>
-						{{ 'music_module' | translate }}
-					</h2>
-				</div>
-				<div class="column is-6" ui-sref="healthbox.main">
-					<h2 class="title is-2 is-vcentered is-aligned-right">
-						{{ 'health_module' | translate }}
-						<span class="icon is-large">
-							<i class="fa icon-spanner"></i>
-						</span>
-					</h2>
-				</div>
-			</div>
-			<div class="columns">
-				<div class="column is-6 " ui-sref="videobox.main">
-					<h2 class="title is-2 is-vcentered">
+						<div>{{ 'music_module' | translate }}</div>
+					</li>
+					<li ui-sref="petron.videobox.main" ui-sref-active="is-active">
 						<span class="icon is-large">
 							<i class="fa icon-video"></i>
 						</span>
-						{{ 'video_module' | translate }}
-					</h2>
-				</div>
-				<div class="column is-6" ui-sref="settingbox.main">
-					<h2 class="title is-2 is-2 is-vcentered is-aligned-right">
-						{{ 'settings_module' | translate }}
+						<div>{{ 'video_module' | translate }}</div>
+					</li>
+					<li ui-sref="" ui-sref-active="is-active">
+						<span class="icon is-large">
+							<i class="fa icon-location-arrow"></i>
+						</span>
+						<div>{{ 'navigation_module' | translate }}</div>
+					</li>
+					<li ui-sref="" ui-sref-active="is-active">
+						<span class="icon is-large">
+							<i class="fa icon-spanner"></i>
+						</span>
+						<div>{{ 'health_module' | translate }}</div>
+					</li>
+					<li ui-sref="" ui-sref-active="is-active">
 						<span class="icon is-large">
 							<i class="fa icon-cog"></i>
 						</span>
-					</h2>
-				</div>
+						<div>{{ 'settings_module' | translate }}</div>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>

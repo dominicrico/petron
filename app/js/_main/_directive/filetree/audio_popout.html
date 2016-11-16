@@ -1,0 +1,39 @@
+<section class="c--audio__popout">
+	<div class="columns is-vcentered c--audio__track">
+		<div class="column is-narrow">
+			<figure class="image is-48x48">
+				<img ng-if="file.image" ng-src="{{ 'data:image/' + file.image_type + ';base64,' + file.image }}" alt="{{ file.artist }}">
+				<img ng-if="!file.image" src="./images/music_cover_ph.svg" alt="">
+			</figure>
+		</div>
+		<div class="column">
+			<p>{{ file.title }}</p>
+			<p><small>{{ 'audio_popout.by_artist' | translate }} {{ file.artist }}</small></p>
+		</div>
+	</div>
+	<div class="columns" ng-click="play(file)">
+		<div class="column c--audio__option">
+				<span class="icon is-small">
+					<i class="fa icon-media-play"></i>
+				</span>
+				{{ 'audio_popout.button_play_now' | translate }}
+		</div>
+	</div>
+	<div class="columns" ng-click="addToQueue(file)">
+		<div class="column c--audio__option">
+			<span class="icon is-small">
+				<i class="fa icon-th-list"></i>
+			</span>
+			{{ 'audio_popout.button_add_to_queue' | translate }}
+		</div>
+	</div>
+	<div class="columns" ng-click="addToPlaylist(file)">
+		<div class="column c--audio__option">
+			<span class="icon is-small">
+				<i class="fa icon-plus"></i>
+			</span>
+			{{ 'audio_popout.button_add_to_playlist' | translate }}
+		</div>
+	</div>
+
+</section>

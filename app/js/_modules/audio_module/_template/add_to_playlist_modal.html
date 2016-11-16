@@ -1,0 +1,30 @@
+<section class="c--audio__popout">
+	<div class="columns is-vcentered c--audio__track">
+		<div class="column is-narrow">
+			<figure class="image is-48x48">
+				<img ng-if="file.image" ng-src="{{ 'data:image/' + file.image_type + ';base64,' + file.image }}" alt="{{ file.artist }}">
+				<img ng-if="!file.image" src="./images/music_cover_ph.svg" alt="">
+			</figure>
+		</div>
+		<div class="column">
+			<p>{{ file.title }}</p>
+			<p><small>{{ 'audio_popout.by_artist' | translate }} {{ file.artist }}</small></p>
+		</div>
+	</div>
+	<div class="columns c--audio__popout--playlists">
+		<div class="column">
+			<ul>
+				<li ng-click="useList('create_new')">
+					<span class="icon is-small">
+						<i class="fa icon-plus"></i>
+					</span> {{ 'create_new_playlist' | translate }}
+				</li>
+				<li ng-repeat="pl in $parent.playlists" ng-click="useList(pl.name)">
+					<span class="icon is-small">
+						<i class="fa icon-th-list"></i>
+					</span> {{ pl.name }}
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>

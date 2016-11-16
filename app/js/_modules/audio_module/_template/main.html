@@ -1,0 +1,38 @@
+<section class="columns u--max-height__100 u--margin-top__none">
+
+	<aside class="c--filetree column is-7">
+
+		<div class="tabs">
+		  <ul class="is-left">
+		    <li ng-click="visibileFileTree = 'files'" ng-class="{'is-active': visibileFileTree === 'files'}">
+		      <a>
+		        <span class="icon is-small"><i class="fa icon-folder"></i></span>
+		        <span>{{ 'treeview_files' | translate }}</span>
+		      </a>
+		    </li>
+		    <li ng-click="visibileFileTree = 'playlist'" ng-class="{'is-active': !visibileFileTree || visibileFileTree === 'playlist'}">
+		      <a>
+		        <span class="icon is-small"><i class="fa icon-th-list"></i></span>
+		        <span>{{ 'treeview_playlist' | translate }}</span>
+		      </a>
+		    </li>
+		  </ul>
+			<ul class="is-right" ng-show="visibileFileTree === 'files'">
+				<li ng-click="func.playAll($root.files)">
+					<a>
+		        <span class="icon is-small"><i class="fa icon-media-play"></i></span>
+		        <span>{{ 'treeview_playall' | translate }}</span>
+		      </a>
+				</li>
+			</ul>
+		</div>
+
+		<petron-filetree class="has-tabs" files="files" func="func" type="audio" ng-show="visibileFileTree === 'files'"></petron-filetree>
+		<petron-filetree class="has-tabs" files="audio.queue.tracks" func="func" type="playlist" ng-show="!visibileFileTree || visibileFileTree === 'playlist'"></petron-filetree>
+	</aside>
+
+	<main class="c--audio__main column is-5">
+		<petron-audio></petron-audio>
+	</main>
+
+</section>

@@ -1,0 +1,33 @@
+(function() {
+	'use strict';
+
+	angular.module('petron.core.dependencies', [
+		'angular-electron',
+		'ui.router',
+		'pascalprecht.translate',
+		'ngDialog',
+		'angularRangeSlider',
+		'hmTouchEvents',
+	]);
+
+	angular.module('petron.core.modules', []);
+	angular.module('petron.core.modules')
+		.config(['remoteProvider', function(remoteProvider) {
+			remoteProvider.register('fs');
+			remoteProvider.register('path');
+			remoteProvider.register('musicmetadata');
+			remoteProvider.register('ffmpeg');
+			remoteProvider.register('ffprobe');
+			remoteProvider.register('ffprobe-static');
+			remoteProvider.register('electron-json-storage');
+			//remoteProvider.register('node-rpi-si4703');
+		}]);
+
+	angular.module('petron.core', [
+		'petron.core.dependencies',
+		'petron.core.modules',
+		'petron.core.config',
+		'petron.core.templates',
+		'petron.core.routes'
+	]);
+})();

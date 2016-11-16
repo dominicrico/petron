@@ -77,9 +77,6 @@ function createLoadingScreen() {
 app.on('ready', () => {
 	createLoadingScreen();
 	createWindow();
-
-	console.log('main id', mainWindow.id);
-	console.log('loading id', loadingScreen.id);
 });
 
 // Quit when all windows are closed.

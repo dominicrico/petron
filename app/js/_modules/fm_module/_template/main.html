@@ -1,0 +1,50 @@
+<section class="columns u--max-height__100 u--margin-top__none">
+
+	<main class="c--fm__main column">
+		<div class="columns">
+			<section class="column c--fm__display">
+				<div class="columns">
+					<div class="column is-10 is-offset-1">
+						<span class="icon">
+							<i class="fa icon-heart-outline"></i>
+						</span>
+						<h1 class="is-1 title" ng-bind-html="frequency.current | frequency">
+						</h1>
+						<span class="frequency">
+							MHz
+						</span>
+					</div>
+				</div>
+				<div class="columns">
+					<div class="column">
+						<h2 class="is-2 title">
+							SWR3
+						</h2>
+						<p class="marquee">
+							<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente atque hic labore veniam</span>
+						</p>
+					</div>
+				</div>
+			</section>
+		</div>
+		<div class="columns is-vcentered c--fm__channels">
+			<div class="column is-narrow" ng-click="freqDown()">
+				<span class="icon is-large"><i class="fa icon-media-rewind"></i></span>
+			</div>
+			<div class="column c--fm__frequency">
+				<input ng-model="frequency.current" type="range" min="{{ frequency.min }}"  max="{{ frequency.max }}" step="0.05">
+				<ul class="c--range__labels">
+				  <li ng-repeat="label in rangeLabels track by $index" ng-class="{'is-seperator': (label % 1) === 0, 'is-seperator-5': (label % 5) === 0}">
+				  	<span class="is-label" ng-if="(label % 5) === 0">
+				  		{{ label }}
+				  	</span>
+				  </li>
+				</ul>
+			</div>
+			<div class="column is-narrow" ng-click="freqUp()">
+				<span class="icon is-large"><i class="fa icon-media-forward"></i></span>
+			</div>
+		</div>
+	</main>
+
+</section>

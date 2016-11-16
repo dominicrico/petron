@@ -1,0 +1,18 @@
+header {
+	height: 58px;
+	background: rgba($white, .045);
+	padding: 10px;
+
+	& > .columns {
+		height: 58px;
+
+		.icon {
+			line-height: 23px;
+		}
+
+		p {
+			display: inline-block;
+			line-height: 25px;
+		}
+	}
+}

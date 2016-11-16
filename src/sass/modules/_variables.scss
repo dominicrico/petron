@@ -1,0 +1,109 @@
+$highlight: #11B8BC;
+
+$black:        #242222;
+$black-bis:    lighten(#242222, 7%);
+$black-ter:    lighten(#242222, 14%);
+
+$grey-darker:  #252627;
+$grey-dark:    lighten(#252627, 5%);
+$grey:         lighten(#252627, 15%);
+$grey-light:   lighten(#252627, 25%);
+$grey-lighter: lighten(#252627, 35%);
+
+$white-ter:    darken(#F9F8F5, 8%);
+$white-bis:    darken(#F9F8F5, 4%);
+$white:        #F9F8F5;
+
+$orange:       hsl(14,  100%, 53%);
+$yellow:       hsl(48,  100%, 67%);
+$green:        hsl(141, 71%,  48%);
+$turquoise:    #0B8386;
+$blue:         hsl(217, 71%,  53%);
+$purple:       hsl(271, 100%, 71%);
+$red:          hsl(348, 100%, 61%);
+
+// Typography
+$family-sans-serif: "Montserrat";
+$family-monospace: "Inconsolata", "Consolas", "Monaco", monospace;
+
+$size-1: 48px;
+$size-2: 40px;
+$size-3: 28px;
+$size-4: 24px;
+$size-5: 18px;
+$size-6: 14px;
+
+$size-7: 11px;
+
+$weight-normal: 400;
+$weight-bold: 700;
+$weight-title-normal: 300;
+$weight-title-bold: 500;
+
+// Miscellaneous
+$easing: ease-out;
+$radius-small: 2px;
+$radius: 3px;
+$radius-large: 5px;
+$speed: 86ms;
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+// 2. Primary colors
+
+$primary: $turquoise;
+
+$info: $blue;
+$success: $green;
+$warning: $yellow;
+$danger: $red;
+
+$light: $white-ter;
+$dark: $grey-darker;
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+// 3. Applied variables
+
+// General colors
+$background_image: url('../images/petron_bg.png');
+
+$body-background: $black;
+$background: $black;
+
+$border: $grey-lighter;
+$border-hover: $grey-light;
+
+// Text colors
+$text: $white;
+$text-light: $grey;
+$text-strong: $grey-darker;
+
+// Code colors
+$code: $red;
+$code-background: $background;
+
+$pre: $text;
+$pre-background: $background;
+
+// Link colors
+$link: $primary;
+$link-invert: $primary-invert;
+$link-visited: $purple;
+
+$link-hover: $grey-darker;
+$link-hover-background: $white-ter;
+$link-hover-border: $grey-darker;
+
+$link-active: $grey-darker;
+$link-active-border: $grey-darker;
+
+// Typography
+$family-primary: $family-sans-serif;
+$family-code: $family-monospace;
+
+$size-small: $size-7;
+$size-normal: $size-6;
+$size-medium: $size-5;
+$size-large: $size-3;
+$size-huge: $size-1;

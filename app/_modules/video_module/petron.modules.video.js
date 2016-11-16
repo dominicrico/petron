@@ -6,28 +6,32 @@
 	angular.module('petron.modules.video')
 		.config(['$stateProvider', function($stateProvider) {
 			$stateProvider
-				.state('videobox', {
+				.state('petron.videobox', {
 					abstract: true,
 					url: '/videobox',
-					templateUrl: '_modules/video_module/_template/layout.html'
-				}).state('videobox.main', {
+					views: {
+						'content': {
+							templateUrl: '_modules/video_module/_template/layout.html'
+						}
+					}
+				}).state('petron.videobox.main', {
 					url: '/main',
 					views: {
-						'main@videobox': {
+						'main@petron.videobox': {
 							templateUrl: '_modules/video_module/_template/main.html',
 							controller: 'controller.videobox.main'
 						},
-						'header@videobox': {
+						'header@petron': {
 							templateUrl: '_main/_template/petron.header.html'
 						}
 					}
-				}).state('videobox.player', {
+				}).state('petron.videobox.player', {
 					url: '/player',
 					views: {
-						'main@videobox': {
+						'main@petron.videobox': {
 							templateUrl: '_modules/video_module/_template/player.html'
 						},
-						'header@videobox': {}
+						'header@petron': {}
 					}
 				});
 		}]);

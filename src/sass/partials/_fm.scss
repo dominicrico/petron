@@ -1,0 +1,153 @@
+.c--fm__display {
+	flex: none;
+	width: 62.2%;
+	margin-left: calc(37.8%/2);
+	text-align: center;
+	background: rgba($white, .045);
+	position: relative;
+	padding: 20px 0 40px 0;
+
+	.columns {
+		margin-bottom: 0;
+	}
+
+	.icon {
+		vertical-align: text-bottom;
+    position: relative;
+    top: 4px;
+    margin-right: 20px;
+	}
+
+	.title.is-1 {
+		display: inline-block;
+		font-size: 72px;
+		font-weight: 500;
+		margin-bottom: 0;
+		width: 220px;
+
+		small {
+	    font-size: 34px;
+		}
+	}
+
+	.title.is-2 {
+		margin-bottom: 0;
+    font-size: 28px;
+    font-weight: 400;
+	}
+
+	.frequency {
+		font-size: 32px;
+    font-weight: 200;
+		margin-left: 20px;
+	}
+
+	.marquee {
+		position: absolute;
+		width: 80%;
+		margin: 0 auto;
+		left: 0;
+    right: 0;
+		font-weight: 300;
+		font-size: 20px;
+		overflow: hidden;
+ 		white-space: nowrap;
+		animation: marquee 10s linear infinite;
+	}
+}
+
+.c--fm__main {
+	.c--fm__channels {
+		margin-top: 40px;
+	}
+
+	.c--fm__frequency {
+		height: 94px;
+		position: relative;
+
+		input[type=range] {
+		  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+		  width: 100%; /* Specific width is required for Firefox. */
+		  background: transparent; /* Otherwise white in Chrome */
+			position: relative;
+			z-index: 5;
+			margin-top: -10px;
+		}
+
+		input[type=range]::-webkit-slider-thumb {
+		  -webkit-appearance: none;
+		}
+
+		input[type=range]:focus {
+		  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+		}
+
+		input[type=range]::-webkit-slider-thumb {
+		  -webkit-appearance: none;
+		  border: none;
+		  height: 94px;
+		  width: 2px;
+		  border-radius: 0;
+		  background: $red;
+		  cursor: pointer;
+		  margin-top: 0; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+		  box-shadow: none; /* Add cool effects to your sliders! */
+			z-index: 999999;
+			position: relative;
+			display: inline-block;
+		}
+
+		input[type=range]::-webkit-slider-runnable-track {
+		  width: 100%;
+		  height: 94px;
+		  cursor: pointer;
+		  box-shadow: none;
+		  background: transparent;
+		  border-radius: 6px;
+		  border: none;
+			position: relative;
+			z-index: 0;
+		}
+
+		input[type=range]:focus::-webkit-slider-runnable-track {
+		  background: transparent;
+		}
+	}
+}
+
+.c--range__labels {
+	display: flex;
+	position: absolute;
+	width: 100%;
+	padding: 0 10px;
+	left: 0;
+	top: 18px;
+	pointer-events: none;
+	li {
+		display: inline-block;
+		flex-basis: 0;
+		flex-grow: 1;
+		flex-shrink: 1;
+		&.is-seperator {
+			top: 10px;
+			position: relative;
+			height: 40px;
+			background: $white;
+		}
+		&.is-seperator-5 {
+			top: 0;
+			height: 60px;
+			background: $primary;
+		}
+		.is-label {
+			position: absolute;
+			bottom: -50px;
+			font-size: 24px;
+		}
+	}
+}
+
+@keyframes marquee {
+	0%   { text-indent: 100% }
+	100% { text-indent: -150% }
+}

@@ -12,8 +12,9 @@
   },
   "scripts": {
     "test": "xo",
-    "start": "grunt && electron .",
-    "build": "electron-packager . --out=dist --asar --overwrite --all"
+    "start": "grunt",
+    "build": "electron-packager ./ Petron --platform=linux --arch=armv7l --out=release --overwrite",
+    "installer": "electron-installer-debian --src release/Petron-linux-armv7l/ --dest release/installers/ --arch armv7l  --config config.json"
   },
   "files": [
     "index.js",
@@ -32,25 +33,32 @@
   "dependencies": {
     "bluetooth-obd": "^0.2.3",
     "diskdb": "^0.1.15",
-    "electron-debug": "^1.0.0",
-    "electron-json-storage": "^2.0.0",
-    "ipc": "0.0.1",
-    "offline-geocoder": "0.0.1",
-    "remote": "^0.2.6",
-    "devtron": "^1.1.0",
     "electron": "^1.0.1",
     "electron-connect": "^0.6.0",
+    "electron-json-storage": "^2.0.0",
     "electron-packager": "^8.0.0",
+    "ffmpeg": "0.0.4",
+    "ffprobe": "^1.1.0",
+    "ffprobe-static": "^2.0.0",
+    "ipc": "0.0.1",
+    "musicmetadata": "^2.0.4",
+    "remote": "^0.2.6",
+    "xo": "^0.16.0"
+  },
+  "devDependencies": {
+    "devtron": "^1.1.0",
+    "electron-debug": "^1.0.0",
+    "electron-installer-debian": "^0.4.0",
+    "electron-packager": "^8.1.0",
+    "electron-prebuilt": "^1.4.3",
     "grunt": "^1.0.1",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-html-build": "^0.6.1",
     "grunt-html2js": "^0.3.6",
     "grunt-wiredep": "^3.0.1",
-    "load-grunt-tasks": "^3.5.2",
-    "xo": "^0.16.0"
+    "load-grunt-tasks": "^3.5.2"
   },
-  "devDependencies": {},
   "xo": {
     "esnext": true,
     "envs": [

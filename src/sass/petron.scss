@@ -1,2 +1,7 @@
+@import '../../app/vendor/bulma/sass/utilities/variables.sass';
+
 @import 'modules/manifest';
-@import 'partials/manifest.scss';
+
+@import '../../app/vendor/bulma/bulma.sass';
+
+@import 'partials/manifest';

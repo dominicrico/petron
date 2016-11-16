@@ -15,16 +15,17 @@ module.exports = function(grunt) {
 					relative: true,
 					scripts: {
 						petron: [
-							'app/_main/petron.templates.js',
-							'app/_modules/**/petron.modules*.js',
-							'app/_modules/**/_service/**/*.js',
-							'app/_modules/**/_directive/**/*.js',
-							'app/_modules/**/_controller/**/*.js',
-							'!app/_modules/petron.modules.js',
-							'app/_modules/petron.modules.js',
-							'app/_main/petron.core.js',
-							'app/_main/**/petron.*.js',
-							'app/_main/**/petron.js',
+							'app/js/_main/petron.templates.js',
+							'app/js/_modules/**/petron.modules*.js',
+							'app/js/_modules/**/_service/**/*.js',
+							'app/js/_modules/**/_factory/**/*.js',
+							'app/js/_modules/**/_directive/**/*.js',
+							'app/js/_modules/**/_controller/**/*.js',
+							'!app/js/_modules/petron.modules.js',
+							'app/js/_modules/petron.modules.js',
+							'app/js/_main/petron.core.js',
+							'app/js/_main/**/petron.*.js',
+							'app/js/_main/**/petron.js',
 						]
 					}
 				}
@@ -38,8 +39,8 @@ module.exports = function(grunt) {
 				base: 'app'
 			},
 			main: {
-				src: ['app/**/*.html', '!app/_vendor'],
-				dest: 'app/_main/petron.templates.js'
+				src: ['app/**/*.html', '!app/vendor'],
+				dest: 'app/js/_main/petron.templates.js'
 			},
 		},
 
@@ -53,8 +54,8 @@ module.exports = function(grunt) {
 								"angular": "^1.0.8"
 							}
 						},
-						"bulma": {
-							"main": 'css/bulma.css'
+						"angular-rangeslider-directive": {
+							"main": ["src/angular-range-slider.js", "angular-range-slider.css"]
 						}
 					}
 				},
@@ -68,7 +69,7 @@ module.exports = function(grunt) {
 		sass: {
 			dist: {
 				files: {
-					'app/petron.css': 'src/sass/petron.scss'
+					'app/css/petron.css': 'src/sass/petron.scss'
 				}
 			}
 		},
@@ -80,11 +81,12 @@ module.exports = function(grunt) {
 				atBegin: true
 			},
 			dist: {
-				files: ['app/**/*.*', '!app/_main/petron.templates.js',
-					'!app/index.html', '!app/petron.css', 'src/sass/**/*.scss'
+				files: ['app/**/*.*', '!app/js/_main/petron.templates.js',
+					'!app/index.html', '!app/petron.css', 'src/sass/**/*.scss',
+					'src/*.html'
 				],
 				tasks: ['compile', 'reload-electron']
-			},
+			}
 		}
 
 	});
@@ -96,10 +98,11 @@ module.exports = function(grunt) {
 		'sass'
 	]);
 
-	grunt.registerTask('default', 'watch for changes', function() {
-		electron.start();
-		grunt.task.run('watch');
-	});
+	grunt.registerTask('default', 'start electron app and watch for changes',
+		function() {
+			electron.start();
+			grunt.task.run('watch');
+		});
 
 	grunt.registerTask('reload-electron', function() {
 		electron.reload();

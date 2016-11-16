@@ -1,0 +1,17 @@
+{
+	"dest": "release/installers/",
+	"categories": [
+		"Utility"
+	],
+	"lintianOverrides": [
+		"changelog-file-missing-in-native-package"
+	],
+	"options": {
+		"name": "petron",
+		"productName": "Petron",
+		"genericName": "Car PC Software",
+		"description": "Petron is a Car PC software made for the Raspberry Pi.",
+		"productDescription": "Petron is a Car PC software designed for the Raspberry Pi and is written in JavaScript.",
+		"arch": "armv7l"
+	}
+}

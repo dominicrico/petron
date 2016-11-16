@@ -1,6 +1,7 @@
 node_modules
 /dist
-app/_vendor
+app/vendor
 .DS_Store
 .sass-cache
 Petron-linux-armv7l
+release
