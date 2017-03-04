@@ -1,0 +1,70 @@
+<section class="columns u--max-height__100 u--margin-top__none c--health">
+	<div class="column">
+		<div class="columns">
+			<div class="column is-vcentered">
+
+						<span class="door-lock fr closed">
+							<i class="icon-lock-closed"></i>
+						</span>
+						<span class="door-lock br open">
+							<i class="icon-lock-open"></i>
+						</span>
+						<img src="images/car.svg" alt="">
+						<span class="door-lock trunk closed">
+							<i class="icon-lock-closed"></i>
+						</span>
+						<span class="door-lock bl open">
+							<i class="icon-lock-open"></i>
+						</span>
+						<span class="door-lock fl open">
+							<i class="icon-lock-open"></i>
+						</span>
+
+			</div>
+			<div class="column">
+				<div class="columns">
+					<div class="column">
+						<div class="box">
+							<h5>{{ 'health.speedmeter' | translate }}</h5>
+							<h2>{{ speed }}<small>km/h</small></h2>
+						</div>
+					</div>
+					<div class="column">
+						<div class="box" ng-class="{'has-alert': (tacho >= 5000)}">
+							<h5>{{ 'health.tachometer' | translate }}</h5>
+							<h2>{{ tacho }}<small>RPM</small></h2>
+						</div>
+					</div>
+				</div>
+				<div class="columns">
+					<div class="column">
+						<div class="box" ng-class="{'has-alert': (battery1 <= 15)}">
+							<h5>{{ 'health.battery_1' | translate }}</h5>
+							<h2>{{ battery1 }}<small>%</small></h2>
+						</div>
+					</div>
+					<div class="column">
+						<div class="box" ng-class="{'has-alert': (battery2 <= 15)}">
+							<h5>{{ 'health.battery_2' | translate }}</h5>
+							<h2>{{ battery2 }}<small>%</small></h2>
+						</div>
+					</div>
+				</div>
+				<div class="columns">
+					<div class="column">
+						<div class="box">
+							<h5>{{ 'health.lights' | translate }}</h5>
+							<h2>{{ ((lights) ? 'on' : 'off') | translate}}</h2>
+						</div>
+					</div>
+					<div class="column">
+						<div class="box">
+							<h5>{{ 'health.fuel' | translate }}</h5>
+							<h2>{{ consumption }}L<small>/100km</small></h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

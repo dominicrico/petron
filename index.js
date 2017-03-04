@@ -17,7 +17,7 @@ let mainWindow,
 	windowParams = {
 		width: 800,
 		height: 480,
-		show: false,
+		show: true,
 		frame: false,
 		center: true,
 		hasShadow: false,
@@ -36,18 +36,6 @@ function createWindow() {
 
 	client.create(mainWindow);
 
-	mainWindow.on('ready-to-show', function() {
-		mainWindow.show();
-	});
-
-	mainWindow.on('show', () => {
-		if (loadingScreen) {
-			let loadingScreenBounds = loadingScreen.getBounds();
-			mainWindow.setBounds(loadingScreenBounds);
-			loadingScreen.close();
-		}
-	});
-
 	// Open the DevTools.
 	mainWindow.webContents.openDevTools();
 
@@ -60,22 +48,10 @@ function createWindow() {
 	});
 }
 
-function createLoadingScreen() {
-	loadingScreen = new BrowserWindow(Object.assign(windowParams, {
-		parent: mainWindow
-	}));
-	loadingScreen.loadURL('file://' + __dirname + '/app/loader.html');
-	loadingScreen.on('closed', () => loadingScreen = null);
-	loadingScreen.webContents.on('did-finish-load', () => {
-		loadingScreen.show();
-	});
-}
-
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
-	createLoadingScreen();
 	createWindow();
 });
 

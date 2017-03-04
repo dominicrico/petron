@@ -17,13 +17,13 @@
 			</div>
 		</div>
 	</li>
-	<li ng-repeat="file in files | orderBy:[orderFunc, ((type !== 'playlist') ? 'name' : '')]" ng-click="open(file, $index)" hm-press="popout" hm-tap="open(file, $index)" hm-recognizer-options='[{"type": "press", "time": 500}]' ng-class="{'is-active': file.play && type === 'playlist'}">
+	<li ng-repeat="file in files | orderBy:[orderFunc, ((type !== 'playlist') ? 'name' : '')]" ng-click="open(file, $index)" hm-press="popout" hm-tap="open(file, $index)" hm-recognizer-options='[{"type": "press", "time": 500}]' ng-class="{'is-active': file.play && (type === 'playlist' || type === 'audio_playlist'), 'not-found': file.not_found && (type === 'playlist' || type === 'audio_playlist')}">
 		<div class="columns is-vcentered">
 			<div class="column is-narrow is-paddingless">
 				<figure class="image is-32x32">
 				  <img ng-src="{{ 'data:image/' + file.image_type + ';base64,' + file.image }}" alt="" ng-if="file.image">
 					<span class="icon is-medium" ng-if="!file.image">
-						<i class="fa" ng-class="{'icon-folder': file.type === 'folder', 'icon-video-outline': (file.type !== 'folder' && file.type !== 'playlist' && (type == 'video' ||  type == 'playlist')), 'icon-playlist': file.type === 'playlist', 'icon-notes': file.type !== 'folder' && file.type !== 'playlist' && (type == 'audio' || type == 'playlist') }"></i>
+						<i class="fa" ng-class="{'icon-folder': file.type === 'folder', 'icon-video-outline': file.type !== 'folder' && file.type !== 'playlist' && type === 'video', 'icon-playlist': file.type === 'playlist', 'icon-notes': file.type !== 'folder' && file.type !== 'playlist' && (type == 'audio' || type == 'audio_playlist') }"></i>
 					</span>
 				</figure>
 			</div>

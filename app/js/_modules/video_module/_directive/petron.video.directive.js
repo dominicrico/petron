@@ -39,8 +39,8 @@
 
 									$scope.current = 0;
 									$scope.playlist = $rootScope.video.queue;
-									console.log($scope.playlist);
-									if ($scope.playlist.tracks) {
+
+									if ($scope.playlist.tracks && $scope.playlist.tracks.length) {
 										$scope.playlist.tracks[$scope.current].play = true;
 										$scope._video.load();
 									}

@@ -1,0 +1,95 @@
+{
+	"petron": "Petron",
+	"claim": "",
+
+	"clock_unit": "Uhr",
+	"on": "an",
+	"off": "aus",
+
+	"radio_module": "Radio",
+	"music_module": "Musik",
+	"video_module": "Video",
+	"health_module": "Health",
+	"navigation_module": "Navigation",
+	"settings_module": "Einstellungen",
+
+	"menu_label_playlists": "Playlisten",
+	"menu_label_favourites": "Favoriten",
+	"no_stations": "Keine gespeicherten Sender...",
+	"no_playlists": "Keine gespeicherten Playlisten...",
+
+	"no_file": "Keine verwendbaren Datein gefunden!",
+
+	"petron_playlist_general": "Warteschlange",
+
+	"new_playlist": "Neue Playlist",
+	"delete_playlist": "Playlist löschen",
+	"edit_playlist": "Playlist ändern",
+	"add_to_playlist": "zu Playlist hinzufügen",
+	"delete_from_playlist": "von Playlist entfernen",
+
+	"new_playlist_modal_title": "Playlist erstellen",
+	"new_playlist_modal_ph": "Playlist",
+
+	"playlist_delete_title": "Playlist löschen",
+	"playlist_delete_text": "Willst du diese Playlist wirklich löschen?",
+
+	"choose_playlist_label": "Playlist wählen",
+	"create_new_playlist": "neue Playlist",
+
+	"modal": {
+		"button_confirm": "Ja",
+		"button_delete": "Löschen",
+		"button_save": "Speichern",
+		"button_cancel": "Abbrechen"
+	},
+
+	"filetree": {
+		"add_to_playlist": "zu Playlist hinzufügen"
+	},
+
+	"treeview_files": "Dateien",
+	"treeview_playlist": "Playlist",
+	"treeview_playall": "Alle abspielen",
+
+	"videoplayer": {
+
+	},
+
+	"audio_popout": {
+		"by_artist": "von",
+		"button_play_now": "jetzt anhören",
+		"button_add_to_queue": "zur Warteschlange hinzufügen",
+		"button_add_to_playlist": "zu einer Playlist hinzufügen"
+	},
+
+	"navi": {
+		"country_dest_ph": "Land auswählen",
+		"city_dest_ph": "Stadt eingeben...",
+		"street_dest_ph": "Straße und Hausnummer eingeben...",
+		"button_use": "Verwenden",
+		"should_start_routing": "Zielführung starten?",
+		"start_routing_btn": "Jetzt starten",
+		"new_dest_btn": "Neues Ziel",
+		"save_favourite_btn": "Ziel speichern"
+	},
+
+	"keyboard": {
+		"return": "Eingabe",
+		"caps_lock": "Caps",
+		"delete": "Löschen"
+	},
+
+	"error": {
+		"file_not_found": "Datei nicht gefunden"
+	},
+
+	"health": {
+		"speedmeter": "Geschwindigkeit",
+		"tachometer": "Drehzahl",
+		"battery_1": "Batterie I",
+		"battery_2": "Batterie II",
+		"lights": "Licht",
+		"fuel": "Verbrauch"
+	}
+}

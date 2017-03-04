@@ -45,7 +45,8 @@
 							this.enable(_daemon.type, _daemon.origin);
 							_daemon.active = true;
 						}
-					} else {
+					} else if (_daemon && fromState.name !== _daemon.origin && toState.name ===
+						_daemon.origin) {
 						this.disable();
 					}
 				}

@@ -1,0 +1,103 @@
+.c--navi {
+	.c--navi__input {
+		width: 330px !important;
+	  height: 46px;
+	  border-radius: 0 !important;
+	  border: none;
+	  background: transparent;
+	  border-bottom: 3px solid $primary;
+	  font-size: 18px;
+		color: $white;
+	}
+
+	.control {
+		&.has-icon {
+			& > i.fa {
+				font-size: 22px;
+			  line-height: 34px;
+				color: $primary;
+			}
+		}
+		&.has-addons {
+			.button {
+				height: 46px;
+		    border-radius: 0;
+		    padding-left: 20px;
+		    padding-right: 20px;
+		    margin-left: 20px;
+				background: $primary;
+				color: $white;
+				border: none;
+
+				&:focus, &:active {
+					background: darken($primary, 12%);
+				}
+			}
+		}
+	}
+
+	.c--navi__autocomplete {
+		padding: 0 12px;
+		background: $grey-darker;
+		li {
+	    padding: 10px 0;
+			&:not(:last-of-type) {
+				border-bottom: 1px solid $grey-dark;
+			}
+		}
+	}
+
+	.control.is-grouped {
+		justify-content: center;
+	}
+
+	.button {
+    padding: 22px;
+		background: $white;
+		border-radius: 0;
+		color: $black;
+		border: none;
+		&:focus, &:active {
+			background: darken($white, 12%);
+		}
+		&.is-primary {
+			background: $primary;
+			color: $white;
+			&:focus, &:active {
+				background: darken($primary, 12%);
+			}
+		}
+		&.is-danger {
+			background: $red;
+			color: $white;
+			&:focus, &:active {
+				background: darken($red, 12%);
+			}
+		}
+	}
+}
+
+.angular-leaflet-map {
+	position: absolute !important;
+  top: 0;
+  left: 0;
+}
+
+.c--routing__params {
+	z-index: 9999;
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 48px;
+	line-height: 48px;
+	left: 0;
+	right: 0;
+	bottom: 10px;
+	margin: 0 auto;
+	color: $black;
+	background: $white;
+
+	.title {
+		color: $black;
+	}
+}

@@ -21,6 +21,10 @@ petron-filetree {
 			border-left: 5px solid $primary;
 		}
 
+		&.not-found {
+			border-left: 5px solid $danger;
+		}
+
 		figure {
 			margin-right: 10px;
 		}

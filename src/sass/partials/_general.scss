@@ -10,6 +10,7 @@ body,html  {
 	width: 100vw;
 	height: 100vh;
 	font-family: $family-sans-serif;
+	overflow: hidden;
 }
 
 main.container {
@@ -26,4 +27,8 @@ main.container {
 
 .button[disabled], .button.is-disabled {
   background-color: transparent;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

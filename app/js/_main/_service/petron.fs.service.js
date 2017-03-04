@@ -22,9 +22,11 @@
 						if (file.split('.').pop().match(/mp3|aac|wma|m4a/)) {
 							async.waterfall([
 								function(callback) {
-
 									var readableStream = fs.createReadStream(fpath + '/' + file);
 									mm(readableStream, function(err, tags) {
+
+										if (err) return callback(err);
+
 										var img = null,
 											type = null;
 
@@ -62,7 +64,7 @@
 									callback(null);
 								}
 							], function(err, result) {
-								done(err);
+								return done(err);
 							});
 						} else {
 							if (fs.lstatSync(path.join(fpath, file)).isDirectory()) {
@@ -72,10 +74,12 @@
 								tags.type = 'folder';
 								audioSources.push(tags);
 							}
-							done(null);
+							return done(null);
 						}
 					}, function(err) {
-						deferred.resolve(audioSources);
+						if (err) return deffered.reject(err);
+
+						return deferred.resolve(audioSources);
 					});
 
 					return deferred.promise;
@@ -128,10 +132,10 @@
 												image_type: type
 											};
 
-											callback(null, tags);
+											return callback(null, tags);
 										});
 									}, function(err) {
-										callback(err);
+										return callback(err);
 									});
 								},
 								function(tags, callback) {
@@ -148,10 +152,10 @@
 									}
 
 									videoSources.push(tags);
-									callback(null);
+									return callback(null);
 								}
 							], function(err, result) {
-								done(err);
+								return done(err);
 							});
 						} else {
 							if (fs.lstatSync(path.join(fpath, file)).isDirectory()) {
@@ -161,10 +165,12 @@
 								tags.type = 'folder';
 								videoSources.push(tags);
 							}
-							done(null);
+							return done(null);
 						}
 					}, function(err) {
-						deferred.resolve(videoSources);
+						if (err) return deffered.reject(err);
+
+						return deferred.resolve(videoSources);
 					});
 
 					return deferred.promise;

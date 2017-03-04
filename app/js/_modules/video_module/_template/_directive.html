@@ -1,4 +1,4 @@
-<video class="c--video__player" hm-tap="play()" hm-press="showControls = !showControls" hm-recognizer-options='[{"type": "press", "time": 500}]'>
+<video class="c--video__player" hm-tap="play()" hm-press="showControls = !showControls" hm-recognizer-options='[{"type": "press", "time": 500}, {"type":"tap","enable": true}]'>
 	<source ng-repeat="file in playlist.tracks" ng-if="playlist.tracks && file.play" ng-src="{{ file.path }}" type="video/{{ file.type}}">
 </video>
 <section class="c--video__controls c--controls__top" ng-class="{'c--controls__show': showControls}" hm-tap="resetInterval">

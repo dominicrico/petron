@@ -1,1 +1,65 @@
-<div class="map"></div>
+<section class="columns u--max-height__100 u--margin-top__none c--navi">
+	<div class="column">
+		<div class="columns" ng-if="!showFullAddress">
+			<div class="column is-8 is-offset-2 is-vcentered">
+				<span class="icon is-medium" ng-click="stepBack()"><i class="fa icon-chevron-left"></i></span>
+				<p class="control has-addons has-icon">
+					<input class="input c--navi__input"  placeholder="{{ 'navi.' + ph[addressPart] | translate }}" type="text" ng-model="model[addressPart]" autocomplete="off">
+					<i class="fa icon-location"></i>
+				</p>
+				<span class="icon is-medium" ng-click="addToAddress()"><i class="fa icon-chevron-right"></i></span>
+			</div>
+		</div>
+		<div class="columns">
+			<div class="column is-8 is-offset-2">
+				<ul class="c--navi__autocomplete">
+					<li ng-repeat="r in results" ng-click="addToAddress(r)">
+						<span class="icon">
+							<i class="fa icon-{{ ((r.properties.osm_value !== 'yes') ? r.properties.osm_value : r.properties.osm_key) }}"></i>
+						</span> {{ r.properties.name || r.properties.street }} {{ ((r.properties.name) ? '' : r.properties.housenumber) }}
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="columns" ng-if="showFullAddress">
+			<div class="column has-text-centered">
+				<div class="columns">
+					<div class="column is-8 is-offset-2">
+						<h3 class="title is-3 u--margin-top__40">
+							{{ nav.country | translate }}, {{ nav.city}}, {{ nav.street}}
+						</h3>
+					</div>
+				</div>
+				<div class="columns">
+					<div class="column is-8 is-offset-2">
+						<h5 class="subtitle u--margin-top__40">
+							{{ 'navi.should_start_routing' | translate }}
+						</h5>
+					</div>
+				</div>
+				<div class="columns">
+					<div class="column is-8 is-offset-2">
+						<div class="control is-grouped u--margin-top__40">
+						  <p class="control">
+								<a class="button">
+									{{ 'navi.save_favourite_btn' | translate }}
+								</a>
+						  </p>
+						  <p class="control">
+						    <a class="button is-danger" ng-click="resetDestination()">
+						      {{ 'navi.new_dest_btn' | translate }}
+						    </a>
+						  </p>
+						  <p class="control">
+								<a class="button is-primary" ng-click="startRouting()">
+									{{ 'navi.start_routing_btn' | translate }}
+								</a>
+						  </p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>

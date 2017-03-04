@@ -33,6 +33,8 @@
 							}
 						});
 					}
+				}, function(err) {
+					$scope.files = $rootScope.files = $rootScope.audio.queue = [];
 				});
 
 				$scope.func = {
@@ -68,7 +70,6 @@
 							data: $scope,
 							controller: ['$scope', 'petron.playlist', function($scope,
 								petronPlaylist) {
-								console.log($scope.ngDialogData, $scope.$parent);
 								var name = Object.keys($scope.ngDialogData.playlists)[0];
 
 								$scope.file = track;
@@ -147,7 +148,7 @@
 
 							$scope.confirm = function() {
 								petronPlaylist.removePlaylist(name).then(function(playlists) {
-									$scope.playlists = playlists;
+									$scope.$parent.playlists = playlists;
 									petronPlaylist.save();
 									$scope.closeThisDialog();
 								});

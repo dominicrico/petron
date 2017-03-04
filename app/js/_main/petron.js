@@ -23,6 +23,12 @@
 			active: false
 		};
 
+		$rootScope.$onMany = function(events, fn) {
+			for (var i = 0; i < events.length; i++) {
+				this.$on(events[i], fn);
+			}
+		};
+
 		$rootScope.$on('$stateChangeStart', function(event, toState, toParams,
 			fromState, fromParams) {
 			petronDaemon.checkDaemonState(fromState, toState);

@@ -89,11 +89,13 @@
 						};
 
 						scope.open = function(file, index) {
+							console.log(scope.type, file, index);
 							if (file.type !== 'folder') {
-								if (scope.type !== 'playlist') {
+								if (scope.type === 'playlist' || scope.type === 'audio_playlist' ||
+									scope.type === 'video') {
 									scope.func.play(file);
 								} else {
-									$rootScope.playTrack(index);
+									if (file.not_found !== true) $rootScope.playTrack(index);
 								}
 							} else {
 								$rootScope.fileTreeLevel++;

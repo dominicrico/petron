@@ -4006,10 +4006,14 @@ a.panel-block:hover {
   padding: 0 !important; }
 
 .u--max-height__100 {
-  max-height: 100%; }
+  max-height: 100%;
+  height: 100%; }
 
 .u--margin-top__none {
   margin-top: 0; }
+
+.u--margin-top__40 {
+  margin-top: 40px; }
 
 * {
   -webkit-user-select: none;
@@ -4021,7 +4025,8 @@ body, html {
   background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
-  font-family: "Montserrat"; }
+  font-family: "Montserrat";
+  overflow: hidden; }
 
 main.container {
   padding: 35px 55px;
@@ -4034,6 +4039,79 @@ main.container {
 
 .button[disabled], .button.is-disabled {
   background-color: transparent; }
+
+::-webkit-scrollbar {
+  display: none; }
+
+petron-keyboard, ng-include {
+  width: auto;
+  height: auto;
+  display: block; }
+
+#keyboard {
+  position: absolute;
+  width: 670px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 230px;
+  margin: 0 auto;
+  padding: 5px;
+  list-style: none;
+  z-index: 99999;
+  background: #242222;
+  transform: translateY(660px);
+  transition: transform .8s ease-in-out; }
+  #keyboard.is-visible {
+    transform: translateY(0); }
+  #keyboard.is-hidden {
+    display: block !important;
+    transform: translateY(660px); }
+  #keyboard li {
+    float: left;
+    margin: 0 5px 5px 0;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #2e3031;
+    color: #F9F8F5;
+    border-radius: 0; }
+    #keyboard li:active, #keyboard li:focus {
+      background: #0B8386;
+      position: relative;
+      top: 1px;
+      left: 1px;
+      cursor: pointer; }
+  #keyboard .delete {
+    margin-right: 0; }
+    #keyboard .delete:before {
+      width: 0;
+      height: 0; }
+    #keyboard .delete:after {
+      width: 0;
+      height: 0; }
+  #keyboard .tab, #keyboard .delete {
+    width: 75px; }
+  #keyboard .capslock {
+    width: 80px; }
+  #keyboard .return {
+    width: 80px; }
+  #keyboard .right-shift {
+    width: 110px; }
+  #keyboard .left-shift {
+    width: 95px; }
+  #keyboard .space {
+    clear: left;
+    width: 660px; }
+  #keyboard .capslock, #keyboard .tab, #keyboard .left-shift {
+    clear: left; }
+  #keyboard .lastitem {
+    margin-right: 0; }
+  #keyboard .uppercase {
+    text-transform: uppercase; }
+  #keyboard .on {
+    display: none; }
 
 header {
   height: 58px;
@@ -4135,6 +4213,377 @@ header {
 
 .icon.is-small {
   vertical-align: middle; }
+
+.icon-zoo:before {
+  content: "\e939"; }
+
+.icon-wheelchair:before {
+  content: "\e93a"; }
+
+.icon-wetland:before {
+  content: "\e93b"; }
+
+.icon-water:before {
+  content: "\e93c"; }
+
+.icon-waste-basket:before {
+  content: "\e93d"; }
+
+.icon-warehouse:before {
+  content: "\e93e"; }
+
+.icon-volcano:before {
+  content: "\e93f"; }
+
+.icon-veterinary:before {
+  content: "\e940"; }
+
+.icon-triangle-stroked:before {
+  content: "\e941"; }
+
+.icon-triangle:before {
+  content: "\e942"; }
+
+.icon-town-hall:before {
+  content: "\e943"; }
+
+.icon-toilet:before {
+  content: "\e944"; }
+
+.icon-theatre:before {
+  content: "\e945"; }
+
+.icon-tennis:before {
+  content: "\e946"; }
+
+.icon-telephone:before {
+  content: "\e947"; }
+
+.icon-teahouse:before {
+  content: "\e948"; }
+
+.icon-swimming:before {
+  content: "\e949"; }
+
+.icon-sushi:before {
+  content: "\e94a"; }
+
+.icon-suitcase:before {
+  content: "\e94b"; }
+
+.icon-star-stroked:before {
+  content: "\e94c"; }
+
+.icon-star:before {
+  content: "\e94d"; }
+
+.icon-stadium:before {
+  content: "\e94e"; }
+
+.icon-square-stroked:before {
+  content: "\e94f"; }
+
+.icon-square:before {
+  content: "\e950"; }
+
+.icon-soccer:before {
+  content: "\e951"; }
+
+.icon-skiing:before {
+  content: "\e952"; }
+
+.icon-shop:before {
+  content: "\e953"; }
+
+.icon-shelter:before {
+  content: "\e954"; }
+
+.icon-school:before {
+  content: "\e955"; }
+
+.icon-rocket:before {
+  content: "\e956"; }
+
+.icon-roadblock:before {
+  content: "\e957"; }
+
+.icon-restaurant:before {
+  content: "\e958"; }
+
+.icon-residential-community:before {
+  content: "\e959"; }
+
+.icon-religious-muslim:before {
+  content: "\e95a"; }
+
+.icon-religious-jewish:before {
+  content: "\e95b"; }
+
+.icon-religious-christian:before {
+  content: "\e95c"; }
+
+.icon-ranger-station:before {
+  content: "\e95d"; }
+
+.icon-rail-metro:before {
+  content: "\e95e"; }
+
+.icon-rail-light:before {
+  content: "\e95f"; }
+
+.icon-rail:before {
+  content: "\e960"; }
+
+.icon-prison:before {
+  content: "\e961"; }
+
+.icon-post:before {
+  content: "\e962"; }
+
+.icon-police:before {
+  content: "\e963"; }
+
+.icon-playground:before {
+  content: "\e964"; }
+
+.icon-place-of-worship:before {
+  content: "\e965"; }
+
+.icon-pitch:before {
+  content: "\e966"; }
+
+.icon-picnic-site:before {
+  content: "\e967"; }
+
+.icon-pharmacy:before {
+  content: "\e968"; }
+
+.icon-parking-garage:before {
+  content: "\e969"; }
+
+.icon-parking:before {
+  content: "\e96a"; }
+
+.icon-park:before {
+  content: "\e96b"; }
+
+.icon-music:before {
+  content: "\e96c"; }
+
+.icon-museum:before {
+  content: "\e96d"; }
+
+.icon-mountain:before {
+  content: "\e96e"; }
+
+.icon-monument:before {
+  content: "\e96f"; }
+
+.icon-marker:before {
+  content: "\e970"; }
+
+.icon-lodging:before {
+  content: "\e971"; }
+
+.icon-lighthouse:before {
+  content: "\e972"; }
+
+.icon-library:before {
+  content: "\e973"; }
+
+.icon-laundry:before {
+  content: "\e974"; }
+
+.icon-landmark:before {
+  content: "\e975"; }
+
+.icon-karaoke:before {
+  content: "\e976"; }
+
+.icon-information:before {
+  content: "\e977"; }
+
+.icon-industry:before {
+  content: "\e978"; }
+
+.icon-ice-cream:before {
+  content: "\e979"; }
+
+.icon-hospital:before {
+  content: "\e97a"; }
+
+.icon-heliport:before {
+  content: "\e97b"; }
+
+.icon-heart:before {
+  content: "\e97c"; }
+
+.icon-harbor:before {
+  content: "\e97d"; }
+
+.icon-hairdresser:before {
+  content: "\e97e"; }
+
+.icon-grocery:before {
+  content: "\e97f"; }
+
+.icon-golf:before {
+  content: "\e980"; }
+
+.icon-gift:before {
+  content: "\e981"; }
+
+.icon-garden-center:before {
+  content: "\e982"; }
+
+.icon-garden:before {
+  content: "\e983"; }
+
+.icon-gaming:before {
+  content: "\e984"; }
+
+.icon-fuel:before {
+  content: "\e985"; }
+
+.icon-ferry:before {
+  content: "\e986"; }
+
+.icon-fast-food:before {
+  content: "\e987"; }
+
+.icon-farm:before {
+  content: "\e988"; }
+
+.icon-entrance:before {
+  content: "\e989"; }
+
+.icon-embassy:before {
+  content: "\e98a"; }
+
+.icon-drinking-water:before {
+  content: "\e98b"; }
+
+.icon-dog-park:before {
+  content: "\e98c"; }
+
+.icon-doctor:before {
+  content: "\e98d"; }
+
+.icon-dentist:before {
+  content: "\e98e"; }
+
+.icon-danger:before {
+  content: "\e98f"; }
+
+.icon-dam:before {
+  content: "\e990"; }
+
+.icon-cross:before {
+  content: "\e991"; }
+
+.icon-cricket:before {
+  content: "\e992"; }
+
+.icon-commercial:before {
+  content: "\e993"; }
+
+.icon-college:before, .icon-university:before {
+  content: "\e994"; }
+
+.icon-clothing-store:before {
+  content: "\e995"; }
+
+.icon-circle-stroked:before {
+  content: "\e996"; }
+
+.icon-circle:before {
+  content: "\e997"; }
+
+.icon-cinema:before {
+  content: "\e998"; }
+
+.icon-central-building:before {
+  content: "\e999"; }
+
+.icon-cemetery:before {
+  content: "\e99a"; }
+
+.icon-castle:before {
+  content: "\e99b"; }
+
+.icon-taxi:before,
+.icon-car:before {
+  content: "\e99c"; }
+
+.icon-campsite:before, .icon-caravan_site:before {
+  content: "\e99d"; }
+
+.icon-cafe:before {
+  content: "\e99e"; }
+
+.icon-bus:before,
+.icon-bus_station:before {
+  content: "\e99f"; }
+
+.icon-building:before {
+  content: "\e9a0"; }
+
+.icon-buddhism:before {
+  content: "\e9a1"; }
+
+.icon-blood-bank:before {
+  content: "\e9a2"; }
+
+.icon-bicycle-share:before {
+  content: "\e9a3"; }
+
+.icon-bicycle:before {
+  content: "\e9a4"; }
+
+.icon-beer:before {
+  content: "\e9a5"; }
+
+.icon-basketball:before {
+  content: "\e9a6"; }
+
+.icon-baseball:before {
+  content: "\e9a7"; }
+
+.icon-bar:before {
+  content: "\e9a8"; }
+
+.icon-bank:before {
+  content: "\e9a9"; }
+
+.icon-bakery:before {
+  content: "\e9aa"; }
+
+.icon-attraction:before {
+  content: "\e9ab"; }
+
+.icon-art-gallery:before {
+  content: "\e9ac"; }
+
+.icon-aquarium:before {
+  content: "\e9ad"; }
+
+.icon-amusement-park:before {
+  content: "\e9ae"; }
+
+.icon-america-football:before {
+  content: "\e9af"; }
+
+.icon-alcohol-shop:before {
+  content: "\e9b0"; }
+
+.icon-airport:before {
+  content: "\e9b1"; }
+
+.icon-airfield:before {
+  content: "\e9b2"; }
+
+.icon-aerialway:before {
+  content: "\e9b3"; }
 
 .icon-times:before {
   content: "\e900"; }
@@ -4594,8 +5043,8 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   overflow-y: hidden; }
 
 .ngdialog.ngdialog-theme-default.c--audio__popout--theme {
-  padding-bottom: 90px;
-  padding-top: 90px; }
+  padding-bottom: 140px;
+  padding-top: 40px; }
   .ngdialog.ngdialog-theme-default.c--audio__popout--theme .ngdialog-content {
     background: #252627;
     color: #F9F8F5;
@@ -4696,6 +5145,8 @@ petron-filetree {
     min-height: 48px; }
     .c--filetree__list li.is-active {
       border-left: 5px solid #0B8386; }
+    .c--filetree__list li.not-found {
+      border-left: 5px solid #ff3860; }
     .c--filetree__list li figure {
       margin-right: 10px; }
     .c--filetree__list li .columns {
@@ -4853,5 +5304,132 @@ petron-filetree {
     text-indent: 100%; }
   100% {
     text-indent: -150%; } }
+.c--navi .c--navi__input {
+  width: 330px !important;
+  height: 46px;
+  border-radius: 0 !important;
+  border: none;
+  background: transparent;
+  border-bottom: 3px solid #0B8386;
+  font-size: 18px;
+  color: #F9F8F5; }
+.c--navi .control.has-icon > i.fa {
+  font-size: 22px;
+  line-height: 34px;
+  color: #0B8386; }
+.c--navi .control.has-addons .button {
+  height: 46px;
+  border-radius: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: 20px;
+  background: #0B8386;
+  color: #F9F8F5;
+  border: none; }
+  .c--navi .control.has-addons .button:focus, .c--navi .control.has-addons .button:active {
+    background: #064c4d; }
+.c--navi .c--navi__autocomplete {
+  padding: 0 12px;
+  background: #252627; }
+  .c--navi .c--navi__autocomplete li {
+    padding: 10px 0; }
+    .c--navi .c--navi__autocomplete li:not(:last-of-type) {
+      border-bottom: 1px solid #313334; }
+.c--navi .control.is-grouped {
+  justify-content: center; }
+.c--navi .button {
+  padding: 22px;
+  background: #F9F8F5;
+  border-radius: 0;
+  color: #242222;
+  border: none; }
+  .c--navi .button:focus, .c--navi .button:active {
+    background: #e2ddcf; }
+  .c--navi .button.is-primary {
+    background: #0B8386;
+    color: #F9F8F5; }
+    .c--navi .button.is-primary:focus, .c--navi .button.is-primary:active {
+      background: #064c4d; }
+  .c--navi .button.is-danger {
+    background: #ff3860;
+    color: #F9F8F5; }
+    .c--navi .button.is-danger:focus, .c--navi .button.is-danger:active {
+      background: #fa0032; }
+
+.angular-leaflet-map {
+  position: absolute !important;
+  top: 0;
+  left: 0; }
+
+.c--routing__params {
+  z-index: 9999;
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  margin: 0 auto;
+  color: #242222;
+  background: #F9F8F5; }
+  .c--routing__params .title {
+    color: #242222; }
+
+.c--health .box {
+  background: rgba(249, 248, 245, 0.045);
+  padding: 16px;
+  border-radius: 3px; }
+  .c--health .box.has-alert h2 {
+    color: #ff3860;
+    -webkit-animation-direction: normal;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: blink;
+    -webkit-animation-timing-function: ease; }
+  .c--health .box h2 {
+    font-size: 32px;
+    font-weight: 700; }
+    .c--health .box h2 small {
+      margin-left: 5px;
+      letter-spacing: 0.5px; }
+.c--health .door-lock {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 18px; }
+  .c--health .door-lock.fl {
+    top: 282px;
+    left: 140px; }
+  .c--health .door-lock.bl {
+    top: 282px;
+    left: 220px;
+    display: none; }
+  .c--health .door-lock.fr {
+    top: 110px;
+    left: 140px; }
+  .c--health .door-lock.br {
+    top: 110px;
+    left: 220px; }
+  .c--health .door-lock.trunk {
+    top: 46%;
+    left: 367px; }
+  .c--health .door-lock.closed {
+    background: rgba(255, 255, 255, 0.045); }
+  .c--health .door-lock.open {
+    background: #F9F8F5;
+    color: #11B8BC; }
+
+@-webkit-keyframes 'blink' {
+  0% {
+    color: #ff3860; }
+  50% {
+    color: #F9F8F5; }
+  100% {
+    color: #ff3860; } }
 
 /*# sourceMappingURL=petron.css.map */

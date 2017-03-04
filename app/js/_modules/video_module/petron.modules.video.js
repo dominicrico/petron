@@ -11,7 +11,7 @@
 					url: '/videobox',
 					views: {
 						'content': {
-							templateUrl: 'js/_modules/video_module/_template/layout.html'
+							template: '<div ui-view="main" class="c--main"></div>'
 						}
 					}
 				}).state('petron.videobox.main', {

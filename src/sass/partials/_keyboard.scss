@@ -1,0 +1,104 @@
+petron-keyboard, ng-include {
+	width: auto;
+	height: auto;
+	display: block;
+}
+
+#keyboard {
+	position: absolute;
+	width: 670px;
+	bottom: 0;
+	right: 0;
+  left: 0;
+	height: 230px;
+	margin: 0 auto;
+	padding: 5px;
+	list-style: none;
+	z-index: 99999;
+  background: $black;
+	transform: translateY(660px);
+	transition: transform .8s ease-in-out;
+
+	&.is-visible {
+		transform: translateY(0);
+	}
+
+	&.is-hidden {
+		display: block !important;
+		transform: translateY(660px);
+	}
+
+	li {
+		float: left;
+		margin: 0 5px 5px 0;
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		background: rgb(46, 48, 49);
+		color: $white;
+		border-radius: 0;
+
+		&:active, &:focus {
+			background: $primary;
+			position: relative;
+			top: 1px;
+			left: 1px;
+			cursor: pointer;
+		}
+	}
+
+	.delete {
+		margin-right: 0;
+		&:before {
+			width: 0;
+			height: 0;
+		}
+		&:after {
+			width: 0;
+			height: 0;
+		}
+	}
+
+	.tab, .delete {
+    width: 75px;
+	}
+
+	.capslock {
+		width: 80px;
+	}
+
+	.return {
+		width: 80px;
+	}
+
+	.right-shift {
+		width: 110px;
+	}
+
+	.left-shift {
+		width: 95px;
+	}
+
+	.space {
+		clear: left;
+		width: 660px;
+	}
+
+	.capslock, .tab, .left-shift {
+		clear: left;
+	}
+
+	.lastitem {
+		margin-right: 0;
+	}
+
+	.uppercase {
+		text-transform: uppercase;
+	}
+
+	.on {
+		display: none;
+	}
+
+}

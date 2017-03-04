@@ -17,6 +17,7 @@ module.exports = function(grunt) {
 						petron: [
 							'app/js/_main/petron.templates.js',
 							'app/js/_modules/**/petron.modules*.js',
+							'app/js/_modules/**/_provider/**/*.js',
 							'app/js/_modules/**/_service/**/*.js',
 							'app/js/_modules/**/_factory/**/*.js',
 							'app/js/_modules/**/_directive/**/*.js',
@@ -100,6 +101,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('default', 'start electron app and watch for changes',
 		function() {
+			console.log('Starting Electron...');
 			electron.start();
 			grunt.task.run('watch');
 		});

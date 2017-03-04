@@ -15,8 +15,6 @@
 							$state.go($rootScope.daemon.origin);
 						};
 
-						console.log($rootScope.video.player);
-
 						var $media, _media, _playing = false;
 
 						$timeout(function() {

@@ -8,6 +8,9 @@
 		'ngDialog',
 		'angularRangeSlider',
 		'hmTouchEvents',
+		'nemLogging',
+		'ui-leaflet',
+		'tmh.dynamicLocale'
 	]);
 
 	angular.module('petron.core.modules', []);

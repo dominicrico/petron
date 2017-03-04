@@ -1,0 +1,79 @@
+.c--health {
+
+	.box {
+		background: rgba($white, .045);
+		padding: 16px;
+		border-radius: $radius;
+
+		&.has-alert {
+			h2 {
+				color: $red;
+				-webkit-animation-direction: normal;
+		    -webkit-animation-duration: 1s;
+		    -webkit-animation-iteration-count: infinite;
+		    -webkit-animation-name: blink;
+		    -webkit-animation-timing-function: ease;
+			}
+		}
+
+		h2 {
+			font-size: 32px;
+    	font-weight: 700;
+			small {
+				margin-left: 5px;
+    		letter-spacing: 0.5px;
+			}
+		}
+	}
+
+	.door-lock {
+		position: absolute;
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		border-radius: 50%;
+		font-size: 18px;
+
+		&.fl {
+	    top: 282px;
+			left: 140px;
+		}
+
+		&.bl {
+			top: 282px;
+			left: 220px;
+			display: none;
+		}
+
+		&.fr {
+			top: 110px;
+			left: 140px;
+		}
+
+		&.br {
+			top: 110px;
+			left: 220px;
+		}
+
+		&.trunk {
+			top: 46%;
+			left: 367px;
+		}
+
+		&.closed {
+			background: rgba(255,255,255,0.045);
+		}
+
+		&.open {
+			background: $white;
+			color: $highlight;
+		}
+	}
+}
+
+@-webkit-keyframes 'blink' {
+    0% { color: $red; }
+    50% { color: $white; }
+    100% { color: $red; }
+}

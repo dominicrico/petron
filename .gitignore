@@ -5,3 +5,4 @@ app/vendor
 .sass-cache
 Petron-linux-armv7l
 release
+npm-debug.log

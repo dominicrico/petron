@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../app/vendor/ng-dialog/css/ngDialog.css" />
     <link rel="stylesheet" href="../app/vendor/ng-dialog/css/ngDialog-theme-default.css" />
     <link rel="stylesheet" href="../app/vendor/angular-rangeslider-directive/angular-range-slider.css" />
+    <link rel="stylesheet" href="../app/vendor/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="../app/vendor/mapbox-gl-js/mapbox-gl.css" />
     <!-- endbower -->
 
     <link rel="stylesheet" href="css/petron.css">
@@ -31,11 +33,11 @@
                         <span class="icon"><i class="fa icon-video"></i></span>
                         <span>{{ 'video_module' | translate }}</span>
                     </a>
-                    <a ui-sref="petron" ui-sref-active="is-active">
+                    <a ui-sref="petron.navigationbox.main" ui-sref-active="is-active">
                         <span class="icon"><i class="fa icon-location-arrow"></i></span>
                         <span>{{ 'navigation_module' | translate }}</span>
                     </a>
-                    <a ui-sref="petron" ui-sref-active="is-active">
+                    <a ui-sref="petron.healthbox" ui-sref-active="is-active">
                         <span class="icon"><i class="fa icon-heart"></i></span>
                         <span>{{ 'health_module' | translate }}</span>
                     </a>
@@ -63,8 +65,16 @@
         </div>
     </div>
     <petron-daemon ng-if="$root.daemon.active" petron-draggable></petron-daemon>
+    <petron-keyboard layout="qwertz"></petron-keyboard>
 
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
     <!-- bower:js -->
+    <script src="../app/vendor/jquery/jquery.js"></script>
     <script src="../app/vendor/angular/angular.js"></script>
     <script src="../app/vendor/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="../app/vendor/angular-electron/angular-electron.js"></script>
@@ -79,6 +89,15 @@
     <script src="../app/vendor/hammerjs/hammer.js"></script>
     <script src="../app/vendor/AngularHammer/angular.hammer.js"></script>
     <script src="../app/vendor/hammer-time/hammer-time.js"></script>
+    <script src="../app/vendor/angular-simple-logger/dist/angular-simple-logger.js"></script>
+    <script src="../app/vendor/leaflet/dist/leaflet-src.js"></script>
+    <script src="../app/vendor/ui-leaflet/dist/ui-leaflet.js"></script>
+    <script src="../app/vendor/mapbox-gl-js/mapbox-gl.js"></script>
+    <script src="../app/vendor/mapbox-gl-leaflet/leaflet-mapbox-gl.js"></script>
+    <script src="../app/vendor/sprintf/src/sprintf.js"></script>
+    <script src="../app/vendor/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+    <script src="../app/vendor/polyline/src/polyline.js"></script>
+    <script src="../app/vendor/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
     <!-- endbower -->
 
     <script type="text/javascript" src="js/_main/petron.templates.js"></script>
@@ -88,12 +107,15 @@
     <script type="text/javascript" src="js/_modules/navigation_module/petron.modules.navigation.js"></script>
     <script type="text/javascript" src="js/_modules/settings_module/petron.modules.settings.js"></script>
     <script type="text/javascript" src="js/_modules/video_module/petron.modules.video.js"></script>
+    <script type="text/javascript" src="js/_modules/navigation_module/_provider/petron.navi.provider.js"></script>
     <script type="text/javascript" src="js/_modules/fm_module/_factory/petron.tuner.factory.js"></script>
     <script type="text/javascript" src="js/_modules/audio_module/_directive/petron.audio.directive.js"></script>
     <script type="text/javascript" src="js/_modules/video_module/_directive/petron.video.directive.js"></script>
     <script type="text/javascript" src="js/_modules/audio_module/_controller/petron.main.controller.js"></script>
     <script type="text/javascript" src="js/_modules/fm_module/_controller/petron.main.controller.js"></script>
+    <script type="text/javascript" src="js/_modules/health_module/_controller/petron.main.controller.js"></script>
     <script type="text/javascript" src="js/_modules/navigation_module/_controller/petron.main.controller.js"></script>
+    <script type="text/javascript" src="js/_modules/navigation_module/_controller/petron.map.controller.js"></script>
     <script type="text/javascript" src="js/_modules/video_module/_controller/petron.main.controller.js"></script>
     <script type="text/javascript" src="js/_modules/petron.modules.js"></script>
     <script type="text/javascript" src="js/_main/petron.core.js"></script>
@@ -101,6 +123,7 @@
     <script type="text/javascript" src="js/_main/_directive/daemon/petron.daemon.directive.js"></script>
     <script type="text/javascript" src="js/_main/_directive/draggable/petron.draggable.directive.js"></script>
     <script type="text/javascript" src="js/_main/_directive/filetree/petron.filetree.directive.js"></script>
+    <script type="text/javascript" src="js/_main/_directive/keyboard/petron.keyboard.directive.js"></script>
     <script type="text/javascript" src="js/_main/_factory/petron.daemon.factory.js"></script>
     <script type="text/javascript" src="js/_main/_factory/petron.playlist.factory.js"></script>
     <script type="text/javascript" src="js/_main/_filter/petron.buildTime.filter.js"></script>
@@ -111,6 +134,10 @@
     <script type="text/javascript" src="js/_main/petron.config.js"></script>
     <script type="text/javascript" src="js/_main/petron.core.routes.js"></script>
     <script type="text/javascript" src="js/_main/petron.js"></script>
+
+    <script>
+        if (window.module) module = window.module;
+    </script>
 </body>
 
 </html>

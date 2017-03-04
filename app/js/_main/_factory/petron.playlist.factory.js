@@ -38,7 +38,7 @@
 							deferred.resolve(playlists);
 						},
 						function(err) {
-							console.error(err);
+							deferred.reject(err);
 						});
 
 				return deferred.promise;
@@ -62,7 +62,7 @@
 						deferred.resolve(playlists);
 					},
 					function(err) {
-						console.error(err);
+						deferred.reject(err);
 					});
 
 				return deferred.promise;
@@ -83,7 +83,7 @@
 							});
 						},
 						function(err) {
-							console.log(err);
+							deffered.reject(err);
 						});
 				});
 
@@ -119,8 +119,8 @@
 				},
 
 				playPlaylist: function(name) {
+					console.log(_type, name)
 					var deferred = $q.defer();
-					console.log(name);
 					if (typeof name !== 'string') {
 						_data._currentQueue[_type] = {};
 						if (!(name instanceof Array)) {
@@ -197,15 +197,18 @@
 							queue: _data._currentQueue[_type],
 							playlists: _data._playlists[_type]
 						});
+						_broadcastUpdate('playlists', 'loaded');
 					} else {
 						_loadPlaylists(type).then(function(playlists) {
 							deferred.resolve(playlists);
+							_broadcastUpdate('playlists', 'loaded');
 						}, function(err) {
+							_broadcastUpdate('playlists', 'error');
 							throw new Error(err);
 						});
 					}
 
-					_broadcastUpdate('playlists', 'loaded');
+
 
 					return deferred.promise;
 				},
