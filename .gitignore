@@ -7,3 +7,5 @@ Petron-linux-armv7l
 release
 npm-debug.log
 .tags*
+app/mapbox
+app/tiles
