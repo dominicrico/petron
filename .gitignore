@@ -6,3 +6,4 @@ app/vendor
 Petron-linux-armv7l
 release
 npm-debug.log
+.tags*
