@@ -4007,13 +4007,16 @@ a.panel-block:hover {
 
 .u--max-height__100 {
   max-height: 100%;
-  height: 100%; }
+  height: calc(100vh - 58px - 70px); }
 
 .u--margin-top__none {
   margin-top: 0; }
 
 .u--margin-top__40 {
   margin-top: 40px; }
+
+.u--margin__auto {
+  margin: 0 auto; }
 
 * {
   -webkit-user-select: none;
@@ -4949,6 +4952,15 @@ petron-daemon {
   background: transparent;
   color: #F9F8F5; }
 
+.c--home .box {
+  height: 156px;
+  background: rgba(249, 248, 245, 0.045); }
+  .c--home .box h2.title.is-3 {
+    font-size: 24px;
+    font-weight: 600; }
+  .c--home .box > div {
+    margin: 0 auto; }
+
 input[type=range] {
   -webkit-appearance: none;
   /* Hides the slider so that custom slider can be made */
@@ -5431,5 +5443,9 @@ petron-filetree {
     color: #F9F8F5; }
   100% {
     color: #ff3860; } }
+.c--settings h5.title {
+  margin-bottom: 4px; }
+  .c--settings h5.title + p {
+    color: rgba(249, 248, 245, 0.5); }
 
 /*# sourceMappingURL=petron.css.map */

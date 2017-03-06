@@ -1,12 +1,12 @@
 <div class="columns is-vcentered">
 	<div class="column has-text-left">
-		<span class="left-menu-toggle" ng-click="$root.left_toggle = !$root.left_toggle">
+		<span class="left-menu-toggle" ng-click="$root.left_toggle = !$root.left_toggle" ng-if="$root.leftMenuShow">
 			<span class="icon"><i class="fa icon-th-menu"></i></span>
 			<p>MENU</p>
 		</span>
 	</div>
 	<div class="column has-text-centered">
-		{{ date | date:'dd. MMMM yyyy - HH:mm'}} {{ 'clock_unit' | translate }}
+		{{ date | date:settings.clock}} {{ 'clock_unit' | translate }}
 	</div>
 	<div class="column has-text-right">
 		<span class="right-menu-toggle" ng-click="$root.right_toggle = !$root.right_toggle" ng-if="rightMenuShow">

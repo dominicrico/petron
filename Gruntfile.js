@@ -81,12 +81,15 @@ module.exports = function(grunt) {
 				interupt: true,
 				atBegin: true
 			},
-			dist: {
+			sass: {
+				files: ['src/sass/**/*.scss'],
+				tasks: ['sass', 'reload-electron']
+			},
+			html: {
 				files: ['app/**/*.*', '!app/js/_main/petron.templates.js',
-					'!app/index.html', '!app/petron.css', 'src/sass/**/*.scss',
-					'src/*.html'
+					'!app/index.html', 'src/*.html'
 				],
-				tasks: ['compile', 'reload-electron']
+				tasks: ['html2js', 'htmlbuild', 'reload-electron']
 			}
 		}
 

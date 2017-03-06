@@ -35,6 +35,8 @@
 							origin: origin,
 							active: false
 						};
+					} else {
+						throw new Error('No daemon for this module.');
 					}
 				},
 
@@ -47,6 +49,7 @@
 						}
 					} else if (_daemon && fromState.name !== _daemon.origin && toState.name ===
 						_daemon.origin) {
+						console.log('Kill that daemon!');
 						this.disable();
 					}
 				}

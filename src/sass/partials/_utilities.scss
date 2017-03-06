@@ -1,6 +1,6 @@
 .u--max-height__100 {
 	max-height: 100%;
-	height: 100%;
+	height: calc(100vh - 58px - 70px);
 }
 
 .u--margin-top__none {
@@ -9,4 +9,8 @@
 
 .u--margin-top__40 {
 	margin-top: 40px;
+}
+
+.u--margin__auto {
+  margin: 0 auto;
 }

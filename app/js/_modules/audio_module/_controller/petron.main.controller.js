@@ -220,6 +220,13 @@
 						}]
 					});
 				};
+
+				$scope.hasPlaylists = function(playlists) {
+					var has;
+					if (!playlists) has = false;
+					else has = (Object.keys(playlists).length > 0);
+					return has;
+				};
 			}
 		]);
 })();

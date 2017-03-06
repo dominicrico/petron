@@ -17,14 +17,20 @@
 
 						var $media, _media, _playing = false;
 
+						if (!$rootScope.daemon.player) $rootScope.daemon.player = {};
+
 						$timeout(function() {
+
 							$media = $element.find($rootScope.daemon.type);
 							_media = $media[0];
 
 							$media.on('canplay', function() {
 								if (!_playing) {
 									_media.currentTime = $rootScope[$rootScope.daemon.type].player
-										.controls.time;
+										.controls.time + 0.2;
+
+									$rootScope.daemon.player[$rootScope.daemon.type] = _media;
+
 									_media.play();
 									_playing = true;
 								}

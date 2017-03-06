@@ -5,6 +5,12 @@
 	"clock_unit": "Uhr",
 	"on": "an",
 	"off": "aus",
+	"metric": "metrisch",
+	"miles": "meilen",
+	"gallons": "Gallonen",
+	"liter": "Liter",
+	"12h": "12h-Format",
+	"24h": "24h-Format",
 
 	"radio_module": "Radio",
 	"music_module": "Musik",
@@ -91,5 +97,18 @@
 		"battery_2": "Batterie II",
 		"lights": "Licht",
 		"fuel": "Verbrauch"
+	},
+
+	"settings": {
+		"language": "Sprache",
+		"language_hint": "Wähle die Systemsprache von Petron. Weitere übersetzungen findest du auf www.petron.io",
+		"clock": "Uhr",
+		"clock_hint": "Wähle die Darstellungesweise der Uhr aus. 12 oder 24 Stunden-Format",
+		"distance": "Maßeinheiten",
+		"distance_hint": "Wie sollen Entfernungen bzw. Verbrauchsinformation dargestellt werden?",
+		"fuel": "Tank",
+		"fuel_hint": "Tankst du in Gallonen oder Litern?",
+		"keyboard": "Tastatur-Layout",
+		"keyboard_hint": "Welches Tastatur-Layout willst du verwerden?"
 	}
 }

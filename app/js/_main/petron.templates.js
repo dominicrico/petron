@@ -1,4 +1,4 @@
-angular.module('petron.core.templates', ['index.html', 'js/_main/_directive/daemon/petron.daemon.html', 'js/_main/_directive/filetree/audio_popout.html', 'js/_main/_directive/filetree/petron.filetree.html', 'js/_main/_directive/keyboard/layout_qwerty.html', 'js/_main/_directive/keyboard/layout_qwertz.html', 'js/_main/_template/petron.confirm.html', 'js/_main/_template/petron.header.html', 'js/_main/_template/petron.home.html', 'js/_modules/audio_module/_template/_directive.html', 'js/_modules/audio_module/_template/add_to_playlist_modal.html', 'js/_modules/audio_module/_template/main.html', 'js/_modules/audio_module/_template/new_playlist_modal.html', 'js/_modules/audio_module/_template/playlists.html', 'js/_modules/fm_module/_template/main.html', 'js/_modules/fm_module/_template/stations.html', 'js/_modules/health_module/_template/main.html', 'js/_modules/navigation_module/_template/main.html', 'js/_modules/navigation_module/_template/map.html', 'js/_modules/navigation_module/_template/menu.html', 'js/_modules/video_module/_template/_directive.html', 'js/_modules/video_module/_template/add_to_playlist_modal.html', 'js/_modules/video_module/_template/main.html', 'js/_modules/video_module/_template/new_playlist_modal.html', 'js/_modules/video_module/_template/player.html', 'loader.html', 'vendor/angular-rangeslider-directive/example/index.html', 'vendor/AngularHammer/doc/angular.hammer.js.html', 'vendor/AngularHammer/doc/index.html', 'vendor/AngularHammer/doc/module-hmTouchEvents.html', 'vendor/hammer-time/index.html', 'vendor/hammer-time/test.html', 'vendor/jquery/speed/closest.html', 'vendor/jquery/speed/css.html', 'vendor/jquery/speed/event.html', 'vendor/jquery/speed/filter.html', 'vendor/jquery/speed/find.html', 'vendor/jquery/speed/index.html', 'vendor/jquery/speed/slice.vs.concat.html', 'vendor/jquery/test/data/ajax/unreleasedXHR.html', 'vendor/jquery/test/data/cleanScript.html', 'vendor/jquery/test/data/core/cc_on.html', 'vendor/jquery/test/data/dimensions/documentLarge.html', 'vendor/jquery/test/data/dimensions/documentSmall.html', 'vendor/jquery/test/data/event/focusElem.html', 'vendor/jquery/test/data/event/promiseReady.html', 'vendor/jquery/test/data/event/syncReady.html', 'vendor/jquery/test/data/iframe.html', 'vendor/jquery/test/data/manipulation/iframe-denied.html', 'vendor/jquery/test/data/name.html', 'vendor/jquery/test/data/offset/absolute.html', 'vendor/jquery/test/data/offset/body.html', 'vendor/jquery/test/data/offset/fixed.html', 'vendor/jquery/test/data/offset/relative.html', 'vendor/jquery/test/data/offset/scroll.html', 'vendor/jquery/test/data/offset/static.html', 'vendor/jquery/test/data/offset/table.html', 'vendor/jquery/test/data/selector/html5_selector.html', 'vendor/jquery/test/data/selector/sizzle_cache.html', 'vendor/jquery/test/data/support/bodyBackground.html', 'vendor/jquery/test/data/support/boxSizing.html', 'vendor/jquery/test/data/support/shrinkWrapBlocks.html', 'vendor/jquery/test/data/support/testElementCrash.html', 'vendor/jquery/test/data/test.html', 'vendor/jquery/test/data/test2.html', 'vendor/jquery/test/data/test3.html', 'vendor/jquery/test/delegatetest.html', 'vendor/jquery/test/hovertest.html', 'vendor/jquery/test/index.html', 'vendor/jquery/test/localfile.html', 'vendor/jquery/test/networkerror.html', 'vendor/jquery/test/readywait.html', 'vendor/mapbox-gl-leaflet/examples/basic.html', 'vendor/mapbox-gl-leaflet/examples/cluster.html', 'vendor/messageformat/doc/index.html', 'vendor/messageformat/doc/MessageFormat.formatters.html', 'vendor/messageformat/doc/MessageFormat.html', 'vendor/messageformat/doc/messageformat.js.html', 'vendor/messageformat/doc/Runtime.html', 'vendor/messageformat/example/index.html', 'vendor/sprintf/demo/angular.html', 'vendor/ui-leaflet/index.html']);
+angular.module('petron.core.templates', ['index.html', 'js/_main/_directive/daemon/petron.daemon.html', 'js/_main/_directive/filetree/audio_popout.html', 'js/_main/_directive/filetree/petron.filetree.html', 'js/_main/_directive/keyboard/layout_qwerty.html', 'js/_main/_directive/keyboard/layout_qwertz.html', 'js/_main/_template/petron.confirm.html', 'js/_main/_template/petron.content.html', 'js/_main/_template/petron.header.html', 'js/_main/_template/petron.home.html', 'js/_modules/audio_module/_template/_directive.html', 'js/_modules/audio_module/_template/add_to_playlist_modal.html', 'js/_modules/audio_module/_template/main.html', 'js/_modules/audio_module/_template/new_playlist_modal.html', 'js/_modules/audio_module/_template/playlists.html', 'js/_modules/fm_module/_template/main.html', 'js/_modules/fm_module/_template/stations.html', 'js/_modules/health_module/_template/main.html', 'js/_modules/navigation_module/_template/main.html', 'js/_modules/navigation_module/_template/map.html', 'js/_modules/navigation_module/_template/menu.html', 'js/_modules/settings_module/_template/main.html', 'js/_modules/video_module/_template/_directive.html', 'js/_modules/video_module/_template/add_to_playlist_modal.html', 'js/_modules/video_module/_template/main.html', 'js/_modules/video_module/_template/new_playlist_modal.html', 'js/_modules/video_module/_template/player.html', 'loader.html', 'vendor/angular-rangeslider-directive/example/index.html', 'vendor/AngularHammer/doc/angular.hammer.js.html', 'vendor/AngularHammer/doc/index.html', 'vendor/AngularHammer/doc/module-hmTouchEvents.html', 'vendor/hammer-time/index.html', 'vendor/hammer-time/test.html', 'vendor/jquery/speed/closest.html', 'vendor/jquery/speed/css.html', 'vendor/jquery/speed/event.html', 'vendor/jquery/speed/filter.html', 'vendor/jquery/speed/find.html', 'vendor/jquery/speed/index.html', 'vendor/jquery/speed/slice.vs.concat.html', 'vendor/jquery/test/data/ajax/unreleasedXHR.html', 'vendor/jquery/test/data/cleanScript.html', 'vendor/jquery/test/data/core/cc_on.html', 'vendor/jquery/test/data/dimensions/documentLarge.html', 'vendor/jquery/test/data/dimensions/documentSmall.html', 'vendor/jquery/test/data/event/focusElem.html', 'vendor/jquery/test/data/event/promiseReady.html', 'vendor/jquery/test/data/event/syncReady.html', 'vendor/jquery/test/data/iframe.html', 'vendor/jquery/test/data/manipulation/iframe-denied.html', 'vendor/jquery/test/data/name.html', 'vendor/jquery/test/data/offset/absolute.html', 'vendor/jquery/test/data/offset/body.html', 'vendor/jquery/test/data/offset/fixed.html', 'vendor/jquery/test/data/offset/relative.html', 'vendor/jquery/test/data/offset/scroll.html', 'vendor/jquery/test/data/offset/static.html', 'vendor/jquery/test/data/offset/table.html', 'vendor/jquery/test/data/selector/html5_selector.html', 'vendor/jquery/test/data/selector/sizzle_cache.html', 'vendor/jquery/test/data/support/bodyBackground.html', 'vendor/jquery/test/data/support/boxSizing.html', 'vendor/jquery/test/data/support/shrinkWrapBlocks.html', 'vendor/jquery/test/data/support/testElementCrash.html', 'vendor/jquery/test/data/test.html', 'vendor/jquery/test/data/test2.html', 'vendor/jquery/test/data/test3.html', 'vendor/jquery/test/delegatetest.html', 'vendor/jquery/test/hovertest.html', 'vendor/jquery/test/index.html', 'vendor/jquery/test/localfile.html', 'vendor/jquery/test/networkerror.html', 'vendor/jquery/test/readywait.html', 'vendor/mapbox-gl-leaflet/examples/basic.html', 'vendor/mapbox-gl-leaflet/examples/cluster.html', 'vendor/messageformat/doc/index.html', 'vendor/messageformat/doc/MessageFormat.formatters.html', 'vendor/messageformat/doc/MessageFormat.html', 'vendor/messageformat/doc/messageformat.js.html', 'vendor/messageformat/doc/Runtime.html', 'vendor/messageformat/example/index.html', 'vendor/sprintf/demo/angular.html', 'vendor/ui-leaflet/index.html']);
 
 angular.module("index.html", []).run(["$templateCache", function($templateCache) {
   "use strict";
@@ -46,7 +46,7 @@ angular.module("index.html", []).run(["$templateCache", function($templateCache)
     "                        <span class=\"icon\"><i class=\"fa icon-heart\"></i></span>\n" +
     "                        <span>{{ 'health_module' | translate }}</span>\n" +
     "                    </a>\n" +
-    "                    <a ui-sref=\"petron\" ui-sref-active=\"is-active\">\n" +
+    "                    <a ui-sref=\"petron.settingsbox\" ui-sref-active=\"is-active\">\n" +
     "                        <span class=\"icon\"><i class=\"fa icon-cog\"></i></span>\n" +
     "                        <span>{{ 'settings_module' | translate }}</span>\n" +
     "                    </a>\n" +
@@ -70,7 +70,7 @@ angular.module("index.html", []).run(["$templateCache", function($templateCache)
     "        </div>\n" +
     "    </div>\n" +
     "    <petron-daemon ng-if=\"$root.daemon.active\" petron-draggable></petron-daemon>\n" +
-    "    <petron-keyboard layout=\"qwertz\"></petron-keyboard>\n" +
+    "    <petron-keyboard layout=\"{{ settings.keyboard }}\"></petron-keyboard>\n" +
     "\n" +
     "    <script>\n" +
     "        if (typeof module === 'object') {\n" +
@@ -121,6 +121,7 @@ angular.module("index.html", []).run(["$templateCache", function($templateCache)
     "    <script type=\"text/javascript\" src=\"js/_modules/health_module/_controller/petron.main.controller.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/navigation_module/_controller/petron.main.controller.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/navigation_module/_controller/petron.map.controller.js\"></script>\n" +
+    "    <script type=\"text/javascript\" src=\"js/_modules/settings_module/_controller/petron.main.controller.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/video_module/_controller/petron.main.controller.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/petron.modules.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/petron.core.js\"></script>\n" +
@@ -134,6 +135,7 @@ angular.module("index.html", []).run(["$templateCache", function($templateCache)
     "    <script type=\"text/javascript\" src=\"js/_main/_filter/petron.buildTime.filter.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_filter/petron.frequency.filter.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_filter/petron.trust.filter.js\"></script>\n" +
+    "    <script type=\"text/javascript\" src=\"js/_main/_filter/petron.unit.filter.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_service/petron.fs.service.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_service/petron.storage.service.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/petron.config.js\"></script>\n" +
@@ -411,18 +413,80 @@ angular.module("js/_main/_template/petron.confirm.html", []).run(["$templateCach
     "");
 }]);
 
+angular.module("js/_main/_template/petron.content.html", []).run(["$templateCache", function($templateCache) {
+  "use strict";
+  $templateCache.put("js/_main/_template/petron.content.html",
+    "<section class=\"columns u--max-height__100 u--margin-top__none c--home\">\n" +
+    "	<div class=\"column\">\n" +
+    "		<div class=\"columns\">\n" +
+    "			<div class=\"column\">\n" +
+    "				<div class=\"box has-text-centered is-vcentered\" ui-sref=\"petron.fmbox\">\n" +
+    "					<div>\n" +
+    "						<span class=\"icon is-large\"><i class=\"fa icon-radio\"></i></span>\n" +
+    "						<h2 class=\"title is-3\">{{ 'radio_module' | translate }}</h2>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "			<div class=\"column\">\n" +
+    "				<div class=\"box has-text-centered is-vcentered\" ui-sref=\"petron.audiobox\">\n" +
+    "					<div>\n" +
+    "						<span class=\"icon is-large\"><i class=\"fa icon-notes\"></i></span>\n" +
+    "						<h2 class=\"title is-3\">{{ 'music_module' | translate }}</h2>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "			<div class=\"column\">\n" +
+    "				<div class=\"box has-text-centered is-vcentered\" ui-sref=\"petron.videobox.main\">\n" +
+    "					<div>\n" +
+    "						<span class=\"icon is-large\"><i class=\"fa icon-video\"></i></span>\n" +
+    "						<h2 class=\"title is-3\">{{ 'video_module' | translate }}</h2>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "		<div class=\"columns\">\n" +
+    "			<div class=\"column\">\n" +
+    "				<div class=\"box has-text-centered is-vcentered\" ui-sref=\"petron.navigationbox.main\">\n" +
+    "					<div>\n" +
+    "						<span class=\"icon is-large\"><i class=\"fa icon-location-arrow\"></i></span>\n" +
+    "						<h2 class=\"title is-3\">{{ 'navigation_module' | translate }}</h2>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "			<div class=\"column\">\n" +
+    "				<div class=\"box has-text-centered is-vcentered\" ui-sref=\"petron.healthbox\">\n" +
+    "					<div>\n" +
+    "						<span class=\"icon is-large\"><i class=\"fa icon-heart\"></i></span>\n" +
+    "						<h2 class=\"title is-3\">{{ 'health_module' | translate }}</h2>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "			<div class=\"column\">\n" +
+    "				<div class=\"box has-text-centered is-vcentered\" ui-sref=\"petron.settingsbox\">\n" +
+    "					<div>\n" +
+    "						<span class=\"icon is-large\"><i class=\"fa icon-cog\"></i></span>\n" +
+    "						<h2 class=\"title is-3\">{{ 'settings_module' | translate }}</h2>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</section>\n" +
+    "");
+}]);
+
 angular.module("js/_main/_template/petron.header.html", []).run(["$templateCache", function($templateCache) {
   "use strict";
   $templateCache.put("js/_main/_template/petron.header.html",
     "<div class=\"columns is-vcentered\">\n" +
     "	<div class=\"column has-text-left\">\n" +
-    "		<span class=\"left-menu-toggle\" ng-click=\"$root.left_toggle = !$root.left_toggle\">\n" +
+    "		<span class=\"left-menu-toggle\" ng-click=\"$root.left_toggle = !$root.left_toggle\" ng-if=\"$root.leftMenuShow\">\n" +
     "			<span class=\"icon\"><i class=\"fa icon-th-menu\"></i></span>\n" +
     "			<p>MENU</p>\n" +
     "		</span>\n" +
     "	</div>\n" +
     "	<div class=\"column has-text-centered\">\n" +
-    "		{{ date | date:'dd. MMMM yyyy - HH:mm'}} {{ 'clock_unit' | translate }}\n" +
+    "		{{ date | date:settings.clock}} {{ 'clock_unit' | translate }}\n" +
     "	</div>\n" +
     "	<div class=\"column has-text-right\">\n" +
     "		<span class=\"right-menu-toggle\" ng-click=\"$root.right_toggle = !$root.right_toggle\" ng-if=\"rightMenuShow\">\n" +
@@ -440,13 +504,13 @@ angular.module("js/_main/_template/petron.home.html", []).run(["$templateCache",
     "<header class=\"container is-fluid\" ui-view=\"header\">\n" +
     "	<div class=\"columns is-vcentered\">\n" +
     "		<div class=\"column has-text-left\">\n" +
-    "			<span class=\"left-menu-toggle\" ng-click=\"$root.left_toggle = !$root.left_toggle\">\n" +
+    "			<span class=\"left-menu-toggle\" ng-click=\"$root.left_toggle = !$root.left_toggle\" ng-if=\"$root.leftMenuShow\">\n" +
     "				<span class=\"icon\"><i class=\"fa icon-th-menu\"></i></span>\n" +
     "				<p>MENU</p>\n" +
     "			</span>\n" +
     "		</div>\n" +
     "		<div class=\"column has-text-centered\">\n" +
-    "			{{ date | date:'dd. MMMM yyyy - HH:mm'}} {{ 'clock_unit' | translate }}\n" +
+    "			{{ $root.leftMenuShow }} {{ date | date:settings.clock}} {{ 'clock_unit' | translate }}\n" +
     "		</div>\n" +
     "		<div class=\"column has-text-right\">\n" +
     "			<span class=\"right-menu-toggle\" ng-click=\"$root.right_toggle = !$root.right_toggle\" ng-if=\"rightMenuShow\">\n" +
@@ -664,7 +728,7 @@ angular.module("js/_modules/audio_module/_template/playlists.html", []).run(["$t
     "	<span>{{ list.name }}</span>\n" +
     "</a>\n" +
     "\n" +
-    "<span ng-if=\"!audio.playlists || audio.playlists.length === 0\">{{ 'no_playlists' | translate }}</span>\n" +
+    "<span ng-if=\"!hasPlaylists(audio.playlists)\">{{ 'no_playlists' | translate }}</span>\n" +
     "");
 }]);
 
@@ -769,7 +833,7 @@ angular.module("js/_modules/health_module/_template/main.html", []).run(["$templ
     "					<div class=\"column\">\n" +
     "						<div class=\"box\">\n" +
     "							<h5>{{ 'health.speedmeter' | translate }}</h5>\n" +
-    "							<h2>{{ speed }}<small>km/h</small></h2>\n" +
+    "							<h2>{{ speed | unit:settings.distance:0 }}<small>{{ (settings.distance !== 'mi') ? 'km/h' : 'mph' }}</small></h2>\n" +
     "						</div>\n" +
     "					</div>\n" +
     "					<div class=\"column\">\n" +
@@ -803,7 +867,7 @@ angular.module("js/_modules/health_module/_template/main.html", []).run(["$templ
     "					<div class=\"column\">\n" +
     "						<div class=\"box\">\n" +
     "							<h5>{{ 'health.fuel' | translate }}</h5>\n" +
-    "							<h2>{{ consumption }}L<small>/100km</small></h2>\n" +
+    "							<h2>{{ consumption | unit:settings.fuel }}{{ (settings.fuel !== 'gal') ? 'l' : '' }}<small>{{ (settings.fuel !== 'gal') ? '/100km' : 'mpg' }}</small></h2>\n" +
     "						</div>\n" +
     "					</div>\n" +
     "				</div>\n" +
@@ -820,7 +884,7 @@ angular.module("js/_modules/navigation_module/_template/main.html", []).run(["$t
     "<section class=\"columns u--max-height__100 u--margin-top__none c--navi\">\n" +
     "	<div class=\"column\">\n" +
     "		<div class=\"columns\" ng-if=\"!showFullAddress\">\n" +
-    "			<div class=\"column is-8 is-offset-2 is-vcentered\">\n" +
+    "			<div class=\"column is-7 is-vcentered u--margin__auto\">\n" +
     "				<span class=\"icon is-medium\" ng-click=\"stepBack()\"><i class=\"fa icon-chevron-left\"></i></span>\n" +
     "				<p class=\"control has-addons has-icon\">\n" +
     "					<input class=\"input c--navi__input\"  placeholder=\"{{ 'navi.' + ph[addressPart] | translate }}\" type=\"text\" ng-model=\"model[addressPart]\" autocomplete=\"off\">\n" +
@@ -910,6 +974,86 @@ angular.module("js/_modules/navigation_module/_template/menu.html", []).run(["$t
     "");
 }]);
 
+angular.module("js/_modules/settings_module/_template/main.html", []).run(["$templateCache", function($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/settings_module/_template/main.html",
+    "<section class=\"columns u--max-height__100 u--margin-top__none c--settings\">\n" +
+    "	<div class=\"column\">\n" +
+    "		<div class=\"columns is-vcentered\">\n" +
+    "			<div class=\"column\">\n" +
+    "				<h5 class=\"title is-5\">{{ 'settings.language' | translate }}</h5>\n" +
+    "				<p>{{ 'settings.language_hint' | translate }}</p>\n" +
+    "			</div>\n" +
+    "			<div class=\"column has-text-right\">\n" +
+    "				<span class=\"select\">\n" +
+    "					<select name=\"locale\" id=\"locale\" ng-model=\"settings.locale\">\n" +
+    "						<option value=\"en\">EN</option>\n" +
+    "						<option value=\"de\">DE</option>\n" +
+    "					</select>\n" +
+    "				</span>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "		<div class=\"columns is-vcentered\">\n" +
+    "			<div class=\"column\">\n" +
+    "				<h5 class=\"title is-5\">{{ 'settings.distance' | translate }}</h5>\n" +
+    "				<p>{{ 'settings.distance_hint' | translate }}</p>\n" +
+    "			</div>\n" +
+    "			<div class=\"column has-text-right\">\n" +
+    "				<span class=\"select\">\n" +
+    "					<select name=\"distance\" id=\"distance\" ng-model=\"settings.distance\">\n" +
+    "						<option value=\"km\">{{ 'metric' | translate }}</option>\n" +
+    "						<option value=\"mi\">{{ 'miles' | translate }}</option>\n" +
+    "					</select>\n" +
+    "				</span>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "		<div class=\"columns is-vcentered\">\n" +
+    "			<div class=\"column\">\n" +
+    "				<h5 class=\"title is-5\">{{ 'settings.fuel' | translate }}</h5>\n" +
+    "				<p>{{ 'settings.fuel_hint' | translate }}</p>\n" +
+    "			</div>\n" +
+    "			<div class=\"column has-text-right\">\n" +
+    "				<span class=\"select\">\n" +
+    "					<select name=\"fuel\" id=\"fuel\" ng-model=\"settings.fuel\">\n" +
+    "						<option value=\"l\">{{ 'liter' | translate }}</option>\n" +
+    "						<option value=\"gal\">{{ 'gallons' | translate }}</option>\n" +
+    "					</select>\n" +
+    "				</span>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "		<div class=\"columns is-vcentered\">\n" +
+    "			<div class=\"column\">\n" +
+    "				<h5 class=\"title is-5\">{{ 'settings.clock' | translate }}</h5>\n" +
+    "				<p>{{ 'settings.clock_hint' | translate }}</p>\n" +
+    "			</div>\n" +
+    "			<div class=\"column has-text-right\">\n" +
+    "				<span class=\"select\">\n" +
+    "					<select name=\"clock\" id=\"clock\" ng-model=\"settings.clock\">\n" +
+    "						<option value=\"dd. MMMM yyyy - HH:mm\">{{ '24h' | translate }}</option>\n" +
+    "						<option value=\"dd. MMMM yyyy - h:mm a\">{{ '12h' | translate }}</option>\n" +
+    "					</select>\n" +
+    "				</span>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "		<div class=\"columns is-vcentered\">\n" +
+    "			<div class=\"column\">\n" +
+    "				<h5 class=\"title is-5\">{{ 'settings.keyboard' | translate }}</h5>\n" +
+    "				<p>{{ 'settings.keyboard_hint' | translate }}</p>\n" +
+    "			</div>\n" +
+    "			<div class=\"column has-text-right\">\n" +
+    "				<span class=\"select\">\n" +
+    "					<select name=\"layout\" id=\"layout\" ng-model=\"settings.keyboard\">\n" +
+    "						<option value=\"qwertz\">{{ 'QWERTZ' | translate }}</option>\n" +
+    "						<option value=\"qwerty\">{{ 'QWERTY' | translate }}</option>\n" +
+    "					</select>\n" +
+    "				</span>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</section>\n" +
+    "");
+}]);
+
 angular.module("js/_modules/video_module/_template/_directive.html", []).run(["$templateCache", function($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/video_module/_template/_directive.html",
@@ -944,7 +1088,7 @@ angular.module("js/_modules/video_module/_template/_directive.html", []).run(["$
     "\n" +
     "	<div class=\"columns c--audio__timetrack\">\n" +
     "		<div class=\"column has-text-centered\">\n" +
-    "			<input ng-model=\"controls.time\" ng-change=\"setTime()\" type=\"range\" min=\"0\" max=\"{{ controls.duration }}\" step=\"1\" />\n" +
+    "			<input ng-model=\"controls.time\" ng-change=\"seek()\" type=\"range\" min=\"0\" max=\"{{ controls.duration }}\" step=\"1\" />\n" +
     "		</div>\n" +
     "	</div>\n" +
     "\n" +

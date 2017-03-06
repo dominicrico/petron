@@ -89,17 +89,16 @@
 						};
 
 						scope.open = function(file, index) {
-							console.log(scope.type, file, index);
 							if (file.type !== 'folder') {
-								if (scope.type === 'playlist' || scope.type === 'audio_playlist' ||
-									scope.type === 'video') {
-									scope.func.play(file);
+								if (scope.type !== 'playlist' && scope.type !== 'audio_playlist' &&
+									scope.type !== 'video_playlist') {
+									if (file.not_found !== true) scope.func.play(file);
 								} else {
 									if (file.not_found !== true) $rootScope.playTrack(index);
 								}
 							} else {
 								$rootScope.fileTreeLevel++;
-								if (scope.type !== 'video') {
+								if (scope.type.indexOf('video') === -1) {
 									petronFs.getAudioFiles(file.path).then(function(files) {
 										if (files) {
 											var parent = file.path.split('/');

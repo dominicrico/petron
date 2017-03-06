@@ -41,7 +41,7 @@
                         <span class="icon"><i class="fa icon-heart"></i></span>
                         <span>{{ 'health_module' | translate }}</span>
                     </a>
-                    <a ui-sref="petron" ui-sref-active="is-active">
+                    <a ui-sref="petron.settingsbox" ui-sref-active="is-active">
                         <span class="icon"><i class="fa icon-cog"></i></span>
                         <span>{{ 'settings_module' | translate }}</span>
                     </a>
@@ -65,7 +65,7 @@
         </div>
     </div>
     <petron-daemon ng-if="$root.daemon.active" petron-draggable></petron-daemon>
-    <petron-keyboard layout="qwertz"></petron-keyboard>
+    <petron-keyboard layout="{{ settings.keyboard }}"></petron-keyboard>
 
     <script>
         if (typeof module === 'object') {
@@ -116,6 +116,7 @@
     <script type="text/javascript" src="js/_modules/health_module/_controller/petron.main.controller.js"></script>
     <script type="text/javascript" src="js/_modules/navigation_module/_controller/petron.main.controller.js"></script>
     <script type="text/javascript" src="js/_modules/navigation_module/_controller/petron.map.controller.js"></script>
+    <script type="text/javascript" src="js/_modules/settings_module/_controller/petron.main.controller.js"></script>
     <script type="text/javascript" src="js/_modules/video_module/_controller/petron.main.controller.js"></script>
     <script type="text/javascript" src="js/_modules/petron.modules.js"></script>
     <script type="text/javascript" src="js/_main/petron.core.js"></script>
@@ -129,6 +130,7 @@
     <script type="text/javascript" src="js/_main/_filter/petron.buildTime.filter.js"></script>
     <script type="text/javascript" src="js/_main/_filter/petron.frequency.filter.js"></script>
     <script type="text/javascript" src="js/_main/_filter/petron.trust.filter.js"></script>
+    <script type="text/javascript" src="js/_main/_filter/petron.unit.filter.js"></script>
     <script type="text/javascript" src="js/_main/_service/petron.fs.service.js"></script>
     <script type="text/javascript" src="js/_main/_service/petron.storage.service.js"></script>
     <script type="text/javascript" src="js/_main/petron.config.js"></script>

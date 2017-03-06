@@ -5,6 +5,12 @@
 	"clock_unit": "",
 	"on": "on",
 	"off": "off",
+	"metric": "metric",
+	"miles": "miles",
+	"gallons": "Gallons",
+	"liter": "Liters",
+	"12h": "12h-Format",
+	"24h": "24h-Format",
 
 	"radio_module": "Radio",
 	"music_module": "Music",
@@ -89,5 +95,16 @@
 		"battery_2": "Battery II",
 		"lights": "Lights",
 		"fuel": "Consumption"
+	},
+
+	"settings": {
+		"language": "Language",
+		"language_hint": "Choose the systemwide language for Petron. More languages on www.petron.io",
+		"clock": "Clock",
+		"clock_hint": "Select the time format of the clock.",
+		"distance": "Distances",
+		"distance_hint": "Select which system to use to display consumption and distances?",
+		"fuel": "Fuel",
+		"fuel_hint": "Gallones or liter?"
 	}
 }

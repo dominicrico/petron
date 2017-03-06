@@ -1,0 +1,15 @@
+.c--home {
+	.box {
+		height: 156px;
+		background: rgba($white, .045);
+
+		h2.title.is-3 {
+			font-size: 24px;
+			font-weight: 600;
+		}
+
+		& > div {
+	    margin: 0 auto;
+		}
+	}
+}

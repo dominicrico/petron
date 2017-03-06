@@ -26,7 +26,7 @@
 					<div class="column">
 						<div class="box">
 							<h5>{{ 'health.speedmeter' | translate }}</h5>
-							<h2>{{ speed }}<small>km/h</small></h2>
+							<h2>{{ speed | unit:settings.distance:0 }}<small>{{ (settings.distance !== 'mi') ? 'km/h' : 'mph' }}</small></h2>
 						</div>
 					</div>
 					<div class="column">
@@ -60,7 +60,7 @@
 					<div class="column">
 						<div class="box">
 							<h5>{{ 'health.fuel' | translate }}</h5>
-							<h2>{{ consumption }}L<small>/100km</small></h2>
+							<h2>{{ consumption | unit:settings.fuel }}{{ (settings.fuel !== 'gal') ? 'l' : '' }}<small>{{ (settings.fuel !== 'gal') ? '/100km' : 'mpg' }}</small></h2>
 						</div>
 					</div>
 				</div>

@@ -13,6 +13,23 @@
 						'content': {
 							template: '<div ui-view="main" class="c--main"></div>'
 						}
+					},
+					resolve: {
+						setType: ['petron.playlist', '$rootScope', function(petronPlaylist,
+							$rootScope) {
+							petronPlaylist.setType('video');
+							petronPlaylist.loadPlaylists('video').then(function(video) {
+								if (!$rootScope.video.queue || !Object.keys($rootScope.video.queue)
+									.length) {
+									$rootScope.video.queue = video.queue;
+								}
+
+								if (!$rootScope.video.playlists || !Object.keys($rootScope.video
+										.playlists).length) {
+									$rootScope.video.playlists = video.playlists;
+								}
+							});
+						}]
 					}
 				}).state('petron.videobox.main', {
 					url: '/main',

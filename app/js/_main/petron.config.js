@@ -19,7 +19,7 @@
 			$translateProvider.preferredLanguage('de');
 			$translateProvider.useSanitizeValueStrategy(null);
 
-			tmhDynamicLocaleProvider.defaultLocale('de-de');
+			tmhDynamicLocaleProvider.defaultLocale('de');
 			tmhDynamicLocaleProvider.localeLocationPattern(
 				'./vendor/angular-i18n/angular-locale_{{locale}}.js');
 		}

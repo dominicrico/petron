@@ -119,7 +119,6 @@
 				},
 
 				playPlaylist: function(name) {
-					console.log(_type, name)
 					var deferred = $q.defer();
 					if (typeof name !== 'string') {
 						_data._currentQueue[_type] = {};

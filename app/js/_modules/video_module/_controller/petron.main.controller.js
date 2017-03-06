@@ -36,7 +36,6 @@
 
 				$scope.func = {
 					play: function(playlist) {
-						console.log('video play func')
 						$rootScope.video.isPrepared = false;
 						petronPlaylist.playPlaylist(playlist).then(function(queue) {
 							if ($rootScope.video && $rootScope.video.queue) {

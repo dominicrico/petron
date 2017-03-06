@@ -28,8 +28,8 @@
 
 	angular.module('petron.core', [
 		'petron.core.dependencies',
-		'petron.core.modules',
 		'petron.core.config',
+		'petron.core.modules',
 		'petron.core.templates',
 		'petron.core.routes'
 	]);

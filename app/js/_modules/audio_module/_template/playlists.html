@@ -11,6 +11,5 @@
 	</span>
 	<span>{{ list.name }}</span>
 </a>
-{{ audio.playlists | json }}
-{{ audio.playlists.length }}
-<span ng-if="!audio.playlists || audio.playlists.length === 0">{{ 'no_playlists' | translate }}</span>
+
+<span ng-if="!hasPlaylists(audio.playlists)">{{ 'no_playlists' | translate }}</span>

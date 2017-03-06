@@ -1,0 +1,74 @@
+<section class="columns u--max-height__100 u--margin-top__none c--settings">
+	<div class="column">
+		<div class="columns is-vcentered">
+			<div class="column">
+				<h5 class="title is-5">{{ 'settings.language' | translate }}</h5>
+				<p>{{ 'settings.language_hint' | translate }}</p>
+			</div>
+			<div class="column has-text-right">
+				<span class="select">
+					<select name="locale" id="locale" ng-model="settings.locale">
+						<option value="en">EN</option>
+						<option value="de">DE</option>
+					</select>
+				</span>
+			</div>
+		</div>
+		<div class="columns is-vcentered">
+			<div class="column">
+				<h5 class="title is-5">{{ 'settings.distance' | translate }}</h5>
+				<p>{{ 'settings.distance_hint' | translate }}</p>
+			</div>
+			<div class="column has-text-right">
+				<span class="select">
+					<select name="distance" id="distance" ng-model="settings.distance">
+						<option value="km">{{ 'metric' | translate }}</option>
+						<option value="mi">{{ 'miles' | translate }}</option>
+					</select>
+				</span>
+			</div>
+		</div>
+		<div class="columns is-vcentered">
+			<div class="column">
+				<h5 class="title is-5">{{ 'settings.fuel' | translate }}</h5>
+				<p>{{ 'settings.fuel_hint' | translate }}</p>
+			</div>
+			<div class="column has-text-right">
+				<span class="select">
+					<select name="fuel" id="fuel" ng-model="settings.fuel">
+						<option value="l">{{ 'liter' | translate }}</option>
+						<option value="gal">{{ 'gallons' | translate }}</option>
+					</select>
+				</span>
+			</div>
+		</div>
+		<div class="columns is-vcentered">
+			<div class="column">
+				<h5 class="title is-5">{{ 'settings.clock' | translate }}</h5>
+				<p>{{ 'settings.clock_hint' | translate }}</p>
+			</div>
+			<div class="column has-text-right">
+				<span class="select">
+					<select name="clock" id="clock" ng-model="settings.clock">
+						<option value="dd. MMMM yyyy - HH:mm">{{ '24h' | translate }}</option>
+						<option value="dd. MMMM yyyy - h:mm a">{{ '12h' | translate }}</option>
+					</select>
+				</span>
+			</div>
+		</div>
+		<div class="columns is-vcentered">
+			<div class="column">
+				<h5 class="title is-5">{{ 'settings.keyboard' | translate }}</h5>
+				<p>{{ 'settings.keyboard_hint' | translate }}</p>
+			</div>
+			<div class="column has-text-right">
+				<span class="select">
+					<select name="layout" id="layout" ng-model="settings.keyboard">
+						<option value="qwertz">{{ 'QWERTZ' | translate }}</option>
+						<option value="qwerty">{{ 'QWERTY' | translate }}</option>
+					</select>
+				</span>
+			</div>
+		</div>
+	</div>
+</section>

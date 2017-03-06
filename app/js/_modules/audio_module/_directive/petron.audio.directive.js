@@ -57,7 +57,13 @@
 
 										$scope.current = 0;
 										$scope.playlist = $rootScope.audio.queue;
-										if ($scope.playlist.tracks && $scope.playlist.tracks.length) {
+
+										$scope.playlist.tracks.forEach(function(track, i) {
+											if (track.play) $scope.current = i;
+										})
+
+										if ($scope.playlist && $scope.playlist.tracks && $scope.playlist
+											.tracks.length) {
 											$scope.playlist.tracks[$scope.current].play = true;
 											$scope._audio.load();
 										}
@@ -77,9 +83,8 @@
 								});
 							}
 
-							$rootScope.$on('audio.queue:changed', function() {
-								_initialize();
-							});
+							$rootScope.$on('audio.queue:changed', _initialize);
+							$rootScope.$on('audio.playlists:loaded', _initialize);
 
 							$rootScope.$on('audio.queue:update', function() {
 								$timeout(function() {
@@ -117,6 +122,12 @@
 							});
 
 							$scope.$audio.on('canplay', function() {
+								if ($rootScope.daemon.player && $rootScope.daemon.player.audio !==
+									undefined) {
+									$scope._audio.currentTime =
+										$rootScope.daemon.player.audio.currentTime + 0.2;
+									$rootScope.daemon.player.audio = undefined;
+								}
 								$scope.play(true);
 							});
 
@@ -235,10 +246,20 @@
 
 							$scope.daemonize = function() {
 								$rootScope.audio.player = $scope;
+								if (!$rootScope.audio.player.playlist) {
+									$rootScope.audio.player.playlist = $rootScope.audio.player.queue;
+								}
 								if ($scope.controls.play) {
 									petronDaemon.enable('audio', 'petron.audiobox');
 								}
 							};
+
+							$rootScope.$on('$stateChangeStart', function(event, toState, toParams,
+								fromState) {
+								if (fromState.name === 'petron.audiobox') {
+									$scope.daemonize();
+								}
+							});
 						}
 					]
 				};

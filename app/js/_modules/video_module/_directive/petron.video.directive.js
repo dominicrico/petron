@@ -23,6 +23,8 @@
 									queue: video.queue,
 									playlists: video.playlists || {}
 								};
+
+								$rootScope.video.player = $scope;
 							});
 
 							$rootScope.video.isPrepared = true;
@@ -122,6 +124,12 @@
 						});
 
 						$scope.$video.on('canplay', function() {
+							if ($rootScope.daemon.player && $rootScope.daemon.player.video !==
+								undefined) {
+								$scope._video.currentTime =
+									$rootScope.daemon.player.video.currentTime + 0.2;
+								$rootScope.daemon.player.video = undefined;
+							}
 							$scope.play(true);
 						});
 
@@ -225,7 +233,10 @@
 						};
 
 						$scope.daemonize = function() {
-							$rootScope.video.player = $scope;
+							if (!$rootScope.video.player.playlist) {
+								$rootScope.video.player.playlist = $rootScope.video.queue;
+							}
+
 							if ($scope.controls.play) {
 								petronDaemon.enable('video', 'petron.videobox.player');
 							}

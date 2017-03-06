@@ -1,0 +1,9 @@
+.c--settings {
+	h5.title {
+  	margin-bottom: 4px;
+
+		& + p {
+			color: rgba($white, .5);
+		}
+	}
+}

@@ -9,8 +9,20 @@
 				.state('petron.audiobox', {
 					url: '/audiobox',
 					resolve: {
-						setType: ['petron.playlist', function(petronPlaylist) {
+						setType: ['petron.playlist', '$rootScope', function(petronPlaylist,
+							$rootScope) {
 							petronPlaylist.setType('audio');
+							petronPlaylist.loadPlaylists('audio').then(function(audio) {
+								if (!$rootScope.audio.queue || !Object.keys($rootScope.audio.queue)
+									.length) {
+									$rootScope.audio.queue = audio.queue;
+								}
+
+								if (!$rootScope.audio.playlists || !Object.keys($rootScope.audio
+										.playlists).length) {
+									$rootScope.audio.playlists = audio.playlists;
+								}
+							});
 						}]
 					},
 					views: {

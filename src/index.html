@@ -39,7 +39,7 @@
 											<span class="icon"><i class="fa icon-heart"></i></span>
 											<span>{{ 'health_module' | translate }}</span>
 										</a>
-                    <a ui-sref="petron" ui-sref-active="is-active">
+                    <a ui-sref="petron.settingsbox" ui-sref-active="is-active">
 											<span class="icon"><i class="fa icon-cog"></i></span>
 											<span>{{ 'settings_module' | translate }}</span>
 										</a>
@@ -63,7 +63,7 @@
         </div>
     </div>
     <petron-daemon ng-if="$root.daemon.active" petron-draggable></petron-daemon>
-    <petron-keyboard layout="qwertz"></petron-keyboard>
+    <petron-keyboard layout="{{ settings.keyboard }}"></petron-keyboard>
 
 		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 		<!-- bower:js -->
