@@ -1,6 +1,7 @@
 (function() {
 	angular.module('petron.core')
-		.factory('petron.daemon', ['$rootScope', function($rootScope) {
+		.factory('petron.daemon', ['$rootScope', '$timeout', function($rootScope,
+			$timeout) {
 			var _type;
 			var _daemon;
 			var daemons = ['audio', 'video', 'fm', 'gps'];
@@ -49,7 +50,6 @@
 						}
 					} else if (_daemon && fromState.name !== _daemon.origin && toState.name ===
 						_daemon.origin) {
-						console.log('Kill that daemon!');
 						this.disable();
 					}
 				}

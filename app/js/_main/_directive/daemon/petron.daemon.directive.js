@@ -3,7 +3,7 @@
 
 	angular.module('petron.core')
 		.directive('petronDaemon', ['petron.daemon', '$rootScope', '$timeout',
-			'$state',
+
 			function(
 				petronDaemon, $rootScope, $timeout, $state) {
 				return {
@@ -27,7 +27,7 @@
 							$media.on('canplay', function() {
 								if (!_playing) {
 									_media.currentTime = $rootScope[$rootScope.daemon.type].player
-										.controls.time + 0.2;
+										.controls.time;
 
 									$rootScope.daemon.player[$rootScope.daemon.type] = _media;
 

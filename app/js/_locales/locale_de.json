@@ -96,7 +96,10 @@
 		"battery_1": "Batterie I",
 		"battery_2": "Batterie II",
 		"lights": "Licht",
-		"fuel": "Verbrauch"
+		"fuel": "Tank",
+		"scanning": "Suche OBDII-Adapter",
+		"scan_error": "Petron konnte sich nicht zu OBDII-Adapter verbinden!",
+		"reconnect": "Erneut versuchen"
 	},
 
 	"settings": {

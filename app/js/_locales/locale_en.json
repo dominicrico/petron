@@ -94,7 +94,9 @@
 		"battery_1": "Battery I",
 		"battery_2": "Battery II",
 		"lights": "Lights",
-		"fuel": "Consumption"
+		"fuel": "Fuel level",
+		"scanning": "Seeking OBDII adapter",
+		"scan_error": "Could not connect to OBDII adapter!"
 	},
 
 	"settings": {

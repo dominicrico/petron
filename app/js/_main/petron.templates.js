@@ -1,6 +1,6 @@
 angular.module('petron.core.templates', ['index.html', 'js/_main/_directive/daemon/petron.daemon.html', 'js/_main/_directive/filetree/audio_popout.html', 'js/_main/_directive/filetree/petron.filetree.html', 'js/_main/_directive/keyboard/layout_qwerty.html', 'js/_main/_directive/keyboard/layout_qwertz.html', 'js/_main/_template/petron.confirm.html', 'js/_main/_template/petron.content.html', 'js/_main/_template/petron.header.html', 'js/_main/_template/petron.home.html', 'js/_modules/audio_module/_template/_directive.html', 'js/_modules/audio_module/_template/add_to_playlist_modal.html', 'js/_modules/audio_module/_template/main.html', 'js/_modules/audio_module/_template/new_playlist_modal.html', 'js/_modules/audio_module/_template/playlists.html', 'js/_modules/fm_module/_template/main.html', 'js/_modules/fm_module/_template/stations.html', 'js/_modules/health_module/_template/main.html', 'js/_modules/navigation_module/_template/main.html', 'js/_modules/navigation_module/_template/map.html', 'js/_modules/navigation_module/_template/menu.html', 'js/_modules/settings_module/_template/main.html', 'js/_modules/video_module/_template/_directive.html', 'js/_modules/video_module/_template/add_to_playlist_modal.html', 'js/_modules/video_module/_template/main.html', 'js/_modules/video_module/_template/new_playlist_modal.html', 'js/_modules/video_module/_template/player.html', 'loader.html', 'vendor/angular-rangeslider-directive/example/index.html', 'vendor/AngularHammer/doc/angular.hammer.js.html', 'vendor/AngularHammer/doc/index.html', 'vendor/AngularHammer/doc/module-hmTouchEvents.html', 'vendor/hammer-time/index.html', 'vendor/hammer-time/test.html', 'vendor/jquery/speed/closest.html', 'vendor/jquery/speed/css.html', 'vendor/jquery/speed/event.html', 'vendor/jquery/speed/filter.html', 'vendor/jquery/speed/find.html', 'vendor/jquery/speed/index.html', 'vendor/jquery/speed/slice.vs.concat.html', 'vendor/jquery/test/data/ajax/unreleasedXHR.html', 'vendor/jquery/test/data/cleanScript.html', 'vendor/jquery/test/data/core/cc_on.html', 'vendor/jquery/test/data/dimensions/documentLarge.html', 'vendor/jquery/test/data/dimensions/documentSmall.html', 'vendor/jquery/test/data/event/focusElem.html', 'vendor/jquery/test/data/event/promiseReady.html', 'vendor/jquery/test/data/event/syncReady.html', 'vendor/jquery/test/data/iframe.html', 'vendor/jquery/test/data/manipulation/iframe-denied.html', 'vendor/jquery/test/data/name.html', 'vendor/jquery/test/data/offset/absolute.html', 'vendor/jquery/test/data/offset/body.html', 'vendor/jquery/test/data/offset/fixed.html', 'vendor/jquery/test/data/offset/relative.html', 'vendor/jquery/test/data/offset/scroll.html', 'vendor/jquery/test/data/offset/static.html', 'vendor/jquery/test/data/offset/table.html', 'vendor/jquery/test/data/selector/html5_selector.html', 'vendor/jquery/test/data/selector/sizzle_cache.html', 'vendor/jquery/test/data/support/bodyBackground.html', 'vendor/jquery/test/data/support/boxSizing.html', 'vendor/jquery/test/data/support/shrinkWrapBlocks.html', 'vendor/jquery/test/data/support/testElementCrash.html', 'vendor/jquery/test/data/test.html', 'vendor/jquery/test/data/test2.html', 'vendor/jquery/test/data/test3.html', 'vendor/jquery/test/delegatetest.html', 'vendor/jquery/test/hovertest.html', 'vendor/jquery/test/index.html', 'vendor/jquery/test/localfile.html', 'vendor/jquery/test/networkerror.html', 'vendor/jquery/test/readywait.html', 'vendor/mapbox-gl-leaflet/examples/basic.html', 'vendor/mapbox-gl-leaflet/examples/cluster.html', 'vendor/messageformat/doc/index.html', 'vendor/messageformat/doc/MessageFormat.formatters.html', 'vendor/messageformat/doc/MessageFormat.html', 'vendor/messageformat/doc/messageformat.js.html', 'vendor/messageformat/doc/Runtime.html', 'vendor/messageformat/example/index.html', 'vendor/sprintf/demo/angular.html', 'vendor/ui-leaflet/index.html']);
 
-angular.module("index.html", []).run(["$templateCache", function($templateCache) {
+angular.module("index.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("index.html",
     "<!doctype html>\n" +
@@ -150,7 +150,7 @@ angular.module("index.html", []).run(["$templateCache", function($templateCache)
     "</html>");
 }]);
 
-angular.module("js/_main/_directive/daemon/petron.daemon.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_main/_directive/daemon/petron.daemon.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_main/_directive/daemon/petron.daemon.html",
     "<div class=\"c--daemon__container\">\n" +
@@ -164,7 +164,7 @@ angular.module("js/_main/_directive/daemon/petron.daemon.html", []).run(["$templ
     "");
 }]);
 
-angular.module("js/_main/_directive/filetree/audio_popout.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_main/_directive/filetree/audio_popout.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_main/_directive/filetree/audio_popout.html",
     "<section class=\"c--audio__popout\">\n" +
@@ -209,7 +209,7 @@ angular.module("js/_main/_directive/filetree/audio_popout.html", []).run(["$temp
     "");
 }]);
 
-angular.module("js/_main/_directive/filetree/petron.filetree.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_main/_directive/filetree/petron.filetree.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_main/_directive/filetree/petron.filetree.html",
     "<ul class=\"c--filetree__list\" ng-if=\"files\">\n" +
@@ -265,7 +265,7 @@ angular.module("js/_main/_directive/filetree/petron.filetree.html", []).run(["$t
     "");
 }]);
 
-angular.module("js/_main/_directive/keyboard/layout_qwerty.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_main/_directive/keyboard/layout_qwerty.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_main/_directive/keyboard/layout_qwerty.html",
     "<ul id=\"keyboard\">\n" +
@@ -327,7 +327,7 @@ angular.module("js/_main/_directive/keyboard/layout_qwerty.html", []).run(["$tem
     "");
 }]);
 
-angular.module("js/_main/_directive/keyboard/layout_qwertz.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_main/_directive/keyboard/layout_qwertz.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_main/_directive/keyboard/layout_qwertz.html",
     "<ul id=\"keyboard\">\n" +
@@ -389,7 +389,7 @@ angular.module("js/_main/_directive/keyboard/layout_qwertz.html", []).run(["$tem
     "");
 }]);
 
-angular.module("js/_main/_template/petron.confirm.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_main/_template/petron.confirm.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_main/_template/petron.confirm.html",
     "<div class=\"columns\">\n" +
@@ -413,7 +413,7 @@ angular.module("js/_main/_template/petron.confirm.html", []).run(["$templateCach
     "");
 }]);
 
-angular.module("js/_main/_template/petron.content.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_main/_template/petron.content.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_main/_template/petron.content.html",
     "<section class=\"columns u--max-height__100 u--margin-top__none c--home\">\n" +
@@ -475,7 +475,7 @@ angular.module("js/_main/_template/petron.content.html", []).run(["$templateCach
     "");
 }]);
 
-angular.module("js/_main/_template/petron.header.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_main/_template/petron.header.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_main/_template/petron.header.html",
     "<div class=\"columns is-vcentered\">\n" +
@@ -498,7 +498,7 @@ angular.module("js/_main/_template/petron.header.html", []).run(["$templateCache
     "");
 }]);
 
-angular.module("js/_main/_template/petron.home.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_main/_template/petron.home.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_main/_template/petron.home.html",
     "<header class=\"container is-fluid\" ui-view=\"header\">\n" +
@@ -520,11 +520,11 @@ angular.module("js/_main/_template/petron.home.html", []).run(["$templateCache",
     "		</div>\n" +
     "	</div>\n" +
     "</header>\n" +
-    "<main class=\"container is-fluid\" ui-view=\"content\"></main>\n" +
+    "<main class=\"container is-fluid\" ui-view=\"content\" ng-click=\"$root.left_toggle = false; $root.right_toggle = false;\"></main>\n" +
     "");
 }]);
 
-angular.module("js/_modules/audio_module/_template/_directive.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/audio_module/_template/_directive.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/audio_module/_template/_directive.html",
     "<div class=\"columns\">\n" +
@@ -608,7 +608,7 @@ angular.module("js/_modules/audio_module/_template/_directive.html", []).run(["$
     "");
 }]);
 
-angular.module("js/_modules/audio_module/_template/add_to_playlist_modal.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/audio_module/_template/add_to_playlist_modal.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/audio_module/_template/add_to_playlist_modal.html",
     "<section class=\"c--audio__popout\">\n" +
@@ -644,7 +644,7 @@ angular.module("js/_modules/audio_module/_template/add_to_playlist_modal.html", 
     "");
 }]);
 
-angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/audio_module/_template/main.html",
     "<section class=\"columns u--max-height__100 u--margin-top__none\">\n" +
@@ -688,7 +688,7 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templa
     "");
 }]);
 
-angular.module("js/_modules/audio_module/_template/new_playlist_modal.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/audio_module/_template/new_playlist_modal.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/audio_module/_template/new_playlist_modal.html",
     "<div class=\"columns\">\n" +
@@ -711,7 +711,7 @@ angular.module("js/_modules/audio_module/_template/new_playlist_modal.html", [])
     "");
 }]);
 
-angular.module("js/_modules/audio_module/_template/playlists.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/audio_module/_template/playlists.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/audio_module/_template/playlists.html",
     "<a ng-click=\"newPlaylist()\">\n" +
@@ -732,7 +732,7 @@ angular.module("js/_modules/audio_module/_template/playlists.html", []).run(["$t
     "");
 }]);
 
-angular.module("js/_modules/fm_module/_template/main.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/fm_module/_template/main.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/fm_module/_template/main.html",
     "<section class=\"columns u--max-height__100 u--margin-top__none\">\n" +
@@ -788,7 +788,7 @@ angular.module("js/_modules/fm_module/_template/main.html", []).run(["$templateC
     "");
 }]);
 
-angular.module("js/_modules/fm_module/_template/stations.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/fm_module/_template/stations.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/fm_module/_template/stations.html",
     "<a ng-repeat=\"station in fm.stations\" ng-click=\"func.play(station)\">\n" +
@@ -802,11 +802,19 @@ angular.module("js/_modules/fm_module/_template/stations.html", []).run(["$templ
     "");
 }]);
 
-angular.module("js/_modules/health_module/_template/main.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/health_module/_template/main.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/health_module/_template/main.html",
     "<section class=\"columns u--max-height__100 u--margin-top__none c--health\">\n" +
-    "	<div class=\"column\">\n" +
+    "	<div class=\"c--obd__message\" ng-if=\"!isConnected && !hasError\">\n" +
+    "			<h1 class=\"title is-2 c--obd__scanning has-text-centered\">{{ 'health.scanning' | translate}}{{ dots }}</h1>\n" +
+    "	</div>\n" +
+    "\n" +
+    "	<div class=\"columns c--obd-container  has-text-centered\" ng-if=\"hasError && !isConnected\">\n" +
+    "		<h2 class=\"title is-3 c--obd__error\">{{ 'health.scan_error' | translate}}</h2>\n" +
+    "		<button class=\"button button is-outlined is-primary\" ng-click=\"connectToOBD()\">{{ 'health.reconnect' | translate }}</button>\n" +
+    "	</div>\n" +
+    "	<div class=\"column\" ng-if=\"!hasError\">\n" +
     "		<div class=\"columns\">\n" +
     "			<div class=\"column is-vcentered\">\n" +
     "\n" +
@@ -867,7 +875,7 @@ angular.module("js/_modules/health_module/_template/main.html", []).run(["$templ
     "					<div class=\"column\">\n" +
     "						<div class=\"box\">\n" +
     "							<h5>{{ 'health.fuel' | translate }}</h5>\n" +
-    "							<h2>{{ consumption | unit:settings.fuel }}{{ (settings.fuel !== 'gal') ? 'l' : '' }}<small>{{ (settings.fuel !== 'gal') ? '/100km' : 'mpg' }}</small></h2>\n" +
+    "							<h2>{{ consumption | unit:settings.fuel }}<small>{{ (settings.fuel !== 'gal') ? 'l' : 'gal' }}</small></h2>\n" +
     "						</div>\n" +
     "					</div>\n" +
     "				</div>\n" +
@@ -878,7 +886,7 @@ angular.module("js/_modules/health_module/_template/main.html", []).run(["$templ
     "");
 }]);
 
-angular.module("js/_modules/navigation_module/_template/main.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/navigation_module/_template/main.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/navigation_module/_template/main.html",
     "<section class=\"columns u--max-height__100 u--margin-top__none c--navi\">\n" +
@@ -949,7 +957,7 @@ angular.module("js/_modules/navigation_module/_template/main.html", []).run(["$t
     "");
 }]);
 
-angular.module("js/_modules/navigation_module/_template/map.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/navigation_module/_template/map.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/navigation_module/_template/map.html",
     "<leaflet defaults=\"defaults\" lf-center=\"center\" height=\"422px\" width=\"800px\"></leaflet>\n" +
@@ -968,13 +976,13 @@ angular.module("js/_modules/navigation_module/_template/map.html", []).run(["$te
     "");
 }]);
 
-angular.module("js/_modules/navigation_module/_template/menu.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/navigation_module/_template/menu.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/navigation_module/_template/menu.html",
     "");
 }]);
 
-angular.module("js/_modules/settings_module/_template/main.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/settings_module/_template/main.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/settings_module/_template/main.html",
     "<section class=\"columns u--max-height__100 u--margin-top__none c--settings\">\n" +
@@ -1054,7 +1062,7 @@ angular.module("js/_modules/settings_module/_template/main.html", []).run(["$tem
     "");
 }]);
 
-angular.module("js/_modules/video_module/_template/_directive.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/video_module/_template/_directive.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/video_module/_template/_directive.html",
     "<video class=\"c--video__player\" hm-tap=\"play()\" hm-press=\"showControls = !showControls\" hm-recognizer-options='[{\"type\": \"press\", \"time\": 500}, {\"type\":\"tap\",\"enable\": true}]'>\n" +
@@ -1105,7 +1113,7 @@ angular.module("js/_modules/video_module/_template/_directive.html", []).run(["$
     "");
 }]);
 
-angular.module("js/_modules/video_module/_template/add_to_playlist_modal.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/video_module/_template/add_to_playlist_modal.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/video_module/_template/add_to_playlist_modal.html",
     "<div class=\"columns\">\n" +
@@ -1132,7 +1140,7 @@ angular.module("js/_modules/video_module/_template/add_to_playlist_modal.html", 
     "");
 }]);
 
-angular.module("js/_modules/video_module/_template/main.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/video_module/_template/main.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/video_module/_template/main.html",
     "<petron-filetree files=\"files\" func=\"func\" show=\"true\" type=\"video\"></petron-filetree>\n" +
@@ -1157,7 +1165,7 @@ angular.module("js/_modules/video_module/_template/main.html", []).run(["$templa
     "");
 }]);
 
-angular.module("js/_modules/video_module/_template/new_playlist_modal.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/video_module/_template/new_playlist_modal.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/video_module/_template/new_playlist_modal.html",
     "<div class=\"columns\">\n" +
@@ -1180,14 +1188,14 @@ angular.module("js/_modules/video_module/_template/new_playlist_modal.html", [])
     "");
 }]);
 
-angular.module("js/_modules/video_module/_template/player.html", []).run(["$templateCache", function($templateCache) {
+angular.module("js/_modules/video_module/_template/player.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/video_module/_template/player.html",
     "<petron-video></petron-video>\n" +
     "");
 }]);
 
-angular.module("loader.html", []).run(["$templateCache", function($templateCache) {
+angular.module("loader.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("loader.html",
     "<!doctype html>\n" +
@@ -1225,7 +1233,7 @@ angular.module("loader.html", []).run(["$templateCache", function($templateCache
     "</html>");
 }]);
 
-angular.module("vendor/angular-rangeslider-directive/example/index.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/angular-rangeslider-directive/example/index.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/angular-rangeslider-directive/example/index.html",
     "<!DOCTYPE html>\n" +
@@ -1278,7 +1286,7 @@ angular.module("vendor/angular-rangeslider-directive/example/index.html", []).ru
     "");
 }]);
 
-angular.module("vendor/AngularHammer/doc/angular.hammer.js.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/AngularHammer/doc/angular.hammer.js.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/AngularHammer/doc/angular.hammer.js.html",
     "<!DOCTYPE html>\n" +
@@ -1843,7 +1851,7 @@ angular.module("vendor/AngularHammer/doc/angular.hammer.js.html", []).run(["$tem
     "");
 }]);
 
-angular.module("vendor/AngularHammer/doc/index.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/AngularHammer/doc/index.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/AngularHammer/doc/index.html",
     "<!DOCTYPE html>\n" +
@@ -1911,7 +1919,7 @@ angular.module("vendor/AngularHammer/doc/index.html", []).run(["$templateCache",
     "</html>");
 }]);
 
-angular.module("vendor/AngularHammer/doc/module-hmTouchEvents.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/AngularHammer/doc/module-hmTouchEvents.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/AngularHammer/doc/module-hmTouchEvents.html",
     "<!DOCTYPE html>\n" +
@@ -2047,7 +2055,7 @@ angular.module("vendor/AngularHammer/doc/module-hmTouchEvents.html", []).run(["$
     "</html>");
 }]);
 
-angular.module("vendor/hammer-time/index.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/hammer-time/index.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/hammer-time/index.html",
     "<!DOCTYPE html>\n" +
@@ -2145,7 +2153,7 @@ angular.module("vendor/hammer-time/index.html", []).run(["$templateCache", funct
     "</html>");
 }]);
 
-angular.module("vendor/hammer-time/test.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/hammer-time/test.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/hammer-time/test.html",
     "<!DOCTYPE html>\n" +
@@ -2397,7 +2405,7 @@ angular.module("vendor/hammer-time/test.html", []).run(["$templateCache", functi
     "</html>");
 }]);
 
-angular.module("vendor/jquery/speed/closest.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/speed/closest.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/speed/closest.html",
     "<!doctype html>\n" +
@@ -2442,7 +2450,7 @@ angular.module("vendor/jquery/speed/closest.html", []).run(["$templateCache", fu
     "");
 }]);
 
-angular.module("vendor/jquery/speed/css.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/speed/css.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/speed/css.html",
     "<!doctype html>\n" +
@@ -2530,7 +2538,7 @@ angular.module("vendor/jquery/speed/css.html", []).run(["$templateCache", functi
     "");
 }]);
 
-angular.module("vendor/jquery/speed/event.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/speed/event.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/speed/event.html",
     "<!doctype html>\n" +
@@ -2594,7 +2602,7 @@ angular.module("vendor/jquery/speed/event.html", []).run(["$templateCache", func
     "");
 }]);
 
-angular.module("vendor/jquery/speed/filter.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/speed/filter.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/speed/filter.html",
     "<!doctype html>\n" +
@@ -2783,7 +2791,7 @@ angular.module("vendor/jquery/speed/filter.html", []).run(["$templateCache", fun
     "");
 }]);
 
-angular.module("vendor/jquery/speed/find.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/speed/find.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/speed/find.html",
     "<!doctype html>\n" +
@@ -2968,7 +2976,7 @@ angular.module("vendor/jquery/speed/find.html", []).run(["$templateCache", funct
     "");
 }]);
 
-angular.module("vendor/jquery/speed/index.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/speed/index.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/speed/index.html",
     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n" +
@@ -3046,7 +3054,7 @@ angular.module("vendor/jquery/speed/index.html", []).run(["$templateCache", func
     "");
 }]);
 
-angular.module("vendor/jquery/speed/slice.vs.concat.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/speed/slice.vs.concat.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/speed/slice.vs.concat.html",
     "<script type=\"text/javascript\">\n" +
@@ -3098,7 +3106,7 @@ angular.module("vendor/jquery/speed/slice.vs.concat.html", []).run(["$templateCa
     "</script>");
 }]);
 
-angular.module("vendor/jquery/test/data/ajax/unreleasedXHR.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/ajax/unreleasedXHR.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/ajax/unreleasedXHR.html",
     "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n" +
@@ -3129,7 +3137,7 @@ angular.module("vendor/jquery/test/data/ajax/unreleasedXHR.html", []).run(["$tem
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/cleanScript.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/cleanScript.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/cleanScript.html",
     "<script>\n" +
@@ -3145,7 +3153,7 @@ angular.module("vendor/jquery/test/data/cleanScript.html", []).run(["$templateCa
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/core/cc_on.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/core/cc_on.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/core/cc_on.html",
     "<!DOCTYPE html>\n" +
@@ -3173,7 +3181,7 @@ angular.module("vendor/jquery/test/data/core/cc_on.html", []).run(["$templateCac
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/dimensions/documentLarge.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/dimensions/documentLarge.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/dimensions/documentLarge.html",
     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n" +
@@ -3196,7 +3204,7 @@ angular.module("vendor/jquery/test/data/dimensions/documentLarge.html", []).run(
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/dimensions/documentSmall.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/dimensions/documentSmall.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/dimensions/documentSmall.html",
     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n" +
@@ -3223,7 +3231,7 @@ angular.module("vendor/jquery/test/data/dimensions/documentSmall.html", []).run(
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/event/focusElem.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/event/focusElem.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/event/focusElem.html",
     "<!doctype html>\n" +
@@ -3245,7 +3253,7 @@ angular.module("vendor/jquery/test/data/event/focusElem.html", []).run(["$templa
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/event/promiseReady.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/event/promiseReady.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/event/promiseReady.html",
     "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n" +
@@ -3268,7 +3276,7 @@ angular.module("vendor/jquery/test/data/event/promiseReady.html", []).run(["$tem
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/event/syncReady.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/event/syncReady.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/event/syncReady.html",
     "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n" +
@@ -3297,7 +3305,7 @@ angular.module("vendor/jquery/test/data/event/syncReady.html", []).run(["$templa
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/iframe.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/iframe.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/iframe.html",
     "<html>\n" +
@@ -3311,7 +3319,7 @@ angular.module("vendor/jquery/test/data/iframe.html", []).run(["$templateCache",
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/manipulation/iframe-denied.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/manipulation/iframe-denied.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/manipulation/iframe-denied.html",
     "<!DOCTYPE html>\n" +
@@ -3353,14 +3361,14 @@ angular.module("vendor/jquery/test/data/manipulation/iframe-denied.html", []).ru
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/name.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/name.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/name.html",
     "ERROR <script type=\"text/javascript\">ok( true, \"name.html retrieved\" );</script>\n" +
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/offset/absolute.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/offset/absolute.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/offset/absolute.html",
     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n" +
@@ -3407,7 +3415,7 @@ angular.module("vendor/jquery/test/data/offset/absolute.html", []).run(["$templa
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/offset/body.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/offset/body.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/offset/body.html",
     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n" +
@@ -3439,7 +3447,7 @@ angular.module("vendor/jquery/test/data/offset/body.html", []).run(["$templateCa
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/offset/fixed.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/offset/fixed.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/offset/fixed.html",
     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n" +
@@ -3479,7 +3487,7 @@ angular.module("vendor/jquery/test/data/offset/fixed.html", []).run(["$templateC
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/offset/relative.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/offset/relative.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/offset/relative.html",
     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n" +
@@ -3516,7 +3524,7 @@ angular.module("vendor/jquery/test/data/offset/relative.html", []).run(["$templa
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/offset/scroll.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/offset/scroll.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/offset/scroll.html",
     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n" +
@@ -3561,7 +3569,7 @@ angular.module("vendor/jquery/test/data/offset/scroll.html", []).run(["$template
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/offset/static.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/offset/static.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/offset/static.html",
     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n" +
@@ -3598,7 +3606,7 @@ angular.module("vendor/jquery/test/data/offset/static.html", []).run(["$template
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/offset/table.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/offset/table.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/offset/table.html",
     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n" +
@@ -3647,7 +3655,7 @@ angular.module("vendor/jquery/test/data/offset/table.html", []).run(["$templateC
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/selector/html5_selector.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/selector/html5_selector.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/selector/html5_selector.html",
     "<!doctype html>\n" +
@@ -3767,7 +3775,7 @@ angular.module("vendor/jquery/test/data/selector/html5_selector.html", []).run([
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/selector/sizzle_cache.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/selector/sizzle_cache.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/selector/sizzle_cache.html",
     "<!doctype html>\n" +
@@ -3794,7 +3802,7 @@ angular.module("vendor/jquery/test/data/selector/sizzle_cache.html", []).run(["$
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/support/bodyBackground.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/support/bodyBackground.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/support/bodyBackground.html",
     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n" +
@@ -3828,7 +3836,7 @@ angular.module("vendor/jquery/test/data/support/bodyBackground.html", []).run(["
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/support/boxSizing.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/support/boxSizing.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/support/boxSizing.html",
     "<!DOCTYPE html>\n" +
@@ -3853,7 +3861,7 @@ angular.module("vendor/jquery/test/data/support/boxSizing.html", []).run(["$temp
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/support/shrinkWrapBlocks.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/support/shrinkWrapBlocks.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/support/shrinkWrapBlocks.html",
     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n" +
@@ -3882,7 +3890,7 @@ angular.module("vendor/jquery/test/data/support/shrinkWrapBlocks.html", []).run(
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/support/testElementCrash.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/support/testElementCrash.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/support/testElementCrash.html",
     "<!DOCTYPE html>\n" +
@@ -3905,7 +3913,7 @@ angular.module("vendor/jquery/test/data/support/testElementCrash.html", []).run(
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/test.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/test.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/test.html",
     "html text<br/>\n" +
@@ -3918,7 +3926,7 @@ angular.module("vendor/jquery/test/data/test.html", []).run(["$templateCache", f
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/test2.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/test2.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/test2.html",
     "<script type=\"text/javascript\">\n" +
@@ -3929,7 +3937,7 @@ angular.module("vendor/jquery/test/data/test2.html", []).run(["$templateCache", 
     "");
 }]);
 
-angular.module("vendor/jquery/test/data/test3.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/data/test3.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/data/test3.html",
     "<div class=\"user\">This is a user</div>\n" +
@@ -3938,7 +3946,7 @@ angular.module("vendor/jquery/test/data/test3.html", []).run(["$templateCache", 
     "");
 }]);
 
-angular.module("vendor/jquery/test/delegatetest.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/delegatetest.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/delegatetest.html",
     "<!DOCTYPE html>\n" +
@@ -4172,7 +4180,7 @@ angular.module("vendor/jquery/test/delegatetest.html", []).run(["$templateCache"
     "");
 }]);
 
-angular.module("vendor/jquery/test/hovertest.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/hovertest.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/hovertest.html",
     "<html>\n" +
@@ -4336,7 +4344,7 @@ angular.module("vendor/jquery/test/hovertest.html", []).run(["$templateCache", f
     "");
 }]);
 
-angular.module("vendor/jquery/test/index.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/index.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/index.html",
     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n" +
@@ -4679,7 +4687,7 @@ angular.module("vendor/jquery/test/index.html", []).run(["$templateCache", funct
     "");
 }]);
 
-angular.module("vendor/jquery/test/localfile.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/localfile.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/localfile.html",
     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n" +
@@ -4760,7 +4768,7 @@ angular.module("vendor/jquery/test/localfile.html", []).run(["$templateCache", f
     "");
 }]);
 
-angular.module("vendor/jquery/test/networkerror.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/networkerror.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/networkerror.html",
     "<!DOCTYPE html>\n" +
@@ -4850,7 +4858,7 @@ angular.module("vendor/jquery/test/networkerror.html", []).run(["$templateCache"
     "");
 }]);
 
-angular.module("vendor/jquery/test/readywait.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/jquery/test/readywait.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/jquery/test/readywait.html",
     "<!DOCTYPE html>\n" +
@@ -4926,7 +4934,7 @@ angular.module("vendor/jquery/test/readywait.html", []).run(["$templateCache", f
     "");
 }]);
 
-angular.module("vendor/mapbox-gl-leaflet/examples/basic.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/mapbox-gl-leaflet/examples/basic.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/mapbox-gl-leaflet/examples/basic.html",
     "<html>\n" +
@@ -4973,7 +4981,7 @@ angular.module("vendor/mapbox-gl-leaflet/examples/basic.html", []).run(["$templa
     "");
 }]);
 
-angular.module("vendor/mapbox-gl-leaflet/examples/cluster.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/mapbox-gl-leaflet/examples/cluster.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/mapbox-gl-leaflet/examples/cluster.html",
     "<html>\n" +
@@ -5035,7 +5043,7 @@ angular.module("vendor/mapbox-gl-leaflet/examples/cluster.html", []).run(["$temp
     "");
 }]);
 
-angular.module("vendor/messageformat/doc/index.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/messageformat/doc/index.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/messageformat/doc/index.html",
     "<!DOCTYPE html>\n" +
@@ -5212,7 +5220,7 @@ angular.module("vendor/messageformat/doc/index.html", []).run(["$templateCache",
     "</html>");
 }]);
 
-angular.module("vendor/messageformat/doc/MessageFormat.formatters.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/messageformat/doc/MessageFormat.formatters.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/messageformat/doc/MessageFormat.formatters.html",
     "<!DOCTYPE html>\n" +
@@ -5478,7 +5486,7 @@ angular.module("vendor/messageformat/doc/MessageFormat.formatters.html", []).run
     "</html>");
 }]);
 
-angular.module("vendor/messageformat/doc/MessageFormat.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/messageformat/doc/MessageFormat.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/messageformat/doc/MessageFormat.html",
     "<!DOCTYPE html>\n" +
@@ -6662,7 +6670,7 @@ angular.module("vendor/messageformat/doc/MessageFormat.html", []).run(["$templat
     "</html>");
 }]);
 
-angular.module("vendor/messageformat/doc/messageformat.js.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/messageformat/doc/messageformat.js.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/messageformat/doc/messageformat.js.html",
     "<!DOCTYPE html>\n" +
@@ -7275,7 +7283,7 @@ angular.module("vendor/messageformat/doc/messageformat.js.html", []).run(["$temp
     "");
 }]);
 
-angular.module("vendor/messageformat/doc/Runtime.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/messageformat/doc/Runtime.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/messageformat/doc/Runtime.html",
     "<!DOCTYPE html>\n" +
@@ -8496,7 +8504,7 @@ angular.module("vendor/messageformat/doc/Runtime.html", []).run(["$templateCache
     "</html>");
 }]);
 
-angular.module("vendor/messageformat/example/index.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/messageformat/example/index.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/messageformat/example/index.html",
     "<!DOCTYPE html>\n" +
@@ -8529,7 +8537,7 @@ angular.module("vendor/messageformat/example/index.html", []).run(["$templateCac
     "");
 }]);
 
-angular.module("vendor/sprintf/demo/angular.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/sprintf/demo/angular.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/sprintf/demo/angular.html",
     "<!doctype html>\n" +
@@ -8555,7 +8563,7 @@ angular.module("vendor/sprintf/demo/angular.html", []).run(["$templateCache", fu
     "");
 }]);
 
-angular.module("vendor/ui-leaflet/index.html", []).run(["$templateCache", function($templateCache) {
+angular.module("vendor/ui-leaflet/index.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("vendor/ui-leaflet/index.html",
     "<!DOCTYPE html>\n" +

@@ -24,6 +24,8 @@
 			remoteProvider.register('ffprobe-static');
 			remoteProvider.register('electron-json-storage');
 			//remoteProvider.register('node-rpi-si4703');
+			remoteProvider.register('node-obd');
+			remoteProvider.register('obd-parser-development-connection');
 		}]);
 
 	angular.module('petron.core', [

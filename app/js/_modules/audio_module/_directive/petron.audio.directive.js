@@ -35,6 +35,7 @@
 
 							var _prepare = function() {
 								petronPlaylist.setType('audio');
+								petronDaemon.disable();
 								petronDaemon.register('audio', $state.current.name);
 								petronPlaylist.loadPlaylists('audio').then(function(audio) {
 									$rootScope.audio = {
@@ -125,7 +126,7 @@
 								if ($rootScope.daemon.player && $rootScope.daemon.player.audio !==
 									undefined) {
 									$scope._audio.currentTime =
-										$rootScope.daemon.player.audio.currentTime + 0.2;
+										$rootScope.daemon.player.audio.currentTime;
 									$rootScope.daemon.player.audio = undefined;
 								}
 								$scope.play(true);

@@ -17,6 +17,7 @@
 
 						var _prepare = function() {
 							petronPlaylist.setType('video');
+							petronDaemon.disable();
 							petronDaemon.register('video', $state.current.name);
 							petronPlaylist.loadPlaylists('video').then(function(video) {
 								$rootScope.video = {

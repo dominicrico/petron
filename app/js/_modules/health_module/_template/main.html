@@ -1,5 +1,13 @@
 <section class="columns u--max-height__100 u--margin-top__none c--health">
-	<div class="column">
+	<div class="c--obd__message" ng-if="!isConnected && !hasError">
+			<h1 class="title is-2 c--obd__scanning has-text-centered">{{ 'health.scanning' | translate}}{{ dots }}</h1>
+	</div>
+
+	<div class="columns c--obd-container  has-text-centered" ng-if="hasError && !isConnected">
+		<h2 class="title is-3 c--obd__error">{{ 'health.scan_error' | translate}}</h2>
+		<button class="button button is-outlined is-primary" ng-click="connectToOBD()">{{ 'health.reconnect' | translate }}</button>
+	</div>
+	<div class="column" ng-if="!hasError">
 		<div class="columns">
 			<div class="column is-vcentered">
 
@@ -60,7 +68,7 @@
 					<div class="column">
 						<div class="box">
 							<h5>{{ 'health.fuel' | translate }}</h5>
-							<h2>{{ consumption | unit:settings.fuel }}{{ (settings.fuel !== 'gal') ? 'l' : '' }}<small>{{ (settings.fuel !== 'gal') ? '/100km' : 'mpg' }}</small></h2>
+							<h2>{{ consumption | unit:settings.fuel }}<small>{{ (settings.fuel !== 'gal') ? 'l' : 'gal' }}</small></h2>
 						</div>
 					</div>
 				</div>
