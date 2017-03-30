@@ -11,7 +11,7 @@
     'nemLogging',
     'ui-leaflet',
     'tmh.dynamicLocale',
-    'oitozero.ngSweetAlert'
+    '19degrees.ngSweetAlert2'
   ]);
 
   angular.module('petron.core.modules', []);

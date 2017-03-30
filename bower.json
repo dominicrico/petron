@@ -48,7 +48,7 @@
     "polyline": "^0.2.0",
     "angular-dynamic-locale": "^0.1.32",
     "angular-i18n": "^1.6.2",
-    "ngSweetAlert": "angular-sweetalert#^1.1.2"
+    "ngSweetAlert2": "^2.0.0"
   },
   "overrides": {
     "mapbox-gl-leaflet": {
