@@ -1,64 +1,64 @@
 (function() {
-	'use strict';
+  'use strict';
 
-	angular.module('petron.core')
-		.directive('petronDraggable', ['$document', '$rootScope', 'petron.daemon',
-			function($document, $rootScope, petronDaemon) {
-				return {
-					restrict: 'A',
-					link: function(scope, elem, attrs) {
-						var origX = 525;
-						var startX = 525;
-						var x = 525;
+  angular.module('petron.core')
+    .directive('petronDraggable', ['$document', '$rootScope', 'petron.daemon',
+      function($document, $rootScope, petronDaemon) {
+        return {
+          restrict: 'A',
+          link: function(scope, elem) {
+            var origX = 525;
+            var startX = 525;
+            var x = 525;
 
-						elem.on('mousedown', function(event) {
-							event.preventDefault();
-							event.stopPropagation();
+            function mousemove(event) {
+              x = event.pageX - startX;
+              if (event.pageX - startX > 525) {
+                angular.element(elem).css({
+                  left: x + 'px',
+                });
+              }
+            }
 
-							angular.element(elem).css({
-								transition: 'none'
-							});
+            function mouseup(event) {
+              x = event.pageX - startX;
+              if (x <= 720) {
+                angular.element(elem).css({
+                  left: origX + 'px',
+                  transition: 'all 0.3s ease'
+                });
+                if (x < 530 && x >= 525) {
+                  $rootScope.daemonBack();
+                }
+              } else if (x > 720) {
+                angular.element(elem).css({
+                  left: 820 + 'px',
+                  transition: 'all 0.3s ease'
+                });
 
-							startX = event.pageX - x;
+                petronDaemon.disable();
+              }
 
-							$document.on('mousemove', mousemove);
-							$document.on('mouseup',
-								mouseup);
-						});
+              $document.unbind('mousemove', mousemove);
+              $document.unbind('mouseup', mouseup);
+            }
 
-						function mousemove(event) {
-							x = event.pageX - startX;
-							if (event.pageX - startX > 525) {
-								angular.element(elem).css({
-									left: x + 'px',
-								});
-							}
-						}
+            elem.on('mousedown', function(event) {
+              event.preventDefault();
+              event.stopPropagation();
 
-						function mouseup(event) {
-							x = event.pageX - startX;
-							if (x <= 720) {
-								angular.element(elem).css({
-									left: origX + 'px',
-									transition: 'all 0.3s ease'
-								});
-								if (x < 530 && x >= 525) {
-									$rootScope.daemonBack();
-								}
-							} else if (x > 720) {
-								angular.element(elem).css({
-									left: 820 + 'px',
-									transition: 'all 0.3s ease'
-								});
+              angular.element(elem).css({
+                transition: 'none'
+              });
 
-								petronDaemon.disable();
-							}
+              startX = event.pageX - x;
 
-							$document.unbind('mousemove', mousemove);
-							$document.unbind('mouseup', mouseup);
-						}
-					}
-				};
-			}
-		]);
+              $document.on('mousemove', mousemove);
+              $document.on('mouseup',
+                mouseup);
+            });
+          }
+        };
+      }
+    ]);
 })();

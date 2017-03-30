@@ -1,68 +1,69 @@
 {
-	"name": "petron",
-	"description": "Raspberry Pi Car Computer",
-	"main": "index.js",
-	"authors": [
-		"Dominic Rico Gómez <hello@coderocket.me>"
-	],
-	"license": "MIT",
-	"keywords": [
-		"petron",
-		"car",
-		"computer",
-		"audio",
-		"video",
-		"navigation",
-		"obd"
-	],
-	"homepage": "",
-	"private": true,
-	"ignore": [
-		"**/.*",
-		"node_modules",
-		"bower_components",
-		"test",
-		"tests"
-	],
-	"dependencies": {
-		"jquery": "~1.10",
-		"angular": "^1.5.8",
-		"bulma": "^0.2.1",
-		"angular-ui-router": "ui-router#^0.3.1",
-		"angular-electron": "^0.2.1",
-		"angular-sanitize": "^1.5.8",
-		"angular-translate": "^2.12.1",
-		"angular-translate-loader-static-files": "^2.12.1",
-		"ng-dialog": "^0.6.4",
-		"angular-translate-interpolation-messageformat": "^2.12.1",
-		"async": "^2.1.2",
-		"angular-rangeslider-directive": "^0.0.2",
-		"AngularHammer": "angular-hammerjs#2.1.10",
-		"hammerjs": "^2.0.8",
-		"hammer-time": "^1.1.0",
-		"ui-leaflet": "^2.0.0",
-		"mapbox-gl-js": "^0.11.0",
-		"mapbox-gl-leaflet": "https://github.com/mapbox/mapbox-gl-leaflet.git#^0.0.1",
-		"sprintf": "^1.0.3",
-		"angular-translate-loader-partial": "^2.13.0",
-		"polyline": "^0.2.0",
-		"angular-dynamic-locale": "^0.1.32",
-		"angular-i18n": "^1.6.2"
-	},
-	"overrides": {
-		"mapbox-gl-leaflet": {
-			"main": "leaflet-mapbox-gl.js"
-		},
-		"mapbox-gl-js": {
-			"main": [
-				"mapbox-gl.js",
-				"mapbox-gl.css"
-			]
-		},
-		"polyline": {
-			"main": [
-				"src/polyline.js"
-			]
-		}
-	}
+  "name": "petron",
+  "description": "Raspberry Pi Car Computer",
+  "main": "index.js",
+  "authors": [
+    "Dominic Rico Gómez <hello@coderocket.me>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "petron",
+    "car",
+    "computer",
+    "audio",
+    "video",
+    "navigation",
+    "obd"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.10",
+    "angular": "^1.5.8",
+    "bulma": "^0.2.1",
+    "angular-ui-router": "ui-router#^0.3.1",
+    "angular-electron": "^0.2.1",
+    "angular-sanitize": "^1.5.8",
+    "angular-translate": "^2.12.1",
+    "angular-translate-loader-static-files": "^2.12.1",
+    "ng-dialog": "^0.6.4",
+    "angular-translate-interpolation-messageformat": "^2.12.1",
+    "async": "^2.1.2",
+    "angular-rangeslider-directive": "^0.0.2",
+    "AngularHammer": "angular-hammerjs#2.1.10",
+    "hammerjs": "^2.0.8",
+    "hammer-time": "^1.1.0",
+    "ui-leaflet": "^2.0.0",
+    "mapbox-gl-js": "^0.11.0",
+    "mapbox-gl-leaflet": "https://github.com/mapbox/mapbox-gl-leaflet.git#^0.0.1",
+    "sprintf": "^1.0.3",
+    "angular-translate-loader-partial": "^2.13.0",
+    "polyline": "^0.2.0",
+    "angular-dynamic-locale": "^0.1.32",
+    "angular-i18n": "^1.6.2",
+    "zingtouch": "^1.0.4"
+  },
+  "overrides": {
+    "mapbox-gl-leaflet": {
+      "main": "leaflet-mapbox-gl.js"
+    },
+    "mapbox-gl-js": {
+      "main": [
+        "mapbox-gl.js",
+        "mapbox-gl.css"
+      ]
+    },
+    "polyline": {
+      "main": [
+        "src/polyline.js"
+      ]
+    }
+  }
 }

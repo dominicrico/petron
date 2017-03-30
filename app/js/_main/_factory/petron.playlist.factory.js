@@ -1,292 +1,302 @@
 (function() {
-	angular.module('petron.core')
-		.factory('petron.playlist', ['petron.storage', '$q', '$rootScope', function(
-			petronStorage,
-			$q, $rootScope) {
-			var __playlist = {
-				name: '',
-				tracks: '',
-				type: 'playlist'
-			};
+  "use strict";
 
-			var _type;
-			var _data = {
-				_currentQueue: {},
-				_playlists: {}
-			};
+  angular.module('petron.core')
+    .factory('petron.playlist', ['petron.storage', '$q', '$rootScope',
+      function(
+        petronStorage,
+        $q, $rootScope) {
+        var __playlist = {
+          name: '',
+          tracks: '',
+          type: 'playlist'
+        };
 
-			var _broadcastUpdate = function(name, action) {
-				console.log('> ' + _type + '.' + name + ':' + action);
-				$rootScope.$broadcast(_type + '.' + name + ':' + action);
-			};
+        var _type;
+        var _data = {
+          _currentQueue: {},
+          _playlists: {}
+        };
 
-			var _savePlaylists = function(pl) {
-				var deferred = $q.defer();
-				if (pl.tracks) {
-					pl.tracks.forEach(function(track) {
-						try {
-							track.path = track.path.$$unwrapTrustedValue();
-						} catch (e) {
-							track.path = track.path;
-						}
-					});
-				}
+        var _broadcastUpdate = function(name, action) {
+          console.log('> ' + _type + '.' + name + ':' + action);
+          $rootScope.$broadcast(_type + '.' + name + ':' + action);
+        };
 
-				petronStorage.set('petron.playlists.' + _type, _data._playlists[_type])
-					.then(
-						function(playlists) {
-							deferred.resolve(playlists);
-						},
-						function(err) {
-							deferred.reject(err);
-						});
+        var _savePlaylists = function(pl) {
+          var deferred = $q.defer();
+          if (pl.tracks) {
+            pl.tracks.forEach(function(track) {
+              try {
+                track.path = track.path.$$unwrapTrustedValue();
+              } catch (e) {
+                track.path = track.path;
+              }
+            });
+          }
 
-				return deferred.promise;
-			};
+          petronStorage.set('petron.playlists.' + _type, _data._playlists[
+              _type])
+            .then(
+              function(playlists) {
+                deferred.resolve(playlists);
+              },
+              function(err) {
+                deferred.reject(err);
+              });
 
-			var _saveQueue = function(q) {
-				var deferred = $q.defer();
+          return deferred.promise;
+        };
 
-				if (q && q.tracks) {
-					q.tracks.forEach(function(track) {
-						try {
-							track.path = track.path.$$unwrapTrustedValue();
-						} catch (e) {
-							track.path = track.path;
-						}
-					});
-				}
+        var _saveQueue = function(q) {
+          var deferred = $q.defer();
 
-				petronStorage.set('petron.queue.' + _type, q).then(
-					function(playlists) {
-						deferred.resolve(playlists);
-					},
-					function(err) {
-						deferred.reject(err);
-					});
+          if (q && q.tracks) {
+            q.tracks.forEach(function(track) {
+              try {
+                track.path = track.path.$$unwrapTrustedValue();
+              } catch (e) {
+                track.path = track.path;
+              }
+            });
+          }
 
-				return deferred.promise;
-			};
+          petronStorage.set('petron.queue.' + _type, q).then(
+            function(playlists) {
+              deferred.resolve(playlists);
+            },
+            function(err) {
+              deferred.reject(err);
+            });
 
-			var _loadPlaylists = function() {
-				var deferred = $q.defer();
+          return deferred.promise;
+        };
 
-				petronStorage.get('petron.queue.' + _type).then(function(queue) {
-					_data._currentQueue[_type] = angular.copy(queue);
-					petronStorage.get('petron.playlists.' + _type).then(
-						function(playlists) {
+        var _loadPlaylists = function() {
+          var deferred = $q.defer();
 
-							_data._playlists[_type] = angular.copy(playlists);
-							deferred.resolve({
-								queue: _data._currentQueue[_type],
-								playlists: _data._playlists[_type]
-							});
-						},
-						function(err) {
-							deffered.reject(err);
-						});
-				});
+          petronStorage.get('petron.queue.' + _type).then(function(queue) {
+            _data._currentQueue[_type] = angular.copy(queue);
+            petronStorage.get('petron.playlists.' + _type).then(
+              function(playlists) {
 
-				return deferred.promise;
-			};
+                _data._playlists[_type] = angular.copy(playlists);
+                deferred.resolve({
+                  queue: _data._currentQueue[_type],
+                  playlists: _data._playlists[_type]
+                });
+              },
+              function(err) {
+                deferred.reject(err);
+              });
+          });
 
-			return {
-				setType: function(type) {
-					_type = type;
-					return true;
-				},
+          return deferred.promise;
+        };
 
-				save: function() {
-					_savePlaylists(_data._playlists[_type]);
-					_saveQueue(_data._currentQueue[_type]);
-				},
+        return {
+          setType: function(type) {
+            _type = type;
+            return true;
+          },
 
-				getQueue: function() {
-					var deferred = $q.defer();
+          save: function() {
+            _savePlaylists(_data._playlists[_type]);
+            _saveQueue(_data._currentQueue[_type]);
+          },
 
-					deferred.resolve(_data._currentQueue[_type]);
+          getQueue: function() {
+            var deferred = $q.defer();
 
-					return deferred.promise;
-				},
+            deferred.resolve(_data._currentQueue[_type]);
 
-				clearQueue: function() {
-					var deferred = $q.defer();
+            return deferred.promise;
+          },
 
-					_data._currentQueue[_type] = {};
-					deferred.resolve(_data._currentQueue[_type]);
+          clearQueue: function() {
+            var deferred = $q.defer();
 
-					return deferred.promise;
-				},
+            _data._currentQueue[_type] = {};
+            deferred.resolve(_data._currentQueue[_type]);
 
-				playPlaylist: function(name) {
-					var deferred = $q.defer();
-					if (typeof name !== 'string') {
-						_data._currentQueue[_type] = {};
-						if (!(name instanceof Array)) {
-							_data._currentQueue[_type].tracks = [name];
-						} else {
-							_data._currentQueue[_type].tracks = name;
-						}
-					} else {
-						_data._currentQueue[_type] = _data._playlists[_type][name];
-					}
+            return deferred.promise;
+          },
 
-					_broadcastUpdate('queue', 'changed');
+          playPlaylist: function(name) {
+            var deferred = $q.defer();
+            if (typeof name !== 'string') {
+              _data._currentQueue[_type] = {};
+              if (!(name instanceof Array)) {
+                _data._currentQueue[_type].tracks = [name];
+              } else {
+                _data._currentQueue[_type].tracks = name;
+              }
+            } else {
+              _data._currentQueue[_type] = _data._playlists[_type][name];
+            }
 
-					deferred.resolve(_data._currentQueue[_type]);
-					return deferred.promise;
-				},
+            _broadcastUpdate('queue', 'changed');
 
-				newPlaylist: function(pl) {
-					var deferred = $q.defer();
+            deferred.resolve(_data._currentQueue[_type]);
+            return deferred.promise;
+          },
 
-					newPl = angular.copy(__playlist);
-					newPl.name = pl.name || 'Playlist';
-					newPl.tracks = pl.tracks || [];
-					_data._playlists[_type][newPl.name] = newPl;
-					deferred.resolve(_data._playlists[_type][newPl.name]);
+          newPlaylist: function(pl) {
+            var deferred = $q.defer();
 
-					return deferred.promise;
-				},
+            var newPl = angular.copy(__playlist);
+            newPl.name = pl.name || 'Playlist';
+            newPl.tracks = pl.tracks || [];
+            _data._playlists[_type][newPl.name] = newPl;
+            deferred.resolve(_data._playlists[_type][newPl.name]);
 
-				getPlaylist: function(name) {
-					var deferred = $q.defer();
+            return deferred.promise;
+          },
 
-					deferred.resolve(_data._playlists[_type][name]);
+          getPlaylist: function(name) {
+            var deferred = $q.defer();
 
-					return deferred.promise;
-				},
+            deferred.resolve(_data._playlists[_type][name]);
 
-				removePlaylist: function(name) {
-					var deferred = $q.defer();
+            return deferred.promise;
+          },
 
-					_data._playlists[_type][name] = undefined;
-					delete _data._playlists[_type][name];
-					deferred.resolve(_data._playlists[_type]);
+          removePlaylist: function(name) {
+            var deferred = $q.defer();
 
-					_broadcastUpdate(name, 'removed');
+            _data._playlists[_type][name] = undefined;
+            delete _data._playlists[_type][name];
+            deferred.resolve(_data._playlists[_type]);
 
-					return deferred.promise;
-				},
+            _broadcastUpdate(name, 'removed');
 
-				updatePlaylist: function(name, update) {
-					var deferred = $q.defer();
-					_data._playlists[_type][update] = _data._playlists[_type][name];
-					_data._playlists[_type][update].name = update;
-					_data._playlists[_type][name] = undefined;
-					delete _data._playlists[_type][name];
-					deferred.resolve(_data._playlists[_type][update]);
+            return deferred.promise;
+          },
 
-					_broadcastUpdate(name, 'changed');
+          updatePlaylist: function(name, update) {
+            var deferred = $q.defer();
+            _data._playlists[_type][update] = _data._playlists[_type][
+              name
+            ];
+            _data._playlists[_type][update].name = update;
+            _data._playlists[_type][name] = undefined;
+            delete _data._playlists[_type][name];
+            deferred.resolve(_data._playlists[_type][update]);
 
-					return deferred.promise;
-				},
+            _broadcastUpdate(name, 'changed');
 
-				loadPlaylists: function(type) {
-					var deferred = $q.defer();
-					var promises = [];
+            return deferred.promise;
+          },
 
-					if (type) {
-						_type = type;
-					}
+          loadPlaylists: function(type) {
+            var deferred = $q.defer();
 
-					if (_data._playlists !== undefined && _data._currentQueue[_type] !==
-						undefined) {
-						deferred.resolve({
-							queue: _data._currentQueue[_type],
-							playlists: _data._playlists[_type]
-						});
-						_broadcastUpdate('playlists', 'loaded');
-					} else {
-						_loadPlaylists(type).then(function(playlists) {
-							deferred.resolve(playlists);
-							_broadcastUpdate('playlists', 'loaded');
-						}, function(err) {
-							_broadcastUpdate('playlists', 'error');
-							throw new Error(err);
-						});
-					}
+            if (type) {
+              _type = type;
+            }
+
+            if (_data._playlists !== undefined && _data._currentQueue[
+                _type] !==
+              undefined) {
+              deferred.resolve({
+                queue: _data._currentQueue[_type],
+                playlists: _data._playlists[_type]
+              });
+              _broadcastUpdate('playlists', 'loaded');
+            } else {
+              _loadPlaylists(type).then(function(playlists) {
+                deferred.resolve(playlists);
+                _broadcastUpdate('playlists', 'loaded');
+              }, function(err) {
+                _broadcastUpdate('playlists', 'error');
+                throw new Error(err);
+              });
+            }
 
 
 
-					return deferred.promise;
-				},
+            return deferred.promise;
+          },
 
-				addToPlaylist: function(name, tracks) {
-					var deferred = $q.defer();
+          addToPlaylist: function(name, tracks) {
+            var deferred = $q.defer();
 
-					if (!(tracks instanceof Array)) {
-						tracks = [tracks];
-					}
+            if (!(tracks instanceof Array)) {
+              tracks = [tracks];
+            }
 
-					tracks.forEach(function(track, i) {
-						try {
-							tracks[i].path = track.path.$$unwrapTrustedValue();
-						} catch (e) {
-							tracks[i].path = track.path;
-						}
-					});
+            tracks.forEach(function(track, i) {
+              try {
+                tracks[i].path = track.path.$$unwrapTrustedValue();
+              } catch (e) {
+                tracks[i].path = track.path;
+              }
+            });
 
-					if (name !== 'queue') {
-						_data._playlists[_type][name].tracks = [].concat((_data._playlists[
-								_type][name].tracks || []),
-							tracks);
+            if (name !== 'queue') {
+              _data._playlists[_type][name].tracks = [].concat((_data._playlists[
+                  _type][name].tracks || []),
+                tracks);
 
-						_broadcastUpdate(name, 'update');
+              _broadcastUpdate(name, 'update');
 
-						deferred.resolve(_data._playlists[_type][name]);
-					} else {
-						var concat = [];
-						if (_data._currentQueue[_type] && _data._currentQueue[_type].tracks) {
-							concat = _data._currentQueue[_type].tracks;
-						}
+              deferred.resolve(_data._playlists[_type][name]);
+            } else {
+              var concat = [];
+              if (_data._currentQueue[_type] && _data._currentQueue[_type]
+                .tracks) {
+                concat = _data._currentQueue[_type].tracks;
+              }
 
-						if (!_data._currentQueue[_type]) {
-							_data._currentQueue[_type] = {};
-						}
+              if (!_data._currentQueue[_type]) {
+                _data._currentQueue[_type] = {};
+              }
 
-						_data._currentQueue[_type].tracks = [].concat(concat,
-							tracks);
+              _data._currentQueue[_type].tracks = [].concat(concat,
+                tracks);
 
-						_broadcastUpdate(name, 'update');
+              _broadcastUpdate(name, 'update');
 
-						deferred.resolve(_data._currentQueue[_type]);
-					}
+              deferred.resolve(_data._currentQueue[_type]);
+            }
 
-					return deferred.promise;
-				},
+            return deferred.promise;
+          },
 
-				removeFromPlaylist: function(name, track) {
-					var deferred = $q.defer();
+          removeFromPlaylist: function(name, track) {
+            var deferred = $q.defer();
 
-					if (name !== 'queue') {
-						_data._playlists[_type][name].tracks = _data._playlists[_type][name].tracks
-							.splice(
-								track, 1);
-						deferred.resolve(_data._playlists[name]);
-					} else {
-						_data._currentQueue[_type].tracks = _data._currentQueue[_type].tracks
-							.splice(
-								index, 1);
-						deferred.resolve(_data._currentQueue[_type]);
-					}
+            if (name !== 'queue') {
+              _data._playlists[_type][name].tracks = _data._playlists[
+                  _type][name].tracks
+                .splice(
+                  track, 1);
+              deferred.resolve(_data._playlists[name]);
+            } else {
+              _data._currentQueue[_type].tracks = _data._currentQueue[
+                  _type].tracks
+                .splice(track, 1);
+              deferred.resolve(_data._currentQueue[_type]);
+            }
 
-					_broadcastUpdate(name, 'changed');
+            _broadcastUpdate(name, 'changed');
 
-					return deferred.promise;
-				},
+            return deferred.promise;
+          },
 
-				removeAllPlaylists: function() {
-					var deferred = $q.defer();
+          removeAllPlaylists: function() {
+            var deferred = $q.defer();
 
-					petronStorage.remove('petron.playlists.' + _type).then(function() {
-						_data._playlists[_type] = {};
-						deferred.resolve(_data._playlists[_type]);
-					});
+            petronStorage.remove('petron.playlists.' + _type).then(
+              function() {
+                _data._playlists[_type] = {};
+                deferred.resolve(_data._playlists[_type]);
+              });
 
-					return deferred.promise;
-				},
-			};
+            return deferred.promise;
+          },
+        };
 
-		}]);
+      }
+    ]);
 })();

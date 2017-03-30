@@ -1,4 +1,4 @@
-angular.module('petron.core.templates', ['index.html', 'js/_main/_directive/daemon/petron.daemon.html', 'js/_main/_directive/filetree/audio_popout.html', 'js/_main/_directive/filetree/petron.filetree.html', 'js/_main/_directive/keyboard/layout_qwerty.html', 'js/_main/_directive/keyboard/layout_qwertz.html', 'js/_main/_template/petron.confirm.html', 'js/_main/_template/petron.content.html', 'js/_main/_template/petron.header.html', 'js/_main/_template/petron.home.html', 'js/_modules/audio_module/_template/_directive.html', 'js/_modules/audio_module/_template/add_to_playlist_modal.html', 'js/_modules/audio_module/_template/main.html', 'js/_modules/audio_module/_template/new_playlist_modal.html', 'js/_modules/audio_module/_template/playlists.html', 'js/_modules/fm_module/_template/main.html', 'js/_modules/fm_module/_template/stations.html', 'js/_modules/health_module/_template/main.html', 'js/_modules/navigation_module/_template/main.html', 'js/_modules/navigation_module/_template/map.html', 'js/_modules/navigation_module/_template/menu.html', 'js/_modules/settings_module/_template/main.html', 'js/_modules/video_module/_template/_directive.html', 'js/_modules/video_module/_template/add_to_playlist_modal.html', 'js/_modules/video_module/_template/main.html', 'js/_modules/video_module/_template/new_playlist_modal.html', 'js/_modules/video_module/_template/player.html', 'loader.html', 'vendor/angular-rangeslider-directive/example/index.html', 'vendor/AngularHammer/doc/angular.hammer.js.html', 'vendor/AngularHammer/doc/index.html', 'vendor/AngularHammer/doc/module-hmTouchEvents.html', 'vendor/hammer-time/index.html', 'vendor/hammer-time/test.html', 'vendor/jquery/speed/closest.html', 'vendor/jquery/speed/css.html', 'vendor/jquery/speed/event.html', 'vendor/jquery/speed/filter.html', 'vendor/jquery/speed/find.html', 'vendor/jquery/speed/index.html', 'vendor/jquery/speed/slice.vs.concat.html', 'vendor/jquery/test/data/ajax/unreleasedXHR.html', 'vendor/jquery/test/data/cleanScript.html', 'vendor/jquery/test/data/core/cc_on.html', 'vendor/jquery/test/data/dimensions/documentLarge.html', 'vendor/jquery/test/data/dimensions/documentSmall.html', 'vendor/jquery/test/data/event/focusElem.html', 'vendor/jquery/test/data/event/promiseReady.html', 'vendor/jquery/test/data/event/syncReady.html', 'vendor/jquery/test/data/iframe.html', 'vendor/jquery/test/data/manipulation/iframe-denied.html', 'vendor/jquery/test/data/name.html', 'vendor/jquery/test/data/offset/absolute.html', 'vendor/jquery/test/data/offset/body.html', 'vendor/jquery/test/data/offset/fixed.html', 'vendor/jquery/test/data/offset/relative.html', 'vendor/jquery/test/data/offset/scroll.html', 'vendor/jquery/test/data/offset/static.html', 'vendor/jquery/test/data/offset/table.html', 'vendor/jquery/test/data/selector/html5_selector.html', 'vendor/jquery/test/data/selector/sizzle_cache.html', 'vendor/jquery/test/data/support/bodyBackground.html', 'vendor/jquery/test/data/support/boxSizing.html', 'vendor/jquery/test/data/support/shrinkWrapBlocks.html', 'vendor/jquery/test/data/support/testElementCrash.html', 'vendor/jquery/test/data/test.html', 'vendor/jquery/test/data/test2.html', 'vendor/jquery/test/data/test3.html', 'vendor/jquery/test/delegatetest.html', 'vendor/jquery/test/hovertest.html', 'vendor/jquery/test/index.html', 'vendor/jquery/test/localfile.html', 'vendor/jquery/test/networkerror.html', 'vendor/jquery/test/readywait.html', 'vendor/mapbox-gl-leaflet/examples/basic.html', 'vendor/mapbox-gl-leaflet/examples/cluster.html', 'vendor/messageformat/doc/index.html', 'vendor/messageformat/doc/MessageFormat.formatters.html', 'vendor/messageformat/doc/MessageFormat.html', 'vendor/messageformat/doc/messageformat.js.html', 'vendor/messageformat/doc/Runtime.html', 'vendor/messageformat/example/index.html', 'vendor/sprintf/demo/angular.html', 'vendor/ui-leaflet/index.html']);
+angular.module('petron.core.templates', ['index.html', 'js/_main/_directive/daemon/petron.daemon.html', 'js/_main/_directive/filetree/audio_popout.html', 'js/_main/_directive/filetree/petron.filetree.html', 'js/_main/_directive/keyboard/layout_qwerty.html', 'js/_main/_directive/keyboard/layout_qwertz.html', 'js/_main/_directive/volume/petron.volume-indicator.html', 'js/_main/_template/petron.confirm.html', 'js/_main/_template/petron.content.html', 'js/_main/_template/petron.header.html', 'js/_main/_template/petron.home.html', 'js/_modules/audio_module/_template/_directive.html', 'js/_modules/audio_module/_template/add_to_playlist_modal.html', 'js/_modules/audio_module/_template/main.html', 'js/_modules/audio_module/_template/new_playlist_modal.html', 'js/_modules/audio_module/_template/playlists.html', 'js/_modules/fm_module/_template/main.html', 'js/_modules/fm_module/_template/stations.html', 'js/_modules/health_module/_template/main.html', 'js/_modules/navigation_module/_template/main.html', 'js/_modules/navigation_module/_template/map.html', 'js/_modules/navigation_module/_template/menu.html', 'js/_modules/settings_module/_template/main.html', 'js/_modules/video_module/_template/_directive.html', 'js/_modules/video_module/_template/add_to_playlist_modal.html', 'js/_modules/video_module/_template/main.html', 'js/_modules/video_module/_template/new_playlist_modal.html', 'js/_modules/video_module/_template/player.html', 'loader.html', 'vendor/angular-rangeslider-directive/example/index.html', 'vendor/AngularHammer/doc/angular.hammer.js.html', 'vendor/AngularHammer/doc/index.html', 'vendor/AngularHammer/doc/module-hmTouchEvents.html', 'vendor/hammer-time/index.html', 'vendor/hammer-time/test.html', 'vendor/jquery/speed/closest.html', 'vendor/jquery/speed/css.html', 'vendor/jquery/speed/event.html', 'vendor/jquery/speed/filter.html', 'vendor/jquery/speed/find.html', 'vendor/jquery/speed/index.html', 'vendor/jquery/speed/slice.vs.concat.html', 'vendor/jquery/test/data/ajax/unreleasedXHR.html', 'vendor/jquery/test/data/cleanScript.html', 'vendor/jquery/test/data/core/cc_on.html', 'vendor/jquery/test/data/dimensions/documentLarge.html', 'vendor/jquery/test/data/dimensions/documentSmall.html', 'vendor/jquery/test/data/event/focusElem.html', 'vendor/jquery/test/data/event/promiseReady.html', 'vendor/jquery/test/data/event/syncReady.html', 'vendor/jquery/test/data/iframe.html', 'vendor/jquery/test/data/manipulation/iframe-denied.html', 'vendor/jquery/test/data/name.html', 'vendor/jquery/test/data/offset/absolute.html', 'vendor/jquery/test/data/offset/body.html', 'vendor/jquery/test/data/offset/fixed.html', 'vendor/jquery/test/data/offset/relative.html', 'vendor/jquery/test/data/offset/scroll.html', 'vendor/jquery/test/data/offset/static.html', 'vendor/jquery/test/data/offset/table.html', 'vendor/jquery/test/data/selector/html5_selector.html', 'vendor/jquery/test/data/selector/sizzle_cache.html', 'vendor/jquery/test/data/support/bodyBackground.html', 'vendor/jquery/test/data/support/boxSizing.html', 'vendor/jquery/test/data/support/shrinkWrapBlocks.html', 'vendor/jquery/test/data/support/testElementCrash.html', 'vendor/jquery/test/data/test.html', 'vendor/jquery/test/data/test2.html', 'vendor/jquery/test/data/test3.html', 'vendor/jquery/test/delegatetest.html', 'vendor/jquery/test/hovertest.html', 'vendor/jquery/test/index.html', 'vendor/jquery/test/localfile.html', 'vendor/jquery/test/networkerror.html', 'vendor/jquery/test/readywait.html', 'vendor/mapbox-gl-leaflet/examples/basic.html', 'vendor/mapbox-gl-leaflet/examples/cluster.html', 'vendor/messageformat/doc/index.html', 'vendor/messageformat/doc/MessageFormat.formatters.html', 'vendor/messageformat/doc/MessageFormat.html', 'vendor/messageformat/doc/messageformat.js.html', 'vendor/messageformat/doc/Runtime.html', 'vendor/messageformat/example/index.html', 'vendor/sprintf/demo/angular.html', 'vendor/ui-leaflet/index.html']);
 
 angular.module("index.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
@@ -21,8 +21,8 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <link rel=\"stylesheet\" href=\"css/petron.css\">\n" +
     "</head>\n" +
     "\n" +
-    "<body ng-app=\"petron\" ng-cloak>\n" +
-    "    <div class=\"petron-wrap\" ng-class=\"{'show-left-menu': $root.left_toggle, 'show-right-menu': $root.right_toggle}\">\n" +
+    "<body ng-app=\"petron\" ng-cloak=\"\" hm-panend=\"setVolume\" hm-panstart=\"getVolume\" hm-pan=\"volumeIndicator\" hm-recognizer-options='[{\"type\":\"pan\",\"enable\": true, \"directions\": \"DIRECTION_VERTICAL\"}]'>\n" +
+    "    <div class=\"petron-wrap\" ng-class=\"{'show-left-menu': $root.left_toggle, 'show-right-menu': $root.right_toggle, 'c--volume-indicator__blur': showVolumeIndicator}\">\n" +
     "        <div class=\"menu-wrap is-left\">\n" +
     "            <nav class=\"menu\">\n" +
     "                <div class=\"nav-list\">\n" +
@@ -71,13 +71,14 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    </div>\n" +
     "    <petron-daemon ng-if=\"$root.daemon.active\" petron-draggable></petron-daemon>\n" +
     "    <petron-keyboard layout=\"{{ settings.keyboard }}\"></petron-keyboard>\n" +
-    "\n" +
+    "    <petron-volume-indicator></petron-volume-indicator>\n" +
     "    <script>\n" +
     "        if (typeof module === 'object') {\n" +
     "            window.module = module;\n" +
     "            module = undefined;\n" +
     "        }\n" +
     "    </script>\n" +
+    "\n" +
     "    <!-- bower:js -->\n" +
     "    <script src=\"../app/vendor/jquery/jquery.js\"></script>\n" +
     "    <script src=\"../app/vendor/angular/angular.js\"></script>\n" +
@@ -103,6 +104,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <script src=\"../app/vendor/angular-translate-loader-partial/angular-translate-loader-partial.js\"></script>\n" +
     "    <script src=\"../app/vendor/polyline/src/polyline.js\"></script>\n" +
     "    <script src=\"../app/vendor/angular-dynamic-locale/src/tmhDynamicLocale.js\"></script>\n" +
+    "    <script src=\"../app/vendor/zingtouch/dist/zingtouch.min.js\"></script>\n" +
     "    <!-- endbower -->\n" +
     "\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/petron.templates.js\"></script>\n" +
@@ -130,6 +132,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <script type=\"text/javascript\" src=\"js/_main/_directive/draggable/petron.draggable.directive.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_directive/filetree/petron.filetree.directive.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_directive/keyboard/petron.keyboard.directive.js\"></script>\n" +
+    "    <script type=\"text/javascript\" src=\"js/_main/_directive/volume/petron.volume-indicator.directive.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_factory/petron.daemon.factory.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_factory/petron.playlist.factory.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_filter/petron.buildTime.filter.js\"></script>\n" +
@@ -389,6 +392,15 @@ angular.module("js/_main/_directive/keyboard/layout_qwertz.html", []).run(["$tem
     "");
 }]);
 
+angular.module("js/_main/_directive/volume/petron.volume-indicator.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_main/_directive/volume/petron.volume-indicator.html",
+    "<div class=\"c--volume-indicator\" ng-show=\"showVolumeIndicator\">\n" +
+    "	<span class=\"c--volume-indicator__value\" style=\"top: {{ (100 - volume) }}%;\">{{ volume }}</span>\n" +
+    "</div>\n" +
+    "");
+}]);
+
 angular.module("js/_main/_template/petron.confirm.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_main/_template/petron.confirm.html",
@@ -520,7 +532,7 @@ angular.module("js/_main/_template/petron.home.html", []).run(["$templateCache",
     "		</div>\n" +
     "	</div>\n" +
     "</header>\n" +
-    "<main class=\"container is-fluid\" ui-view=\"content\" ng-click=\"$root.left_toggle = false; $root.right_toggle = false;\"></main>\n" +
+    "<main class=\"container is-fluid\" ui-view=\"content\" ng-click=\"$root.right_toggle = false; $root.left_toggle = false;\"></main>\n" +
     "");
 }]);
 
@@ -1213,7 +1225,7 @@ angular.module("loader.html", []).run(["$templateCache", function ($templateCach
     "    <link rel=\"stylesheet\" href=\"../app/vendor/mapbox-gl-js/mapbox-gl.css\" />\n" +
     "    <!-- endbower -->\n" +
     "\n" +
-    "    <link rel=\"stylesheet\" href=\"petron.css\">\n" +
+    "    <link rel=\"stylesheet\" href=\"css/petron.css\">\n" +
     "</head>\n" +
     "\n" +
     "<body>\n" +
@@ -1230,7 +1242,8 @@ angular.module("loader.html", []).run(["$templateCache", function ($templateCach
     "    </div>\n" +
     "</body>\n" +
     "\n" +
-    "</html>");
+    "</html>\n" +
+    "");
 }]);
 
 angular.module("vendor/angular-rangeslider-directive/example/index.html", []).run(["$templateCache", function ($templateCache) {

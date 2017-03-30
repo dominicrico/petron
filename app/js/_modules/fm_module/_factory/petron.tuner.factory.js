@@ -1,4 +1,6 @@
 (function() {
+	"use strict";
+
 	angular.module('petron.modules.fm')
 		.factory('petron.tuner', ['petron.storage', '$q', function(petronStorage,
 			$q) {

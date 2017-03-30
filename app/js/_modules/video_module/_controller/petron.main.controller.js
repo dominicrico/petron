@@ -106,7 +106,7 @@
 					}
 				};
 
-				$scope.removePlaylist = function(name, index) {
+				$scope.removePlaylist = function(name) {
 					ngDialog.open({
 						template: 'js/_main/_template/petron.confirm.html',
 						className: 'ngdialog-theme-default',

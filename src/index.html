@@ -14,8 +14,8 @@
 
 		<link rel="stylesheet" href="css/petron.css">
 	</head>
-	<body ng-app="petron" ng-cloak>
-		<div class="petron-wrap" ng-class="{'show-left-menu': $root.left_toggle, 'show-right-menu': $root.right_toggle}">
+	<body ng-app="petron" ng-cloak="" hm-panend="setVolume" hm-panstart="getVolume" hm-pan="volumeIndicator" hm-recognizer-options='[{"type":"pan","enable": true, "directions": "DIRECTION_VERTICAL"}]'>
+		<div class="petron-wrap" ng-class="{'show-left-menu': $root.left_toggle, 'show-right-menu': $root.right_toggle, 'c--volume-indicator__blur': showVolumeIndicator}">
         <div class="menu-wrap is-left">
             <nav class="menu">
                 <div class="nav-list">
@@ -64,8 +64,9 @@
     </div>
     <petron-daemon ng-if="$root.daemon.active" petron-draggable></petron-daemon>
     <petron-keyboard layout="{{ settings.keyboard }}"></petron-keyboard>
-
+		<petron-volume-indicator></petron-volume-indicator>
 		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
 		<!-- bower:js -->
 		<script src="../app/vendor/jquery/jquery.js"></script>
 		<script src="../app/vendor/angular/angular.js"></script>
@@ -91,6 +92,7 @@
 		<script src="../app/vendor/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
 		<script src="../app/vendor/polyline/src/polyline.js"></script>
 		<script src="../app/vendor/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+		<script src="../app/vendor/zingtouch/dist/zingtouch.min.js"></script>
 		<!-- endbower -->
 
 		<!-- build:script petron -->

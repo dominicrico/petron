@@ -44,7 +44,7 @@
 					}
 
 					if ($scope.addressIndex < $scope.addressParts.length - 1) {
-						$scope.addressIndex++;
+						$scope.addressIndex = $scope.addressIndex + 1;
 					} else {
 						$scope.showFullAddress = true;
 						$scope.nav.geo = {
@@ -59,7 +59,7 @@
 
 				$scope.stepBack = function() {
 					if ($scope.addressIndex - 1 >= 0) {
-						$scope.addressIndex--;
+						$scope.addressIndex = $scope.addressIndex - 1;
 						$scope.results = null;
 						$scope.showFullAddress = false;
 						$scope.addressPart = $scope.addressParts[$scope.addressIndex];
@@ -102,10 +102,6 @@
 					return $state.go('petron.navigationbox.map');
 				};
 
-				$scope.$watchCollection('model', function() {
-					_lookUp($scope.addressPart, $scope.addressParts[$scope.addressIndex]);
-				});
-
 				var _lastRequest;
 				var _lookUp = function(type) {
 					if ($scope.model[type].length >= 3) {
@@ -137,6 +133,10 @@
 						});
 					}
 				};
+
+				$scope.$watchCollection('model', function() {
+					_lookUp($scope.addressPart, $scope.addressParts[$scope.addressIndex]);
+				});
 			}
 		]);
 })();

@@ -1,144 +1,106 @@
 (function() {
-	'use strict';
+  'use strict';
 
-	angular.module('petron.modules.health')
-		.controller('controller.healthbox.main', ['$scope', '$rootScope', '$state',
-			'$timeout', 'node-obd', 'obd-parser-development-connection',
-			function($scope, $rootScope, $state, $timeout, OBD, obdConnector) {
-				$rootScope.title = 'health_module';
-				$rootScope.rightMenuShow = false;
-				$scope.dots = '.';
-				var dotInterval = setInterval(function() {
-					$scope.$apply(function() {
-						if ($scope.dots.length < 3) {
-							$scope.dots += '.';
-						} else {
-							$scope.dots = '.';
-						}
-					})
-				}, 500);
+  angular.module('petron.modules.health')
+    .controller('controller.healthbox.main', ['$scope', '$rootScope',
+      function($scope, $rootScope) {
+        $rootScope.title = 'health_module';
+        $rootScope.rightMenuShow = false;
+        $scope.dots = '.';
+        var dotInterval = setInterval(function() {
+          $scope.$apply(function() {
+            if ($scope.dots.length < 3) {
+              $scope.dots += '.';
+            } else {
+              $scope.dots = '.';
+            }
+          });
+        }, 500);
 
-				$scope.speed = 0;
-				$scope.tacho = 0;
+        $scope.speed = 0;
+        $scope.tacho = 0;
 
-				$scope.battery1 = 0;
-				$scope.battery2 = 0;
+        $scope.battery1 = 0;
+        $scope.battery2 = 0;
 
-				$scope.lights = false;
-				$scope.consumption = 0;
+        $scope.lights = false;
+        $scope.consumption = 0;
 
-				var OBD = require('node-obd');
-				var connector = require('obd-parser-bluetooth-connection');
+        var OBD = require('obd-parser');
+        var connector = require('obd-parser-bluetooth-connection');
 
-				var connect = connector({
-					name: 'obd'
-				});
+        var connect = connector({
+          name: 'obd'
+        });
 
-				var rpmPoller = new OBD.ECUPoller({
-					pid: new OBD.PIDS.Rpm(),
-					interval: 1000
-				});
+        var rpmPoller = new OBD.ECUPoller({
+          pid: new OBD.PIDS.Rpm(),
+          interval: 1400
+        });
 
-				var speedPoller = new OBD.ECUPoller({
-					pid: new OBD.PIDS.VehicleSpeed(),
-					interval: 1000
-				});
+        var speedPoller = new OBD.ECUPoller({
+          pid: new OBD.PIDS.VehicleSpeed(),
+          interval: 1000
+        });
 
-				var fuelPoller = new OBD.ECUPoller({
-					pid: new OBD.PIDS.FuelLevel(),
-					interval: 1000
-				});
+        // var supportPids = ["00", "20", "40", "60", "80", "A0", "C0"];
+        // var supportPids = ["00", "20", "40"];
+        //
+        // supportPids.forEach(function(pid) {
+        // 	var poller = new OBD.ECUPoller({
+        // 		pid: new OBD.PIDS.SupportedPids(pid)
+        // 	});
+        //
+        // 	poller.poll().then(function(out) {
+        // 		console.info('For Range ' + pid + ' supported PIDS are', out.pretty);
+        // 	});
+        // });
 
-				var supportPoller = new OBD.ECUPoller({
-					pid: new OBD.PIDS.SupportedPids(),
-					interval: 1000
-				});
+        rpmPoller.on('data', function(output) {
+          if (output.value !== null) {
+            $scope.$apply(function() {
+              $scope.tacho = output.value.toFixed();
+            });
+          }
+        }, function(err) {
+          console.error('RPM failed to poll the ECU', err);
+        });
 
-				rpmPoller.on('data', function(output) {
+        speedPoller.on('data', function(output) {
+            if (output.value !== null) {
+              $scope.$apply(function() {
+                $scope.speed = output.value;
+              });
+            }
+          },
+          function(err) {
+            console.error('SPEED failed to poll the ECU', err);
+          });
 
-					$scope.$apply(function() {
-						$scope.tacho = output.value.toFixed();
-					});
-				}, function(err) {
-					console.error('RPM failed to poll the ECU', err);
-				});
+        $scope.connectToOBD = function() {
+          $scope.isConnected = false;
+          $scope.hasError = false;
 
-				speedPoller.on('data', function(output) {
-					$scope.$apply(function() {
-						$scope.speed = output.value;
-					});
-				}, function(err) {
-					console.error('SPEED failed to poll the ECU', err);
-				});
+          OBD.init(connect)
+            .then(function() {
 
-				fuelPoller.on('data', function(output) {
-					console.error(output);
-					$scope.$apply(function() {
-						$scope.consumption = output.value;
-					});
-				}, function(err) {
-					console.error('FUEL failed to poll the ECU', err);
-				});
+              clearInterval(dotInterval);
 
-				$scope.connectToOBD = function() {
-					$scope.isConnected = false;
-					$scope.hasError = false;
+              $scope.$apply(function() {
+                $scope.isConnected = true;
+              });
 
-					OBD.init(connect)
-						.then(function() {
 
-							clearInterval(dotInterval);
+              rpmPoller.startPolling();
+              speedPoller.startPolling();
 
-							$scope.$apply(function() {
-								$scope.isConnected = true;
-							});
+            }, function() {
+              $scope.hasError = true;
+            });
+        };
 
-							supportPoller.poll()
-								.then(function(output) {
-									console.log(output);
-								}, function(err) {
-									console.error('Support failed to poll the ECU', err);
-								});
+        $scope.connectToOBD();
 
-							rpmPoller.poll()
-								.then(function(output) {
-									$scope.$apply(function() {
-										$scope.tacho = output.value;
-									});
-
-									rpmPoller.startPolling();
-								}, function(err) {
-									console.error('RPM failed to poll the ECU', err);
-								});
-
-							speedPoller.poll()
-								.then(function(output) {
-									$scope.$apply(function() {
-										$scope.speed = output.value;
-									});
-
-									speedPoller.startPolling();
-								}, function(err) {
-									console.error('SPEED failed to poll the ECU', err);
-								});
-
-							fuelPoller.poll()
-								.then(function(output) {
-									$scope.$apply(function() {
-										$scope.consumption = output.value;
-									});
-
-									fuelPoller.startPolling();
-								}, function(err) {
-									console.error('FUEL failed to poll the ECU', err);
-								});
-
-						}, function() {
-							$scope.hasError = true;
-						});
-				};
-
-				$scope.connectToOBD();
-			}
-		]);
+      }
+    ]);
 })();

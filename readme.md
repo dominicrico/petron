@@ -2,6 +2,8 @@
 
 > Petron is an OpenSource car pc written in JavaScipt with Electron and AngularJS.
 
+[![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/Flet/semistandard)
+
 ## Development
 Starting Grunt with Electron - reloads Electron on changes.
 ```

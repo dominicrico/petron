@@ -1,4 +1,6 @@
 (function() {
+	"use strict";
+
 	angular.module('petron.core')
 		.filter('trust', ['$sce', function($sce) {
 			return function(url) {
