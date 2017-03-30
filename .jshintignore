@@ -1,9 +1,9 @@
-.git
-.sass-cache
-node_modules
-release
-splashscreen
-app/vendor
-app/mapbox
-app/tiles
+.git/
+.sass-cache/
+node_modules/**/*.js
+release/**/*.js
+splashscreen/**/*.js
+app/vendor/**/*.js
+app/mapbox/**/*.js
+app/tiles/**/*.js
 app/js/_main/petron.templates.js

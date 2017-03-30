@@ -9,7 +9,7 @@
       ) {
         return {
           templateUrl: 'js/_modules/video_module/_template/_directive.html',
-          restrict: 'E',
+          restrict: 'EA',
           controller: ['$scope', '$rootScope', '$element', function($scope,
             $rootScope, $element) {
             $scope._video = $element.find('video')[0];

@@ -43,7 +43,9 @@ function createWindow() {
       configuration: 'mobile'
     });
 
-  client.create(mainWindow);
+  client.create(mainWindow, {
+    logLevel: 0
+  });
 
   mainWindow.webContents.on('did-finish-load', () => {
     setTimeout(function() {

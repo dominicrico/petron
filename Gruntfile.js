@@ -1,12 +1,22 @@
 "use strict";
 
-var electron = require('electron-connect').server.create();
+var electron = require('electron-connect').server.create({
+  stopOnClose: true,
+  logLevel: 0
+});
 
 module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
+    jshint: {
+      all: ['*.js', 'app/**/*.js', '!app/vendor/**/*.js', 'src/**/*.js'],
+      options: {
+        reporter: require('jshint-stylish'),
+        jshintrc: '.jshintrc'
+      }
+    },
 
     htmlbuild: {
       dist: {
@@ -42,7 +52,7 @@ module.exports = function(grunt) {
         base: 'app'
       },
       main: {
-        src: ['app/**/*.html', '!app/vendor'],
+        src: ['app/**/*.html', '!app/vendor/**/*.html'],
         dest: 'app/js/_main/petron.templates.js'
       },
     },
@@ -82,15 +92,23 @@ module.exports = function(grunt) {
     watch: {
       options: {
         spawn: false,
+        nospawn: true,
         interupt: true,
         atBegin: true
+      },
+      js: {
+        files: ['index.js', 'src/**/*.js', 'app/**/*.js',
+          '!app/vendor/**/*.js'
+        ],
+        tasks: ['jshint', 'reload-electron']
       },
       sass: {
         files: ['src/sass/**/*.scss'],
         tasks: ['sass', 'reload-electron']
       },
       html: {
-        files: ['app/**/*.*', '!app/js/_main/petron.templates.js',
+        files: ['app/**/*.html', '!app/vendor/**/*.html',
+          '!app/js/_main/petron.templates.js',
           '!app/index.html', 'src/*.html'
         ],
         tasks: ['html2js', 'htmlbuild', 'reload-electron']
@@ -108,13 +126,16 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', 'start electron app and watch for changes',
     function() {
-      console.log('>>> Starting Electron...');
-      electron.start();
+      grunt.log.ok('Starting Petron...');
+      electron.start(function() {
+        grunt.log.ok('Petron started!');
+      });
       grunt.task.run('watch');
     });
 
   grunt.registerTask('reload-electron', function() {
-    console.log('>>> Restarting Electron...');
+    grunt.log.ok('Reloading Petron...');
     electron.reload();
+    grunt.log.ok('Petron reloaded!');
   });
 };
