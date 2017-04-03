@@ -16,6 +16,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <link rel=\"stylesheet\" href=\"../app/vendor/angular-rangeslider-directive/angular-range-slider.css\" />\n" +
     "    <link rel=\"stylesheet\" href=\"../app/vendor/leaflet/dist/leaflet.css\" />\n" +
     "    <link rel=\"stylesheet\" href=\"../app/vendor/mapbox-gl-js/mapbox-gl.css\" />\n" +
+    "    <link rel=\"stylesheet\" href=\"../app/vendor/sweetalert2/dist/sweetalert2.css\" />\n" +
     "    <!-- endbower -->\n" +
     "\n" +
     "    <link rel=\"stylesheet\" href=\"css/petron.css\">\n" +
@@ -104,7 +105,9 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <script src=\"../app/vendor/angular-translate-loader-partial/angular-translate-loader-partial.js\"></script>\n" +
     "    <script src=\"../app/vendor/polyline/src/polyline.js\"></script>\n" +
     "    <script src=\"../app/vendor/angular-dynamic-locale/src/tmhDynamicLocale.js\"></script>\n" +
-    "    <script src=\"../app/vendor/zingtouch/dist/zingtouch.min.js\"></script>\n" +
+    "    <script src=\"../app/vendor/es6-promise/es6-promise.js\"></script>\n" +
+    "    <script src=\"../app/vendor/sweetalert2/dist/sweetalert2.js\"></script>\n" +
+    "    <script src=\"../app/vendor/ngSweetAlert2/SweetAlert2.js\"></script>\n" +
     "    <!-- endbower -->\n" +
     "\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/petron.templates.js\"></script>\n" +
@@ -1223,6 +1226,7 @@ angular.module("loader.html", []).run(["$templateCache", function ($templateCach
     "    <link rel=\"stylesheet\" href=\"../app/vendor/angular-rangeslider-directive/angular-range-slider.css\" />\n" +
     "    <link rel=\"stylesheet\" href=\"../app/vendor/leaflet/dist/leaflet.css\" />\n" +
     "    <link rel=\"stylesheet\" href=\"../app/vendor/mapbox-gl-js/mapbox-gl.css\" />\n" +
+    "    <link rel=\"stylesheet\" href=\"../app/vendor/sweetalert2/dist/sweetalert2.css\" />\n" +
     "    <!-- endbower -->\n" +
     "\n" +
     "    <link rel=\"stylesheet\" href=\"petron.css\">\n" +

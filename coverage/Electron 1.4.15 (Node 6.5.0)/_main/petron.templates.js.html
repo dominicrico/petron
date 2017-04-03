@@ -1,0 +1,3806 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for _main/petron.templates.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">_main/</a> petron.templates.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">95% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>76/80</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.14% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>8/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96.97% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>32/33</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>59/59</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965
+966
+967
+968
+969
+970
+971
+972
+973
+974
+975
+976
+977
+978
+979
+980
+981
+982
+983
+984
+985
+986
+987
+988
+989
+990
+991
+992
+993
+994
+995
+996
+997
+998
+999
+1000
+1001
+1002
+1003
+1004
+1005
+1006
+1007
+1008
+1009
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1020
+1021
+1022
+1023
+1024
+1025
+1026
+1027
+1028
+1029
+1030
+1031
+1032
+1033
+1034
+1035
+1036
+1037
+1038
+1039
+1040
+1041
+1042
+1043
+1044
+1045
+1046
+1047
+1048
+1049
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+1059
+1060
+1061
+1062
+1063
+1064
+1065
+1066
+1067
+1068
+1069
+1070
+1071
+1072
+1073
+1074
+1075
+1076
+1077
+1078
+1079
+1080
+1081
+1082
+1083
+1084
+1085
+1086
+1087
+1088
+1089
+1090
+1091
+1092
+1093
+1094
+1095
+1096
+1097
+1098
+1099
+1100
+1101
+1102
+1103
+1104
+1105
+1106
+1107
+1108
+1109
+1110
+1111
+1112
+1113
+1114
+1115
+1116
+1117
+1118
+1119
+1120
+1121
+1122
+1123
+1124
+1125
+1126
+1127
+1128
+1129
+1130
+1131
+1132
+1133
+1134
+1135
+1136
+1137
+1138
+1139
+1140
+1141
+1142
+1143
+1144
+1145
+1146
+1147
+1148
+1149
+1150
+1151
+1152
+1153
+1154
+1155
+1156
+1157
+1158
+1159
+1160
+1161
+1162
+1163
+1164
+1165
+1166
+1167
+1168
+1169
+1170
+1171
+1172
+1173
+1174
+1175
+1176
+1177
+1178
+1179
+1180
+1181
+1182
+1183
+1184
+1185
+1186
+1187
+1188
+1189
+1190
+1191
+1192
+1193
+1194
+1195
+1196
+1197
+1198
+1199
+1200
+1201
+1202
+1203
+1204
+1205
+1206
+1207
+1208
+1209
+1210
+1211
+1212
+1213
+1214
+1215
+1216
+1217
+1218
+1219
+1220
+1221
+1222
+1223
+1224
+1225
+1226
+1227
+1228
+1229
+1230
+1231
+1232
+1233
+1234
+1235
+1236
+1237
+1238
+1239
+1240
+1241
+1242
+1243
+1244
+1245
+1246
+1247
+1248</td><td class="line-coverage quiet"><span class="cline-any cline-yes">53×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function () {              var __filename, __dirname;  <span class="missing-if-branch" title="else path not taken" >E</span>if (window.require) {                                  __filename = window.location.pathname !== '/debug.html' ? '/Users/coderocket/Development/petron/node_modules/karma/static/context.html' : <span class="branch-1 cbranch-no" title="branch not covered" >'/Users/coderocket/Development/petron/node_modules/karma/static/debug.html';</span>                __dirname = window.require('path').dirname(__filename);    <span class="missing-if-branch" title="else path not taken" >E</span>if (window.module) {      module.filename = __filename;    }  }    <span class="missing-if-branch" title="else path not taken" >E</span>if (window.require) {    var __require = window.require;    var __requireResolve = __require.resolve;        <span class="missing-if-branch" title="if path not taken" >I</span>if (!window.__karmaBasePathAddedToModule) {      <span class="cstat-no" title="statement not covered" >module.paths = module.paths.concat(__require('module')._nodeModulePaths('/Users/coderocket/Development/petron')); </span>     <span class="cstat-no" title="statement not covered" >window.__karmaBasePathAddedToModule = true; </span>   }        var __requireFilepath = function (filepath) {                  <span class="missing-if-branch" title="if path not taken" >I</span>if (filepath &amp;&amp; filepath[0] === '.') {        <span class="cstat-no" title="statement not covered" >filepath = __dirname + '/' + filepath; </span>     }            return filepath;    };        window.require = function (filepath) {      return __require(__requireFilepath(filepath));    };    window.require.resolve = <span class="fstat-no" title="function not covered" >function (filepath) {</span>      <span class="cstat-no" title="statement not covered" >return __requireResolve(__requireFilepath(filepath)); </span>   };  }                  angular.module('petron.core.templates', ['index.html', 'js/_main/_directive/daemon/petron.daemon.html', 'js/_main/_directive/filetree/audio_popout.html', 'js/_main/_directive/filetree/petron.filetree.html', 'js/_main/_directive/keyboard/layout_qwerty.html', 'js/_main/_directive/keyboard/layout_qwertz.html', 'js/_main/_directive/volume/petron.volume-indicator.html', 'js/_main/_template/petron.confirm.html', 'js/_main/_template/petron.content.html', 'js/_main/_template/petron.header.html', 'js/_main/_template/petron.home.html', 'js/_modules/audio_module/_template/_directive.html', 'js/_modules/audio_module/_template/add_to_playlist_modal.html', 'js/_modules/audio_module/_template/main.html', 'js/_modules/audio_module/_template/new_playlist_modal.html', 'js/_modules/audio_module/_template/playlists.html', 'js/_modules/fm_module/_template/main.html', 'js/_modules/fm_module/_template/stations.html', 'js/_modules/health_module/_template/main.html', 'js/_modules/navigation_module/_template/main.html', 'js/_modules/navigation_module/_template/map.html', 'js/_modules/navigation_module/_template/menu.html', 'js/_modules/settings_module/_template/main.html', 'js/_modules/video_module/_template/_directive.html', 'js/_modules/video_module/_template/add_to_playlist_modal.html', 'js/_modules/video_module/_template/main.html', 'js/_modules/video_module/_template/new_playlist_modal.html', 'js/_modules/video_module/_template/player.html', 'loader.html']);
+&nbsp;
+angular.module("index.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("index.html",
+    "&lt;!doctype html&gt;\n" +
+    "&lt;html&gt;\n" +
+    "\n" +
+    "&lt;head&gt;\n" +
+    "    &lt;meta charset=\"utf-8\"&gt;\n" +
+    "    &lt;title&gt;Petron&lt;/title&gt;\n" +
+    "\n" +
+    "    &lt;!-- bower:css --&gt;\n" +
+    "    &lt;link rel=\"stylesheet\" href=\"../app/vendor/ng-dialog/css/ngDialog.css\" /&gt;\n" +
+    "    &lt;link rel=\"stylesheet\" href=\"../app/vendor/ng-dialog/css/ngDialog-theme-default.css\" /&gt;\n" +
+    "    &lt;link rel=\"stylesheet\" href=\"../app/vendor/angular-rangeslider-directive/angular-range-slider.css\" /&gt;\n" +
+    "    &lt;link rel=\"stylesheet\" href=\"../app/vendor/leaflet/dist/leaflet.css\" /&gt;\n" +
+    "    &lt;link rel=\"stylesheet\" href=\"../app/vendor/mapbox-gl-js/mapbox-gl.css\" /&gt;\n" +
+    "    &lt;!-- endbower --&gt;\n" +
+    "\n" +
+    "    &lt;link rel=\"stylesheet\" href=\"css/petron.css\"&gt;\n" +
+    "&lt;/head&gt;\n" +
+    "\n" +
+    "&lt;body ng-app=\"petron\" ng-cloak=\"\" hm-panend=\"setVolume\" hm-panstart=\"getVolume\" hm-pan=\"volumeIndicator\" hm-recognizer-options='[{\"type\":\"pan\",\"enable\": true, \"directions\": \"DIRECTION_VERTICAL\"}]'&gt;\n" +
+    "    &lt;div class=\"petron-wrap\" ng-class=\"{'show-left-menu': $root.left_toggle, 'show-right-menu': $root.right_toggle, 'c--volume-indicator__blur': showVolumeIndicator}\"&gt;\n" +
+    "        &lt;div class=\"menu-wrap is-left\"&gt;\n" +
+    "            &lt;nav class=\"menu\"&gt;\n" +
+    "                &lt;div class=\"nav-list\"&gt;\n" +
+    "                    &lt;a ui-sref=\"petron.fmbox\" ui-sref-active=\"is-active\"&gt;\n" +
+    "                        &lt;span class=\"icon\"&gt;&lt;i class=\"fa icon-radio\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "                        &lt;span&gt;{{ 'radio_module' | translate }}&lt;/span&gt;\n" +
+    "                    &lt;/a&gt;\n" +
+    "                    &lt;a ui-sref=\"petron.audiobox\" ui-sref-active=\"is-active\"&gt;\n" +
+    "                        &lt;span class=\"icon\"&gt;&lt;i class=\"fa icon-notes\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "                        &lt;span&gt;{{ 'music_module' | translate }}&lt;/span&gt;\n" +
+    "                    &lt;/a&gt;\n" +
+    "                    &lt;a ui-sref=\"petron.videobox.main\" ui-sref-active=\"is-active\"&gt;\n" +
+    "                        &lt;span class=\"icon\"&gt;&lt;i class=\"fa icon-video\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "                        &lt;span&gt;{{ 'video_module' | translate }}&lt;/span&gt;\n" +
+    "                    &lt;/a&gt;\n" +
+    "                    &lt;a ui-sref=\"petron.navigationbox.main\" ui-sref-active=\"is-active\"&gt;\n" +
+    "                        &lt;span class=\"icon\"&gt;&lt;i class=\"fa icon-location-arrow\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "                        &lt;span&gt;{{ 'navigation_module' | translate }}&lt;/span&gt;\n" +
+    "                    &lt;/a&gt;\n" +
+    "                    &lt;a ui-sref=\"petron.healthbox\" ui-sref-active=\"is-active\"&gt;\n" +
+    "                        &lt;span class=\"icon\"&gt;&lt;i class=\"fa icon-heart\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "                        &lt;span&gt;{{ 'health_module' | translate }}&lt;/span&gt;\n" +
+    "                    &lt;/a&gt;\n" +
+    "                    &lt;a ui-sref=\"petron.settingsbox\" ui-sref-active=\"is-active\"&gt;\n" +
+    "                        &lt;span class=\"icon\"&gt;&lt;i class=\"fa icon-cog\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "                        &lt;span&gt;{{ 'settings_module' | translate }}&lt;/span&gt;\n" +
+    "                    &lt;/a&gt;\n" +
+    "                &lt;/div&gt;\n" +
+    "            &lt;/nav&gt;\n" +
+    "            &lt;span class=\"icon is-medium close-button\" ng-click=\"$root.left_toggle = false;\"&gt;\n" +
+    "					&lt;i class=\"fa icon-times\"&gt;&lt;/i&gt;\n" +
+    "				&lt;/span&gt;\n" +
+    "        &lt;/div&gt;\n" +
+    "        &lt;div class=\"container\" ui-view&gt;\n" +
+    "\n" +
+    "        &lt;/div&gt;\n" +
+    "        &lt;div class=\"menu-wrap is-right\" ng-if=\"rightMenuShow\"&gt;\n" +
+    "            &lt;nav class=\"menu\"&gt;\n" +
+    "                &lt;div class=\"nav-list\" ui-view=\"right-menu\"&gt;\n" +
+    "                &lt;/div&gt;\n" +
+    "            &lt;/nav&gt;\n" +
+    "            &lt;span class=\"icon is-medium close-button\" ng-click=\"$root.right_toggle = false;\"&gt;\n" +
+    "			      &lt;i class=\"fa icon-times\"&gt;&lt;/i&gt;\n" +
+    "  				&lt;/span&gt;\n" +
+    "        &lt;/div&gt;\n" +
+    "    &lt;/div&gt;\n" +
+    "    &lt;petron-daemon ng-if=\"$root.daemon.active\" petron-draggable&gt;&lt;/petron-daemon&gt;\n" +
+    "    &lt;petron-keyboard layout=\"{{ settings.keyboard }}\"&gt;&lt;/petron-keyboard&gt;\n" +
+    "    &lt;petron-volume-indicator&gt;&lt;/petron-volume-indicator&gt;\n" +
+    "    &lt;script&gt;\n" +
+    "        if (typeof module === 'object') {\n" +
+    "            window.module = module;\n" +
+    "            module = undefined;\n" +
+    "        }\n" +
+    "    &lt;/script&gt;\n" +
+    "\n" +
+    "    &lt;!-- bower:js --&gt;\n" +
+    "    &lt;script src=\"../app/vendor/jquery/jquery.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/angular/angular.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/angular-ui-router/release/angular-ui-router.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/angular-electron/angular-electron.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/angular-sanitize/angular-sanitize.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/angular-translate/angular-translate.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/ng-dialog/js/ngDialog.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/messageformat/messageformat.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/async/dist/async.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/angular-rangeslider-directive/src/angular-range-slider.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/hammerjs/hammer.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/AngularHammer/angular.hammer.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/hammer-time/hammer-time.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/angular-simple-logger/dist/angular-simple-logger.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/leaflet/dist/leaflet-src.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/ui-leaflet/dist/ui-leaflet.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/mapbox-gl-js/mapbox-gl.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/mapbox-gl-leaflet/leaflet-mapbox-gl.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/sprintf/src/sprintf.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/angular-translate-loader-partial/angular-translate-loader-partial.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/polyline/src/polyline.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/angular-dynamic-locale/src/tmhDynamicLocale.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script src=\"../app/vendor/zingtouch/dist/zingtouch.min.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;!-- endbower --&gt;\n" +
+    "\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/petron.templates.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/audio_module/petron.modules.audio.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/fm_module/petron.modules.fm.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/health_module/petron.modules.health.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/navigation_module/petron.modules.navigation.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/settings_module/petron.modules.settings.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/video_module/petron.modules.video.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/navigation_module/_provider/petron.navi.provider.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/fm_module/_factory/petron.tuner.factory.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/audio_module/_directive/petron.audio.directive.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/video_module/_directive/petron.video.directive.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/audio_module/_controller/petron.main.controller.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/fm_module/_controller/petron.main.controller.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/health_module/_controller/petron.main.controller.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/navigation_module/_controller/petron.main.controller.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/navigation_module/_controller/petron.map.controller.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/settings_module/_controller/petron.main.controller.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/video_module/_controller/petron.main.controller.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_modules/petron.modules.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/petron.core.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/_controller/petron.main.controller.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/_directive/daemon/petron.daemon.directive.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/_directive/draggable/petron.draggable.directive.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/_directive/filetree/petron.filetree.directive.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/_directive/keyboard/petron.keyboard.directive.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/_directive/volume/petron.volume-indicator.directive.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/_factory/petron.daemon.factory.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/_factory/petron.playlist.factory.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/_filter/petron.buildTime.filter.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/_filter/petron.frequency.filter.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/_filter/petron.trust.filter.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/_filter/petron.unit.filter.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/_service/petron.fs.service.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/_service/petron.storage.service.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/petron.config.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/petron.core.routes.js\"&gt;&lt;/script&gt;\n" +
+    "    &lt;script type=\"text/javascript\" src=\"js/_main/petron.js\"&gt;&lt;/script&gt;\n" +
+    "\n" +
+    "    &lt;script&gt;\n" +
+    "        if (window.module) module = window.module;\n" +
+    "    &lt;/script&gt;\n" +
+    "&lt;/body&gt;\n" +
+    "\n" +
+    "&lt;/html&gt;");
+}]);
+&nbsp;
+angular.module("js/_main/_directive/daemon/petron.daemon.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_main/_directive/daemon/petron.daemon.html",
+    "&lt;div class=\"c--daemon__container\"&gt;\n" +
+    "	&lt;video ng-if=\"daemon.type === 'video'\" class=\"c--video__player\" autoplay&gt;\n" +
+    "		&lt;source ng-repeat=\"file in video.player.playlist.tracks\" ng-if=\"video.player.playlist.tracks &amp;&amp; file.play\" ng-src=\"{{ file.path }}\" type=\"video/{{ file.type}}\"&gt;\n" +
+    "	&lt;/video&gt;\n" +
+    "	&lt;audio ng-if=\"daemon.type === 'audio'\" class=\"c--audio__player\" ng-click=\"audio.player.play()\"&gt;\n" +
+    "		&lt;source ng-repeat=\"file in audio.player.playlist.tracks\" ng-if=\"audio.player.playlist.tracks &amp;&amp; file.play\" ng-src=\"{{ file.path }}\" type=\"audio/{{ file.type}}\"&gt;\n" +
+    "	&lt;/audio&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_main/_directive/filetree/audio_popout.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_main/_directive/filetree/audio_popout.html",
+    "&lt;section class=\"c--audio__popout\"&gt;\n" +
+    "	&lt;div class=\"columns is-vcentered c--audio__track\"&gt;\n" +
+    "		&lt;div class=\"column is-narrow\"&gt;\n" +
+    "			&lt;figure class=\"image is-48x48\"&gt;\n" +
+    "				&lt;img ng-if=\"file.image\" ng-src=\"{{ 'data:image/' + file.image_type + ';base64,' + file.image }}\" alt=\"{{ file.artist }}\"&gt;\n" +
+    "				&lt;img ng-if=\"!file.image\" src=\"./images/music_cover_ph.svg\" alt=\"\"&gt;\n" +
+    "			&lt;/figure&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "		&lt;div class=\"column\"&gt;\n" +
+    "			&lt;p&gt;{{ file.title }}&lt;/p&gt;\n" +
+    "			&lt;p&gt;&lt;small&gt;{{ 'audio_popout.by_artist' | translate }} {{ file.artist }}&lt;/small&gt;&lt;/p&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "	&lt;div class=\"columns\" ng-click=\"play(file)\"&gt;\n" +
+    "		&lt;div class=\"column c--audio__option\"&gt;\n" +
+    "				&lt;span class=\"icon is-small\"&gt;\n" +
+    "					&lt;i class=\"fa icon-media-play\"&gt;&lt;/i&gt;\n" +
+    "				&lt;/span&gt;\n" +
+    "				{{ 'audio_popout.button_play_now' | translate }}\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "	&lt;div class=\"columns\" ng-click=\"addToQueue(file)\"&gt;\n" +
+    "		&lt;div class=\"column c--audio__option\"&gt;\n" +
+    "			&lt;span class=\"icon is-small\"&gt;\n" +
+    "				&lt;i class=\"fa icon-th-list\"&gt;&lt;/i&gt;\n" +
+    "			&lt;/span&gt;\n" +
+    "			{{ 'audio_popout.button_add_to_queue' | translate }}\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "	&lt;div class=\"columns\" ng-click=\"addToPlaylist(file)\"&gt;\n" +
+    "		&lt;div class=\"column c--audio__option\"&gt;\n" +
+    "			&lt;span class=\"icon is-small\"&gt;\n" +
+    "				&lt;i class=\"fa icon-plus\"&gt;&lt;/i&gt;\n" +
+    "			&lt;/span&gt;\n" +
+    "			{{ 'audio_popout.button_add_to_playlist' | translate }}\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "\n" +
+    "&lt;/section&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_main/_directive/filetree/petron.filetree.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_main/_directive/filetree/petron.filetree.html",
+    "&lt;ul class=\"c--filetree__list\" ng-if=\"files\"&gt;\n" +
+    "	&lt;li ng-if=\"parent.parent\" hm-tap=\"openParent(parent)\"&gt;\n" +
+    "		&lt;div class=\"columns is-vcentered\"&gt;\n" +
+    "			&lt;div class=\"column is-narrow is-paddingless\"&gt;\n" +
+    "				&lt;figure class=\"image is-32x32\"&gt;\n" +
+    "					&lt;span class=\"icon is-medium\" &gt;\n" +
+    "						&lt;i class=\"fa icon-folder\"&gt;&lt;/i&gt;\n" +
+    "					&lt;/span&gt;\n" +
+    "				&lt;/figure&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "			&lt;div class=\"column c--filetree__name\"&gt;\n" +
+    "				&lt;div class=\"columns\"&gt;\n" +
+    "					&lt;div class=\"column\"&gt;\n" +
+    "						..\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/li&gt;\n" +
+    "	&lt;li ng-repeat=\"file in files | orderBy:[orderFunc, ((type !== 'playlist') ? 'name' : '')]\" ng-click=\"open(file, $index)\" hm-press=\"popout\" hm-tap=\"open(file, $index)\" hm-recognizer-options='[{\"type\": \"press\", \"time\": 500}]' ng-class=\"{'is-active': file.play &amp;&amp; (type === 'playlist' || type === 'audio_playlist'), 'not-found': file.not_found &amp;&amp; (type === 'playlist' || type === 'audio_playlist')}\"&gt;\n" +
+    "		&lt;div class=\"columns is-vcentered\"&gt;\n" +
+    "			&lt;div class=\"column is-narrow is-paddingless\"&gt;\n" +
+    "				&lt;figure class=\"image is-32x32\"&gt;\n" +
+    "				  &lt;img ng-src=\"{{ 'data:image/' + file.image_type + ';base64,' + file.image }}\" alt=\"\" ng-if=\"file.image\"&gt;\n" +
+    "					&lt;span class=\"icon is-medium\" ng-if=\"!file.image\"&gt;\n" +
+    "						&lt;i class=\"fa\" ng-class=\"{'icon-folder': file.type === 'folder', 'icon-video-outline': file.type !== 'folder' &amp;&amp; file.type !== 'playlist' &amp;&amp; type === 'video', 'icon-playlist': file.type === 'playlist', 'icon-notes': file.type !== 'folder' &amp;&amp; file.type !== 'playlist' &amp;&amp; (type == 'audio' || type == 'audio_playlist') }\"&gt;&lt;/i&gt;\n" +
+    "					&lt;/span&gt;\n" +
+    "				&lt;/figure&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "			&lt;div class=\"column c--filetree__name\"&gt;\n" +
+    "				&lt;div class=\"columns\"&gt;\n" +
+    "					&lt;div class=\"column\"&gt;\n" +
+    "						{{ file.artist || file.name }}\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "				&lt;div class=\"columns c--filetree__title\" ng-if=\"file.title\"&gt;\n" +
+    "					&lt;div class=\"column\"&gt;\n" +
+    "						{{ file.title }} {{ (file.album) ? '- ' + file.album : '' }}\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "			&lt;div class=\"column is-narrow has-text-right c--filetree__meta\" ng-if=\"file.type !== 'folder' &amp;&amp; type === 'video'\"&gt;\n" +
+    "				&lt;span&gt; {{ file.duration | buildTime:true }}&lt;/span&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "			&lt;div class=\"column is-narrow has-text-right c--filetree__meta\" ng-if=\"file.type !== 'folder' &amp;&amp; type === 'video'\"&gt;\n" +
+    "				&lt;span class=\"meta__hd\" ng-class=\"{'is-HD': file.hd}\"&gt;HD&lt;/span&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/li&gt;\n" +
+    "&lt;/ul&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_main/_directive/keyboard/layout_qwerty.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_main/_directive/keyboard/layout_qwerty.html",
+    "&lt;ul id=\"keyboard\"&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;`&lt;/span&gt;&lt;span class=\"on\"&gt;~&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;1&lt;/span&gt;&lt;span class=\"on\"&gt;!&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;2&lt;/span&gt;&lt;span class=\"on\"&gt;@&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;3&lt;/span&gt;&lt;span class=\"on\"&gt;#&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;4&lt;/span&gt;&lt;span class=\"on\"&gt;$&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;5&lt;/span&gt;&lt;span class=\"on\"&gt;%&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;6&lt;/span&gt;&lt;span class=\"on\"&gt;^&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;7&lt;/span&gt;&lt;span class=\"on\"&gt;&amp;amp;&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;8&lt;/span&gt;&lt;span class=\"on\"&gt;*&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;9&lt;/span&gt;&lt;span class=\"on\"&gt;(&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;0&lt;/span&gt;&lt;span class=\"on\"&gt;)&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;-&lt;/span&gt;&lt;span class=\"on\"&gt;_&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;=&lt;/span&gt;&lt;span class=\"on\"&gt;+&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"delete lastitem\"&gt;{{ 'keyboard.delete' | translate }}&lt;/li&gt;\n" +
+    "	&lt;li class=\"tab\"&gt;Tab&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;q&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;w&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;e&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;r&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;t&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;y&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;u&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;i&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;o&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;p&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;[&lt;/span&gt;&lt;span class=\"on\"&gt;{&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;]&lt;/span&gt;&lt;span class=\"on\"&gt;}&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol lastitem\"&gt;&lt;span class=\"off\"&gt;\\&lt;/span&gt;&lt;span class=\"on\"&gt;|&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"capslock\"&gt;{{ 'keyboard.caps_lock' | translate }}&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;a&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;s&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;d&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;f&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;g&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;h&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;j&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;k&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;l&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;;&lt;/span&gt;&lt;span class=\"on\"&gt;:&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;'&lt;/span&gt;&lt;span class=\"on\"&gt;&amp;quot;&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"return lastitem\"&gt;{{ 'keyboard.return' | translate }}&lt;/li&gt;\n" +
+    "	&lt;li class=\"left-shift\"&gt;Shift&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;z&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;x&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;c&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;v&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;b&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;n&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;m&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;,&lt;/span&gt;&lt;span class=\"on\"&gt;&amp;lt;&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;.&lt;/span&gt;&lt;span class=\"on\"&gt;&amp;gt;&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;/&lt;/span&gt;&lt;span class=\"on\"&gt;?&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"right-shift lastitem\"&gt;Shift&lt;/li&gt;\n" +
+    "	&lt;li class=\"space lastitem\"&gt;&amp;nbsp;&lt;/li&gt;\n" +
+    "&lt;/ul&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_main/_directive/keyboard/layout_qwertz.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_main/_directive/keyboard/layout_qwertz.html",
+    "&lt;ul id=\"keyboard\"&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;`&lt;/span&gt;&lt;span class=\"on\"&gt;^&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;1&lt;/span&gt;&lt;span class=\"on\"&gt;!&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;2&lt;/span&gt;&lt;span class=\"on\"&gt;\"&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;3&lt;/span&gt;&lt;span class=\"on\"&gt;§&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;4&lt;/span&gt;&lt;span class=\"on\"&gt;$&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;5&lt;/span&gt;&lt;span class=\"on\"&gt;%&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;6&lt;/span&gt;&lt;span class=\"on\"&gt;&amp;amp;&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;7&lt;/span&gt;&lt;span class=\"on\"&gt;/&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;8&lt;/span&gt;&lt;span class=\"on\"&gt;(&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;9&lt;/span&gt;&lt;span class=\"on\"&gt;)&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;0&lt;/span&gt;&lt;span class=\"on\"&gt;=&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;ß&lt;/span&gt;&lt;span class=\"on\"&gt;?&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;´&lt;/span&gt;&lt;span class=\"on\"&gt;`&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"delete lastitem\"&gt;{{ 'keyboard.delete' | translate }}&lt;/li&gt;\n" +
+    "	&lt;li class=\"tab\"&gt;Tab&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;q&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;w&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;e&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;r&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;t&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;z&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;u&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;i&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;o&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;p&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;ü&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;+&lt;/span&gt;&lt;span class=\"on\"&gt;*&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol lastitem\"&gt;&lt;span class=\"off\"&gt;#&lt;/span&gt;&lt;span class=\"on\"&gt;'&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"capslock\"&gt;{{ 'keyboard.caps_lock' | translate }}&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;a&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;s&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;d&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;f&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;g&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;h&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;j&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;k&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;l&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;ö&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;ä&lt;/li&gt;\n" +
+    "	&lt;li class=\"return lastitem\"&gt;{{ 'keyboard.return' | translate }}&lt;/li&gt;\n" +
+    "	&lt;li class=\"left-shift\"&gt;Shift&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;y&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;x&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;c&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;v&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;b&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;n&lt;/li&gt;\n" +
+    "	&lt;li class=\"letter\"&gt;m&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;,&lt;/span&gt;&lt;span class=\"on\"&gt;;&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;.&lt;/span&gt;&lt;span class=\"on\"&gt;:&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"symbol\"&gt;&lt;span class=\"off\"&gt;-&lt;/span&gt;&lt;span class=\"on\"&gt;_&lt;/span&gt;&lt;/li&gt;\n" +
+    "	&lt;li class=\"right-shift lastitem\"&gt;Shift&lt;/li&gt;\n" +
+    "	&lt;li class=\"space lastitem\"&gt;&amp;nbsp;&lt;/li&gt;\n" +
+    "&lt;/ul&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_main/_directive/volume/petron.volume-indicator.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_main/_directive/volume/petron.volume-indicator.html",
+    "&lt;div class=\"c--volume-indicator\" ng-show=\"showVolumeIndicator\"&gt;\n" +
+    "	&lt;span class=\"c--volume-indicator__value\" style=\"top: {{ (100 - volume) }}%;\"&gt;{{ volume }}&lt;/span&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_main/_template/petron.confirm.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_main/_template/petron.confirm.html",
+    "&lt;div class=\"columns\"&gt;\n" +
+    "	&lt;div class=\"column\"&gt;\n" +
+    "		&lt;h3 class=\"title is-4\"&gt;\n" +
+    "			{{ title | translate }}\n" +
+    "		&lt;/h3&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "&lt;div class=\"columns\"&gt;\n" +
+    "	&lt;div class=\"column\"&gt;\n" +
+    "		&lt;p&gt;{{ text | translate}}&lt;/p&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "&lt;div class=\"columns\"&gt;\n" +
+    "	&lt;div class=\"column\"&gt;\n" +
+    "		&lt;button class=\"button\" ng-click=\"confirm()\"&gt;{{ ((button) ? button : 'modal.button_confirm')  | translate }}&lt;/button&gt;\n" +
+    "		&lt;button class=\"button\" ng-click=\"closeThisDialog()\"&gt;{{ 'modal.button_cancel' | translate }}&lt;/button&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_main/_template/petron.content.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_main/_template/petron.content.html",
+    "&lt;section class=\"columns u--max-height__100 u--margin-top__none c--home\"&gt;\n" +
+    "	&lt;div class=\"column\"&gt;\n" +
+    "		&lt;div class=\"columns\"&gt;\n" +
+    "			&lt;div class=\"column\"&gt;\n" +
+    "				&lt;div class=\"box has-text-centered is-vcentered\" ui-sref=\"petron.fmbox\"&gt;\n" +
+    "					&lt;div&gt;\n" +
+    "						&lt;span class=\"icon is-large\"&gt;&lt;i class=\"fa icon-radio\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "						&lt;h2 class=\"title is-3\"&gt;{{ 'radio_module' | translate }}&lt;/h2&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "			&lt;div class=\"column\"&gt;\n" +
+    "				&lt;div class=\"box has-text-centered is-vcentered\" ui-sref=\"petron.audiobox\"&gt;\n" +
+    "					&lt;div&gt;\n" +
+    "						&lt;span class=\"icon is-large\"&gt;&lt;i class=\"fa icon-notes\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "						&lt;h2 class=\"title is-3\"&gt;{{ 'music_module' | translate }}&lt;/h2&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "			&lt;div class=\"column\"&gt;\n" +
+    "				&lt;div class=\"box has-text-centered is-vcentered\" ui-sref=\"petron.videobox.main\"&gt;\n" +
+    "					&lt;div&gt;\n" +
+    "						&lt;span class=\"icon is-large\"&gt;&lt;i class=\"fa icon-video\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "						&lt;h2 class=\"title is-3\"&gt;{{ 'video_module' | translate }}&lt;/h2&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "		&lt;div class=\"columns\"&gt;\n" +
+    "			&lt;div class=\"column\"&gt;\n" +
+    "				&lt;div class=\"box has-text-centered is-vcentered\" ui-sref=\"petron.navigationbox.main\"&gt;\n" +
+    "					&lt;div&gt;\n" +
+    "						&lt;span class=\"icon is-large\"&gt;&lt;i class=\"fa icon-location-arrow\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "						&lt;h2 class=\"title is-3\"&gt;{{ 'navigation_module' | translate }}&lt;/h2&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "			&lt;div class=\"column\"&gt;\n" +
+    "				&lt;div class=\"box has-text-centered is-vcentered\" ui-sref=\"petron.healthbox\"&gt;\n" +
+    "					&lt;div&gt;\n" +
+    "						&lt;span class=\"icon is-large\"&gt;&lt;i class=\"fa icon-heart\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "						&lt;h2 class=\"title is-3\"&gt;{{ 'health_module' | translate }}&lt;/h2&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "			&lt;div class=\"column\"&gt;\n" +
+    "				&lt;div class=\"box has-text-centered is-vcentered\" ui-sref=\"petron.settingsbox\"&gt;\n" +
+    "					&lt;div&gt;\n" +
+    "						&lt;span class=\"icon is-large\"&gt;&lt;i class=\"fa icon-cog\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "						&lt;h2 class=\"title is-3\"&gt;{{ 'settings_module' | translate }}&lt;/h2&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/section&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_main/_template/petron.header.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_main/_template/petron.header.html",
+    "&lt;div class=\"columns is-vcentered\"&gt;\n" +
+    "	&lt;div class=\"column has-text-left\"&gt;\n" +
+    "		&lt;span class=\"left-menu-toggle\" ng-click=\"$root.left_toggle = !$root.left_toggle\" ng-if=\"$root.leftMenuShow\"&gt;\n" +
+    "			&lt;span class=\"icon\"&gt;&lt;i class=\"fa icon-th-menu\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "			&lt;p&gt;MENU&lt;/p&gt;\n" +
+    "		&lt;/span&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "	&lt;div class=\"column has-text-centered\"&gt;\n" +
+    "		{{ date | date:settings.clock}} {{ 'clock_unit' | translate }}\n" +
+    "	&lt;/div&gt;\n" +
+    "	&lt;div class=\"column has-text-right\"&gt;\n" +
+    "		&lt;span class=\"right-menu-toggle\" ng-click=\"$root.right_toggle = !$root.right_toggle\" ng-if=\"rightMenuShow\"&gt;\n" +
+    "			&lt;p&gt;{{ $root.rightMenuLabel | translate }}&lt;/p&gt;\n" +
+    "			&lt;span class=\"icon\"&gt;&lt;i class=\"fa icon-th-menu\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "		&lt;/span&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_main/_template/petron.home.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_main/_template/petron.home.html",
+    "&lt;header class=\"container is-fluid\" ui-view=\"header\"&gt;\n" +
+    "	&lt;div class=\"columns is-vcentered\"&gt;\n" +
+    "		&lt;div class=\"column has-text-left\"&gt;\n" +
+    "			&lt;span class=\"left-menu-toggle\" ng-click=\"$root.left_toggle = !$root.left_toggle\" ng-if=\"$root.leftMenuShow\"&gt;\n" +
+    "				&lt;span class=\"icon\"&gt;&lt;i class=\"fa icon-th-menu\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "				&lt;p&gt;MENU&lt;/p&gt;\n" +
+    "			&lt;/span&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "		&lt;div class=\"column has-text-centered\"&gt;\n" +
+    "			{{ $root.leftMenuShow }} {{ date | date:settings.clock}} {{ 'clock_unit' | translate }}\n" +
+    "		&lt;/div&gt;\n" +
+    "		&lt;div class=\"column has-text-right\"&gt;\n" +
+    "			&lt;span class=\"right-menu-toggle\" ng-click=\"$root.right_toggle = !$root.right_toggle\" ng-if=\"rightMenuShow\"&gt;\n" +
+    "				&lt;p&gt;{{ $root.rightMenuLabel | translate }}&lt;/p&gt;\n" +
+    "				&lt;span class=\"icon\"&gt;&lt;i class=\"fa icon-th-menu\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "			&lt;/span&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/header&gt;\n" +
+    "&lt;main class=\"container is-fluid\" ui-view=\"content\" ng-click=\"$root.right_toggle = false; $root.left_toggle = false;\"&gt;&lt;/main&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/audio_module/_template/_directive.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/audio_module/_template/_directive.html",
+    "&lt;div class=\"columns\"&gt;\n" +
+    "	&lt;div class=\"column has-text-centered c--audio__title\"&gt;\n" +
+    "		&lt;h1 class=\"title is-4\"&gt;\n" +
+    "			{{ playlist.tracks[current].title }}\n" +
+    "		&lt;/h1&gt;\n" +
+    "\n" +
+    "		&lt;h2 class=\"subtitle is-6\"&gt;\n" +
+    "			{{ playlist.tracks[current].artist }} {{ (playlist.tracks[current].album) ? '- ' + playlist.tracks[current].album : '' }}\n" +
+    "		&lt;/h2&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "\n" +
+    "&lt;div class=\"columns\"&gt;\n" +
+    "	&lt;div class=\"column is-8 is-offset-2\"&gt;\n" +
+    "		&lt;figure class=\"image is-square\"&gt;\n" +
+    "		  &lt;img ng-if=\"playlist.tracks[current].image\" ng-src=\"{{ 'data:image/' + playlist.tracks[current].image_type + ';base64,' + playlist.tracks[current].image }}\" alt=\"\"&gt;\n" +
+    "		  &lt;img ng-if=\"!playlist.tracks[current].image\" src=\"./images/music_cover_ph.svg\" alt=\"\"&gt;\n" +
+    "		&lt;/figure&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "\n" +
+    "&lt;div class=\"columns\"&gt;\n" +
+    "	&lt;div class=\"column has-text-centered\"&gt;\n" +
+    "		&lt;section class=\"c--audio__controls\"&gt;\n" +
+    "			&lt;button class=\"button\" ng-click=\"shuffle()\" ng-class=\"{'is-active': controls.shuffle}\"&gt;\n" +
+    "				&lt;i class=\"icon-shuffle\"&gt;&lt;/i&gt;\n" +
+    "			&lt;/button&gt;\n" +
+    "			&lt;button class=\"button c--audio__controls-l\" ng-click=\"previous()\"&gt;\n" +
+    "				&lt;i class=\"icon-media-rewind\"&gt;&lt;/i&gt;\n" +
+    "			&lt;/button&gt;\n" +
+    "			&lt;button class=\"button c--audio__controls-xl\" ng-click=\"play()\" ng-class=\"{'is-active': controls.play}\"&gt;\n" +
+    "				&lt;i class=\"icon-media-play\" ng-if=\"!controls.play\"&gt;&lt;/i&gt;\n" +
+    "				&lt;i class=\"icon-media-pause\" ng-if=\"controls.play\"&gt;&lt;/i&gt;\n" +
+    "			&lt;/button&gt;\n" +
+    "			&lt;button class=\"button c--audio__controls-l\" ng-click=\"next()\"&gt;\n" +
+    "				&lt;i class=\"icon-media-forward\"&gt;&lt;/i&gt;\n" +
+    "			&lt;/button&gt;\n" +
+    "			&lt;button class=\"button\" ng-click=\"toggleRepeat()\" ng-class=\"{'is-active': controls.loop || controls.repeat}\"&gt;\n" +
+    "				&lt;i ng-class=\"{'icon-loop': controls.loop || (!controls.loop &amp;&amp; !controls.repeat) , 'icon-repeat': controls.repeat}\"&gt;&lt;/i&gt;\n" +
+    "			&lt;/button&gt;\n" +
+    "		&lt;/section&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "\n" +
+    "&lt;div class=\"columns c--audio__timetrack\"&gt;\n" +
+    "	&lt;div class=\"column has-text-centered\"&gt;\n" +
+    "		&lt;input id=\"timetracker\" ng-model=\"controls.time\" ng-change=\"seek()\" type=\"range\" min=\"0\" max=\"{{ controls.duration }}\" step=\"1\" /&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "\n" +
+    "&lt;div class=\"columns c--audio__time\"&gt;\n" +
+    "	&lt;div class=\"column has-text-left\"&gt;\n" +
+    "		{{ controls.time | buildTime }}\n" +
+    "	&lt;/div&gt;\n" +
+    "	&lt;div class=\"column has-text-right\"&gt;\n" +
+    "		{{ controls.duration | buildTime }}\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "\n" +
+    "&lt;audio class=\"c--audio__player\" preload=\"auto\" ng-click=\"play()\"&gt;\n" +
+    "	&lt;source ng-repeat=\"file in playlist.tracks\" ng-if=\"playlist.tracks &amp;&amp; file.play\" ng-src=\"{{ file.path }}\" type=\"audio/{{ file.type}}\"&gt;\n" +
+    "&lt;/audio&gt;\n" +
+    "&lt;!--\n" +
+    "&lt;button class=\"button\" ng-click=\"player.audio.daemonize()\"&gt;\n" +
+    "	&lt;i class=\"icon-home\"&gt;&lt;/i&gt;\n" +
+    "&lt;/button&gt;\n" +
+    "\n" +
+    "\n" +
+    "&lt;i class=\"icon-volume-down\"&gt;&lt;/i&gt;\n" +
+    "&lt;input ng-model=\"player.audio.controls.volume\" ng-change=\"player.audio.setVolume()\" type=\"range\" min=\"0\" max=\"1\" step=\"0.01\" /&gt;\n" +
+    "&lt;i class=\"icon-volume-up\"&gt;&lt;/i&gt;\n" +
+    "\n" +
+    "&lt;section class=\"c--audio__playlist\"&gt;\n" +
+    "	&lt;ul&gt;\n" +
+    "		&lt;li ng-repeat=\"file in player.audio.playlist\" ng-click=\"player.audio.playFile($index)\"&gt;{{ file.name }}&lt;/li&gt;\n" +
+    "	&lt;/ul&gt;\n" +
+    "&lt;/section&gt;\n" +
+    "--&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/audio_module/_template/add_to_playlist_modal.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/audio_module/_template/add_to_playlist_modal.html",
+    "&lt;section class=\"c--audio__popout\"&gt;\n" +
+    "	&lt;div class=\"columns is-vcentered c--audio__track\"&gt;\n" +
+    "		&lt;div class=\"column is-narrow\"&gt;\n" +
+    "			&lt;figure class=\"image is-48x48\"&gt;\n" +
+    "				&lt;img ng-if=\"file.image\" ng-src=\"{{ 'data:image/' + file.image_type + ';base64,' + file.image }}\" alt=\"{{ file.artist }}\"&gt;\n" +
+    "				&lt;img ng-if=\"!file.image\" src=\"./images/music_cover_ph.svg\" alt=\"\"&gt;\n" +
+    "			&lt;/figure&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "		&lt;div class=\"column\"&gt;\n" +
+    "			&lt;p&gt;{{ file.title }}&lt;/p&gt;\n" +
+    "			&lt;p&gt;&lt;small&gt;{{ 'audio_popout.by_artist' | translate }} {{ file.artist }}&lt;/small&gt;&lt;/p&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "	&lt;div class=\"columns c--audio__popout--playlists\"&gt;\n" +
+    "		&lt;div class=\"column\"&gt;\n" +
+    "			&lt;ul&gt;\n" +
+    "				&lt;li ng-click=\"useList('create_new')\"&gt;\n" +
+    "					&lt;span class=\"icon is-small\"&gt;\n" +
+    "						&lt;i class=\"fa icon-plus\"&gt;&lt;/i&gt;\n" +
+    "					&lt;/span&gt; {{ 'create_new_playlist' | translate }}\n" +
+    "				&lt;/li&gt;\n" +
+    "				&lt;li ng-repeat=\"pl in $parent.playlists\" ng-click=\"useList(pl.name)\"&gt;\n" +
+    "					&lt;span class=\"icon is-small\"&gt;\n" +
+    "						&lt;i class=\"fa icon-th-list\"&gt;&lt;/i&gt;\n" +
+    "					&lt;/span&gt; {{ pl.name }}\n" +
+    "				&lt;/li&gt;\n" +
+    "			&lt;/ul&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/section&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/audio_module/_template/main.html",
+    "&lt;section class=\"columns u--max-height__100 u--margin-top__none\"&gt;\n" +
+    "\n" +
+    "	&lt;aside class=\"c--filetree column is-7\"&gt;\n" +
+    "\n" +
+    "		&lt;div class=\"tabs\"&gt;\n" +
+    "		  &lt;ul class=\"is-left\"&gt;\n" +
+    "		    &lt;li ng-click=\"visibleFileTree = 'files'\" ng-class=\"{'is-active': visibleFileTree === 'files'}\"&gt;\n" +
+    "		      &lt;a&gt;\n" +
+    "		        &lt;span class=\"icon is-small\"&gt;&lt;i class=\"fa icon-folder\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "		        &lt;span&gt;{{ 'treeview_files' | translate }}&lt;/span&gt;\n" +
+    "		      &lt;/a&gt;\n" +
+    "		    &lt;/li&gt;\n" +
+    "		    &lt;li ng-click=\"visibleFileTree = 'playlist'\" ng-class=\"{'is-active': !visibleFileTree || visibleFileTree === 'playlist'}\"&gt;\n" +
+    "		      &lt;a&gt;\n" +
+    "		        &lt;span class=\"icon is-small\"&gt;&lt;i class=\"fa icon-th-list\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "		        &lt;span&gt;{{ 'treeview_playlist' | translate }}&lt;/span&gt;\n" +
+    "		      &lt;/a&gt;\n" +
+    "		    &lt;/li&gt;\n" +
+    "		  &lt;/ul&gt;\n" +
+    "			&lt;ul class=\"is-right\" ng-show=\"visibleFileTree === 'files'\"&gt;\n" +
+    "				&lt;li ng-click=\"func.playAll($root.files)\"&gt;\n" +
+    "					&lt;a&gt;\n" +
+    "		        &lt;span class=\"icon is-small\"&gt;&lt;i class=\"fa icon-media-play\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "		        &lt;span&gt;{{ 'treeview_playall' | translate }}&lt;/span&gt;\n" +
+    "		      &lt;/a&gt;\n" +
+    "				&lt;/li&gt;\n" +
+    "			&lt;/ul&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "\n" +
+    "		&lt;petron-filetree class=\"has-tabs\" files=\"files\" func=\"func\" type=\"audio\" ng-show=\"visibleFileTree === 'files'\"&gt;&lt;/petron-filetree&gt;\n" +
+    "		&lt;petron-filetree class=\"has-tabs\" files=\"audio.queue.tracks\" func=\"func\" type=\"audio_playlist\" ng-show=\"!visibleFileTree || visibleFileTree === 'playlist'\"&gt;&lt;/petron-filetree&gt;\n" +
+    "	&lt;/aside&gt;\n" +
+    "\n" +
+    "	&lt;main class=\"c--audio__main column is-5\"&gt;\n" +
+    "		&lt;petron-audio&gt;&lt;/petron-audio&gt;\n" +
+    "	&lt;/main&gt;\n" +
+    "\n" +
+    "&lt;/section&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/audio_module/_template/new_playlist_modal.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/audio_module/_template/new_playlist_modal.html",
+    "&lt;div class=\"columns\"&gt;\n" +
+    "	&lt;div class=\"column\"&gt;\n" +
+    "		&lt;h3 class=\"title is-4\"&gt;\n" +
+    "			{{ 'new_playlist_modal_title' | translate }}\n" +
+    "		&lt;/h3&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "&lt;div class=\"columns\"&gt;\n" +
+    "	&lt;div class=\"column\"&gt;\n" +
+    "		&lt;input type=\"text\" class=\"input\" ng-model=\"name\" placeholder=\"{{ 'new_playlist_modal_ph' | translate }}\"&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "&lt;div class=\"columns\"&gt;\n" +
+    "	&lt;div class=\"column\"&gt;\n" +
+    "		&lt;button class=\"button\" ng-click=\"savePlaylist()\"&gt;{{ 'modal.button_save' | translate }}&lt;/button&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/audio_module/_template/playlists.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/audio_module/_template/playlists.html",
+    "&lt;a ng-click=\"newPlaylist()\"&gt;\n" +
+    "	&lt;span class=\"icon\"&gt;\n" +
+    "		&lt;i class=\"fa icon-plus\"&gt;&lt;/i&gt;\n" +
+    "	&lt;/span&gt;\n" +
+    "	&lt;span&gt;{{ 'create_new_playlist' | translate }}&lt;/span&gt;\n" +
+    "&lt;/a&gt;\n" +
+    "\n" +
+    "&lt;a ng-repeat=\"list in audio.playlists\" hm-tap=\"func.play(list.name)\" hm-press=\"removePlaylist(list.name)\" hm-recognizer-options='[{\"type\": \"press\", \"time\": 500}, {\"type\":\"tap\",\"enable\": true}]'&gt;\n" +
+    "	&lt;span class=\"icon\"&gt;\n" +
+    "		&lt;i class=\"fa icon-th-list\"&gt;&lt;/i&gt;\n" +
+    "	&lt;/span&gt;\n" +
+    "	&lt;span&gt;{{ list.name }}&lt;/span&gt;\n" +
+    "&lt;/a&gt;\n" +
+    "\n" +
+    "&lt;span ng-if=\"!hasPlaylists(audio.playlists)\"&gt;{{ 'no_playlists' | translate }}&lt;/span&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/fm_module/_template/main.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/fm_module/_template/main.html",
+    "&lt;section class=\"columns u--max-height__100 u--margin-top__none\"&gt;\n" +
+    "\n" +
+    "	&lt;main class=\"c--fm__main column\"&gt;\n" +
+    "		&lt;div class=\"columns\"&gt;\n" +
+    "			&lt;section class=\"column c--fm__display\"&gt;\n" +
+    "				&lt;div class=\"columns\"&gt;\n" +
+    "					&lt;div class=\"column is-10 is-offset-1\"&gt;\n" +
+    "						&lt;span class=\"icon\"&gt;\n" +
+    "							&lt;i class=\"fa icon-heart-outline\"&gt;&lt;/i&gt;\n" +
+    "						&lt;/span&gt;\n" +
+    "						&lt;h1 class=\"is-1 title\" ng-bind-html=\"frequency.current | frequency\"&gt;\n" +
+    "						&lt;/h1&gt;\n" +
+    "						&lt;span class=\"frequency\"&gt;\n" +
+    "							MHz\n" +
+    "						&lt;/span&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "				&lt;div class=\"columns\"&gt;\n" +
+    "					&lt;div class=\"column\"&gt;\n" +
+    "						&lt;h2 class=\"is-2 title\"&gt;\n" +
+    "							SWR3\n" +
+    "						&lt;/h2&gt;\n" +
+    "						&lt;p class=\"marquee\"&gt;\n" +
+    "							&lt;span&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente atque hic labore veniam&lt;/span&gt;\n" +
+    "						&lt;/p&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "			&lt;/section&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "		&lt;div class=\"columns is-vcentered c--fm__channels\"&gt;\n" +
+    "			&lt;div class=\"column is-narrow\" ng-click=\"freqDown()\"&gt;\n" +
+    "				&lt;span class=\"icon is-large\"&gt;&lt;i class=\"fa icon-media-rewind\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "			&lt;div class=\"column c--fm__frequency\"&gt;\n" +
+    "				&lt;input ng-model=\"frequency.current\" type=\"range\" min=\"{{ frequency.min }}\"  max=\"{{ frequency.max }}\" step=\"0.05\"&gt;\n" +
+    "				&lt;ul class=\"c--range__labels\"&gt;\n" +
+    "				  &lt;li ng-repeat=\"label in rangeLabels track by $index\" ng-class=\"{'is-seperator': (label % 1) === 0, 'is-seperator-5': (label % 5) === 0}\"&gt;\n" +
+    "				  	&lt;span class=\"is-label\" ng-if=\"(label % 5) === 0\"&gt;\n" +
+    "				  		{{ label }}\n" +
+    "				  	&lt;/span&gt;\n" +
+    "				  &lt;/li&gt;\n" +
+    "				&lt;/ul&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "			&lt;div class=\"column is-narrow\" ng-click=\"freqUp()\"&gt;\n" +
+    "				&lt;span class=\"icon is-large\"&gt;&lt;i class=\"fa icon-media-forward\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/main&gt;\n" +
+    "\n" +
+    "&lt;/section&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/fm_module/_template/stations.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/fm_module/_template/stations.html",
+    "&lt;a ng-repeat=\"station in fm.stations\" ng-click=\"func.play(station)\"&gt;\n" +
+    "	&lt;span class=\"icon\"&gt;\n" +
+    "		&lt;i class=\"fa icon-heart-outline\"&gt;&lt;/i&gt;\n" +
+    "	&lt;/span&gt;\n" +
+    "	&lt;span&gt;{{ station.name }}&lt;/span&gt;\n" +
+    "&lt;/a&gt;\n" +
+    "\n" +
+    "&lt;span ng-show=\"!fm.stations.length\"&gt;{{ 'no_stations' | translate }}&lt;/span&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/health_module/_template/main.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/health_module/_template/main.html",
+    "&lt;section class=\"columns u--max-height__100 u--margin-top__none c--health\"&gt;\n" +
+    "	&lt;div class=\"c--obd__message\" ng-if=\"!isConnected &amp;&amp; !hasError\"&gt;\n" +
+    "			&lt;h1 class=\"title is-2 c--obd__scanning has-text-centered\"&gt;{{ 'health.scanning' | translate}}{{ dots }}&lt;/h1&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "\n" +
+    "	&lt;div class=\"columns c--obd-container  has-text-centered\" ng-if=\"hasError &amp;&amp; !isConnected\"&gt;\n" +
+    "		&lt;h2 class=\"title is-3 c--obd__error\"&gt;{{ 'health.scan_error' | translate}}&lt;/h2&gt;\n" +
+    "		&lt;button class=\"button button is-outlined is-primary\" ng-click=\"connectToOBD()\"&gt;{{ 'health.reconnect' | translate }}&lt;/button&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "	&lt;div class=\"column\" ng-if=\"!hasError\"&gt;\n" +
+    "		&lt;div class=\"columns\"&gt;\n" +
+    "			&lt;div class=\"column is-vcentered\"&gt;\n" +
+    "\n" +
+    "						&lt;span class=\"door-lock fr closed\"&gt;\n" +
+    "							&lt;i class=\"icon-lock-closed\"&gt;&lt;/i&gt;\n" +
+    "						&lt;/span&gt;\n" +
+    "						&lt;span class=\"door-lock br open\"&gt;\n" +
+    "							&lt;i class=\"icon-lock-open\"&gt;&lt;/i&gt;\n" +
+    "						&lt;/span&gt;\n" +
+    "						&lt;img src=\"images/car.svg\" alt=\"\"&gt;\n" +
+    "						&lt;span class=\"door-lock trunk closed\"&gt;\n" +
+    "							&lt;i class=\"icon-lock-closed\"&gt;&lt;/i&gt;\n" +
+    "						&lt;/span&gt;\n" +
+    "						&lt;span class=\"door-lock bl open\"&gt;\n" +
+    "							&lt;i class=\"icon-lock-open\"&gt;&lt;/i&gt;\n" +
+    "						&lt;/span&gt;\n" +
+    "						&lt;span class=\"door-lock fl open\"&gt;\n" +
+    "							&lt;i class=\"icon-lock-open\"&gt;&lt;/i&gt;\n" +
+    "						&lt;/span&gt;\n" +
+    "\n" +
+    "			&lt;/div&gt;\n" +
+    "			&lt;div class=\"column\"&gt;\n" +
+    "				&lt;div class=\"columns\"&gt;\n" +
+    "					&lt;div class=\"column\"&gt;\n" +
+    "						&lt;div class=\"box\"&gt;\n" +
+    "							&lt;h5&gt;{{ 'health.speedmeter' | translate }}&lt;/h5&gt;\n" +
+    "							&lt;h2&gt;{{ speed | unit:settings.distance:0 }}&lt;small&gt;{{ (settings.distance !== 'mi') ? 'km/h' : 'mph' }}&lt;/small&gt;&lt;/h2&gt;\n" +
+    "						&lt;/div&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "					&lt;div class=\"column\"&gt;\n" +
+    "						&lt;div class=\"box\" ng-class=\"{'has-alert': (tacho &gt;= 5000)}\"&gt;\n" +
+    "							&lt;h5&gt;{{ 'health.tachometer' | translate }}&lt;/h5&gt;\n" +
+    "							&lt;h2&gt;{{ tacho }}&lt;small&gt;RPM&lt;/small&gt;&lt;/h2&gt;\n" +
+    "						&lt;/div&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "				&lt;div class=\"columns\"&gt;\n" +
+    "					&lt;div class=\"column\"&gt;\n" +
+    "						&lt;div class=\"box\" ng-class=\"{'has-alert': (battery1 &lt;= 15)}\"&gt;\n" +
+    "							&lt;h5&gt;{{ 'health.battery_1' | translate }}&lt;/h5&gt;\n" +
+    "							&lt;h2&gt;{{ battery1 }}&lt;small&gt;%&lt;/small&gt;&lt;/h2&gt;\n" +
+    "						&lt;/div&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "					&lt;div class=\"column\"&gt;\n" +
+    "						&lt;div class=\"box\" ng-class=\"{'has-alert': (battery2 &lt;= 15)}\"&gt;\n" +
+    "							&lt;h5&gt;{{ 'health.battery_2' | translate }}&lt;/h5&gt;\n" +
+    "							&lt;h2&gt;{{ battery2 }}&lt;small&gt;%&lt;/small&gt;&lt;/h2&gt;\n" +
+    "						&lt;/div&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "				&lt;div class=\"columns\"&gt;\n" +
+    "					&lt;div class=\"column\"&gt;\n" +
+    "						&lt;div class=\"box\"&gt;\n" +
+    "							&lt;h5&gt;{{ 'health.lights' | translate }}&lt;/h5&gt;\n" +
+    "							&lt;h2&gt;{{ ((lights) ? 'on' : 'off') | translate}}&lt;/h2&gt;\n" +
+    "						&lt;/div&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "					&lt;div class=\"column\"&gt;\n" +
+    "						&lt;div class=\"box\"&gt;\n" +
+    "							&lt;h5&gt;{{ 'health.fuel' | translate }}&lt;/h5&gt;\n" +
+    "							&lt;h2&gt;{{ consumption | unit:settings.fuel }}&lt;small&gt;{{ (settings.fuel !== 'gal') ? 'l' : 'gal' }}&lt;/small&gt;&lt;/h2&gt;\n" +
+    "						&lt;/div&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/section&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/navigation_module/_template/main.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/navigation_module/_template/main.html",
+    "&lt;section class=\"columns u--max-height__100 u--margin-top__none c--navi\"&gt;\n" +
+    "	&lt;div class=\"column\"&gt;\n" +
+    "		&lt;div class=\"columns\" ng-if=\"!showFullAddress\"&gt;\n" +
+    "			&lt;div class=\"column is-7 is-vcentered u--margin__auto\"&gt;\n" +
+    "				&lt;span class=\"icon is-medium\" ng-click=\"stepBack()\"&gt;&lt;i class=\"fa icon-chevron-left\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "				&lt;p class=\"control has-addons has-icon\"&gt;\n" +
+    "					&lt;input class=\"input c--navi__input\"  placeholder=\"{{ 'navi.' + ph[addressPart] | translate }}\" type=\"text\" ng-model=\"model[addressPart]\" autocomplete=\"off\"&gt;\n" +
+    "					&lt;i class=\"fa icon-location\"&gt;&lt;/i&gt;\n" +
+    "				&lt;/p&gt;\n" +
+    "				&lt;span class=\"icon is-medium\" ng-click=\"addToAddress()\"&gt;&lt;i class=\"fa icon-chevron-right\"&gt;&lt;/i&gt;&lt;/span&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "		&lt;div class=\"columns\"&gt;\n" +
+    "			&lt;div class=\"column is-8 is-offset-2\"&gt;\n" +
+    "				&lt;ul class=\"c--navi__autocomplete\"&gt;\n" +
+    "					&lt;li ng-repeat=\"r in results\" ng-click=\"addToAddress(r)\"&gt;\n" +
+    "						&lt;span class=\"icon\"&gt;\n" +
+    "							&lt;i class=\"fa icon-{{ ((r.properties.osm_value !== 'yes') ? r.properties.osm_value : r.properties.osm_key) }}\"&gt;&lt;/i&gt;\n" +
+    "						&lt;/span&gt; {{ r.properties.name || r.properties.street }} {{ ((r.properties.name) ? '' : r.properties.housenumber) }}\n" +
+    "					&lt;/li&gt;\n" +
+    "				&lt;/ul&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "		&lt;div class=\"columns\" ng-if=\"showFullAddress\"&gt;\n" +
+    "			&lt;div class=\"column has-text-centered\"&gt;\n" +
+    "				&lt;div class=\"columns\"&gt;\n" +
+    "					&lt;div class=\"column is-8 is-offset-2\"&gt;\n" +
+    "						&lt;h3 class=\"title is-3 u--margin-top__40\"&gt;\n" +
+    "							{{ nav.country | translate }}, {{ nav.city}}, {{ nav.street}}\n" +
+    "						&lt;/h3&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "				&lt;div class=\"columns\"&gt;\n" +
+    "					&lt;div class=\"column is-8 is-offset-2\"&gt;\n" +
+    "						&lt;h5 class=\"subtitle u--margin-top__40\"&gt;\n" +
+    "							{{ 'navi.should_start_routing' | translate }}\n" +
+    "						&lt;/h5&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "				&lt;div class=\"columns\"&gt;\n" +
+    "					&lt;div class=\"column is-8 is-offset-2\"&gt;\n" +
+    "						&lt;div class=\"control is-grouped u--margin-top__40\"&gt;\n" +
+    "						  &lt;p class=\"control\"&gt;\n" +
+    "								&lt;a class=\"button\"&gt;\n" +
+    "									{{ 'navi.save_favourite_btn' | translate }}\n" +
+    "								&lt;/a&gt;\n" +
+    "						  &lt;/p&gt;\n" +
+    "						  &lt;p class=\"control\"&gt;\n" +
+    "						    &lt;a class=\"button is-danger\" ng-click=\"resetDestination()\"&gt;\n" +
+    "						      {{ 'navi.new_dest_btn' | translate }}\n" +
+    "						    &lt;/a&gt;\n" +
+    "						  &lt;/p&gt;\n" +
+    "						  &lt;p class=\"control\"&gt;\n" +
+    "								&lt;a class=\"button is-primary\" ng-click=\"startRouting()\"&gt;\n" +
+    "									{{ 'navi.start_routing_btn' | translate }}\n" +
+    "								&lt;/a&gt;\n" +
+    "						  &lt;/p&gt;\n" +
+    "						&lt;/div&gt;\n" +
+    "					&lt;/div&gt;\n" +
+    "				&lt;/div&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "\n" +
+    "&lt;/section&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/navigation_module/_template/map.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/navigation_module/_template/map.html",
+    "&lt;leaflet defaults=\"defaults\" lf-center=\"center\" height=\"422px\" width=\"800px\"&gt;&lt;/leaflet&gt;\n" +
+    "&lt;div class=\"c--routing__params columns\"&gt;\n" +
+    "  &lt;div class=\"column\"&gt;\n" +
+    "    &lt;h3 class=\"is-3 title\"&gt;\n" +
+    "      {{ duration | buildTime:true }}\n" +
+    "    &lt;/h3&gt;\n" +
+    "  &lt;/div&gt;\n" +
+    "  &lt;div class=\"column\"&gt;\n" +
+    "    &lt;h3 class=\"is-3 title\"&gt;\n" +
+    "      {{ overallDistance }}\n" +
+    "    &lt;/h3&gt;\n" +
+    "  &lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/navigation_module/_template/menu.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/navigation_module/_template/menu.html",
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/settings_module/_template/main.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/settings_module/_template/main.html",
+    "&lt;section class=\"columns u--max-height__100 u--margin-top__none c--settings\"&gt;\n" +
+    "	&lt;div class=\"column\"&gt;\n" +
+    "		&lt;div class=\"columns is-vcentered\"&gt;\n" +
+    "			&lt;div class=\"column\"&gt;\n" +
+    "				&lt;h5 class=\"title is-5\"&gt;{{ 'settings.language' | translate }}&lt;/h5&gt;\n" +
+    "				&lt;p&gt;{{ 'settings.language_hint' | translate }}&lt;/p&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "			&lt;div class=\"column has-text-right\"&gt;\n" +
+    "				&lt;span class=\"select\"&gt;\n" +
+    "					&lt;select name=\"locale\" id=\"locale\" ng-model=\"settings.locale\"&gt;\n" +
+    "						&lt;option value=\"en\"&gt;EN&lt;/option&gt;\n" +
+    "						&lt;option value=\"de\"&gt;DE&lt;/option&gt;\n" +
+    "					&lt;/select&gt;\n" +
+    "				&lt;/span&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "		&lt;div class=\"columns is-vcentered\"&gt;\n" +
+    "			&lt;div class=\"column\"&gt;\n" +
+    "				&lt;h5 class=\"title is-5\"&gt;{{ 'settings.distance' | translate }}&lt;/h5&gt;\n" +
+    "				&lt;p&gt;{{ 'settings.distance_hint' | translate }}&lt;/p&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "			&lt;div class=\"column has-text-right\"&gt;\n" +
+    "				&lt;span class=\"select\"&gt;\n" +
+    "					&lt;select name=\"distance\" id=\"distance\" ng-model=\"settings.distance\"&gt;\n" +
+    "						&lt;option value=\"km\"&gt;{{ 'metric' | translate }}&lt;/option&gt;\n" +
+    "						&lt;option value=\"mi\"&gt;{{ 'miles' | translate }}&lt;/option&gt;\n" +
+    "					&lt;/select&gt;\n" +
+    "				&lt;/span&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "		&lt;div class=\"columns is-vcentered\"&gt;\n" +
+    "			&lt;div class=\"column\"&gt;\n" +
+    "				&lt;h5 class=\"title is-5\"&gt;{{ 'settings.fuel' | translate }}&lt;/h5&gt;\n" +
+    "				&lt;p&gt;{{ 'settings.fuel_hint' | translate }}&lt;/p&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "			&lt;div class=\"column has-text-right\"&gt;\n" +
+    "				&lt;span class=\"select\"&gt;\n" +
+    "					&lt;select name=\"fuel\" id=\"fuel\" ng-model=\"settings.fuel\"&gt;\n" +
+    "						&lt;option value=\"l\"&gt;{{ 'liter' | translate }}&lt;/option&gt;\n" +
+    "						&lt;option value=\"gal\"&gt;{{ 'gallons' | translate }}&lt;/option&gt;\n" +
+    "					&lt;/select&gt;\n" +
+    "				&lt;/span&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "		&lt;div class=\"columns is-vcentered\"&gt;\n" +
+    "			&lt;div class=\"column\"&gt;\n" +
+    "				&lt;h5 class=\"title is-5\"&gt;{{ 'settings.clock' | translate }}&lt;/h5&gt;\n" +
+    "				&lt;p&gt;{{ 'settings.clock_hint' | translate }}&lt;/p&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "			&lt;div class=\"column has-text-right\"&gt;\n" +
+    "				&lt;span class=\"select\"&gt;\n" +
+    "					&lt;select name=\"clock\" id=\"clock\" ng-model=\"settings.clock\"&gt;\n" +
+    "						&lt;option value=\"dd. MMMM yyyy - HH:mm\"&gt;{{ '24h' | translate }}&lt;/option&gt;\n" +
+    "						&lt;option value=\"dd. MMMM yyyy - h:mm a\"&gt;{{ '12h' | translate }}&lt;/option&gt;\n" +
+    "					&lt;/select&gt;\n" +
+    "				&lt;/span&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "		&lt;div class=\"columns is-vcentered\"&gt;\n" +
+    "			&lt;div class=\"column\"&gt;\n" +
+    "				&lt;h5 class=\"title is-5\"&gt;{{ 'settings.keyboard' | translate }}&lt;/h5&gt;\n" +
+    "				&lt;p&gt;{{ 'settings.keyboard_hint' | translate }}&lt;/p&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "			&lt;div class=\"column has-text-right\"&gt;\n" +
+    "				&lt;span class=\"select\"&gt;\n" +
+    "					&lt;select name=\"layout\" id=\"layout\" ng-model=\"settings.keyboard\"&gt;\n" +
+    "						&lt;option value=\"qwertz\"&gt;{{ 'QWERTZ' | translate }}&lt;/option&gt;\n" +
+    "						&lt;option value=\"qwerty\"&gt;{{ 'QWERTY' | translate }}&lt;/option&gt;\n" +
+    "					&lt;/select&gt;\n" +
+    "				&lt;/span&gt;\n" +
+    "			&lt;/div&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/section&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/video_module/_template/_directive.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/video_module/_template/_directive.html",
+    "&lt;video class=\"c--video__player\" hm-tap=\"play()\" hm-press=\"showControls = !showControls\" hm-recognizer-options='[{\"type\": \"press\", \"time\": 500}, {\"type\":\"tap\",\"enable\": true}]'&gt;\n" +
+    "	&lt;source ng-repeat=\"file in playlist.tracks\" ng-if=\"playlist.tracks &amp;&amp; file.play\" ng-src=\"{{ file.path }}\" type=\"video/{{ file.type}}\"&gt;\n" +
+    "&lt;/video&gt;\n" +
+    "&lt;section class=\"c--video__controls c--controls__top\" ng-class=\"{'c--controls__show': showControls}\" hm-tap=\"resetInterval\"&gt;\n" +
+    "	&lt;div class=\"columns is-vcentered\"&gt;\n" +
+    "		&lt;div class=\"column\"&gt;\n" +
+    "			&lt;h3 class=\"title is-5\"&gt;{{ playlist.tracks[current].name }}&lt;/h3&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "		&lt;div class=\"column is-narrow has-text-right\" ng-click=\"daemonize()\"&gt;\n" +
+    "			&lt;span class=\"icon\"&gt;\n" +
+    "				&lt;i class=\"fa icon-times\"&gt;&lt;/i&gt;\n" +
+    "			&lt;/span&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/section&gt;\n" +
+    "&lt;section class=\"c--video__controls c--controls__bottom\" ng-class=\"{'c--controls__show': showControls}\" hm-tap=\"resetInterval\"&gt;\n" +
+    "\n" +
+    "	&lt;button class=\"button c--video__controls-l\" ng-click=\"prev()\"&gt;\n" +
+    "		&lt;i class=\"icon-media-rewind\"&gt;&lt;/i&gt;\n" +
+    "	&lt;/button&gt;\n" +
+    "	&lt;button class=\"button c--video__controls-xl\" ng-click=\"play()\" ng-class=\"{'is-active': controls.play}\"&gt;\n" +
+    "		&lt;i class=\"icon-media-play\" ng-if=\"!controls.play\"&gt;&lt;/i&gt;\n" +
+    "		&lt;i class=\"icon-media-pause\" ng-if=\"controls.play\"&gt;&lt;/i&gt;\n" +
+    "	&lt;/button&gt;\n" +
+    "\n" +
+    "	&lt;button class=\"button c--video__controls-l\" ng-click=\"next()\"&gt;\n" +
+    "		&lt;i class=\"icon-media-forward\"&gt;&lt;/i&gt;\n" +
+    "	&lt;/button&gt;\n" +
+    "\n" +
+    "	&lt;div class=\"columns c--audio__timetrack\"&gt;\n" +
+    "		&lt;div class=\"column has-text-centered\"&gt;\n" +
+    "			&lt;input ng-model=\"controls.time\" ng-change=\"seek()\" type=\"range\" min=\"0\" max=\"{{ controls.duration }}\" step=\"1\" /&gt;\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "\n" +
+    "	&lt;div class=\"columns c--audio__time\"&gt;\n" +
+    "		&lt;div class=\"column has-text-left\"&gt;\n" +
+    "			{{ controls.time | buildTime }}\n" +
+    "		&lt;/div&gt;\n" +
+    "		&lt;div class=\"column has-text-right\"&gt;\n" +
+    "			{{ controls.duration | buildTime }}\n" +
+    "		&lt;/div&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "\n" +
+    "&lt;/section&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/video_module/_template/add_to_playlist_modal.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/video_module/_template/add_to_playlist_modal.html",
+    "&lt;div class=\"columns\"&gt;\n" +
+    "	&lt;div class=\"column\"&gt;\n" +
+    "		&lt;h3 class=\"title is-4\"&gt;\n" +
+    "			{{ 'add_to_playlist_modal_title' | translate }}\n" +
+    "		&lt;/h3&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "&lt;div class=\"columns\"&gt;\n" +
+    "	&lt;div class=\"column\"&gt;\n" +
+    "		&lt;label for=\"paylist\"&gt;{{ 'choose_playlist_label' | translate }}&lt;/label&gt;\n" +
+    "		&lt;select name=\"playlist\" id=\"playlist\" ng-model=\"usePlaylist\"&gt;\n" +
+    "			&lt;option value=\"create_new\" selected&gt;{{ 'create_new_playlist' | translate }}&lt;/option&gt;\n" +
+    "      &lt;option ng-repeat=\"option in $parent.playlists\" value=\"{{ option.name }}\"&gt;{{ option.name | translate }}&lt;/option&gt;\n" +
+    "    &lt;/select&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "&lt;div class=\"columns\"&gt;\n" +
+    "	&lt;div class=\"column\"&gt;\n" +
+    "		&lt;button class=\"button\" ng-click=\"addToPlaylist()\"&gt;{{ 'modal.button_save' | translate }}&lt;/button&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/video_module/_template/main.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/video_module/_template/main.html",
+    "&lt;petron-filetree files=\"files\" func=\"func\" show=\"true\" type=\"video\"&gt;&lt;/petron-filetree&gt;\n" +
+    "\n" +
+    "\n" +
+    "&lt;!--\n" +
+    "&lt;ul&gt;\n" +
+    "	&lt;li ng-repeat=\"list in playlists\"&gt;\n" +
+    "		&lt;span ng-click=\"func.play(list.name)\" class=\"is-vcentered\"&gt;\n" +
+    "			&lt;span class=\"icon\"&gt;\n" +
+    "				&lt;i class=\"fa icon-playlist\"&gt;&lt;/i&gt;\n" +
+    "			&lt;/span&gt;\n" +
+    "			{{ list.name }}\n" +
+    "		&lt;/span&gt;\n" +
+    "		&lt;button class=\"button\" ng-click=\"removePlaylist(list.name, $index)\"&gt;{{ 'delete_playlist' | translate }}&lt;/button&gt;\n" +
+    "	&lt;/li&gt;\n" +
+    "&lt;/ul&gt;\n" +
+    "\n" +
+    "&lt;button class=\"button\" ng-click=\"clearCurrentQueue()\"&gt;{{ 'clear_queue_playlists' | translate }}&lt;/button&gt;\n" +
+    "&lt;button class=\"button\" ng-click=\"deleteAllPlaylists()\"&gt;{{ 'delete_all_playlists' | translate }}&lt;/button&gt;\n" +
+    "--&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/video_module/_template/new_playlist_modal.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/video_module/_template/new_playlist_modal.html",
+    "&lt;div class=\"columns\"&gt;\n" +
+    "	&lt;div class=\"column\"&gt;\n" +
+    "		&lt;h3 class=\"title is-4\"&gt;\n" +
+    "			{{ 'new_playlist_modal_title' | translate }}\n" +
+    "		&lt;/h3&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "&lt;div class=\"columns\"&gt;\n" +
+    "	&lt;div class=\"column\"&gt;\n" +
+    "		&lt;input type=\"text\" class=\"input\" ng-model=\"name\" placeholder=\"{{ 'new_playlist_modal_ph' | translate }}\"&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "&lt;div class=\"columns\"&gt;\n" +
+    "	&lt;div class=\"column\"&gt;\n" +
+    "		&lt;button class=\"button\" ng-click=\"savePlaylist()\"&gt;{{ 'modal.button_save' | translate }}&lt;/button&gt;\n" +
+    "	&lt;/div&gt;\n" +
+    "&lt;/div&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("js/_modules/video_module/_template/player.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/video_module/_template/player.html",
+    "&lt;petron-video&gt;&lt;/petron-video&gt;\n" +
+    "");
+}]);
+&nbsp;
+angular.module("loader.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("loader.html",
+    "&lt;!doctype html&gt;\n" +
+    "&lt;html&gt;\n" +
+    "\n" +
+    "&lt;head&gt;\n" +
+    "    &lt;meta charset=\"utf-8\"&gt;\n" +
+    "    &lt;title&gt;Petron&lt;/title&gt;\n" +
+    "\n" +
+    "    &lt;!-- bower:css --&gt;\n" +
+    "    &lt;link rel=\"stylesheet\" href=\"../app/vendor/ng-dialog/css/ngDialog.css\" /&gt;\n" +
+    "    &lt;link rel=\"stylesheet\" href=\"../app/vendor/ng-dialog/css/ngDialog-theme-default.css\" /&gt;\n" +
+    "    &lt;link rel=\"stylesheet\" href=\"../app/vendor/angular-rangeslider-directive/angular-range-slider.css\" /&gt;\n" +
+    "    &lt;link rel=\"stylesheet\" href=\"../app/vendor/leaflet/dist/leaflet.css\" /&gt;\n" +
+    "    &lt;link rel=\"stylesheet\" href=\"../app/vendor/mapbox-gl-js/mapbox-gl.css\" /&gt;\n" +
+    "    &lt;!-- endbower --&gt;\n" +
+    "\n" +
+    "    &lt;link rel=\"stylesheet\" href=\"petron.css\"&gt;\n" +
+    "&lt;/head&gt;\n" +
+    "\n" +
+    "&lt;body&gt;\n" +
+    "    &lt;div class=\"container\"&gt;\n" +
+    "        &lt;header&gt;\n" +
+    "            &lt;h1&gt;\n" +
+    "                Petron is loading...&lt;br&gt;\n" +
+    "                &lt;small&gt;All in One Car System&lt;/small&gt;\n" +
+    "            &lt;/h1&gt;\n" +
+    "\n" +
+    "        &lt;/header&gt;\n" +
+    "        &lt;section class=\"main\"&gt;&lt;/section&gt;\n" +
+    "        &lt;footer&gt;&lt;/footer&gt;\n" +
+    "    &lt;/div&gt;\n" +
+    "&lt;/body&gt;\n" +
+    "\n" +
+    "&lt;/html&gt;");
+}]);
+&nbsp;
+      }());</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Mar 31 2017 14:18:55 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

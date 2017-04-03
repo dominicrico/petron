@@ -27,9 +27,9 @@
         $scope.consumption = 0;
 
         var OBD = require('obd-parser');
-        var connector = require('obd-parser-bluetooth-connection');
+        $scope.connector = require('obd-parser-bluetooth-connection');
 
-        var connect = connector({
+        var connect = $scope.connector({
           name: 'obd'
         });
 

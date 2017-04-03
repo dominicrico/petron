@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for _modules/navigation_module/_controller/petron.main.controller.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">_modules/navigation_module/_controller/</a> petron.main.controller.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25.33% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>19/75</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">28.57% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>8/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">3.7% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/54</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144</td><td class="line-coverage quiet"><span class="cline-any cline-yes">38×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function () {              var __filename, __dirname;  <span class="missing-if-branch" title="else path not taken" >E</span>if (window.require) {                                  __filename = window.location.pathname !== '/debug.html' ? '/Users/coderocket/Development/petron/node_modules/karma/static/context.html' : <span class="branch-1 cbranch-no" title="branch not covered" >'/Users/coderocket/Development/petron/node_modules/karma/static/debug.html';</span>                __dirname = window.require('path').dirname(__filename);    <span class="missing-if-branch" title="else path not taken" >E</span>if (window.module) {      module.filename = __filename;    }  }    <span class="missing-if-branch" title="else path not taken" >E</span>if (window.require) {    var __require = window.require;    var __requireResolve = __require.resolve;        <span class="missing-if-branch" title="if path not taken" >I</span>if (!window.__karmaBasePathAddedToModule) {      <span class="cstat-no" title="statement not covered" >module.paths = module.paths.concat(__require('module')._nodeModulePaths('/Users/coderocket/Development/petron')); </span>     <span class="cstat-no" title="statement not covered" >window.__karmaBasePathAddedToModule = true; </span>   }        var __requireFilepath = function (filepath) {                  <span class="missing-if-branch" title="if path not taken" >I</span>if (filepath &amp;&amp; filepath[0] === '.') {        <span class="cstat-no" title="statement not covered" >filepath = __dirname + '/' + filepath; </span>     }            return filepath;    };        window.require = function (filepath) {      return __require(__requireFilepath(filepath));    };    window.require.resolve = <span class="fstat-no" title="function not covered" >function (filepath) {</span>      <span class="cstat-no" title="statement not covered" >return __requireResolve(__requireFilepath(filepath)); </span>   };  }                  (function() {
+	'use strict';
+&nbsp;
+	angular.module('petron.modules.navigation')
+		.controller('controller.navigationbox.main', ['$scope', '$rootScope',
+			'petron.navi', '$timeout', '$state',
+<span class="fstat-no" title="function not covered" >			function($scope, $rootScope, petronNavi, $timeout, $state) {</span>
+<span class="cstat-no" title="statement not covered" >				$rootScope.title = 'navigation_module';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				$scope.results = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				$scope.model = {</span>
+					country: 'DE',
+					city: '',
+					street: ''
+				};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				$scope.ph = {</span>
+					country: 'country_dest_ph',
+					city: 'city_dest_ph',
+					street: 'street_dest_ph'
+				};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				$scope.nav = {</span>
+					country: 'DE',
+					city: null,
+					street: null,
+					geo: null
+				};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				$scope.addressIndex = 1;</span>
+<span class="cstat-no" title="statement not covered" >				$scope.addressParts = ['country', 'city', 'street'];</span>
+<span class="cstat-no" title="statement not covered" >				$scope.addressPart = $scope.addressParts[$scope.addressIndex];</span>
+<span class="cstat-no" title="statement not covered" >				$scope.showFullAddress = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				$scope.addToAddress = <span class="fstat-no" title="function not covered" >function(address) {</span></span>
+<span class="cstat-no" title="statement not covered" >					if (address !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >						$scope.nav[$scope.addressPart] = address.properties.name || address.properties</span>
+							.street + ((address.properties.housenumber) ? ' ' + address.properties
+								.housenumber :
+								'');
+					} else {
+<span class="cstat-no" title="statement not covered" >						$scope.nav[$scope.addressPart] = $scope.model[$scope.addressPart];</span>
+					}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >					if ($scope.addressIndex &lt; $scope.addressParts.length - 1) {</span>
+<span class="cstat-no" title="statement not covered" >						$scope.addressIndex = $scope.addressIndex + 1;</span>
+					} else {
+<span class="cstat-no" title="statement not covered" >						$scope.showFullAddress = true;</span>
+<span class="cstat-no" title="statement not covered" >						$scope.nav.geo = {</span>
+							lat: address.geometry.coordinates[0],
+							lon: address.geometry.coordinates[1]
+						};
+					}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >					$scope.addressPart = $scope.addressParts[$scope.addressIndex];</span>
+<span class="cstat-no" title="statement not covered" >					$scope.results = null;</span>
+				};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				$scope.stepBack = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >					if ($scope.addressIndex - 1 &gt;= 0) {</span>
+<span class="cstat-no" title="statement not covered" >						$scope.addressIndex = $scope.addressIndex - 1;</span>
+<span class="cstat-no" title="statement not covered" >						$scope.results = null;</span>
+<span class="cstat-no" title="statement not covered" >						$scope.showFullAddress = false;</span>
+<span class="cstat-no" title="statement not covered" >						$scope.addressPart = $scope.addressParts[$scope.addressIndex];</span>
+					}
+				};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				$scope.resetDestination = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >					$scope.nav = {</span>
+						country: 'DE',
+						city: null,
+						street: null
+					};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >					$scope.model = {</span>
+						country: 'DE',
+						city: '',
+						street: ''
+					};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >					$scope.addressIndex = 1;</span>
+<span class="cstat-no" title="statement not covered" >					$scope.showFullAddress = false;</span>
+<span class="cstat-no" title="statement not covered" >					$scope.addressPart = $scope.addressParts[$scope.addressIndex];</span>
+				};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				$scope.startRouting = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >					$rootScope.navigation = {</span>
+						route: {
+							dest: {
+								lat: $scope.nav.geo.lat,
+								lon: $scope.nav.geo.lon
+							},
+							start: {
+								lat: 7.9687313,
+								lon: 48.5584235,
+							},
+							isNew: true
+						}
+					};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >					return $state.go('petron.navigationbox.map');</span>
+				};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				var _lastRequest;</span>
+<span class="cstat-no" title="statement not covered" >				var _lookUp = <span class="fstat-no" title="function not covered" >function(type) {</span></span>
+<span class="cstat-no" title="statement not covered" >					if ($scope.model[type].length &gt;= 3) {</span>
+<span class="cstat-no" title="statement not covered" >						var lookUp = vsprintf('%s, %s, %s', [$scope.model.country, $scope.model</span>
+							.city,
+							$scope.model.street
+						]);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >						var request = petronNavi.lookUpAddress(lookUp, type);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >						if (!_lastRequest) {</span>
+<span class="cstat-no" title="statement not covered" >							_lastRequest = request;</span>
+						} else {
+<span class="cstat-no" title="statement not covered" >							_lastRequest.cancel('new Request');</span>
+<span class="cstat-no" title="statement not covered" >							_lastRequest = request;</span>
+						}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >						request.promise.then(<span class="fstat-no" title="function not covered" >function(res) {</span></span>
+<span class="cstat-no" title="statement not covered" >							var results = [];</span>
+<span class="cstat-no" title="statement not covered" >							res.features.forEach(<span class="fstat-no" title="function not covered" >function(r) {</span></span>
+<span class="cstat-no" title="statement not covered" >								results.push(r);</span>
+							});
+&nbsp;
+<span class="cstat-no" title="statement not covered" >							$timeout(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >								$scope.$apply(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >									$scope.results = results;</span>
+								});
+							});
+						});
+					}
+				};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				$scope.$watchCollection('model', <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >					_lookUp($scope.addressPart, $scope.addressParts[$scope.addressIndex]);</span>
+				});
+			}
+		]);
+})();
+&nbsp;
+      }());</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Mar 31 2017 14:18:55 GMT+0200 (CEST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

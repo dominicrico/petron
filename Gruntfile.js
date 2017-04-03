@@ -75,6 +75,7 @@ module.exports = function(grunt) {
           }
         },
         src: [
+          'karam.conf.js',
           'src/index.html',
           'src/loader.html'
         ]
@@ -125,6 +126,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('default', 'start electron app and watch for changes',
+    grunt.task.run('compile'),
     function() {
       grunt.log.ok('Starting Petron...');
       electron.start(function() {

@@ -7,3 +7,4 @@ app/vendor/**/*.js
 app/mapbox/**/*.js
 app/tiles/**/*.js
 app/js/_main/petron.templates.js
+app/js/**/*.spec.js
