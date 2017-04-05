@@ -27,7 +27,7 @@
   "dependencies": {
     "jquery": "~1.10",
     "angular": "^1.5.8",
-    "bulma": "~0.2.1",
+    "bulma": "0.2.1",
     "angular-ui-router": "ui-router#^0.3.1",
     "angular-electron": "^0.2.1",
     "angular-sanitize": "^1.6.3",

@@ -8,8 +8,8 @@
         ngDialog, $state, $timeout, PetronTuner) {
         $rootScope.title = 'fm_module';
 
-        var tuner = new PetronTuner();
-        tuner.turnOn();
+        // var tuner = new PetronTuner();
+        // tuner.turnOn();
 
         $rootScope.rightMenuShow = true;
         $rootScope.rightMenuLabel = 'menu_label_favourites';
