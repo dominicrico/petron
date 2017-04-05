@@ -57,7 +57,6 @@
     "electron-debug": "^1.0.0",
     "electron-installer-debian": "^0.4.0",
     "electron-packager": "^8.1.0",
-    "electron-prebuilt": "^1.4.3",
     "electron-rebuild": "^1.5.7",
     "grunt": "^1.0.1",
     "grunt-contrib-jshint": "^1.1.0",
