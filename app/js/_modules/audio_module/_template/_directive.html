@@ -44,7 +44,7 @@
 
 <div class="columns c--audio__timetrack">
 	<div class="column has-text-centered">
-		<input id="timetracker" ng-model="controls.time" ng-change="seek()" type="range" min="0" max="{{ controls.duration }}" step="1" />
+		<input ng-model="controls.time" ng-change="seek()" type="range" min="0" max="{{ controls.duration }}" step="1" />
 	</div>
 </div>
 
@@ -57,7 +57,7 @@
 	</div>
 </div>
 
-<audio class="c--audio__player" preload="auto" ng-click="play()">
+<audio class="c--audio__player" preload="auto">
 	<source ng-repeat="file in playlist.tracks" ng-if="playlist.tracks && file.play" ng-src="{{ file.path }}" type="audio/{{ file.type}}">
 </audio>
 <!--

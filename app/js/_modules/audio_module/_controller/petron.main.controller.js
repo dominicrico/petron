@@ -4,24 +4,17 @@
   angular.module('petron.modules.audio')
     .controller('controller.audiobox.main', ['$scope', '$rootScope',
       'petron.fs',
-      'petron.playlist', 'ngDialog', '$state', '$timeout',
+      'petron.playlist', 'ngDialog', '$state',
       function($scope, $rootScope, petronFs, petronPlaylist,
-        ngDialog, $state, $timeout) {
+        ngDialog, $state) {
         $rootScope.title = 'audio_module';
         $rootScope.rightMenuShow = true;
         $rootScope.rightMenuLabel = 'menu_label_playlists';
         $scope.playlists = {};
 
-        petronPlaylist.setType('audio');
-
         $scope.files = null;
-        $rootScope.$on('audio.playlists:loaded', function() {
-          $timeout(function() {
-            $scope.$apply(function() {
-              $scope.playlists = $rootScope.audio.playlists;
-            });
-          });
-        });
+
+        $scope.playlists = $rootScope.audio.playlists;
 
         petronFs.getAudioFiles().then(function(files) {
           $scope.files = $rootScope.files = files;
@@ -41,6 +34,7 @@
 
         $scope.func = {
           play: function(playlist) {
+            console.log('PLAY FUNC CALLED')
             petronPlaylist.playPlaylist(playlist).then(function(queue) {
               $rootScope.audio.queue = queue;
               petronPlaylist.save();

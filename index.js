@@ -16,7 +16,6 @@ require('electron-debug')({
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
-let loadingScreen;
 let windowParams = {
   width: 800,
   height: 480,
@@ -48,15 +47,7 @@ function createWindow() {
   });
 
   mainWindow.webContents.on('did-finish-load', () => {
-    setTimeout(function() {
-      mainWindow.show();
-
-      if (loadingScreen) {
-        let loadingScreenBounds = loadingScreen.getBounds();
-        mainWindow.setBounds(loadingScreenBounds);
-        loadingScreen.close();
-      }
-    }, 2000);
+    mainWindow.show();
   });
 
   // Emitted when the window is closed.
@@ -70,22 +61,10 @@ function createWindow() {
   app.focus();
 }
 
-function createLoadingScreen() {
-  loadingScreen = new BrowserWindow(Object.assign(windowParams, {
-    parent: mainWindow
-  }));
-  loadingScreen.loadURL(`file://${__dirname}/app/loader.html`);
-  loadingScreen.on('closed', () => loadingScreen = null);
-  loadingScreen.webContents.on('did-finish-load', () => {
-    loadingScreen.show();
-  });
-}
-
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', () => {
-  createLoadingScreen();
   createWindow();
 });
 

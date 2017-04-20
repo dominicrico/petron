@@ -31,7 +31,7 @@
 		<petron-filetree class="has-tabs" files="audio.queue.tracks" func="func" type="audio_playlist" ng-show="!visibleFileTree || visibleFileTree === 'playlist'"></petron-filetree>
 	</aside>
 
-	<main class="c--audio__main column is-5">
+	<main class="c--audio__main column is-5" ng-if="$root.audio.queue || $root.audio.playlist">
 		<petron-audio></petron-audio>
 	</main>
 

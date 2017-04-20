@@ -601,7 +601,7 @@ angular.module("js/_modules/audio_module/_template/_directive.html", []).run(["$
     "	</div>\n" +
     "</div>\n" +
     "\n" +
-    "<audio class=\"c--audio__player\" preload=\"auto\" ng-click=\"play()\">\n" +
+    "<audio class=\"c--audio__player\" preload=\"auto\">\n" +
     "	<source ng-repeat=\"file in playlist.tracks\" ng-if=\"playlist.tracks && file.play\" ng-src=\"{{ file.path }}\" type=\"audio/{{ file.type}}\">\n" +
     "</audio>\n" +
     "<!--\n" +

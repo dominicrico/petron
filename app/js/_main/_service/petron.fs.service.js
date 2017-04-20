@@ -13,7 +13,7 @@
           var audioSources = [];
 
           if (!fpath) {
-            fpath = app.getPath('home') + '/Downloads';
+            fpath = app.getPath('home') + '/Music';
           }
 
           var files = fs.readdirSync(fpath);

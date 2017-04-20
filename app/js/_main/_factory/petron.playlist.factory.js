@@ -189,6 +189,7 @@
           },
 
           loadPlaylists: function(type) {
+            console.log('LOADING LISTS');
             var deferred = $q.defer();
 
             if (type) {

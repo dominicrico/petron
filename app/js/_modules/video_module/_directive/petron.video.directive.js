@@ -14,7 +14,7 @@
             $rootScope, $element) {
             $scope._video = $element.find('video')[0];
             $scope.$video = $element.find('video');
-
+            console.log('#####VIDEO PLAYER#####')
             var _prepare = function() {
               petronPlaylist.setType('video');
               petronDaemon.disable();
