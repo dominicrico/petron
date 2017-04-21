@@ -3,9 +3,10 @@
 
   angular.module('petron.modules.audio')
     .directive('petronAudio', ['petron.fs', 'petron.playlist', '$timeout',
-      '$interval', 'petron.daemon', '$state',
+      '$q', 'petron.daemon', '$state', 'fs',
       function(
-        petronFs, petronPlaylist, $timeout, $interval, petronDaemon, $state
+        petronFs, petronPlaylist, $timeout, $q, petronDaemon, $state,
+        fs
       ) {
         return {
           templateUrl: 'js/_modules/audio_module/_template/_directive.html',
@@ -15,18 +16,18 @@
             function(
               $scope,
               $rootScope, $element, $translatePartialLoader, $translate) {
-              $scope._audio = $element.find('audio')[0];
-              $scope.$audio = $element.find('audio');
               $scope.isInit = false;
 
-              var TIMEOUT = 1000;
+              $scope.context = new AudioContext();
+              $scope.gain = $scope.context.createGain();
+              $scope.gain.gain.value = 0.5;
+              $scope.gain.connect($scope.context.destination);
 
               $translate('error.file_not_found').then(function(
                 translation) {
                 $scope.error_file_not_found = translation;
               });
 
-              var _source;
               var _handleSourceError = function() {
                 $scope.playlist.tracks[$scope.current].title = $scope.playlist
                   .tracks[
@@ -39,22 +40,19 @@
                 $scope.next();
               };
 
+              $rootScope.$watch('settings.volume', function(volume) {
+                $scope.gain.gain.value = volume;
+              }, false);
+
               var _prepare = function() {
                 petronDaemon.disable();
                 petronDaemon.register('audio', $state.current.name);
 
-                $element.find('audio')[0].volume = angular.copy(
-                  $rootScope.settings
+                $scope.gain.gain.value = angular.copy($rootScope.settings
                   .volume);
 
                 $rootScope.audio.isPrepared = true;
               };
-
-              $rootScope.$watch('settings.volume', function() {
-                $element.find('audio')[0].volume = angular.copy(
-                  $rootScope.settings
-                  .volume);
-              });
 
               var _initialize = function() {
                 if ($scope.isInit === false) {
@@ -87,28 +85,70 @@
                       if ($scope.playlist && $scope.playlist.tracks &&
                         $scope.playlist
                         .tracks.length) {
-                        $scope.playlist.tracks[$scope.current].play =
-                          true;
-                        $timeout(function() {
-                          $scope._audio.load();
-                        }, TIMEOUT);
+                        $rootScope.playTrack();
                       }
-
-                      $timeout(function() {
-                        _source = angular.element(angular.element(
-                            $scope.$audio)
-                          .children()[
-                            0]);
-                        _source.on('error',
-                          _handleSourceError);
-                      });
                     });
                   });
                 }
               };
 
+              var _checkAudioFile = function() {
+                if (!$scope.playlist.tracks[$scope.current].buffer) {
+                  var bufferedSource;
+                  try {
+                    bufferedSource = fs.readFileSync(decodeURI($scope
+                      .playlist
+                      .tracks[$scope.current].path), null).buffer;
+                  } catch (e) {
+                    return _handleSourceError();
+                  }
+
+                  return $scope.context.decodeAudioData(bufferedSource);
+                } else {
+                  var deferred = $q.defer();
+                  deferred.resolve($scope.playlist.tracks[$scope.current]
+                    .buffer);
+                  return deferred.promise;
+                }
+              };
+
+              var _ended = function() {
+                if ($scope.controls.time === parseInt($scope.controls.duration)) {
+                  if (!$scope.controls.repeat) {
+                    $scope.next();
+                  }
+                }
+              };
+
+              var _wasSeeking = false;
+              var _timer;
+              var _initSource = function() {
+                if (_timer) {
+                  $timeout.cancel(_timer);
+                }
+                if (_wasSeeking !== true) {
+                  $scope.controls.time = 0;
+                } else {
+                  _wasSeeking = false;
+                }
+                $scope.bufferSource = $scope.context.createBufferSource();
+                $scope.bufferSource.connect($scope.gain);
+                $scope.bufferSource.onended = function() {
+                  _ended();
+                };
+              };
+
+              $scope._displayTime = function() {
+                _timer = $timeout(function() {
+                  if ($scope.playlist.tracks[$scope.current].play ===
+                    true) {
+                    $scope.controls.time += 1;
+                  }
+                  requestAnimationFrame($scope._displayTime);
+                }, 1000);
+              };
+
               $rootScope.$on('audio.queue:changed', _initialize);
-              $rootScope.$on('audio.playlists:loaded', _initialize);
 
               $rootScope.$on('audio.queue:update', function() {
                 $timeout(function() {
@@ -131,96 +171,60 @@
                 };
               }
 
-              $scope.$audio.on('error', function(e) {
-                console.log(e.target.error);
-              });
-
-              $scope.$audio.on('timeupdate', function() {
-                $scope.controls.time = $scope._audio.currentTime;
-              });
-
-              $scope.$audio.on('durationchange', function() {
-                $scope.controls.duration = $scope._audio.duration;
-              });
-
-              var _canPlay = false;
-              $scope.$audio.on('canplay', function() {
-                if (_canPlay) {
-                  return false;
-                }
-                $scope._audio.pause();
-                if ($rootScope.daemon.player && $rootScope.daemon.player
-                  .audio !== undefined) {
-                  $scope._audio.currentTime =
-                    $rootScope.daemon.player.audio.currentTime;
-                  $rootScope.daemon.player.audio = undefined;
-                }
-                $timeout(function() {
-                  $scope._audio.play();
-                }, TIMEOUT);
-                _canPlay = true;
-              });
-
-              $scope.$audio.on('loadstart', function() {
-                $scope._audio.pause();
-                _source.off('error', _handleSourceError);
-                _source = angular.element(angular.element($scope.$audio)
-                  .children()[0]);
-                _source.on('error', _handleSourceError);
-              });
-
-              $scope.$audio.on('ended', function() {
-                _canPlay = false;
-                if ($scope.controls.repeat) {
-                  $timeout(function() {
-                    $scope._audio.load();
-                  }, TIMEOUT);
-                } else {
-                  $scope.next();
-                }
-              });
-
               $scope.seek = function() {
-                $scope._audio.currentTime = $scope.controls.time;
+                _wasSeeking = true;
+                $scope.bufferSource.stop(0);
+                $rootScope.playTrack();
               };
 
               $rootScope.playTrack = function(track) {
-                _canPlay = false;
-                $scope._audio.pause();
                 if ($scope.playlist.tracks[$scope.current]) {
                   $scope.playlist.tracks[$scope.current].play = false;
                 }
-                $scope.current = track;
+                if (track !== undefined) {
+                  $scope.current = track;
+                }
                 $scope.playlist.tracks[$scope.current].play = true;
-                $timeout(function() {
-                  $scope._audio.load();
-                }, TIMEOUT);
+                _checkAudioFile().then(function(buffer) {
+                  $scope.playlist.tracks[$scope.current].buffer =
+                    buffer;
+                  if ($scope.bufferSource && $scope.bufferSource.buffer) {
+                    $scope.bufferSource.stop();
+                  }
+
+                  _initSource();
+
+                  $scope.bufferSource.buffer = buffer;
+                  $scope.controls.duration = $scope.bufferSource.buffer
+                    .duration;
+                  $scope._displayTime();
+                  var offset = angular.copy($scope.controls.time);
+                  $scope.bufferSource.start(0, offset);
+                });
               };
 
-              $scope.play = function(force) {
-                if (!$scope.controls.play || force) {
+              $scope.play = function() {
+                if (!$scope.controls.play) {
                   $scope.controls.play = true;
-                  $timeout(function() {
-                    $scope._audio.play();
-                  }, 50);
-
+                  $scope.context.resume();
                 } else {
                   $scope.controls.play = false;
-                  $timeout(function() {
-                    $scope._audio.pause();
-                  }, 35);
+                  $scope.context.suspend();
                 }
               };
 
               $scope.toggleRepeat = function() {
                 if (!$scope.controls.repeat && $scope.controls.loop) {
-                  $scope.controls.repeat = true;
+                  $scope.controls.repeat = $scope.bufferSource.loop =
+                    true;
                   $scope.controls.loop = false;
                 } else if (!$scope.controls.repeat && !$scope.controls.loop) {
-                  $scope.controls.repeat = false;
+                  $scope.controls.repeat = $scope.bufferSource.loop =
+                    false;
                   $scope.controls.loop = true;
                 } else {
-                  $scope.controls.repeat = false;
+                  $scope.controls.repeat = $scope.bufferSource.loop =
+                    false;
                   $scope.controls.loop = false;
                 }
               };
@@ -228,7 +232,6 @@
               var _playlist;
 
               $scope.shuffle = function() {
-                $scope._audio.pause();
                 $scope.controls.shuffle = !$scope.controls.shuffle;
                 $scope.playlist.tracks[$scope.current].play = false;
 
@@ -242,64 +245,44 @@
                 }
 
                 $scope.current = 0;
-                $scope.playlist.tracks[$scope.current].play = true;
-
-                $timeout(function() {
-                  $scope._audio.load();
-                }, TIMEOUT);
+                $rootScope.playTrack();
               };
 
               $scope.next = function() {
-                _canPlay = false;
-                $scope._audio.pause();
                 if ($scope.playlist.tracks[$scope.current + 1]) {
-                  $scope._audio.currentTime = 0;
                   $scope.playlist.tracks[$scope.current].play = false;
                   $scope.current = $scope.current + 1;
-                  $scope.playlist.tracks[$scope.current].play = true;
                 } else if ($scope.controls.loop && !$scope.playlist.tracks[
                     $scope
                     .current +
                     1]) {
-                  $scope._audio.currentTime = 0;
                   $scope.playlist.tracks[$scope.current].play = false;
                   $scope.current = 0;
-                  $scope.playlist.tracks[$scope.current].play = true;
                 } else {
                   return false;
                 }
-                $timeout(function() {
-                  $scope._audio.load();
-                }, TIMEOUT);
+
+                $rootScope.playTrack();
               };
 
               $scope.previous = function() {
-                _canPlay = false;
-                $scope._audio.pause();
                 if ($scope.playlist.tracks[$scope.current - 1]) {
-                  $scope._audio.currentTime = 0;
                   $scope.playlist.tracks[$scope.current].play = false;
                   $scope.current = $scope.current - 1;
-                  $scope.playlist.tracks[$scope.current].play = true;
                 } else if ($scope.controls.loop && !$scope.playlist.tracks[
                     $scope
                     .current -
                     1]) {
-                  $scope._audio.currentTime = 0;
                   $scope.playlist.tracks[$scope.current].play = false;
                   $scope.current = 0;
-                  $scope.playlist.tracks[$scope.current].play = true;
                 } else {
                   return false;
                 }
 
-                $timeout(function() {
-                  $scope._audio.load();
-                }, TIMEOUT);
+                $rootScope.playTrack();
               };
 
               $scope.daemonize = function() {
-                _canPlay = false;
                 $rootScope.audio.player = $scope;
                 if (!$rootScope.audio.player.playlist) {
                   $rootScope.audio.player.playlist = $rootScope.audio.player
@@ -317,6 +300,8 @@
                   $scope.daemonize();
                 }
               });
+
+              _initialize();
             }
           ]
         };

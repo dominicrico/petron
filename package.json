@@ -39,7 +39,7 @@
   ],
   "dependencies": {
     "diskdb": "^0.1.15",
-    "electron": "1.4.15",
+    "electron": "^1.0.1",
     "electron-connect": "^0.6.0",
     "electron-json-storage": "^2.0.0",
     "ffmpeg": "0.0.4",

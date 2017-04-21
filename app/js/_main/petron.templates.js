@@ -588,7 +588,7 @@ angular.module("js/_modules/audio_module/_template/_directive.html", []).run(["$
     "\n" +
     "<div class=\"columns c--audio__timetrack\">\n" +
     "	<div class=\"column has-text-centered\">\n" +
-    "		<input id=\"timetracker\" ng-model=\"controls.time\" ng-change=\"seek()\" type=\"range\" min=\"0\" max=\"{{ controls.duration }}\" step=\"1\" />\n" +
+    "		<input ng-model=\"controls.time\" onchange=\"angular.element(this).scope().seek()\" type=\"range\" min=\"0\" max=\"{{ controls.duration }}\" step=\"1\" />\n" +
     "	</div>\n" +
     "</div>\n" +
     "\n" +
@@ -695,7 +695,7 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templa
     "		<petron-filetree class=\"has-tabs\" files=\"audio.queue.tracks\" func=\"func\" type=\"audio_playlist\" ng-show=\"!visibleFileTree || visibleFileTree === 'playlist'\"></petron-filetree>\n" +
     "	</aside>\n" +
     "\n" +
-    "	<main class=\"c--audio__main column is-5\">\n" +
+    "	<main class=\"c--audio__main column is-5\" ng-if=\"$root.audio.queue || $root.audio.playlist\">\n" +
     "		<petron-audio></petron-audio>\n" +
     "	</main>\n" +
     "\n" +
