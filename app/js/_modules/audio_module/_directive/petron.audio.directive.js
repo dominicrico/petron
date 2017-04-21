@@ -4,18 +4,19 @@
   angular.module('petron.modules.audio')
     .directive('petronAudio', ['petron.fs', 'petron.playlist', '$timeout',
       '$q', 'petron.daemon', '$state', 'fs',
-      function(
-        petronFs, petronPlaylist, $timeout, $q, petronDaemon, $state,
-        fs
-      ) {
+      function(petronFs, petronPlaylist, $timeout, $q, petronDaemon, $state,
+        fs) {
         return {
           templateUrl: 'js/_modules/audio_module/_template/_directive.html',
           restrict: 'E',
           controller: ['$scope', '$rootScope', '$element',
             '$translatePartialLoader', '$translate',
-            function(
-              $scope,
-              $rootScope, $element, $translatePartialLoader, $translate) {
+            function($scope, $rootScope, $element,
+              $translatePartialLoader,
+              $translate) {
+              var _wasSeeking = false;
+              var _timer;
+
               $scope.isInit = false;
 
               $scope.context = new AudioContext();
@@ -116,12 +117,12 @@
                 if ($scope.controls.time === parseInt($scope.controls.duration)) {
                   if (!$scope.controls.repeat) {
                     $scope.next();
+                  } else {
+                    $rootScope.playTrack();
                   }
                 }
               };
 
-              var _wasSeeking = false;
-              var _timer;
               var _initSource = function() {
                 if (_timer) {
                   $timeout.cancel(_timer);
@@ -148,7 +149,10 @@
                 }, 1000);
               };
 
-              $rootScope.$on('audio.queue:changed', _initialize);
+              $rootScope.$on('audio.queue:changed', function() {
+                $scope.isInit = false;
+                _initialize();
+              });
 
               $rootScope.$on('audio.queue:update', function() {
                 $timeout(function() {
@@ -195,6 +199,7 @@
                   _initSource();
 
                   $scope.bufferSource.buffer = buffer;
+
                   $scope.controls.duration = $scope.bufferSource.buffer
                     .duration;
                   $scope._displayTime();
@@ -215,16 +220,13 @@
 
               $scope.toggleRepeat = function() {
                 if (!$scope.controls.repeat && $scope.controls.loop) {
-                  $scope.controls.repeat = $scope.bufferSource.loop =
-                    true;
+                  $scope.controls.repeat = true;
                   $scope.controls.loop = false;
                 } else if (!$scope.controls.repeat && !$scope.controls.loop) {
-                  $scope.controls.repeat = $scope.bufferSource.loop =
-                    false;
+                  $scope.controls.repeat = false;
                   $scope.controls.loop = true;
                 } else {
-                  $scope.controls.repeat = $scope.bufferSource.loop =
-                    false;
+                  $scope.controls.repeat = false;
                   $scope.controls.loop = false;
                 }
               };
@@ -244,8 +246,7 @@
                   $scope.playlist = $rootScope.audio.queue = _playlist;
                 }
 
-                $scope.current = 0;
-                $rootScope.playTrack();
+                $rootScope.playTrack(0);
               };
 
               $scope.next = function() {
