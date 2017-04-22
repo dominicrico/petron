@@ -14,7 +14,7 @@
             $rootScope, $element) {
             $scope._video = $element.find('video')[0];
             $scope.$video = $element.find('video');
-            console.log('#####VIDEO PLAYER#####')
+
             var _prepare = function() {
               petronDaemon.disable();
               petronDaemon.register('video', $state.current.name);
@@ -22,10 +22,8 @@
               $rootScope.video.player = $scope;
 
               $scope._video.volume = $rootScope.settings.volume;
-              console.log($rootScope.settings.volume);
               $rootScope.$watch('settings.volume', function(vol) {
-                console.log(vol);
-                $scope._video.volume = vol;
+                $scope._video.volume = parseFloat(vol);
               });
 
               $rootScope.video.isPrepared = true;
@@ -72,6 +70,7 @@
 
             $scope.$watch('showControls', function() {
               if ($scope.showControls) {
+                $interval.cancel(checkControlsStatus);
                 checkControlsStatus = $interval(function() {
                   if ($scope.showControls && !checkInit) {
                     $interval.cancel(checkControlsStatus);
