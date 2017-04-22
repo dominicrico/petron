@@ -16,23 +16,16 @@
             $scope.$video = $element.find('video');
             console.log('#####VIDEO PLAYER#####')
             var _prepare = function() {
-              petronPlaylist.setType('video');
               petronDaemon.disable();
               petronDaemon.register('video', $state.current.name);
-              petronPlaylist.loadPlaylists('video').then(function(
-                video) {
-                $rootScope.video = {
-                  queue: video.queue,
-                  playlists: video.playlists || {}
-                };
 
-                $rootScope.video.player = $scope;
-              });
+              $rootScope.video.player = $scope;
 
               $scope._video.volume = $rootScope.settings.volume;
-
-              $rootScope.$watch('settings.audio', function(volO, volN) {
-                $scope._video.volume = volN;
+              console.log($rootScope.settings.volume);
+              $rootScope.$watch('settings.volume', function(vol) {
+                console.log(vol);
+                $scope._video.volume = vol;
               });
 
               $rootScope.video.isPrepared = true;
@@ -52,11 +45,14 @@
                   $scope.current = 0;
                   $scope.playlist = $rootScope.video.queue;
 
-                  if ($scope.playlist.tracks && $scope.playlist
+                  if ($scope.playlist && $scope.playlist.tracks &&
+                    $scope.playlist
                     .tracks.length) {
                     $scope.playlist.tracks[$scope.current].play =
                       true;
                     $scope._video.load();
+                  } else {
+                    return $state.go('petron.videobox.main');
                   }
                 });
               });

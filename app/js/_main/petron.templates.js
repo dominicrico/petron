@@ -1111,7 +1111,7 @@ angular.module("js/_modules/video_module/_template/_directive.html", []).run(["$
     "\n" +
     "	<div class=\"columns c--audio__timetrack\">\n" +
     "		<div class=\"column has-text-centered\">\n" +
-    "			<input ng-model=\"controls.time\" ng-change=\"seek()\" type=\"range\" min=\"0\" max=\"{{ controls.duration }}\" step=\"1\" />\n" +
+    "			<input ng-model=\"controls.time\" onchange=\"angular.element(this).scope().seek()\" type=\"range\" min=\"0\" max=\"{{ controls.duration }}\" step=\"1\" />\n" +
     "		</div>\n" +
     "	</div>\n" +
     "\n" +

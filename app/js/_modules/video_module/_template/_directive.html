@@ -29,7 +29,7 @@
 
 	<div class="columns c--audio__timetrack">
 		<div class="column has-text-centered">
-			<input ng-model="controls.time" ng-change="seek()" type="range" min="0" max="{{ controls.duration }}" step="1" />
+			<input ng-model="controls.time" onchange="angular.element(this).scope().seek()" type="range" min="0" max="{{ controls.duration }}" step="1" />
 		</div>
 	</div>
 
