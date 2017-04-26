@@ -1,117 +1,122 @@
 {
-	"petron": "Petron",
-	"claim": "",
+  "petron": "Petron",
+  "claim": "",
 
-	"clock_unit": "Uhr",
-	"on": "an",
-	"off": "aus",
-	"metric": "metrisch",
-	"miles": "meilen",
-	"gallons": "Gallonen",
-	"liter": "Liter",
-	"12h": "12h-Format",
-	"24h": "24h-Format",
+  "clock_unit": "Uhr",
+  "on": "an",
+  "off": "aus",
+  "metric": "metrisch",
+  "miles": "meilen",
+  "gallons": "Gallonen",
+  "liter": "Liter",
+  "12h": "12h-Format",
+  "24h": "24h-Format",
 
-	"radio_module": "Radio",
-	"music_module": "Musik",
-	"video_module": "Video",
-	"health_module": "Health",
-	"navigation_module": "Navigation",
-	"settings_module": "Einstellungen",
+  "radio_module": "Radio",
+  "music_module": "Musik",
+  "video_module": "Video",
+  "health_module": "Health",
+  "navigation_module": "Navigation",
+  "settings_module": "Einstellungen",
 
-	"menu_label_playlists": "Playlisten",
-	"menu_label_favourites": "Favoriten",
-	"no_stations": "Keine gespeicherten Sender...",
-	"no_playlists": "Keine gespeicherten Playlisten...",
+  "menu_label_playlists": "Playlisten",
+  "menu_label_favourites": "Favoriten",
+  "no_stations": "Keine gespeicherten Sender...",
+  "no_playlists": "Keine gespeicherten Playlisten...",
 
-	"no_file": "Keine verwendbaren Datein gefunden!",
+  "no_file": "Keine verwendbaren Datein gefunden!",
 
-	"petron_playlist_general": "Warteschlange",
+  "petron_playlist_general": "Warteschlange",
 
-	"new_playlist": "Neue Playlist",
-	"delete_playlist": "Playlist löschen",
-	"edit_playlist": "Playlist ändern",
-	"add_to_playlist": "zu Playlist hinzufügen",
-	"delete_from_playlist": "von Playlist entfernen",
+  "new_playlist": "Neue Playlist",
+  "delete_playlist": "Playlist löschen",
+  "edit_playlist": "Playlist ändern",
+  "add_to_playlist": "zu Playlist hinzufügen",
+  "delete_from_playlist": "von Playlist entfernen",
 
-	"new_playlist_modal_title": "Playlist erstellen",
-	"new_playlist_modal_ph": "Playlist",
+  "new_playlist_modal_title": "Playlist erstellen",
+  "new_playlist_modal_ph": "Playlist",
 
-	"playlist_delete_title": "Playlist löschen",
-	"playlist_delete_text": "Willst du diese Playlist wirklich löschen?",
+  "playlist_delete_title": "Playlist löschen",
+  "playlist_delete_text": "Willst du diese Playlist wirklich löschen?",
 
-	"choose_playlist_label": "Playlist wählen",
-	"create_new_playlist": "neue Playlist",
+  "choose_playlist_label": "Playlist wählen",
+  "create_new_playlist": "neue Playlist",
 
-	"modal": {
-		"button_confirm": "Ja",
-		"button_delete": "Löschen",
-		"button_save": "Speichern",
-		"button_cancel": "Abbrechen"
-	},
+  "modal": {
+    "button_confirm": "Ja",
+    "button_delete": "Löschen",
+    "button_save": "Speichern",
+    "button_cancel": "Abbrechen"
+  },
 
-	"filetree": {
-		"add_to_playlist": "zu Playlist hinzufügen"
-	},
+  "filetree": {
+    "add_to_playlist": "zu Playlist hinzufügen"
+  },
 
-	"treeview_files": "Dateien",
-	"treeview_playlist": "Playlist",
-	"treeview_playall": "Alle abspielen",
+  "treeview_files": "Dateien",
+  "treeview_playlist": "Playlist",
+  "treeview_playall": "Alle abspielen",
 
-	"videoplayer": {
+  "videoplayer": {
 
-	},
+  },
 
-	"audio_popout": {
-		"by_artist": "von",
-		"button_play_now": "jetzt anhören",
-		"button_add_to_queue": "zur Warteschlange hinzufügen",
-		"button_add_to_playlist": "zu einer Playlist hinzufügen"
-	},
+  "audioplayer": {
+    "use_local_audio": "Musik von Festplatte",
+    "use_bluetooth_audio": "Musik über Bleutooth"
+  },
 
-	"navi": {
-		"country_dest_ph": "Land auswählen",
-		"city_dest_ph": "Stadt eingeben...",
-		"street_dest_ph": "Straße und Hausnummer eingeben...",
-		"button_use": "Verwenden",
-		"should_start_routing": "Zielführung starten?",
-		"start_routing_btn": "Jetzt starten",
-		"new_dest_btn": "Neues Ziel",
-		"save_favourite_btn": "Ziel speichern"
-	},
+  "audio_popout": {
+    "by_artist": "von",
+    "button_play_now": "jetzt anhören",
+    "button_add_to_queue": "zur Warteschlange hinzufügen",
+    "button_add_to_playlist": "zu einer Playlist hinzufügen"
+  },
 
-	"keyboard": {
-		"return": "Eingabe",
-		"caps_lock": "Caps",
-		"delete": "Löschen"
-	},
+  "navi": {
+    "country_dest_ph": "Land auswählen",
+    "city_dest_ph": "Stadt eingeben...",
+    "street_dest_ph": "Straße und Hausnummer eingeben...",
+    "button_use": "Verwenden",
+    "should_start_routing": "Zielführung starten?",
+    "start_routing_btn": "Jetzt starten",
+    "new_dest_btn": "Neues Ziel",
+    "save_favourite_btn": "Ziel speichern"
+  },
 
-	"error": {
-		"file_not_found": "Datei nicht gefunden"
-	},
+  "keyboard": {
+    "return": "Eingabe",
+    "caps_lock": "Caps",
+    "delete": "Löschen"
+  },
 
-	"health": {
-		"speedmeter": "Geschwindigkeit",
-		"tachometer": "Drehzahl",
-		"battery_1": "Batterie I",
-		"battery_2": "Batterie II",
-		"lights": "Licht",
-		"fuel": "Tank",
-		"scanning": "Suche OBDII-Adapter",
-		"scan_error": "Petron konnte sich nicht zu OBDII-Adapter verbinden!",
-		"reconnect": "Erneut versuchen"
-	},
+  "error": {
+    "file_not_found": "Datei nicht gefunden"
+  },
 
-	"settings": {
-		"language": "Sprache",
-		"language_hint": "Wähle die Systemsprache von Petron. Weitere übersetzungen findest du auf www.petron.io",
-		"clock": "Uhr",
-		"clock_hint": "Wähle die Darstellungesweise der Uhr aus. 12 oder 24 Stunden-Format",
-		"distance": "Maßeinheiten",
-		"distance_hint": "Wie sollen Entfernungen bzw. Verbrauchsinformation dargestellt werden?",
-		"fuel": "Tank",
-		"fuel_hint": "Tankst du in Gallonen oder Litern?",
-		"keyboard": "Tastatur-Layout",
-		"keyboard_hint": "Welches Tastatur-Layout willst du verwerden?"
-	}
+  "health": {
+    "speedmeter": "Geschwindigkeit",
+    "tachometer": "Drehzahl",
+    "battery_1": "Batterie I",
+    "battery_2": "Batterie II",
+    "lights": "Licht",
+    "fuel": "Tank",
+    "scanning": "Suche OBDII-Adapter",
+    "scan_error": "Petron konnte sich nicht zu OBDII-Adapter verbinden!",
+    "reconnect": "Erneut versuchen"
+  },
+
+  "settings": {
+    "language": "Sprache",
+    "language_hint": "Wähle die Systemsprache von Petron. Weitere übersetzungen findest du auf www.petron.io",
+    "clock": "Uhr",
+    "clock_hint": "Wähle die Darstellungesweise der Uhr aus. 12 oder 24 Stunden-Format",
+    "distance": "Maßeinheiten",
+    "distance_hint": "Wie sollen Entfernungen bzw. Verbrauchsinformation dargestellt werden?",
+    "fuel": "Tank",
+    "fuel_hint": "Tankst du in Gallonen oder Litern?",
+    "keyboard": "Tastatur-Layout",
+    "keyboard_hint": "Welches Tastatur-Layout willst du verwerden?"
+  }
 }

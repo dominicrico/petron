@@ -1,112 +1,117 @@
 {
-	"petron": "Petron",
-	"claim": "",
+  "petron": "Petron",
+  "claim": "",
 
-	"clock_unit": "",
-	"on": "on",
-	"off": "off",
-	"metric": "metric",
-	"miles": "miles",
-	"gallons": "Gallons",
-	"liter": "Liters",
-	"12h": "12h-Format",
-	"24h": "24h-Format",
+  "clock_unit": "",
+  "on": "on",
+  "off": "off",
+  "metric": "metric",
+  "miles": "miles",
+  "gallons": "Gallons",
+  "liter": "Liters",
+  "12h": "12h-Format",
+  "24h": "24h-Format",
 
-	"radio_module": "Radio",
-	"music_module": "Music",
-	"video_module": "Video",
-	"health_module": "Health",
-	"navigation_module": "Navigation",
-	"settings_module": "Settings",
+  "radio_module": "Radio",
+  "music_module": "Music",
+  "video_module": "Video",
+  "health_module": "Health",
+  "navigation_module": "Navigation",
+  "settings_module": "Settings",
 
-	"menu_label_playlists": "Playlists",
-	"menu_label_favourites": "Favourites",
+  "menu_label_playlists": "Playlists",
+  "menu_label_favourites": "Favourites",
 
-	"no_file": "No useable files found!",
+  "no_file": "No useable files found!",
 
-	"petron_playlist_general": "Queue",
+  "petron_playlist_general": "Queue",
 
-	"new_playlist": "New Playlist",
-	"delete_playlist": "Delete Playlist",
-	"edit_playlist": "Edit Playlist",
-	"add_to_playlist": "add to Playlist",
-	"delete_from_playlist": "remove from Playlist",
+  "new_playlist": "New Playlist",
+  "delete_playlist": "Delete Playlist",
+  "edit_playlist": "Edit Playlist",
+  "add_to_playlist": "add to Playlist",
+  "delete_from_playlist": "remove from Playlist",
 
-	"new_playlist_modal_title": "Create Playlist",
-	"new_playlist_modal_ph": "Playlist",
+  "new_playlist_modal_title": "Create Playlist",
+  "new_playlist_modal_ph": "Playlist",
 
-	"playlist_delete_title": "Delete Playlist",
-	"playlist_delete_text": "Do you really want to delete this playlist?",
+  "playlist_delete_title": "Delete Playlist",
+  "playlist_delete_text": "Do you really want to delete this playlist?",
 
-	"choose_playlist_label": "Choose playlist",
-	"create_new_playlist": "new Playlist",
+  "choose_playlist_label": "Choose playlist",
+  "create_new_playlist": "new Playlist",
 
-	"modal": {
-		"button_confirm": "Yes",
-		"button_delete": "Delete",
-		"button_save": "Save",
-		"button_cancel": "Cancel"
-	},
+  "modal": {
+    "button_confirm": "Yes",
+    "button_delete": "Delete",
+    "button_save": "Save",
+    "button_cancel": "Cancel"
+  },
 
-	"filetree": {
-		"add_to_playlist": "add to playlist"
-	},
+  "filetree": {
+    "add_to_playlist": "add to playlist"
+  },
 
-	"treeview_files": "Files",
-	"treeview_playlist": "Playlist",
-	"treeview_playall": "Play all",
+  "treeview_files": "Files",
+  "treeview_playlist": "Playlist",
+  "treeview_playall": "Play all",
 
-	"videoplayer": {
+  "videoplayer": {
 
-	},
+  },
 
-	"audio_popout": {
-		"by_artist": "by",
-		"button_play_now": "play now",
-		"button_add_to_queue": "add to queue",
-		"button_add_to_playlist": "add to playlist"
-	},
+  "audioplayer": {
+    "use_local_audio": "Local music",
+    "use_bluetooth_audio": "Bleutooth music"
+  },
 
-	"navi": {
-		"country_dest_ph": "Select country...",
-		"city_dest_ph": "Enter destination city...",
-		"street_dest_ph": "Enter street and number...",
-		"button_use": "Use it",
-		"should_start_routing": "Start routing now?",
-		"start_routing_btn": "Start now",
-		"new_dest_btn": "New destination",
-		"save_favourite_btn": "Save destination"
-	},
+  "audio_popout": {
+    "by_artist": "by",
+    "button_play_now": "play now",
+    "button_add_to_queue": "add to queue",
+    "button_add_to_playlist": "add to playlist"
+  },
 
-	"keyboard": {
-		"return": "Enter",
-		"caps_lock": "Caps",
-		"delete": "Delete"
-	},
+  "navi": {
+    "country_dest_ph": "Select country...",
+    "city_dest_ph": "Enter destination city...",
+    "street_dest_ph": "Enter street and number...",
+    "button_use": "Use it",
+    "should_start_routing": "Start routing now?",
+    "start_routing_btn": "Start now",
+    "new_dest_btn": "New destination",
+    "save_favourite_btn": "Save destination"
+  },
 
-	"error": {
-		"file_not_found": "File not found"
-	},
+  "keyboard": {
+    "return": "Enter",
+    "caps_lock": "Caps",
+    "delete": "Delete"
+  },
 
-	"health": {
-		"speedmeter": "Speedmeter",
-		"tachometer": "Tachometer",
-		"battery_1": "Battery I",
-		"battery_2": "Battery II",
-		"lights": "Lights",
-		"fuel": "Fuel level",
-		"scanning": "Seeking OBDII adapter",
-		"scan_error": "Could not connect to OBDII adapter!"
-	},
+  "error": {
+    "file_not_found": "File not found"
+  },
 
-	"settings": {
-		"language": "Language",
-		"language_hint": "Choose the systemwide language for Petron. More languages on www.petron.io",
-		"clock": "Clock",
-		"clock_hint": "Select the time format of the clock.",
-		"distance": "Distances",
-		"distance_hint": "Select which system to use to display consumption and distances?",
-		"fuel": "Fuel",
-		"fuel_hint": "Gallones or liter?"
-	}
+  "health": {
+    "speedmeter": "Speedmeter",
+    "tachometer": "Tachometer",
+    "battery_1": "Battery I",
+    "battery_2": "Battery II",
+    "lights": "Lights",
+    "fuel": "Fuel level",
+    "scanning": "Seeking OBDII adapter",
+    "scan_error": "Could not connect to OBDII adapter!"
+  },
+
+  "settings": {
+    "language": "Language",
+    "language_hint": "Choose the systemwide language for Petron. More languages on www.petron.io",
+    "clock": "Clock",
+    "clock_hint": "Select the time format of the clock.",
+    "distance": "Distances",
+    "distance_hint": "Select which system to use to display consumption and distances?",
+    "fuel": "Fuel",
+    "fuel_hint": "Gallones or liter?"
+  }
 }

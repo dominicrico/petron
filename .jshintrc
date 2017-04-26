@@ -123,6 +123,7 @@
 			"L"    	  		: true,     // Enable Leaflet.
 			"vsprintf"    : true,     // Enable vsprintf.
 			"sprintf"    	: true,     // Enable sprintf.
-			"polyline"    : true      // Enable polyline from Leaflet-utils.
+			"polyline"    : true,     // Enable polyline from Leaflet-utils.
+			"AudioContext": true      // Web Audio API
 		}
 }

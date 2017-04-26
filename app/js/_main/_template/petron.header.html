@@ -7,6 +7,8 @@
 	</div>
 	<div class="column has-text-centered">
 		{{ date | date:settings.clock}} {{ 'clock_unit' | translate }}
+    <span class="header-indicator" ng-show="$root.phoneConnected"><i class="icon-phone"></i></span>
+    <span ng-show="$root.bluetooth"><i class="icon-phone"></i></span>
 	</div>
 	<div class="column has-text-right">
 		<span class="right-menu-toggle" ng-click="$root.right_toggle = !$root.right_toggle" ng-if="rightMenuShow">

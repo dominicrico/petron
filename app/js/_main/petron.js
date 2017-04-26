@@ -9,11 +9,25 @@
   angular.module('petron').config([function() {
 
   }]).run(['$rootScope', 'petron.daemon', 'petron.storage', '$translate',
-    'tmhDynamicLocale',
+    'tmhDynamicLocale', 'petron.phony', 'SweetAlert',
     function(
       $rootScope, petronDaemon, petronStorage, $translate,
-      tmhDynamicLocale) {
+      tmhDynamicLocale, petronPhony, SweetAlert) {
       $rootScope.daemon = {};
+
+      petronPhony.init();
+
+      $rootScope.phoneConnected = false;
+      $rootScope.$on('deviceFound', function(event, device) {
+        petronPhony.selectDevice(device).then(function() {
+          $rootScope.phoneConnected = true;
+          $rootScope.$broadcast('deviceReady');
+        });
+      });
+
+      $rootScope.$on('deviceRemoved', function() {
+        $rootScope.phoneConnected = false;
+      });
 
       $rootScope.leftMenuShow = false;
 
@@ -72,6 +86,8 @@
       $rootScope.$on('$stateChangeSuccess', function() {
         $rootScope.left_toggle = false;
       });
+
+
     }
   ]);
 })();

@@ -3,9 +3,9 @@
 
   angular.module('petron.core')
     .service('petron.fs', ['fs', 'path', 'app', '$q', '$sce', 'musicmetadata',
-      'ffmpeg', 'ffprobe', 'ffprobe-static',
+      'ffmpeg', 'ffprobe',
       function(
-        fs, path, app, $q, $sce, mm, Ffmpeg, ffprobe, ffprobeStatic) {
+        fs, path, app, $q, $sce, mm, Ffmpeg, ffprobe) {
         //var basePath = app.getPath('home') + '/Downloads/';
 
         this.getAudioFiles = function(fpath) {
@@ -111,7 +111,7 @@
                   process.then(function(tags) {
                     var isHD = false;
                     ffprobe(fpath + '/' + file, {
-                      path: ffprobeStatic.path
+                      path: '/usr/bin/ffprobe'
                     }, function(err, info) {
                       if (err) {
                         return callback(err);

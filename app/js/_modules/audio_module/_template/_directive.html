@@ -1,11 +1,11 @@
 <div class="columns">
 	<div class="column has-text-centered c--audio__title">
 		<h1 class="title is-4">
-			{{ playlist.tracks[current].title }}
+			{{ playlist.tracks[current].title || btAudio.Title }}
 		</h1>
 
 		<h2 class="subtitle is-6">
-			{{ playlist.tracks[current].artist }} {{ (playlist.tracks[current].album) ? '- ' + playlist.tracks[current].album : '' }}
+			{{ playlist.tracks[current].artist || btAudio.Artist }} {{ (playlist.tracks[current].album || btAudio.Album) ? '- ' + (playlist.tracks[current].album  || btAudio.Album) : '' }}
 		</h2>
 	</div>
 </div>

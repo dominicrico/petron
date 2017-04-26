@@ -12,8 +12,9 @@
             var x = 525;
 
             function mousemove(event) {
-              x = event.pageX - startX;
-              if (event.pageX - startX > 525) {
+              var pageX = event.originalEvent.touches[0].pageX;
+              x = pageX - startX;
+              if (pageX - startX > 525) {
                 angular.element(elem).css({
                   left: x + 'px',
                 });
@@ -21,7 +22,8 @@
             }
 
             function mouseup(event) {
-              x = event.pageX - startX;
+              var pageX = event.originalEvent.changedTouches[0].pageX;
+              x = pageX - startX;
               if (x <= 720) {
                 angular.element(elem).css({
                   left: origX + 'px',
@@ -39,22 +41,23 @@
                 petronDaemon.disable();
               }
 
-              $document.unbind('mousemove', mousemove);
-              $document.unbind('mouseup', mouseup);
+              $document.unbind('touchmove', mousemove);
+              $document.unbind('touchend', mouseup);
             }
 
-            elem.on('mousedown', function(event) {
-              event.preventDefault();
-              event.stopPropagation();
+            elem.on('touchstart', function(event) {
+              //event.preventDefault();
+              //event.stopPropagation();
+              var pageX = event.originalEvent.touches[0].pageX;
 
               angular.element(elem).css({
                 transition: 'none'
               });
 
-              startX = event.pageX - x;
+              startX = pageX - x;
 
-              $document.on('mousemove', mousemove);
-              $document.on('mouseup',
+              $document.on('touchmove', mousemove);
+              $document.on('touchend',
                 mouseup);
             });
           }

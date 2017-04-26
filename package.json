@@ -48,6 +48,7 @@
     "install": "^0.8.7",
     "ipc": "0.0.1",
     "musicmetadata": "^2.0.4",
+    "node-phony": "git+https://github.com/dominicrico/node-phony.git",
     "obd-parser": "^0.3.0",
     "obd-parser-bluetooth-connection": "git://github.com/dominicrico/obd-parser-bluetooth-connection.git",
     "remote": "^0.2.6"

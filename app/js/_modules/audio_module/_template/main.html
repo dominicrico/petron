@@ -1,7 +1,10 @@
 <section class="columns u--max-height__100 u--margin-top__none">
 
 	<aside class="c--filetree column is-7">
-
+		<div class="columns" ng-if="$root.phoneConnected">
+			<div class="column" ng-click="useLocal()">{{ 'use_local_audio' | translate }}</div>
+			<div class="column" ng-click="useBluetooth()">{{ 'use_bluetooth_audio' | translate }}</div>
+		</div>
 		<div class="tabs">
 		  <ul class="is-left">
 		    <li ng-click="visibleFileTree = 'files'" ng-class="{'is-active': visibleFileTree === 'files'}">
@@ -29,10 +32,14 @@
 
 		<petron-filetree class="has-tabs" files="files" func="func" type="audio" ng-show="visibleFileTree === 'files'"></petron-filetree>
 		<petron-filetree class="has-tabs" files="audio.queue.tracks" func="func" type="audio_playlist" ng-show="!visibleFileTree || visibleFileTree === 'playlist'"></petron-filetree>
+		<h4 ng-if="(visibleFileTree === 'files' && !files.length) || ((!visibleFileTree || visibleFileTree === 'playlist') && !audio.queue.tracks.length)">{{ 'no_files' | translate }}</h4>
 	</aside>
 
-	<main class="c--audio__main column is-5" ng-if="$root.audio.queue || $root.audio.playlist">
+	<main class="c--audio__main column is-5" ng-if="localMusic && ($root.audio.queue || $root.audio.playlist)">
 		<petron-audio></petron-audio>
+	</main>
+  <main class="c--audio__main column" ng-if="btMusic">
+		<petron-bluetooth-audio></petron-bluetooth-audio>
 	</main>
 
 </section>

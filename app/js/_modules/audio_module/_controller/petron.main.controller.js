@@ -4,9 +4,9 @@
   angular.module('petron.modules.audio')
     .controller('controller.audiobox.main', ['$scope', '$rootScope',
       'petron.fs',
-      'petron.playlist', 'ngDialog', '$state',
+      'petron.playlist', 'ngDialog',
       function($scope, $rootScope, petronFs, petronPlaylist,
-        ngDialog, $state) {
+        ngDialog) {
         $rootScope.title = 'audio_module';
         $rootScope.rightMenuShow = true;
         $rootScope.rightMenuLabel = 'menu_label_playlists';
@@ -32,9 +32,18 @@
           $scope.files = $rootScope.files = $rootScope.audio.queue = [];
         });
 
+        $scope.useBluetooth = function() {
+          $scope.localMusic = false;
+          $scope.btMusic = true;
+        };
+
+        $scope.useLocal = function() {
+          $scope.localMusic = true;
+          $scope.btMusic = false;
+        };
+
         $scope.func = {
           play: function(playlist) {
-            console.log('PLAY FUNC CALLED')
             petronPlaylist.playPlaylist(playlist).then(function(queue) {
               $rootScope.audio.queue = queue;
               petronPlaylist.save();
