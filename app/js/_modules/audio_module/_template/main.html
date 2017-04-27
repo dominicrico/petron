@@ -35,7 +35,7 @@
 		<h4 ng-if="(visibleFileTree === 'files' && !files.length) || ((!visibleFileTree || visibleFileTree === 'playlist') && !audio.queue.tracks.length)">{{ 'no_files' | translate }}</h4>
 	</aside>
 
-	<main class="c--audio__main column is-5" ng-if="localMusic && ($root.audio.queue || $root.audio.playlist)">
+	<main class="c--audio__main column is-5" ng-if="localMusic">
 		<petron-audio></petron-audio>
 	</main>
   <main class="c--audio__main column" ng-if="btMusic">

@@ -32,6 +32,7 @@
           $scope.files = $rootScope.files = $rootScope.audio.queue = [];
         });
 
+        $scope.localMusic = true;
         $scope.useBluetooth = function() {
           $scope.localMusic = false;
           $scope.btMusic = true;

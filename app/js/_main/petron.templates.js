@@ -22,7 +22,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <link rel=\"stylesheet\" href=\"css/petron.css\">\n" +
     "</head>\n" +
     "\n" +
-    "<body ng-app=\"petron\" ng-cloak=\"\" hm-panend=\"setVolume\" hm-panstart=\"getVolume\" hm-pan=\"volumeIndicator\" hm-recognizer-options='[{\"type\":\"pan\",\"enable\": true, \"directions\": \"DIRECTION_VERTICAL\"}]'>\n" +
+    "<body ng-app=\"petron\" ng-cloak=\"\" hm-panend=\"setVolume\" hm-panstart=\"getVolume\" hm-pan=\"volumeIndicator\" hm-recognizer-options='[{\"type\":\"pan\",\"enable\": true, \"directions\": \"DIRECTION_VERTICAL\", \"threshold\": 50}]'>\n" +
     "    <div class=\"petron-wrap\" ng-class=\"{'show-left-menu': $root.left_toggle, 'show-right-menu': $root.right_toggle, 'c--volume-indicator__blur': showVolumeIndicator}\">\n" +
     "        <div class=\"menu-wrap is-left\">\n" +
     "            <nav class=\"menu\">\n" +
@@ -137,6 +137,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <script type=\"text/javascript\" src=\"js/_main/_directive/keyboard/petron.keyboard.directive.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_directive/volume/petron.volume-indicator.directive.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_factory/petron.daemon.factory.js\"></script>\n" +
+    "    <script type=\"text/javascript\" src=\"js/_main/_factory/petron.phony.factory.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_factory/petron.playlist.factory.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_filter/petron.buildTime.filter.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_filter/petron.frequency.filter.js\"></script>\n" +
@@ -153,7 +154,8 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    </script>\n" +
     "</body>\n" +
     "\n" +
-    "</html>");
+    "</html>\n" +
+    "");
 }]);
 
 angular.module("js/_main/_directive/daemon/petron.daemon.html", []).run(["$templateCache", function ($templateCache) {
@@ -502,6 +504,8 @@ angular.module("js/_main/_template/petron.header.html", []).run(["$templateCache
     "	</div>\n" +
     "	<div class=\"column has-text-centered\">\n" +
     "		{{ date | date:settings.clock}} {{ 'clock_unit' | translate }}\n" +
+    "    <span class=\"header-indicator\" ng-show=\"$root.phoneConnected\"><i class=\"icon-phone\"></i></span>\n" +
+    "    <span ng-show=\"$root.bluetooth\"><i class=\"icon-phone\"></i></span>\n" +
     "	</div>\n" +
     "	<div class=\"column has-text-right\">\n" +
     "		<span class=\"right-menu-toggle\" ng-click=\"$root.right_toggle = !$root.right_toggle\" ng-if=\"rightMenuShow\">\n" +
@@ -545,11 +549,11 @@ angular.module("js/_modules/audio_module/_template/_directive.html", []).run(["$
     "<div class=\"columns\">\n" +
     "	<div class=\"column has-text-centered c--audio__title\">\n" +
     "		<h1 class=\"title is-4\">\n" +
-    "			{{ playlist.tracks[current].title }}\n" +
+    "			{{ playlist.tracks[current].title || btAudio.Title }}\n" +
     "		</h1>\n" +
     "\n" +
     "		<h2 class=\"subtitle is-6\">\n" +
-    "			{{ playlist.tracks[current].artist }} {{ (playlist.tracks[current].album) ? '- ' + playlist.tracks[current].album : '' }}\n" +
+    "			{{ playlist.tracks[current].artist || btAudio.Artist }} {{ (playlist.tracks[current].album || btAudio.Album) ? '- ' + (playlist.tracks[current].album  || btAudio.Album) : '' }}\n" +
     "		</h2>\n" +
     "	</div>\n" +
     "</div>\n" +
@@ -665,7 +669,10 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templa
     "<section class=\"columns u--max-height__100 u--margin-top__none\">\n" +
     "\n" +
     "	<aside class=\"c--filetree column is-7\">\n" +
-    "\n" +
+    "		<div class=\"columns\" ng-if=\"$root.phoneConnected\">\n" +
+    "			<div class=\"column\" ng-click=\"useLocal()\">{{ 'use_local_audio' | translate }}</div>\n" +
+    "			<div class=\"column\" ng-click=\"useBluetooth()\">{{ 'use_bluetooth_audio' | translate }}</div>\n" +
+    "		</div>\n" +
     "		<div class=\"tabs\">\n" +
     "		  <ul class=\"is-left\">\n" +
     "		    <li ng-click=\"visibleFileTree = 'files'\" ng-class=\"{'is-active': visibleFileTree === 'files'}\">\n" +
@@ -693,10 +700,14 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templa
     "\n" +
     "		<petron-filetree class=\"has-tabs\" files=\"files\" func=\"func\" type=\"audio\" ng-show=\"visibleFileTree === 'files'\"></petron-filetree>\n" +
     "		<petron-filetree class=\"has-tabs\" files=\"audio.queue.tracks\" func=\"func\" type=\"audio_playlist\" ng-show=\"!visibleFileTree || visibleFileTree === 'playlist'\"></petron-filetree>\n" +
+    "		<h4 ng-if=\"(visibleFileTree === 'files' && !files.length) || ((!visibleFileTree || visibleFileTree === 'playlist') && !audio.queue.tracks.length)\">{{ 'no_files' | translate }}</h4>\n" +
     "	</aside>\n" +
     "\n" +
-    "	<main class=\"c--audio__main column is-5\" ng-if=\"$root.audio.queue || $root.audio.playlist\">\n" +
+    "	<main class=\"c--audio__main column is-5\" ng-if=\"localMusic\">\n" +
     "		<petron-audio></petron-audio>\n" +
+    "	</main>\n" +
+    "  <main class=\"c--audio__main column\" ng-if=\"btMusic\">\n" +
+    "		<petron-bluetooth-audio></petron-bluetooth-audio>\n" +
     "	</main>\n" +
     "\n" +
     "</section>\n" +
@@ -822,7 +833,7 @@ angular.module("js/_modules/health_module/_template/main.html", []).run(["$templ
   $templateCache.put("js/_modules/health_module/_template/main.html",
     "<section class=\"columns u--max-height__100 u--margin-top__none c--health\">\n" +
     "	<div class=\"c--obd__message\" ng-if=\"!isConnected && !hasError\">\n" +
-    "			<h1 class=\"title is-2 c--obd__scanning has-text-centered\">{{ 'health.scanning' | translate}}{{ dots }}</h1>\n" +
+    "			<h1 class=\"title is-3 c--obd__scanning has-text-centered\">{{ 'health.scanning' | translate}}{{ dots }}</h1>\n" +
     "	</div>\n" +
     "\n" +
     "	<div class=\"columns c--obd-container  has-text-centered\" ng-if=\"hasError && !isConnected\">\n" +

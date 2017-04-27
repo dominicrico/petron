@@ -4124,6 +4124,8 @@ header {
     height: 58px; }
     header > .columns .icon {
       line-height: 23px; }
+    header > .columns .header-indicator {
+      padding-left: 10px; }
     header > .columns p {
       display: inline-block;
       line-height: 25px; }
@@ -5271,7 +5273,7 @@ petron-filetree {
     margin-right: 20px; }
   .c--fm__display .title.is-1 {
     display: inline-block;
-    font-size: 72px;
+    font-size: 68px;
     font-weight: 500;
     margin-bottom: 0;
     width: 220px; }
@@ -5504,7 +5506,7 @@ petron-filetree {
   left: 50%;
   transform: translate(-50%, -50%);
   display: inline-block;
-  width: 56vw;
+  width: 60vw;
   text-align: left;
   z-index: 1000; }
 .c--health .c--obd__message {
