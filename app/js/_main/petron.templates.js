@@ -22,7 +22,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <link rel=\"stylesheet\" href=\"css/petron.css\">\n" +
     "</head>\n" +
     "\n" +
-    "<body ng-app=\"petron\" ng-cloak=\"\" hm-panend=\"setVolume\" hm-panstart=\"getVolume\" hm-pan=\"volumeIndicator\" hm-recognizer-options='[{\"type\":\"pan\",\"enable\": true, \"directions\": \"DIRECTION_VERTICAL\", \"threshold\": 50, \"pointers\": 2 }]'>\n" +
+    "<body ng-app=\"petron\" ng-cloak=\"\" hm-panend=\"setVolume\" hm-panstart=\"getVolume\" hm-pan=\"volumeIndicator\" hm-recognizer-options='[{\"type\":\"pan\",\"enable\": true, \"directions\": \"DIRECTION_VERTICAL\", \"threshold\": 50}]'>\n" +
     "    <div class=\"petron-wrap\" ng-class=\"{'show-left-menu': $root.left_toggle, 'show-right-menu': $root.right_toggle, 'c--volume-indicator__blur': showVolumeIndicator}\">\n" +
     "        <div class=\"menu-wrap is-left\">\n" +
     "            <nav class=\"menu\">\n" +
@@ -703,7 +703,11 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templa
     "		<h4 ng-if=\"(visibleFileTree === 'files' && !files.length) || ((!visibleFileTree || visibleFileTree === 'playlist') && !audio.queue.tracks.length)\">{{ 'no_files' | translate }}</h4>\n" +
     "	</aside>\n" +
     "\n" +
+<<<<<<< Updated upstream
     "	<main class=\"c--audio__main column is-5\" ng-if=\"localMusic\">\n" +
+=======
+    "	<main class=\"c--audio__main column is-5\" ng-if=\"localMusic && ($root.audio.queue || $root.audio.playlist)\">\n" +
+>>>>>>> Stashed changes
     "		<petron-audio></petron-audio>\n" +
     "	</main>\n" +
     "  <main class=\"c--audio__main column\" ng-if=\"btMusic\">\n" +
