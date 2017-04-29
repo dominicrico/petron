@@ -77,12 +77,6 @@
 
                       $scope.current = 0;
                       $scope.playlist = $rootScope.audio.queue;
-                      $scope.playlist.tracks.forEach(function(
-                        track, i) {
-                        if (track.play) {
-                          $scope.current = i;
-                        }
-                      });
 
                       if ($scope.playlist && $scope.playlist.tracks &&
                         $scope.playlist

@@ -111,7 +111,7 @@
                   process.then(function(tags) {
                     var isHD = false;
                     ffprobe(fpath + '/' + file, {
-                      path: '/usr/bin/ffprobe'
+                      path: '/usr/local/bin/ffprobe'
                         //path: require('ffprobe-static').path
                     }, function(err, info) {
                       if (err) {
