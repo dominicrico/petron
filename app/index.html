@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/petron.css">
 </head>
 
-<body ng-app="petron" ng-cloak="" hm-panend="setVolume" hm-panstart="getVolume" hm-pan="volumeIndicator" hm-recognizer-options='[{"type":"pan","enable": true, "directions": "DIRECTION_VERTICAL", "threshold": 50, "pointers": 2 }]'>
+<body ng-app="petron" ng-cloak="" hm-swipeup="$root.goHome" hm-panend="setVolume" hm-panstart="getVolume" hm-pan="volumeIndicator" hm-recognizer-options='[{"type": "swipeup", "treshold": 400},{"type":"pan","enable": true, "directions": "DIRECTION_VERTICAL", "threshold": 50, "pointers": 2 }]'>
     <div class="petron-wrap" ng-class="{'show-left-menu': $root.left_toggle, 'show-right-menu': $root.right_toggle, 'c--volume-indicator__blur': showVolumeIndicator}">
         <div class="menu-wrap is-left">
             <nav class="menu">
@@ -41,6 +41,10 @@
                     <a ui-sref="petron.healthbox" ui-sref-active="is-active">
                         <span class="icon"><i class="fa icon-heart"></i></span>
                         <span>{{ 'health_module' | translate }}</span>
+                    </a>
+                    <a ui-sref="petron.phonebox.main" ui-sref-active="is-active" ng-if="phoneConnected">
+                        <span class="icon"><i class="fa icon-phone"></i></span>
+                        <span>{{ 'phone_module' | translate }}</span>
                     </a>
                     <a ui-sref="petron.settingsbox" ui-sref-active="is-active">
                         <span class="icon"><i class="fa icon-cog"></i></span>
@@ -111,6 +115,7 @@
     <script type="text/javascript" src="js/_modules/fm_module/petron.modules.fm.js"></script>
     <script type="text/javascript" src="js/_modules/health_module/petron.modules.health.js"></script>
     <script type="text/javascript" src="js/_modules/navigation_module/petron.modules.navigation.js"></script>
+    <script type="text/javascript" src="js/_modules/phone_module/petron.modules.phone.js"></script>
     <script type="text/javascript" src="js/_modules/settings_module/petron.modules.settings.js"></script>
     <script type="text/javascript" src="js/_modules/video_module/petron.modules.video.js"></script>
     <script type="text/javascript" src="js/_modules/navigation_module/_provider/petron.navi.provider.js"></script>
@@ -123,6 +128,9 @@
     <script type="text/javascript" src="js/_modules/health_module/_controller/petron.main.controller.js"></script>
     <script type="text/javascript" src="js/_modules/navigation_module/_controller/petron.main.controller.js"></script>
     <script type="text/javascript" src="js/_modules/navigation_module/_controller/petron.map.controller.js"></script>
+    <script type="text/javascript" src="js/_modules/phone_module/_controller/petron.call.controller.js"></script>
+    <script type="text/javascript" src="js/_modules/phone_module/_controller/petron.main.controller.js"></script>
+    <script type="text/javascript" src="js/_modules/phone_module/_controller/petron.sms.controller.js"></script>
     <script type="text/javascript" src="js/_modules/settings_module/_controller/petron.main.controller.js"></script>
     <script type="text/javascript" src="js/_modules/video_module/_controller/petron.main.controller.js"></script>
     <script type="text/javascript" src="js/_modules/petron.modules.js"></script>

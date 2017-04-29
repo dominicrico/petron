@@ -81,6 +81,10 @@
               }
             });
 
+            $scope.getControls = function() {
+              $scope.showControls = true;
+            };
+
             $scope.resetInterval = function() {
               $interval.cancel(checkControlsStatus);
               checkInit = true;

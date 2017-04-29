@@ -18,6 +18,7 @@
   "health_module": "Health",
   "navigation_module": "Navigation",
   "settings_module": "Einstellungen",
+  "phone_module": "Telefon",
 
   "menu_label_playlists": "Playlisten",
   "menu_label_favourites": "Favoriten",
@@ -105,6 +106,11 @@
     "scanning": "Suche OBDII-Adapter",
     "scan_error": "Petron konnte sich nicht zu OBDII-Adapter verbinden!",
     "reconnect": "Erneut versuchen"
+  },
+
+  "phone": {
+    "calls": "Anrufe",
+    "messages": "Nachrichten"
   },
 
   "settings": {

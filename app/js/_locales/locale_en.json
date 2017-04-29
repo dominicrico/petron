@@ -18,6 +18,7 @@
   "health_module": "Health",
   "navigation_module": "Navigation",
   "settings_module": "Settings",
+  "phone_module": "Phone",
 
   "menu_label_playlists": "Playlists",
   "menu_label_favourites": "Favourites",
@@ -102,6 +103,11 @@
     "fuel": "Fuel level",
     "scanning": "Seeking OBDII adapter",
     "scan_error": "Could not connect to OBDII adapter!"
+  },
+
+  "phone": {
+    "calls": "Calls",
+    "messages": "Messages"
   },
 
   "settings": {

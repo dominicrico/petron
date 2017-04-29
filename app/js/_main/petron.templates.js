@@ -1,4 +1,4 @@
-angular.module('petron.core.templates', ['index.html', 'js/_main/_directive/daemon/petron.daemon.html', 'js/_main/_directive/filetree/audio_popout.html', 'js/_main/_directive/filetree/petron.filetree.html', 'js/_main/_directive/keyboard/layout_qwerty.html', 'js/_main/_directive/keyboard/layout_qwertz.html', 'js/_main/_directive/volume/petron.volume-indicator.html', 'js/_main/_template/petron.confirm.html', 'js/_main/_template/petron.content.html', 'js/_main/_template/petron.header.html', 'js/_main/_template/petron.home.html', 'js/_modules/audio_module/_template/_directive.html', 'js/_modules/audio_module/_template/add_to_playlist_modal.html', 'js/_modules/audio_module/_template/main.html', 'js/_modules/audio_module/_template/new_playlist_modal.html', 'js/_modules/audio_module/_template/playlists.html', 'js/_modules/fm_module/_template/main.html', 'js/_modules/fm_module/_template/stations.html', 'js/_modules/health_module/_template/main.html', 'js/_modules/navigation_module/_template/main.html', 'js/_modules/navigation_module/_template/map.html', 'js/_modules/navigation_module/_template/menu.html', 'js/_modules/settings_module/_template/main.html', 'js/_modules/video_module/_template/_directive.html', 'js/_modules/video_module/_template/add_to_playlist_modal.html', 'js/_modules/video_module/_template/main.html', 'js/_modules/video_module/_template/new_playlist_modal.html', 'js/_modules/video_module/_template/player.html', 'loader.html']);
+angular.module('petron.core.templates', ['index.html', 'js/_main/_directive/daemon/petron.daemon.html', 'js/_main/_directive/filetree/audio_popout.html', 'js/_main/_directive/filetree/petron.filetree.html', 'js/_main/_directive/keyboard/layout_qwerty.html', 'js/_main/_directive/keyboard/layout_qwertz.html', 'js/_main/_directive/volume/petron.volume-indicator.html', 'js/_main/_template/petron.confirm.html', 'js/_main/_template/petron.content.html', 'js/_main/_template/petron.header.html', 'js/_main/_template/petron.home.html', 'js/_modules/audio_module/_template/_directive.html', 'js/_modules/audio_module/_template/add_to_playlist_modal.html', 'js/_modules/audio_module/_template/main.html', 'js/_modules/audio_module/_template/new_playlist_modal.html', 'js/_modules/audio_module/_template/playlists.html', 'js/_modules/fm_module/_template/main.html', 'js/_modules/fm_module/_template/stations.html', 'js/_modules/health_module/_template/main.html', 'js/_modules/navigation_module/_template/main.html', 'js/_modules/navigation_module/_template/map.html', 'js/_modules/navigation_module/_template/menu.html', 'js/_modules/phone_module/_template/calls.html', 'js/_modules/phone_module/_template/main.html', 'js/_modules/phone_module/_template/messages.html', 'js/_modules/settings_module/_template/main.html', 'js/_modules/video_module/_template/_directive.html', 'js/_modules/video_module/_template/add_to_playlist_modal.html', 'js/_modules/video_module/_template/main.html', 'js/_modules/video_module/_template/new_playlist_modal.html', 'js/_modules/video_module/_template/player.html', 'loader.html']);
 
 angular.module("index.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
@@ -22,7 +22,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <link rel=\"stylesheet\" href=\"css/petron.css\">\n" +
     "</head>\n" +
     "\n" +
-    "<body ng-app=\"petron\" ng-cloak=\"\" hm-panend=\"setVolume\" hm-panstart=\"getVolume\" hm-pan=\"volumeIndicator\" hm-recognizer-options='[{\"type\":\"pan\",\"enable\": true, \"directions\": \"DIRECTION_VERTICAL\", \"threshold\": 50, \"pointers\": 2 }]'>\n" +
+    "<body ng-app=\"petron\" ng-cloak=\"\" hm-swipeup=\"$root.goHome\" hm-panend=\"setVolume\" hm-panstart=\"getVolume\" hm-pan=\"volumeIndicator\" hm-recognizer-options='[{\"type\": \"swipeup\", \"treshold\": 400},{\"type\":\"pan\",\"enable\": true, \"directions\": \"DIRECTION_VERTICAL\", \"threshold\": 50, \"pointers\": 2 }]'>\n" +
     "    <div class=\"petron-wrap\" ng-class=\"{'show-left-menu': $root.left_toggle, 'show-right-menu': $root.right_toggle, 'c--volume-indicator__blur': showVolumeIndicator}\">\n" +
     "        <div class=\"menu-wrap is-left\">\n" +
     "            <nav class=\"menu\">\n" +
@@ -46,6 +46,10 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "                    <a ui-sref=\"petron.healthbox\" ui-sref-active=\"is-active\">\n" +
     "                        <span class=\"icon\"><i class=\"fa icon-heart\"></i></span>\n" +
     "                        <span>{{ 'health_module' | translate }}</span>\n" +
+    "                    </a>\n" +
+    "                    <a ui-sref=\"petron.phonebox.main\" ui-sref-active=\"is-active\" ng-if=\"phoneConnected\">\n" +
+    "                        <span class=\"icon\"><i class=\"fa icon-phone\"></i></span>\n" +
+    "                        <span>{{ 'phone_module' | translate }}</span>\n" +
     "                    </a>\n" +
     "                    <a ui-sref=\"petron.settingsbox\" ui-sref-active=\"is-active\">\n" +
     "                        <span class=\"icon\"><i class=\"fa icon-cog\"></i></span>\n" +
@@ -108,6 +112,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <script src=\"../app/vendor/es6-promise/es6-promise.js\"></script>\n" +
     "    <script src=\"../app/vendor/sweetalert2/dist/sweetalert2.js\"></script>\n" +
     "    <script src=\"../app/vendor/ngSweetAlert2/SweetAlert2.js\"></script>\n" +
+    "    <script src=\"../app/vendor/range-touch/range-touch.js\"></script>\n" +
     "    <!-- endbower -->\n" +
     "\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/petron.templates.js\"></script>\n" +
@@ -115,6 +120,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <script type=\"text/javascript\" src=\"js/_modules/fm_module/petron.modules.fm.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/health_module/petron.modules.health.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/navigation_module/petron.modules.navigation.js\"></script>\n" +
+    "    <script type=\"text/javascript\" src=\"js/_modules/phone_module/petron.modules.phone.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/settings_module/petron.modules.settings.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/video_module/petron.modules.video.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/navigation_module/_provider/petron.navi.provider.js\"></script>\n" +
@@ -127,6 +133,9 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <script type=\"text/javascript\" src=\"js/_modules/health_module/_controller/petron.main.controller.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/navigation_module/_controller/petron.main.controller.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/navigation_module/_controller/petron.map.controller.js\"></script>\n" +
+    "    <script type=\"text/javascript\" src=\"js/_modules/phone_module/_controller/petron.call.controller.js\"></script>\n" +
+    "    <script type=\"text/javascript\" src=\"js/_modules/phone_module/_controller/petron.main.controller.js\"></script>\n" +
+    "    <script type=\"text/javascript\" src=\"js/_modules/phone_module/_controller/petron.sms.controller.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/settings_module/_controller/petron.main.controller.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/video_module/_controller/petron.main.controller.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/petron.modules.js\"></script>\n" +
@@ -478,14 +487,22 @@ angular.module("js/_main/_template/petron.content.html", []).run(["$templateCach
     "					</div>\n" +
     "				</div>\n" +
     "			</div>\n" +
-    "			<div class=\"column\">\n" +
+    "			<div class=\"column\" ng-if=\"!phoneConnected\">\n" +
     "				<div class=\"box has-text-centered is-vcentered\" ui-sref=\"petron.settingsbox\">\n" +
     "					<div>\n" +
     "						<span class=\"icon is-large\"><i class=\"fa icon-cog\"></i></span>\n" +
     "						<h2 class=\"title is-3\">{{ 'settings_module' | translate }}</h2>\n" +
     "					</div>\n" +
     "				</div>\n" +
-    "			</div>\n" +
+    "      </div>\n" +
+    "      <div class=\"column\" ng-if=\"phoneConnected\">\n" +
+    "				<div class=\"box has-text-centered is-vcentered\" ui-sref=\"petron.phonebox.main\">\n" +
+    "					<div>\n" +
+    "						<span class=\"icon is-large\"><i class=\"fa icon-phone\"></i></span>\n" +
+    "						<h2 class=\"title is-3\">{{ 'phone_module' | translate }}</h2>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "      </div>\n" +
     "		</div>\n" +
     "	</div>\n" +
     "</section>\n" +
@@ -525,7 +542,7 @@ angular.module("js/_main/_template/petron.home.html", []).run(["$templateCache",
     "		<div class=\"column has-text-left\">\n" +
     "			<span class=\"left-menu-toggle\" ng-click=\"$root.left_toggle = !$root.left_toggle\" ng-if=\"$root.leftMenuShow\">\n" +
     "				<span class=\"icon\"><i class=\"fa icon-th-menu\"></i></span>\n" +
-    "				<p>MENU</p>\n" +
+    "				<p>Menu</p>\n" +
     "			</span>\n" +
     "		</div>\n" +
     "		<div class=\"column has-text-centered\">\n" +
@@ -539,6 +556,7 @@ angular.module("js/_main/_template/petron.home.html", []).run(["$templateCache",
     "		</div>\n" +
     "	</div>\n" +
     "</header>\n" +
+    "\n" +
     "<main class=\"container is-fluid\" ui-view=\"content\" ng-click=\"$root.right_toggle = false; $root.left_toggle = false;\"></main>\n" +
     "");
 }]);
@@ -1008,6 +1026,64 @@ angular.module("js/_modules/navigation_module/_template/menu.html", []).run(["$t
     "");
 }]);
 
+angular.module("js/_modules/phone_module/_template/calls.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/phone_module/_template/calls.html",
+    "<section class=\"columns u--max-height__100 u--margin-top__none c--phone\">\n" +
+    "  <div class=\"column\">\n" +
+    "    <h1>Calls</h1>\n" +
+    "  </div>\n" +
+    "</section>\n" +
+    "");
+}]);
+
+angular.module("js/_modules/phone_module/_template/main.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/phone_module/_template/main.html",
+    "<section class=\"columns u--max-height__100 u--margin-top__none c--home c--phone is-vcentered\">\n" +
+    "  <div class=\"column\">\n" +
+    "    <div class=\"columns\">\n" +
+    "      <div class=\"column is-8 is-offset-2\">\n" +
+    "        <div class=\"notification is-primary\">\n" +
+    "          <button class=\"delete\"></button>\n" +
+    "          Du hast X neue Nachrichten und X verpasste Anrufe!\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"columns\">\n" +
+    "      <div class=\"column is-4 is-offset-2\">\n" +
+    "        <div class=\"box has-text-centered is-vcentered\" ui-sref=\"petron.phonebox.calls\">\n" +
+    "          <div>\n" +
+    "            <span class=\"icon is-large\"><i class=\"fa icon-phone\"></i></span>\n" +
+    "            <h2 class=\"title is-3\">{{ 'phone.calls' | translate }}</h2>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "      <div class=\"column is-4\">\n" +
+    "        <div class=\"box has-text-centered is-vcentered\" ui-sref=\"petron.phonebox.sms\">\n" +
+    "          <div>\n" +
+    "            <span class=\"icon is-large\"><i class=\"fa icon-post\"></i></span>\n" +
+    "            <h2 class=\"title is-3\">{{ 'phone.messages' | translate }}</h2>\n" +
+    "          </div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "  </div>\n" +
+    "</section>\n" +
+    "");
+}]);
+
+angular.module("js/_modules/phone_module/_template/messages.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/phone_module/_template/messages.html",
+    "<section class=\"columns u--max-height__100 u--margin-top__none c--phone\">\n" +
+    "  <div class=\"column\">\n" +
+    "    <h1>messages</h1>\n" +
+    "  </div>\n" +
+    "</section>\n" +
+    "");
+}]);
+
 angular.module("js/_modules/settings_module/_template/main.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/settings_module/_template/main.html",
@@ -1091,7 +1167,7 @@ angular.module("js/_modules/settings_module/_template/main.html", []).run(["$tem
 angular.module("js/_modules/video_module/_template/_directive.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/video_module/_template/_directive.html",
-    "<video class=\"c--video__player\" hm-tap=\"play()\" hm-press=\"showControls = !showControls\" hm-recognizer-options='[{\"type\": \"press\", \"time\": 500}, {\"type\":\"tap\",\"enable\": true}]'>\n" +
+    "<video class=\"c--video__player\" hm-tap=\"play()\" hm-press=\"getControls()\" hm-recognizer-options='[{\"type\": \"press\", \"time\": 500, \"enable\": true}, {\"type\":\"tap\",\"enable\": true}]'>\n" +
     "	<source ng-repeat=\"file in playlist.tracks\" ng-if=\"playlist.tracks && file.play\" ng-src=\"{{ file.path }}\" type=\"video/{{ file.type}}\">\n" +
     "</video>\n" +
     "<section class=\"c--video__controls c--controls__top\" ng-class=\"{'c--controls__show': showControls}\" hm-tap=\"resetInterval\">\n" +

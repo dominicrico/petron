@@ -112,6 +112,7 @@
                     var isHD = false;
                     ffprobe(fpath + '/' + file, {
                       path: '/usr/bin/ffprobe'
+                        //path: require('ffprobe-static').path
                     }, function(err, info) {
                       if (err) {
                         return callback(err);

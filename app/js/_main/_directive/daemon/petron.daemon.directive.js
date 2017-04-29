@@ -26,6 +26,16 @@
               $media = $element.find($rootScope.daemon.type);
               _media = $media[0];
 
+              _media.volume = angular.copy(
+                $rootScope.settings
+                .volume);
+
+              $rootScope.$watch('settings.volume', function() {
+                _media.volume = angular.copy(
+                  $rootScope.settings
+                  .volume);
+              });
+
               $media.on('canplay', function() {
                 if (!_playing) {
                   _media.currentTime = $rootScope[$rootScope.daemon

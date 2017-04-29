@@ -68,7 +68,7 @@
     }
   },
   "resolutions": {
-    "angular": "^1.6.3",
+    "angular": "^1.5.8",
     "angular-translate": "^2.12.1",
     "messageformat": "~1.0.2",
     "angular-mocks": "^1.6.3"

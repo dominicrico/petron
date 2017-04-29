@@ -1,0 +1,30 @@
+<section class="columns u--max-height__100 u--margin-top__none c--home c--phone is-vcentered">
+  <div class="column">
+    <div class="columns">
+      <div class="column is-8 is-offset-2">
+        <div class="notification is-primary">
+          <button class="delete"></button>
+          Du hast X neue Nachrichten und X verpasste Anrufe!
+        </div>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column is-4 is-offset-2">
+        <div class="box has-text-centered is-vcentered" ui-sref="petron.phonebox.calls">
+          <div>
+            <span class="icon is-large"><i class="fa icon-phone"></i></span>
+            <h2 class="title is-3">{{ 'phone.calls' | translate }}</h2>
+          </div>
+        </div>
+      </div>
+      <div class="column is-4">
+        <div class="box has-text-centered is-vcentered" ui-sref="petron.phonebox.sms">
+          <div>
+            <span class="icon is-large"><i class="fa icon-post"></i></span>
+            <h2 class="title is-3">{{ 'phone.messages' | translate }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

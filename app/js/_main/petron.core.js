@@ -22,7 +22,6 @@
       remoteProvider.register('musicmetadata');
       remoteProvider.register('ffmpeg');
       remoteProvider.register('ffprobe');
-      remoteProvider.register('ffprobe-static');
       remoteProvider.register('electron-json-storage');
       //remoteProvider.register('node-rpi-si4703');
       remoteProvider.register('node-obd');

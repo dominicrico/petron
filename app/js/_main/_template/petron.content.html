@@ -43,14 +43,22 @@
 					</div>
 				</div>
 			</div>
-			<div class="column">
+			<div class="column" ng-if="!phoneConnected">
 				<div class="box has-text-centered is-vcentered" ui-sref="petron.settingsbox">
 					<div>
 						<span class="icon is-large"><i class="fa icon-cog"></i></span>
 						<h2 class="title is-3">{{ 'settings_module' | translate }}</h2>
 					</div>
 				</div>
-			</div>
+      </div>
+      <div class="column" ng-if="phoneConnected">
+				<div class="box has-text-centered is-vcentered" ui-sref="petron.phonebox.main">
+					<div>
+						<span class="icon is-large"><i class="fa icon-phone"></i></span>
+						<h2 class="title is-3">{{ 'phone_module' | translate }}</h2>
+					</div>
+				</div>
+      </div>
 		</div>
 	</div>
 </section>

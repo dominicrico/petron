@@ -8,11 +8,23 @@
 
   angular.module('petron').config([function() {
 
-  }]).run(['$rootScope', 'petron.daemon', 'petron.storage', '$translate',
-    'tmhDynamicLocale', 'petron.phony', 'SweetAlert',
+  }]).run(['$rootScope',
+    'petron.daemon',
+    'petron.storage',
+    '$translate',
+    'tmhDynamicLocale',
+    '$state',
+    'petron.phony',
+    'SweetAlert',
     function(
-      $rootScope, petronDaemon, petronStorage, $translate,
-      tmhDynamicLocale, petronPhony, SweetAlert) {
+      $rootScope,
+      petronDaemon,
+      petronStorage,
+      $translate,
+      tmhDynamicLocale,
+      $state,
+      petronPhony,
+      SweetAlert) {
       $rootScope.daemon = {};
 
       petronPhony.init();
@@ -30,6 +42,10 @@
       });
 
       $rootScope.leftMenuShow = false;
+
+      $rootScope.goHome = function() {
+        $state.go('petron.home');
+      };
 
       $rootScope.settings = {
         distance: 'km',
