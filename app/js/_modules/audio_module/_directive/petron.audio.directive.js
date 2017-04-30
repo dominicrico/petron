@@ -103,10 +103,12 @@
 
               $rootScope.$on('audio.queue:changed', function() {
                 $scope.isInit = false;
+                $scope.playlist = $rootScope.audio.queue;
                 _initialize();
               });
               $rootScope.$on('audio.playlists:loaded', function() {
                 $scope.isInit = false;
+                $scope.playlist = $rootScope.audio.queue;
                 _initialize();
               });
 
