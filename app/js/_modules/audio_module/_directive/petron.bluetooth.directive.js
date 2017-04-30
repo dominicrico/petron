@@ -14,8 +14,6 @@
               $translatePartialLoader,
               $translate, $timeout) {
 
-              console.log('Bluetooth Player')
-
               $translate('error.file_not_found').then(function(
                 translation) {
                 $scope.error_file_not_found = translation;
@@ -39,12 +37,14 @@
                   _prepare();
                   petronPhony.on('propertiesChanged', function(iface) {
                     console.log(iface.args[0])
-                    $scope.$apply(function(){
-                      if(iface.args[0].hasOwnProperty('Status')) {
+                    $scope.$apply(function() {
+                      if (iface.args[0].hasOwnProperty('Status')) {
                         if (iface.args[0].Status === 'playing') {
                           $scope.controls.play = true;
                           $scope._displayTme();
-                        } else if (iface.args[0].Status === 'paused' || iface.args[0].Status === 'idle') {
+                        } else if (iface.args[0].Status ===
+                          'paused' || iface.args[0].Status ===
+                          'idle') {
                           $scope.controls.play = false;
                         } else {
                           $scope.controls.play = false;
@@ -95,8 +95,7 @@
 
               $scope._displayTime = function() {
                 _timer = $timeout(function() {
-                  if ($scope.controls.play ===
-                    true) {
+                  if ($scope.controls.play) {
                     $scope.controls.time += 1;
                   }
                   requestAnimationFrame($scope._displayTime);
