@@ -54,8 +54,9 @@
                     phony.createOBEXSession('pbap').then(
                       function() {
                         phony.getPhoneBook().then(function(
-                          phonebook) {
-                          _phonebook = phonebook;
+                          pb) {
+                          _phonebook = pb;
+                          console.log(_phonebook, pb);
                           deferredPb.resolve(_phonebook);
 
                         });
@@ -67,12 +68,11 @@
                     phony.createOBEXSession('map').then(
                       function() {
                         phony.getMessages('inbox').then(
-                          function(
-                            msgs) {
+                          function(msgs) {
                             _messages = msgs;
+                            console.log(_messages, msgs);
                             deferredMsgs.resolve(
                               _messages);
-
                           });
                       });
                     return deferredMsgs.promise;
