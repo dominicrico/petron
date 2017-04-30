@@ -9,6 +9,8 @@
         $scope.messages = [];
 
         petronPhony.getMessages(function(msgs) {
+          console.log('get messages');
+          console.log(msgs);
           $scope.messages = msgs;
         });
       }
