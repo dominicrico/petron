@@ -37,9 +37,23 @@
               var _initialize = function() {
                 if ($scope.isInit !== true) {
                   _prepare();
-                  petronPhony.on('propertiesChanged', function(a, b, c,
-                    d, e) {
-                    console.log(a, b, c, d, e);
+                  petronPhony.on('propertiesChanged', function(iface) {
+                    console.log(iface.args[0])
+                    $scope.$apply(function(){
+                      if(iface.args[0].hasOwnProperty('Status')) {
+                        if (iface.args[0].Status === 'playing') {
+                          $scope.controls.play = true;
+                          $scope._displayTme();
+                        } else if (iface.args[0].Status === 'paused' || iface.args[0].Status === 'idle') {
+                          $scope.controls.play = false;
+                        } else {
+                          $scope.controls.play = false;
+                          if (_timer) {
+                            $timeout.cancel(_timer);
+                          }
+                        }
+                      }
+                    });
                   });
                   petronPhony.findMediaPlayer().then(function(mp) {
                     $scope.player = mp;
@@ -53,6 +67,7 @@
                       $scope._displayTime();
                     });
                     $scope.player.status().then(function(status) {
+                      console.log(status);
                       if (status === 'playing') {
                         $scope.controls.play = true;
                         $scope._displayTime();
@@ -80,7 +95,7 @@
 
               $scope._displayTime = function() {
                 _timer = $timeout(function() {
-                  if ($scope.playlist.tracks[$scope.current].play ===
+                  if ($scope.controls.play ===
                     true) {
                     $scope.controls.time += 1;
                   }

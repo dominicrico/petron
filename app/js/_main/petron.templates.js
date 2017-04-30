@@ -787,10 +787,8 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run([
       "		<h4 ng-if=\"(visibleFileTree === 'files' && !files.length) || ((!visibleFileTree || visibleFileTree === 'playlist') && !audio.queue.tracks.length)\">{{ 'no_files' | translate }}</h4>\n" +
       "	</aside>\n" +
       "\n" +
-      << << << < Updated upstream "	<main class=\"c--audio__main column is-5\" ng-if=\"localMusic\">\n" +
-      === === =
       "	<main class=\"c--audio__main column is-5\" ng-if=\"localMusic && ($root.audio.queue || $root.audio.playlist)\">\n" +
-      >>> >>> > Stashed changes "		<petron-audio></petron-audio>\n" +
+      "<petron-audio></petron-audio>\n" +
       "	</main>\n" +
       "  <main class=\"c--audio__main column\" ng-if=\"btMusic\">\n" +
       "		<petron-bluetooth-audio></petron-bluetooth-audio>\n" +

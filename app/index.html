@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/petron.css">
 </head>
 
-<body ng-app="petron" ng-cloak="" hm-swipeup="$root.goHome" hm-panend="setVolume" hm-panstart="getVolume" hm-pan="volumeIndicator" hm-recognizer-options='[{"type": "swipeup", "treshold": 400},{"type":"pan","enable": true, "directions": "DIRECTION_VERTICAL", "threshold": 50, "pointers": 2 }]'>
+<body ng-app="petron" ng-cloak="" hm-panend="setVolume" hm-panstart="getVolume" hm-pan="volumeIndicator" hm-recognizer-options='[{"type":"pan","enable": true, "directions": "DIRECTION_VERTICAL", "threshold": 50, "pointers": 2 }]'>
     <div class="petron-wrap" ng-class="{'show-left-menu': $root.left_toggle, 'show-right-menu': $root.right_toggle, 'c--volume-indicator__blur': showVolumeIndicator}">
         <div class="menu-wrap is-left">
             <nav class="menu">
@@ -107,7 +107,6 @@
     <script src="../app/vendor/es6-promise/es6-promise.js"></script>
     <script src="../app/vendor/sweetalert2/dist/sweetalert2.js"></script>
     <script src="../app/vendor/ngSweetAlert2/SweetAlert2.js"></script>
-    <script src="../app/vendor/range-touch/range-touch.js"></script>
     <!-- endbower -->
 
     <script type="text/javascript" src="js/_main/petron.templates.js"></script>

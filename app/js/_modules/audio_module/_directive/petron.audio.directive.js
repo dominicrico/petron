@@ -181,7 +181,7 @@
               $rootScope.playTrack = function(track) {
                 _canPlay = false;
                 $scope._audio.pause();
-                if ($scope.playlist.tracks[$scope.current]) {
+                if ($scope.playlist && $scope.playlist.tracks && $scope.playlist.tracks[$scope.current]) {
                   $scope.playlist.tracks[$scope.current].play = false;
                 }
                 $scope.current = track;

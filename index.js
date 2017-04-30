@@ -29,6 +29,8 @@ let windowParams = {
   title: 'Petron'
 };
 
+app.commandLine.appendSwitch('--touch-devices=8');
+
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow(windowParams);

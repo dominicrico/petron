@@ -3,8 +3,10 @@
 
 	angular.module('petron.core')
 		.filter('buildTime', [function() {
-			return function(time, unit) {
-				time = parseFloat(time);
+			return function(time, unit, ms) {
+                                time = parseFloat(time);
+                                if (ms == 'true') { time = (time / 100); }
+				
 				var hrs = Math.floor(time / 3600);
 				var mins = Math.floor((time % 3600) / 60);
 				var secs = Math.floor(time % 60);
