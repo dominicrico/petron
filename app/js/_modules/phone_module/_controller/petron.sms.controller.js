@@ -26,10 +26,9 @@
         });
 
         $scope.readMessage = function(msg) {
-          petronPhony.readMessage(msg.path).then(
-            function(msg) {
-              $scope.message = msg;
-            });
+          petronPhony.readMessage(msg.path).then(function(msg) {
+            $scope.message = msg;
+          });
         };
       }
     ]);
