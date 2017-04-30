@@ -16,6 +16,11 @@
             $scope.messages.push(msg);
           });
 
+          petronPhony.readMessage($scope.messages[1].path).then(
+            function(msg) {
+              $scope.message = msg;
+            });
+
         }, function(err) {
           console.log(err);
         });

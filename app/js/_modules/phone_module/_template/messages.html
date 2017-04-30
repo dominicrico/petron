@@ -1,7 +1,7 @@
 <section class="columns u--max-height__100 u--margin-top__none c--phone">
   <div class="column">
     <ul class="c--filetree__list" ng-if="messages">
-    	<li ng-repeat="message in messages" hm-tap="readMessage(message)">
+    	<li ng-repeat="msg in messages" hm-tap="readMessage(message)">
     		<div class="columns is-vcentered">
     			<div class="column is-narrow is-paddingless">
     				<figure class="image is-32x32">
@@ -13,17 +13,20 @@
           <div class="column c--filetree__name">
     				<div class="columns">
     					<div class="column">
-    						{{ message.Sender }} - {{ message.Timestamp | date:'dd.MM.yyyy H:m' }}
+    						{{ msg.Sender }} - {{ msg.Timestamp | date:'dd.MM.yyyy H:m' }}
     					</div>
     				</div>
     				<div class="columns c--filetree__title">
     					<div class="column">
-    						{{ message.Subject }}
+    						{{ msg.Subject }}
     					</div>
     				</div>
     			</div>
     		</div>
     	</li>
     </ul>
+  </div>
+  <div class="column">
+    {{ message }}
   </div>
 </section>

@@ -158,6 +158,23 @@
             return deferred.promise;
           },
 
+          readMessage: function(path) {
+            var deferred = $q.defer();
+
+            if (this.connected !== true) {
+              deferred.reject('no_device_connected');
+            } else if (this.connected !== true) {
+              deferred.reject('no_message_selected');
+            } else {
+              phony.readMessage(path).then(function(message) {
+                console.log(message);
+                deferred.resolve(message);
+              });
+            }
+
+            return deferred.promise;
+          },
+
           on: function(ev, cb) {
             if (this.connected !== true) {
               throw new Error('no_device_connected');
