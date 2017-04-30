@@ -24,6 +24,13 @@
         }, function(err) {
           console.log(err);
         });
+
+        $scope.readMessage = function(msg) {
+          petronPhony.readMessage(msg.path).then(
+            function(msg) {
+              $scope.message = msg;
+            });
+        };
       }
     ]);
 })();

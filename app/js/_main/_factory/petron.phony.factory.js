@@ -48,55 +48,8 @@
               phony.setDiscoverable(false);
               phony.setPairable(false);
               phony.connectHandsfree().then(function() {
-                $q.all([
-                  function() {
-                    var deferredPb = $q.defer();
-                    phony.createOBEXSession('pbap').then(
-                      function() {
-                        phony.getPhoneBook().then(function(
-                          pb) {
-                          _phonebook = pb;
-                          console.log(_phonebook, pb);
-                          deferredPb.resolve(_phonebook);
-
-                        }, function(err) {
-                          console.log(
-                            'Phonebook Error: ',
-                            err);
-                        });
-                      },
-                      function(err) {
-                        console.log(
-                          'OBEX Phonebook Error: ',
-                          err);
-                      });
-                    return deferredPb.promise;
-                  },
-                  function() {
-                    var deferredMsgs = $q.defer();
-                    phony.createOBEXSession('map').then(
-                      function() {
-                        phony.getMessages('inbox').then(
-                          function(msgs) {
-                            _messages = msgs;
-                            console.log(_messages, msgs);
-                            deferredMsgs.resolve(
-                              _messages);
-                          },
-                          function(err) {
-                            console.log('SMS Error: ',
-                              err);
-                          });
-                      },
-                      function(err) {
-                        console.log('OBEX SMS Error: ', err);
-                      });
-                    return deferredMsgs.promise;
-                  }
-                ]).then(function() {
-                  self.connected = true;
-                  deferred.resolve();
-                });
+                self.connected = true;
+                deferred.resolve();
               });
             });
 
@@ -138,18 +91,14 @@
                     phony.getMessages('inbox').then(
                       function(msgs) {
                         _messages = msgs;
-                        console.log(_messages, msgs);
                         deferred.resolve(
                           _messages);
                       },
                       function(err) {
-                        console.log('SMS Error: ',
-                          err);
                         deferred.reject(err);
                       });
                   },
                   function(err) {
-                    console.log('OBEX SMS Error: ', err);
                     deferred.reject(err);
                   });
               }
@@ -167,7 +116,6 @@
               deferred.reject('no_message_selected');
             } else {
               phony.readMessage(path).then(function(message) {
-                console.log(message);
                 deferred.resolve(message);
               });
             }
