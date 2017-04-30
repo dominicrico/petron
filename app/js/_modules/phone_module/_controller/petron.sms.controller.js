@@ -9,7 +9,13 @@
         $scope.messages = [];
 
         petronPhony.getMessages().then(function(messages) {
-          $scope.messages = messages;
+          var keys = Object.keys(messages);
+          keys.forEach(function(key) {
+            var msg = messages[key];
+            msg.path = key;
+            $scope.messages.push(msg);
+          });
+
         }, function(err) {
           console.log(err);
         });
