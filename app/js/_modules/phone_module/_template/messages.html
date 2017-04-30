@@ -10,10 +10,15 @@
     					</span>
     				</figure>
     			</div>
-    			<div class="column c--filetree__name">
+          <div class="column c--filetree__name">
     				<div class="columns">
     					<div class="column">
-    						{{ message.subject }}
+    						{{ message.Sender }} - {{ message.Timestamp | date:'dd.MM.yyyy H:m' }}
+    					</div>
+    				</div>
+    				<div class="columns c--filetree__title">
+    					<div class="column">
+    						{{ message.Subject }}
     					</div>
     				</div>
     			</div>
