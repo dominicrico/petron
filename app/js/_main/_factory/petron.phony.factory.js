@@ -126,11 +126,36 @@
           },
 
           getMessages: function() {
+            var deferred = $q.defer();
             if (this.connected !== true) {
-              throw new Error('no_device_connected');
+              deferred.reject('no_device_connected');
+            } else {
+              if (_messages !== undefined) {
+                deferred.resolve(_messages);
+              } else {
+                phony.createOBEXSession('map').then(
+                  function() {
+                    phony.getMessages('inbox').then(
+                      function(msgs) {
+                        _messages = msgs;
+                        console.log(_messages, msgs);
+                        deferred.resolve(
+                          _messages);
+                      },
+                      function(err) {
+                        console.log('SMS Error: ',
+                          err);
+                        deferred.reject(err);
+                      });
+                  },
+                  function(err) {
+                    console.log('OBEX SMS Error: ', err);
+                    deferred.reject(err);
+                  });
+              }
             }
 
-            return _messages;
+            return deferred.promise;
           },
 
           on: function(ev, cb) {
