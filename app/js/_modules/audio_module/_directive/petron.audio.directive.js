@@ -67,6 +67,8 @@
                     }
 
                     $scope.$apply(function() {
+                      $scope.current = 0;
+
                       if ($scope.playlist && $scope.playlist.tracks &&
                         $scope.playlist
                         .tracks.length && $scope.playlist.tracks[
@@ -75,8 +77,6 @@
                         $scope.playlist.tracks[$scope.current].play =
                           false;
                       }
-
-                      $scope.current = 0;
 
                       if ($scope.playlist && $scope.playlist.tracks &&
                         $scope.playlist
@@ -101,8 +101,14 @@
                 }
               };
 
-              $rootScope.$on('audio.queue:changed', _initialize);
-              $rootScope.$on('audio.playlists:loaded', _initialize);
+              $rootScope.$on('audio.queue:changed', function() {
+                $scope.isInit = false;
+                _initialize();
+              });
+              $rootScope.$on('audio.playlists:loaded', function() {
+                $scope.isInit = false;
+                _initialize();
+              });
 
               $rootScope.$on('audio.queue:update', function() {
                 $timeout(function() {
@@ -311,6 +317,10 @@
                   'petron.audiobox') {
                   $scope.daemonize();
                 }
+              });
+
+              $timeout(function() {
+                _initialize();
               });
             }
           ]
