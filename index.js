@@ -30,6 +30,7 @@ let windowParams = {
 };
 
 app.commandLine.appendSwitch('--touch-devices', 8);
+app.commandLine.appendSwitch('--touch-events', 'enabled');
 
 function createWindow() {
   // Create the browser window.

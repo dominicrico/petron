@@ -19,9 +19,9 @@
                 $scope.error_file_not_found = translation;
               });
 
-              $rootScope.$watch('settings.volume', function(volume) {
-                //$scope.gain.gain.value = volume;
-              }, false);
+              // $rootScope.$watch('settings.volume', function(volume) {
+              //   $scope.gain.gain.value = volume;
+              // }, false);
 
               var _prepare = function() {
                 petronDaemon.disable();
@@ -36,7 +36,6 @@
                 if ($scope.isInit !== true) {
                   _prepare();
                   petronPhony.on('propertiesChanged', function(iface) {
-                    console.log(iface.args[0])
                     $scope.$apply(function() {
                       if (iface.args[0].hasOwnProperty('Status')) {
                         if (iface.args[0].Status === 'playing') {
@@ -67,7 +66,6 @@
                       $scope._displayTime();
                     });
                     $scope.player.status().then(function(status) {
-                      console.log(status);
                       if (status === 'playing') {
                         $scope.controls.play = true;
                         $scope._displayTime();
@@ -170,7 +168,6 @@
                 }
               });
               $timeout(function() {
-                console.log('run init function')
                 _initialize();
               });
             }
