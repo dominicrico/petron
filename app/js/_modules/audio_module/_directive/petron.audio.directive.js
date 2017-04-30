@@ -192,6 +192,8 @@
                 if ($scope.playlist && $scope.playlist.tracks && $scope
                   .playlist.tracks[$scope.current]) {
                   $scope.playlist.tracks[$scope.current].play = false;
+                } else {
+                  $scope.playlist = $rootScope.audio.queue;
                 }
                 $scope.current = track;
                 $scope.playlist.tracks[$scope.current].play = true;
