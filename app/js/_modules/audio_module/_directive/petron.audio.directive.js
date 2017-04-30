@@ -47,6 +47,7 @@
                   $rootScope.settings
                   .volume);
 
+                $scope.playlist = $rootScope.audio.queue;
                 $rootScope.audio.isPrepared = true;
               };
 
@@ -76,7 +77,6 @@
                       }
 
                       $scope.current = 0;
-                      $scope.playlist = $rootScope.audio.queue;
 
                       if ($scope.playlist && $scope.playlist.tracks &&
                         $scope.playlist
@@ -181,7 +181,8 @@
               $rootScope.playTrack = function(track) {
                 _canPlay = false;
                 $scope._audio.pause();
-                if ($scope.playlist && $scope.playlist.tracks && $scope.playlist.tracks[$scope.current]) {
+                if ($scope.playlist && $scope.playlist.tracks && $scope
+                  .playlist.tracks[$scope.current]) {
                   $scope.playlist.tracks[$scope.current].play = false;
                 }
                 $scope.current = track;
