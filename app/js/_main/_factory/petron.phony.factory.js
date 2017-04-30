@@ -59,7 +59,16 @@
                           console.log(_phonebook, pb);
                           deferredPb.resolve(_phonebook);
 
+                        }, function(err) {
+                          console.log(
+                            'Phonebook Error: ',
+                            err);
                         });
+                      },
+                      function(err) {
+                        console.log(
+                          'OBEX Phonebook Error: ',
+                          err);
                       });
                     return deferredPb.promise;
                   },
@@ -73,7 +82,14 @@
                             console.log(_messages, msgs);
                             deferredMsgs.resolve(
                               _messages);
+                          },
+                          function(err) {
+                            console.log('SMS Error: ',
+                              err);
                           });
+                      },
+                      function(err) {
+                        console.log('OBEX SMS Error: ', err);
                       });
                     return deferredMsgs.promise;
                   }
