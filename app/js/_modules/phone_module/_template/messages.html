@@ -1,5 +1,24 @@
 <section class="columns u--max-height__100 u--margin-top__none c--phone">
   <div class="column">
-    <h1>messages</h1>
+    <ul class="c--filetree__list" ng-if="messages">
+    	<li ng-repeat="message in messages" hm-tap="readMessage(message)">
+    		<div class="columns is-vcentered">
+    			<div class="column is-narrow is-paddingless">
+    				<figure class="image is-32x32">
+    					<span class="icon is-medium">
+    						<i class="fa icon-folder"></i>
+    					</span>
+    				</figure>
+    			</div>
+    			<div class="column c--filetree__name">
+    				<div class="columns">
+    					<div class="column">
+    						{{ message.text }}
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</li>
+    </ul>
   </div>
 </section>
