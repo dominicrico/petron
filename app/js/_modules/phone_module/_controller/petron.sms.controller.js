@@ -8,8 +8,11 @@
         $rootScope.title = 'phone_module';
         $scope.messages = [];
 
-        $scope.messages = petronPhony.getMessages();
-        console.log(petronPhony.getMessages());
+        petronPhony.getMessages().then(function(messages) {
+          $scope.messages = messages;
+        }, function(err) {
+          console.log(err);
+        });
       }
     ]);
 })();
