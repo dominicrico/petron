@@ -135,9 +135,9 @@
               _data._currentQueue[_type] = _data._playlists[_type][name];
             }
 
-            _broadcastUpdate('queue', 'changed');
-
             deferred.resolve(_data._currentQueue[_type]);
+
+            _broadcastUpdate('queue', 'changed');
             return deferred.promise;
           },
 
@@ -189,7 +189,6 @@
           },
 
           loadPlaylists: function(type) {
-            console.log('LOADING LISTS');
             var deferred = $q.defer();
 
             if (type) {
@@ -209,12 +208,11 @@
                 deferred.resolve(playlists);
                 _broadcastUpdate('playlists', 'loaded');
               }, function(err) {
+                deferred.reject(err);
                 _broadcastUpdate('playlists', 'error');
                 throw new Error(err);
               });
             }
-
-
 
             return deferred.promise;
           },
@@ -239,9 +237,9 @@
                   _type][name].tracks || []),
                 tracks);
 
-              _broadcastUpdate(name, 'update');
-
               deferred.resolve(_data._playlists[_type][name]);
+
+              _broadcastUpdate(name, 'update');
             } else {
               var concat = [];
               if (_data._currentQueue[_type] && _data._currentQueue[_type]
@@ -256,9 +254,9 @@
               _data._currentQueue[_type].tracks = [].concat(concat,
                 tracks);
 
-              _broadcastUpdate(name, 'update');
-
               deferred.resolve(_data._currentQueue[_type]);
+
+              _broadcastUpdate(name, 'update');
             }
 
             return deferred.promise;

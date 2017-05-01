@@ -66,17 +66,19 @@
                       _prepare();
                     }
 
-                    $scope.$apply(function() {
-                      $scope.current = 0;
+                    console.log($scope.playlist);
 
+                    $scope.$apply(function() {
                       if ($scope.playlist && $scope.playlist.tracks &&
                         $scope.playlist
                         .tracks.length && $scope.playlist.tracks[
-                          $scope.current].play
+                          $scope.current]
                       ) {
                         $scope.playlist.tracks[$scope.current].play =
                           false;
                       }
+
+                      $scope.current = 0;
 
                       if ($scope.playlist && $scope.playlist.tracks &&
                         $scope.playlist
@@ -101,16 +103,21 @@
                 }
               };
 
+              var _reInit = function() {
+                $timeout(function() {
+                  _canPlay = false;
+                  $scope.isInit = false;
+                  $scope.playlist = $rootScope.audio.queue;
+                  _initialize();
+                });
+              };
+
               $rootScope.$on('audio.queue:changed', function() {
-                $scope.isInit = false;
-                console.log($rootScope.audio.queue);
-                $scope.playlist = $rootScope.audio.queue;
-                _initialize();
+                _reInit();
               });
+
               $rootScope.$on('audio.playlists:loaded', function() {
-                $scope.isInit = false;
-                $scope.playlist = $rootScope.audio.queue;
-                _initialize();
+                _reInit();
               });
 
               $rootScope.$on('audio.queue:update', function() {
