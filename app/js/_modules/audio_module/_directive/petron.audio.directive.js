@@ -19,6 +19,7 @@
               $scope.$audio = $element.find('audio');
               $scope.isInit = false;
 
+              var _canPlay = false;
               var TIMEOUT = 1000;
 
               $translate('error.file_not_found').then(function(
@@ -48,6 +49,16 @@
                   .volume);
 
                 $scope.playlist = $rootScope.audio.queue;
+
+                $timeout(function() {
+                  _source = angular.element(angular.element(
+                      $scope.$audio)
+                    .children()[
+                      0]);
+                  _source.on('error',
+                    _handleSourceError);
+                });
+
                 $rootScope.audio.isPrepared = true;
               };
 
@@ -65,8 +76,6 @@
                     if (!$rootScope.audio.isPrepared) {
                       _prepare();
                     }
-
-                    console.log($scope.playlist);
 
                     $scope.$apply(function() {
                       if ($scope.playlist && $scope.playlist.tracks &&
@@ -87,21 +96,16 @@
                           true;
                         $timeout(function() {
                           $scope._audio.load();
-                        }, TIMEOUT);
+                        });
                       }
-
-                      $timeout(function() {
-                        _source = angular.element(angular.element(
-                            $scope.$audio)
-                          .children()[
-                            0]);
-                        _source.on('error',
-                          _handleSourceError);
-                      });
                     });
                   });
                 }
               };
+
+              if ($rootScope.daemon.player && $rootScope.daemon.player.audio) {
+                _prepare();
+              }
 
               var _reInit = function() {
                 $timeout(function() {
@@ -129,8 +133,11 @@
               });
 
               if ($rootScope.audio.player && $rootScope.audio.player.controls) {
+                _canPlay = false;
                 $scope.controls = $rootScope.audio.player.controls;
               } else {
+                _initialize();
+
                 $scope.controls = {
                   time: 0,
                   duration: 0,
@@ -153,8 +160,8 @@
                 $scope.controls.duration = $scope._audio.duration;
               });
 
-              var _canPlay = false;
               $scope.$audio.on('canplay', function() {
+                console.log('canplay', _canPlay)
                 if (_canPlay) {
                   return false;
                 }
@@ -165,9 +172,9 @@
                     $rootScope.daemon.player.audio.currentTime;
                   $rootScope.daemon.player.audio = undefined;
                 }
-                $timeout(function() {
+                if ($scope.controls.play) {
                   $scope._audio.play();
-                }, TIMEOUT);
+                }
                 _canPlay = true;
               });
 
@@ -184,7 +191,7 @@
                 if ($scope.controls.repeat) {
                   $timeout(function() {
                     $scope._audio.load();
-                  }, TIMEOUT);
+                  });
                 } else {
                   $scope.next();
                 }
@@ -207,7 +214,7 @@
                 $scope.playlist.tracks[$scope.current].play = true;
                 $timeout(function() {
                   $scope._audio.load();
-                }, TIMEOUT);
+                });
               };
 
               $scope.play = function(force) {
@@ -215,13 +222,13 @@
                   $scope.controls.play = true;
                   $timeout(function() {
                     $scope._audio.play();
-                  }, 50);
+                  });
 
                 } else {
                   $scope.controls.play = false;
                   $timeout(function() {
                     $scope._audio.pause();
-                  }, 35);
+                  });
                 }
               };
 
@@ -259,12 +266,13 @@
 
                 $timeout(function() {
                   $scope._audio.load();
-                }, TIMEOUT);
+                });
               };
 
               $scope.next = function() {
                 _canPlay = false;
                 $scope._audio.pause();
+                $scope.controls.play = false;
                 if ($scope.playlist.tracks[$scope.current + 1]) {
                   $scope._audio.currentTime = 0;
                   $scope.playlist.tracks[$scope.current].play = false;
@@ -283,12 +291,13 @@
                 }
                 $timeout(function() {
                   $scope._audio.load();
-                }, TIMEOUT);
+                });
               };
 
               $scope.previous = function() {
                 _canPlay = false;
                 $scope._audio.pause();
+                $scope.controls.play = false;
                 if ($scope.playlist.tracks[$scope.current - 1]) {
                   $scope._audio.currentTime = 0;
                   $scope.playlist.tracks[$scope.current].play = false;
@@ -308,7 +317,7 @@
 
                 $timeout(function() {
                   $scope._audio.load();
-                }, TIMEOUT);
+                });
               };
 
               $scope.daemonize = function() {
@@ -329,10 +338,6 @@
                   'petron.audiobox') {
                   $scope.daemonize();
                 }
-              });
-
-              $timeout(function() {
-                _initialize();
               });
             }
           ]

@@ -15,26 +15,9 @@
             }
           },
           resolve: {
-            loadLists: ['petron.playlist', '$rootScope', function(
-              petronPlaylist,
-              $rootScope) {
+            loadLists: ['petron.playlist', function(petronPlaylist) {
               petronPlaylist.setType('video');
-              petronPlaylist.loadPlaylists('video').then(function(
-                video) {
-                if (!$rootScope.video.queue || !Object.keys(
-                    $rootScope.video.queue)
-                  .length) {
-                  $rootScope.video.queue = video.queue;
-                }
-
-                if (!$rootScope.video.playlists || !Object.keys(
-                    $rootScope.video
-                    .playlists).length) {
-                  $rootScope.video.playlists = video.playlists;
-                }
-
-                return $rootScope.video;
-              });
+              return petronPlaylist.loadPlaylists('video');
             }]
           }
         }).state('petron.videobox.main', {

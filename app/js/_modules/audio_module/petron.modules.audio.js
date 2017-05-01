@@ -9,26 +9,9 @@
         .state('petron.audiobox', {
           url: '/audiobox',
           resolve: {
-            loadLists: ['petron.playlist', '$rootScope', function(
-              petronPlaylist,
-              $rootScope) {
+            loadLists: ['petron.playlist', function(petronPlaylist) {
               petronPlaylist.setType('audio');
-              petronPlaylist.loadPlaylists('audio').then(function(
-                audio) {
-                if (!$rootScope.audio.queue || !Object.keys(
-                    $rootScope.audio.queue)
-                  .length) {
-                  $rootScope.audio.queue = audio.queue;
-                }
-
-                if (!$rootScope.audio.playlists || !Object.keys(
-                    $rootScope.audio
-                    .playlists).length) {
-                  $rootScope.audio.playlists = audio.playlists;
-                }
-
-                return $rootScope.audio;
-              });
+              return petronPlaylist.loadPlaylists('audio');
             }]
           },
           views: {

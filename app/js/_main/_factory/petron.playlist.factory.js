@@ -50,7 +50,6 @@
 
         var _saveQueue = function(q) {
           var deferred = $q.defer();
-
           if (q && q.tracks) {
             q.tracks.forEach(function(track) {
               try {

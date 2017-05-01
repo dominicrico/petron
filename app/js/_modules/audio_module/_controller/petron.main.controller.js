@@ -4,9 +4,9 @@
   angular.module('petron.modules.audio')
     .controller('controller.audiobox.main', ['$scope', '$rootScope',
       'petron.fs',
-      'petron.playlist', 'ngDialog',
+      'petron.playlist', 'ngDialog', 'loadLists',
       function($scope, $rootScope, petronFs, petronPlaylist,
-        ngDialog) {
+        ngDialog, loadLists) {
         $rootScope.title = 'audio_module';
         $rootScope.rightMenuShow = true;
         $rootScope.rightMenuLabel = 'menu_label_playlists';
@@ -14,16 +14,29 @@
 
         $scope.files = null;
 
+        if (!$rootScope.audio.queue || !Object.keys(
+            $rootScope.audio.queue)
+          .length) {
+          $rootScope.audio.queue = loadLists.queue;
+        }
+
+        if (!$rootScope.audio.playlists || !Object.keys(
+            $rootScope.audio
+            .playlists).length) {
+          $rootScope.audio.playlists = loadLists.playlists;
+        }
+
         $scope.playlists = $rootScope.audio.playlists;
 
         petronFs.getAudioFiles().then(function(files) {
           $scope.files = $rootScope.files = files;
-
+          console.log($rootScope.audio)
           if (!$rootScope.audio.queue || (!$rootScope.audio.queue.tracks ||
               !
               $rootScope.audio.queue.tracks.length)) {
             $scope.files.forEach(function(file) {
               if (file.type !== 'folder') {
+                console.log('####### 5 #######')
                 petronPlaylist.addToPlaylist('queue', file);
               }
             });
@@ -63,6 +76,7 @@
             });
           },
           addToQueue: function(track) {
+            console.log('####### 4 #######')
             petronPlaylist.addToPlaylist('queue', track).then(function(
               queue) {
               $rootScope.audio.queue = queue;
@@ -93,6 +107,7 @@
                 $scope.useList = function(list) {
                   $scope.usePlaylist = list;
                   if (list !== 'create_new') {
+                    console.log('####### 3 #######')
                     $scope.addToPlaylist();
                   }
                 };
@@ -120,7 +135,9 @@
                                     playlist.name
                                   ] =
                                   playlist;
-
+                                console.log(
+                                  '####### 2 #######'
+                                )
                                 petronPlaylist.addToPlaylist(
                                   $scope.name,
                                   track).then(
@@ -149,6 +166,7 @@
                 });
 
                 $scope.addToPlaylist = function() {
+                  console.log('####### 1 #######')
                   petronPlaylist.addToPlaylist($scope.ngDialogData
                     .playlists[
                       $scope.usePlaylist].name, track).then(

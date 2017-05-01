@@ -4,22 +4,25 @@
 	angular.module('petron.modules.video')
 		.controller('controller.videobox.main', ['$scope', '$rootScope',
 			'petron.fs', '$timeout', 'petron.playlist', 'ngDialog', '$state',
+			'loadLists',
 			function($scope, $rootScope, petronFs, $timeout, petronPlaylist,
-				ngDialog, $state) {
+				ngDialog, $state, loadLists) {
 				$rootScope.title = 'video_module';
 				$scope.playlist = [];
 				$scope.playlists = [];
-
-				petronPlaylist.setType('video');
-
 				$scope.files = null;
-				$rootScope.$on('video.playlists:loaded', function() {
-					$timeout(function() {
-						$scope.$apply(function() {
-							$scope.playlists = $rootScope.video.playlists;
-						});
-					});
-				});
+
+				if (!$rootScope.video.queue || !Object.keys(
+						$rootScope.video.queue)
+					.length) {
+					$rootScope.video.queue = loadLists.queue;
+				}
+
+				if (!$rootScope.video.playlists || !Object.keys(
+						$rootScope.video
+						.playlists).length) {
+					$rootScope.video.playlists = loadLists.playlists;
+				}
 
 				petronFs.getVideoFiles().then(function(files) {
 					$scope.files = $rootScope.files = files;
