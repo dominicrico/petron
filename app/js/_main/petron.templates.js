@@ -22,7 +22,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <link rel=\"stylesheet\" href=\"css/petron.css\">\n" +
     "</head>\n" +
     "\n" +
-    "<body ng-app=\"petron\" ng-cloak=\"\" hm-panend=\"setVolume\" hm-panstart=\"getVolume\" hm-pan=\"volumeIndicator\" hm-recognizer-options='[{\"type\":\"pan\",\"enable\": true, \"directions\": \"DIRECTION_VERTICAL\", \"threshold\": 50, \"pointers\": 2 }]'>\n" +
+    "<body ng-app=\"petron\" ng-cloak=\"\" hm-swipeup=\"$root.goHome\" hm-panend=\"setVolume\" hm-panstart=\"getVolume\" hm-pan=\"volumeIndicator\" hm-recognizer-options='[{\"type\": \"swipeup\", \"treshold\": 400},{\"type\":\"pan\",\"enable\": true, \"directions\": \"DIRECTION_VERTICAL\", \"threshold\": 50, \"pointers\": 2 }]'>\n" +
     "    <div class=\"petron-wrap\" ng-class=\"{'show-left-menu': $root.left_toggle, 'show-right-menu': $root.right_toggle, 'c--volume-indicator__blur': showVolumeIndicator}\">\n" +
     "        <div class=\"menu-wrap is-left\">\n" +
     "            <nav class=\"menu\">\n" +
@@ -163,8 +163,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    </script>\n" +
     "</body>\n" +
     "\n" +
-    "</html>\n" +
-    "");
+    "</html>");
 }]);
 
 angular.module("js/_main/_directive/daemon/petron.daemon.html", []).run(["$templateCache", function ($templateCache) {
@@ -918,8 +917,8 @@ angular.module("js/_modules/health_module/_template/main.html", []).run(["$templ
     "					</div>\n" +
     "					<div class=\"column\">\n" +
     "						<div class=\"box\">\n" +
-    "							<h5>{{ 'health.fuel' | translate }}</h5>\n" +
-    "							<h2>{{ consumption | unit:settings.fuel }}<small>{{ (settings.fuel !== 'gal') ? 'l' : 'gal' }}</small></h2>\n" +
+    "							<h5>{{ 'health.temp' | translate }}</h5>\n" +
+    "							<h2>{{ temp }}<small>{{ (settings.temp !== 'deg') ? '°C' : 'F' }}</small></h2>\n" +
     "						</div>\n" +
     "					</div>\n" +
     "				</div>\n" +
@@ -1005,7 +1004,7 @@ angular.module("js/_modules/navigation_module/_template/map.html", []).run(["$te
   "use strict";
   $templateCache.put("js/_modules/navigation_module/_template/map.html",
     "<leaflet defaults=\"defaults\" lf-center=\"center\" height=\"422px\" width=\"800px\"></leaflet>\n" +
-    "<div class=\"c--routing__params columns\">\n" +
+    "<div class=\"c--routing__params columns\" ng-if=\"navigation && navigation.route\">\n" +
     "  <div class=\"column\">\n" +
     "    <h3 class=\"is-3 title\">\n" +
     "      {{ duration | buildTime:true }}\n" +

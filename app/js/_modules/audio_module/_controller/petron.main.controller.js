@@ -30,13 +30,11 @@
 
         petronFs.getAudioFiles().then(function(files) {
           $scope.files = $rootScope.files = files;
-          console.log($rootScope.audio)
           if (!$rootScope.audio.queue || (!$rootScope.audio.queue.tracks ||
               !
               $rootScope.audio.queue.tracks.length)) {
             $scope.files.forEach(function(file) {
               if (file.type !== 'folder') {
-                console.log('####### 5 #######')
                 petronPlaylist.addToPlaylist('queue', file);
               }
             });
@@ -76,7 +74,6 @@
             });
           },
           addToQueue: function(track) {
-            console.log('####### 4 #######')
             petronPlaylist.addToPlaylist('queue', track).then(function(
               queue) {
               $rootScope.audio.queue = queue;
@@ -107,7 +104,6 @@
                 $scope.useList = function(list) {
                   $scope.usePlaylist = list;
                   if (list !== 'create_new') {
-                    console.log('####### 3 #######')
                     $scope.addToPlaylist();
                   }
                 };
@@ -133,17 +129,12 @@
                                 $scope.ngDialogData
                                   .playlists[
                                     playlist.name
-                                  ] =
-                                  playlist;
-                                console.log(
-                                  '####### 2 #######'
-                                )
+                                  ] = playlist;
                                 petronPlaylist.addToPlaylist(
                                   $scope.name,
                                   track).then(
                                   function(
                                     playlist) {
-
                                     $rootScope.audio
                                       .playlists[
                                         $scope.name
@@ -166,7 +157,6 @@
                 });
 
                 $scope.addToPlaylist = function() {
-                  console.log('####### 1 #######')
                   petronPlaylist.addToPlaylist($scope.ngDialogData
                     .playlists[
                       $scope.usePlaylist].name, track).then(
@@ -189,7 +179,8 @@
             template: 'js/_main/_template/petron.confirm.html',
             className: 'ngdialog-theme-default c--audio__popout--theme',
             scope: $scope,
-            controller: ['$scope', 'petron.playlist', function($scope,
+            controller: ['$scope', 'petron.playlist', function(
+              $scope,
               petronPlaylist) {
               $scope.title = 'playlist_delete_title';
               $scope.text = 'playlist_delete_text';
@@ -212,7 +203,8 @@
             template: 'js/_modules/audio_module/_template/new_playlist_modal.html',
             className: 'ngdialog-theme-default c--audio__popout--theme',
             scope: $scope,
-            controller: ['$scope', 'petron.playlist', function($scope,
+            controller: ['$scope', 'petron.playlist', function(
+              $scope,
               petronPlaylist) {
               $scope.savePlaylist = function() {
                 petronPlaylist.newPlaylist({
@@ -233,7 +225,8 @@
             template: 'js/_main/_template/petron.confirm.html',
             className: 'ngdialog-theme-default c--audio__popout--theme',
             scope: $scope,
-            controller: ['$scope', 'petron.playlist', function($scope,
+            controller: ['$scope', 'petron.playlist', function(
+              $scope,
               petronPlaylist) {
               $scope.title = 'playlist_delete_all_title';
               $scope.text = 'playlist_delete_all_text';
@@ -255,14 +248,16 @@
             template: 'js/_main/_template/petron.confirm.html',
             className: 'ngdialog-theme-default c--audio__popout--theme',
             scope: $scope,
-            controller: ['$scope', 'petron.playlist', function($scope,
+            controller: ['$scope', 'petron.playlist', function(
+              $scope,
               petronPlaylist) {
               $scope.title = 'playlist_clear_queue_title';
               $scope.text = 'playlist_clear_queue_text';
               $scope.button = 'modal.button_confirm';
 
               $scope.confirm = function() {
-                petronPlaylist.clearQueue().then(function(queue) {
+                petronPlaylist.clearQueue().then(function(
+                  queue) {
                   $scope.$parent.queue = $scope.$parent.$root
                     .audio.queue =
                     queue;

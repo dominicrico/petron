@@ -10,3 +10,5 @@ npm-debug.log
 app/mapbox
 app/tiles
 coverage
+navigation/germany.mbtiles
+.ftpconfig

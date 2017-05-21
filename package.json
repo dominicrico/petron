@@ -38,6 +38,7 @@
     "angular"
   ],
   "dependencies": {
+    "bluetooth-obd": "^0.2.4",
     "diskdb": "^0.1.15",
     "electron": "^1.0.1",
     "electron-connect": "^0.6.0",
@@ -58,7 +59,7 @@
     "electron-debug": "^1.0.0",
     "electron-installer-debian": "^0.4.0",
     "electron-packager": "^8.1.0",
-    "electron-rebuild": "^1.5.7",
+    "electron-rebuild": "1.5.7",
     "grunt": "^1.0.1",
     "grunt-contrib-jshint": "^1.1.0",
     "grunt-contrib-sass": "^1.0.0",

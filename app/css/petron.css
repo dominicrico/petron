@@ -5507,7 +5507,8 @@ petron-filetree {
   transform: translate(-50%, -50%);
   display: inline-block;
   width: 60vw;
-  text-align: left;
+  text-align: center;
+  font-size: 36px;
   z-index: 1000; }
 .c--health .c--obd__message {
   position: absolute;

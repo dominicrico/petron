@@ -14,7 +14,7 @@
     '$translate',
     'tmhDynamicLocale',
     '$state',
-    'petron.phony',
+    // 'petron.phony',
     'SweetAlert',
     function(
       $rootScope,
@@ -23,23 +23,23 @@
       $translate,
       tmhDynamicLocale,
       $state,
-      petronPhony,
+      // petronPhony,
       SweetAlert) {
       $rootScope.daemon = {};
 
-      petronPhony.init();
+      // petronPhony.init();
 
-      $rootScope.phoneConnected = false;
-      $rootScope.$on('deviceFound', function(event, device) {
-        petronPhony.selectDevice(device).then(function() {
-          $rootScope.phoneConnected = true;
-          $rootScope.$broadcast('deviceReady');
-        });
-      });
-
-      $rootScope.$on('deviceRemoved', function() {
-        $rootScope.phoneConnected = false;
-      });
+      // $rootScope.phoneConnected = false;
+      // $rootScope.$on('deviceFound', function(event, device) {
+      //   petronPhony.selectDevice(device).then(function() {
+      //     $rootScope.phoneConnected = true;
+      //     $rootScope.$broadcast('deviceReady');
+      //   });
+      // });
+      //
+      // $rootScope.$on('deviceRemoved', function() {
+      //   $rootScope.phoneConnected = false;
+      // });
 
       $rootScope.leftMenuShow = false;
 
@@ -77,6 +77,31 @@
         playlists: null,
         active: false
       };
+
+      var OBDReader = require('bluetooth-obd');
+      $rootScope.btOBDReader = new OBDReader();
+
+      $rootScope.OBDisConnected = false;
+      $rootScope.OBDhasError = false;
+
+      $rootScope.btOBDReader.on('error', function(error) {
+        console.log(error)
+      });
+      $rootScope.btOBDReader.on('debug', function(error) {
+        console.log(error)
+      });
+
+      $rootScope.btOBDReader.on('connected', function() {
+
+        $rootScope.$apply(function() {
+          $rootScope.OBDisConnected = true;
+        });
+
+      }, function() {
+        $rootScope.OBDhasError = true;
+      });
+
+      $rootScope.btOBDReader.autoconnect('OBDII');
 
       $rootScope.$onMany = function(events, fn) {
         for (var i = 0; i < events.length; i = i + 1) {

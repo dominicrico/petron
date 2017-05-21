@@ -20,7 +20,6 @@
               $scope.isInit = false;
 
               var _canPlay = false;
-              var TIMEOUT = 1000;
 
               $translate('error.file_not_found').then(function(
                 translation) {
@@ -161,7 +160,6 @@
               });
 
               $scope.$audio.on('canplay', function() {
-                console.log('canplay', _canPlay)
                 if (_canPlay) {
                   return false;
                 }

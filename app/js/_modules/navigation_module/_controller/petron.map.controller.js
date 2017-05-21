@@ -8,11 +8,11 @@
         $rootScope.title = 'navigation_module';
 
         $scope.defaults = {
-          tileLayer: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          tileLayer: 'http://{s}.localhost:1337/styles/petron/rendered/{z}/{x}/{y}@2x.png',
           maxZoom: 18,
           path: {
             weight: 10,
-            color: '#800000',
+            color: '#11B8BC',
             opacity: 1
           }
         };
@@ -52,7 +52,7 @@
           }
         };
 
-        if ($rootScope.navigation.route.isNew) {
+        if ($rootScope.navigation && $rootScope.navigation.route.isNew) {
           $rootScope.navigation.route.isNew = false;
           petronNavi.getRoutes($rootScope.navigation.route).then(function(
             data) {
