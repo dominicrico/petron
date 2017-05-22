@@ -93,7 +93,6 @@ module.exports = function(grunt) {
     watch: {
       options: {
         spawn: false,
-        nospawn: true,
         interupt: true,
         atBegin: true
       },

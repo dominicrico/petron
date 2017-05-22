@@ -1,0 +1,115 @@
+#!/bin/sh
+
+FILE="/tmp/aboot"
+FILE2="/tmp/video"
+
+echo "Save the boot splash backgroung file in /etc/ and name it splash.png"
+
+echo "File location should be /etc/petron-splash.png"
+
+sleep 2
+
+echo "Installing required packages"
+
+sudo apt-get install fbi -y
+
+sleep 2
+
+/bin/cat <<END >$FILE
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          asplashscreen
+# Required-Start:
+# Required-Stop:
+# Should-Start:
+# Default-Start:     S
+# Default-Stop:
+# Short-Description: Show custom splashscreen
+# Description:       Show custom splashscreen
+### END INIT INFO
+
+
+do_start () {
+
+    /usr/bin/fbi -T 1 -noverbose -a /etc/petron-splash.png
+    exit 0
+}
+
+case "$1" in
+  start|"")
+    do_start
+    ;;
+  restart|reload|force-reload)
+    echo "Error: argument '$1' not supported" >&2
+    exit 3
+    ;;
+  stop)
+    # No-op
+    ;;
+  status)
+    exit 0
+    ;;
+  *)
+    echo "Usage: asplashscreen [start|stop]" >&2
+    exit 3
+    ;;
+esac
+
+:
+
+END
+
+echo "File boot script created at /tmp/aboot"
+
+sleep 2
+
+echo "Moving File aboot to /etc/init.d/"
+
+sleep 2
+
+sudo mv $FILE /etc/init.d/
+
+sleep 2
+
+sudo chmod a+x /etc/init.d/aboot
+
+sleep 2
+
+#sudo insserv /etc/init.d/aboot
+
+sudo /usr/sbin/update-rc.d aboot defaults
+
+sleep 2
+
+sudo /usr/sbin/update-rc.d aboot enable
+
+sleep 2
+
+/bin/cat <<EOF >$FILE2
+
+#!/bin/bash
+( nc -l 55555 < /dev/null ; touch /tmp/foo ) &
+while [ ! -f /tmp/foo ]; do
+    sudo omxplayer --loop --no-osd --no-keys /home/petron-kiosk/boot.mp4
+done
+chvt 2
+
+EOF
+
+sleep 2
+
+sudo chmod a+x $FILE2
+
+sleep 2
+
+sudo mv $FILE2 /etc/init.d/
+
+sudo sed -i '$ish /etc/init.d/video' /etc/rc.local
+
+sleep 2
+
+sudo cp /boot/cmdline.txt /boot/cmdline.back.txt
+
+sleep 2
+
+echo "Done.. ! Please Reboot"
