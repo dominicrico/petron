@@ -133,7 +133,7 @@
         $rootScope.$watch('OBDisConnected', function(conn) {
           if (conn) {
             $scope.isConnected = true;
-            // clearInterval(dotInterval);
+            clearInterval(dotInterval);
             // startPollers();
             startPolling();
           }
