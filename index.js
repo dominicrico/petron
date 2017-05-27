@@ -7,12 +7,14 @@ const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
 
-const client = require('electron-connect').client;
+const client = (process.env.NODE_ENV !== 'production') ? require(
+  'electron-connect').client : undefined;
 
-require('electron-debug')({
-  showDevTools: true
-});
-
+if (process.env.NODE_ENV !== 'production') {
+  require('electron-debug')({
+    showDevTools: true
+  });
+}
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
@@ -45,9 +47,11 @@ function createWindow() {
       configuration: 'mobile'
     });
 
-  client.create(mainWindow, {
-    logLevel: 0
-  });
+  if (process.env.NODE_ENV !== 'production') {
+    client.create(mainWindow, {
+      logLevel: 0
+    });
+  }
 
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show();
