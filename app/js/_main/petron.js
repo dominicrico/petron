@@ -14,7 +14,7 @@
     '$translate',
     'tmhDynamicLocale',
     '$state',
-    // 'petron.phony',
+    'petron.phony',
     'SweetAlert',
     function(
       $rootScope,
@@ -23,23 +23,23 @@
       $translate,
       tmhDynamicLocale,
       $state,
-      // petronPhony,
+      petronPhony,
       SweetAlert) {
       $rootScope.daemon = {};
 
-      // petronPhony.init();
+      petronPhony.init();
 
-      // $rootScope.phoneConnected = false;
-      // $rootScope.$on('deviceFound', function(event, device) {
-      //   petronPhony.selectDevice(device).then(function() {
-      //     $rootScope.phoneConnected = true;
-      //     $rootScope.$broadcast('deviceReady');
-      //   });
-      // });
-      //
-      // $rootScope.$on('deviceRemoved', function() {
-      //   $rootScope.phoneConnected = false;
-      // });
+      $rootScope.phoneConnected = false;
+      $rootScope.$on('deviceFound', function(event, device) {
+        petronPhony.selectDevice(device).then(function() {
+          $rootScope.phoneConnected = true;
+          $rootScope.$broadcast('deviceReady');
+        });
+      });
+
+      $rootScope.$on('deviceRemoved', function() {
+        $rootScope.phoneConnected = false;
+      });
 
       $rootScope.leftMenuShow = false;
 
@@ -78,30 +78,80 @@
         active: false
       };
 
-      var OBDReader = require('bluetooth-obd');
-      $rootScope.btOBDReader = new OBDReader();
+      var gpio = require('rpi-gpio');
+      var shell = require('shelljs');
+
+      var _shutdown = false;
+
+      gpio.on('change', function(channel, value) {
+        if (!value && channel === 7 && !_shutdown) {
+          _shutdown = true;
+          shell.echo('Shutting down Petron!');
+          shell.exec('sudo shutdown -h now');
+        }
+      });
+
+      gpio.setup(11, gpio.DIR_HIGH, function() {
+        shell.echo('Power supply to on for shutdown routine.');
+      });
+
+      gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH, function() {
+        gpio.read(7, function(err) {
+          if (err) {
+            console.log(err);
+          } else {
+            shell.echo(
+              'Watching PIN for automatic shutdown.');
+          }
+        });
+      });
 
       $rootScope.OBDisConnected = false;
       $rootScope.OBDhasError = false;
 
-      $rootScope.btOBDReader.on('error', function(error) {
-        console.log(error)
-      });
-      $rootScope.btOBDReader.on('debug', function(error) {
-        console.log(error)
+      var OBD = require('obd-parser');
+      var getConnector = require('obd-parser-bluetooth-connection');
+      var connect = getConnector({
+        name: 'OBDII',
+        address: '',
+        channel: 0
       });
 
-      $rootScope.btOBDReader.on('connected', function() {
-
-        $rootScope.$apply(function() {
-          $rootScope.OBDisConnected = true;
+      OBD.init(connect)
+        .then(function() {
+          $rootScope.$apply(function() {
+            $rootScope.OBDisConnected = true;
+          });
+        }, function(err) {
+          $rootScope.$apply(function() {
+            $rootScope.OBDhasError = true;
+          });
+          console.log('OBD ERROR', err);
         });
 
-      }, function() {
-        $rootScope.OBDhasError = true;
-      });
+      // var OBDReader = require('bluetooth-obd');
+      // $rootScope.btOBDReader = new OBDReader();
+      //
 
-      $rootScope.btOBDReader.autoconnect('OBDII');
+      //
+      // $rootScope.btOBDReader.on('error', function(error) {
+      //   console.log(error);
+      // });
+      // $rootScope.btOBDReader.on('debug', function(error) {
+      //   console.log(error);
+      // });
+      //
+      // $rootScope.btOBDReader.on('connected', function() {
+      //
+      //   $rootScope.$apply(function() {
+      //     $rootScope.OBDisConnected = true;
+      //   });
+      //
+      // }, function() {
+      //   $rootScope.OBDhasError = true;
+      // });
+      //
+      // $rootScope.btOBDReader.autoconnect('OBDII');
 
       $rootScope.$onMany = function(events, fn) {
         for (var i = 0; i < events.length; i = i + 1) {
@@ -127,8 +177,6 @@
       $rootScope.$on('$stateChangeSuccess', function() {
         $rootScope.left_toggle = false;
       });
-
-
     }
   ]);
 })();

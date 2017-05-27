@@ -52,7 +52,9 @@
     "node-phony": "git+https://github.com/dominicrico/node-phony.git",
     "obd-parser": "^0.3.0",
     "obd-parser-bluetooth-connection": "git://github.com/dominicrico/obd-parser-bluetooth-connection.git",
-    "remote": "^0.2.6"
+    "remote": "^0.2.6",
+    "rpi-gpio": "^0.8.1",
+    "shelljs": "^0.7.7"
   },
   "devDependencies": {
     "devtron": "^1.4.0",

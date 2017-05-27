@@ -33,73 +33,109 @@
         $scope.lights = false;
         $scope.temp = 0;
 
-        var timer = setTimeout(function() {
-          console.log('restart')
-          $rootScope.btOBDReader.stopPolling();
-          $rootScope.btOBDReader.removeAllPollers();
-          startPollers();
-        }, 15000);
-
-        function startPollers() {
-          console.log('start')
-          $rootScope.btOBDReader.addPoller("vss");
-          $rootScope.btOBDReader.addPoller("rpm");
-          $rootScope.btOBDReader.addPoller("temp");
-
-          $rootScope.btOBDReader.startPolling(1000);
-          clearTimeout(timer);
-          timer = setTimeout(function() {
-            console.log('restart')
-            $rootScope.btOBDReader.stopPolling();
-            $rootScope.btOBDReader.removeAllPollers();
-            startPollers();
-          }, 15000);
-        }
-        $scope.$watch('time', function(time) {
-          clearTimeout(timer);
-          timer = setTimeout(function() {
-            console.log('restart')
-            $rootScope.btOBDReader.stopPolling();
-            $rootScope.btOBDReader.removeAllPollers();
-            startPollers();
-          }, 15000);
-          console.log('all good');
-        });
-
-        $rootScope.btOBDReader.on('dataReceived', function(data) {
-          if (['vss', 'rpm', 'temp'].indexOf(data.name) !== -1) $scope.time =
-            new Date().getTime();
-          if (data.name === 'vss') $scope.speed = data.value;
-          if (data.name === 'rpm') $scope.tacho = parseInt(data.value);
-          if (data.name === 'temp') $scope.temp = data.value;
-        });
-
-        // rpmPoller.on('data', function(output) {
-        //   if (output.value !== null) {
-        //     $scope.$apply(function() {
-        //       $scope.tacho = output.value.toFixed();
-        //     });
-        //   }
-        // }, function(err) {
-        //   console.error('RPM failed to poll the ECU', err);
+        // var timer = setTimeout(function() {
+        //   console.log('restart')
+        //   $rootScope.btOBDReader.stopPolling();
+        //   $rootScope.btOBDReader.removeAllPollers();
+        //   startPollers();
+        // }, 15000);
+        //
+        // function startPollers() {
+        //   console.log('start')
+        //   $rootScope.btOBDReader.addPoller("vss");
+        //   $rootScope.btOBDReader.addPoller("rpm");
+        //   $rootScope.btOBDReader.addPoller("temp");
+        //
+        //   $rootScope.btOBDReader.startPolling(1000);
+        //   clearTimeout(timer);
+        //   timer = setTimeout(function() {
+        //     console.log('restart')
+        //     $rootScope.btOBDReader.stopPolling();
+        //     $rootScope.btOBDReader.removeAllPollers();
+        //     startPollers();
+        //   }, 15000);
+        // }
+        // $scope.$watch('time', function(time) {
+        //   clearTimeout(timer);
+        //   timer = setTimeout(function() {
+        //     console.log('restart')
+        //     $rootScope.btOBDReader.stopPolling();
+        //     $rootScope.btOBDReader.removeAllPollers();
+        //     startPollers();
+        //   }, 15000);
+        //   console.log('all good');
         // });
         //
-        // speedPoller.on('data', function(output) {
-        //     if (output.value !== null) {
-        //       $scope.$apply(function() {
-        //         $scope.speed = output.value;
-        //       });
-        //     }
-        //   },
-        //   function(err) {
-        //     console.error('SPEED failed to poll the ECU', err);
-        //   });
+        // $rootScope.btOBDReader.on('dataReceived', function(data) {
+        //   if (['vss', 'rpm', 'temp'].indexOf(data.name) !== -1) $scope.time =
+        //     new Date().getTime();
+        //   if (data.name === 'vss') $scope.speed = data.value;
+        //   if (data.name === 'rpm') $scope.tacho = parseInt(data.value);
+        //   if (data.name === 'temp') $scope.temp = data.value;
+        // });
+        //
+        //
+        var OBD = require('obd-parser');
+
+        var rpmPoller = new OBD.ECUPoller({
+          pid: new OBD.PIDS.Rpm(),
+          interval: 500
+        });
+
+        var speedPoller = new OBD.ECUPoller({
+          pid: new OBD.PIDS.VehicleSpeed(),
+          interval: 600
+        });
+
+        var tempPoller = new OBD.ECUPoller({
+          pid: new OBD.PIDS.CoolantTemp(),
+          interval: 1500
+        });
+
+        rpmPoller.on('data', function(output) {
+          if (output.value !== null) {
+            $scope.$apply(function() {
+              $scope.tacho = output.value.toFixed();
+            });
+          }
+        }, function(err) {
+          console.error('RPM failed to poll the ECU', err);
+        });
+
+        speedPoller.on('data', function(output) {
+            if (output.value !== null) {
+              $scope.$apply(function() {
+                $scope.speed = output.value;
+              });
+            }
+          },
+          function(err) {
+            console.error('SPEED failed to poll the ECU', err);
+          });
+
+        tempPoller.on('data', function(output) {
+            if (output.value !== null) {
+              $scope.$apply(function() {
+                $scope.temp = output.value;
+              });
+            }
+          },
+          function(err) {
+            console.error('SPEED failed to poll the ECU', err);
+          });
+
+        function startPolling() {
+          rpmPoller.startPolling();
+          speedPoller.startPolling();
+          tempPoller.startPolling();
+        }
 
         $rootScope.$watch('OBDisConnected', function(conn) {
           if (conn) {
             $scope.isConnected = true;
-            clearInterval(dotInterval);
-            startPollers();
+            // clearInterval(dotInterval);
+            // startPollers();
+            startPolling();
           }
         });
 

@@ -36,6 +36,7 @@
             $scope.files.forEach(function(file) {
               if (file.type !== 'folder') {
                 petronPlaylist.addToPlaylist('queue', file);
+                petronPlaylist.save();
               }
             });
           }

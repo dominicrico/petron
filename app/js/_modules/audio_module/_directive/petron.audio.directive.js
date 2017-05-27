@@ -18,7 +18,7 @@
               $scope._audio = $element.find('audio')[0];
               $scope.$audio = $element.find('audio');
               $scope.isInit = false;
-
+              var DELAY = 500;
               var _canPlay = false;
 
               $translate('error.file_not_found').then(function(
@@ -95,10 +95,10 @@
                           true;
                         $timeout(function() {
                           $scope._audio.load();
-                        });
+                        }, DELAY);
                       }
                     });
-                  });
+                  }, DELAY);
                 }
               };
 
@@ -163,16 +163,18 @@
                 if (_canPlay) {
                   return false;
                 }
-                $scope._audio.pause();
+
                 if ($rootScope.daemon.player && $rootScope.daemon.player
                   .audio !== undefined) {
                   $scope._audio.currentTime =
                     $rootScope.daemon.player.audio.currentTime;
                   $rootScope.daemon.player.audio = undefined;
                 }
-                if ($scope.controls.play) {
+                $timeout(function() {
+                  $scope.controls.play = true;
                   $scope._audio.play();
-                }
+                }, DELAY);
+
                 _canPlay = true;
               });
 
@@ -189,7 +191,7 @@
                 if ($scope.controls.repeat) {
                   $timeout(function() {
                     $scope._audio.load();
-                  });
+                  }, DELAY);
                 } else {
                   $scope.next();
                 }
@@ -212,7 +214,7 @@
                 $scope.playlist.tracks[$scope.current].play = true;
                 $timeout(function() {
                   $scope._audio.load();
-                });
+                }, DELAY);
               };
 
               $scope.play = function(force) {
@@ -226,7 +228,7 @@
                   $scope.controls.play = false;
                   $timeout(function() {
                     $scope._audio.pause();
-                  });
+                  }, DELAY);
                 }
               };
 
@@ -264,7 +266,7 @@
 
                 $timeout(function() {
                   $scope._audio.load();
-                });
+                }, DELAY);
               };
 
               $scope.next = function() {
@@ -289,7 +291,7 @@
                 }
                 $timeout(function() {
                   $scope._audio.load();
-                });
+                }, DELAY);
               };
 
               $scope.previous = function() {
@@ -315,7 +317,7 @@
 
                 $timeout(function() {
                   $scope._audio.load();
-                });
+                }, DELAY);
               };
 
               $scope.daemonize = function() {
