@@ -14,7 +14,7 @@
     '$translate',
     'tmhDynamicLocale',
     '$state',
-    'petron.phony',
+    // 'petron.phony',
     'SweetAlert',
     function(
       $rootScope,
@@ -23,19 +23,19 @@
       $translate,
       tmhDynamicLocale,
       $state,
-      petronPhony,
+      // petronPhony,
       SweetAlert) {
       $rootScope.daemon = {};
 
-      petronPhony.init();
-
-      $rootScope.phoneConnected = false;
-      $rootScope.$on('deviceFound', function(event, device) {
-        petronPhony.selectDevice(device).then(function() {
-          $rootScope.phoneConnected = true;
-          $rootScope.$broadcast('deviceReady');
-        });
-      });
+      // petronPhony.init();
+      //
+      // $rootScope.phoneConnected = false;
+      // $rootScope.$on('deviceFound', function(event, device) {
+      //   petronPhony.selectDevice(device).then(function() {
+      //     $rootScope.phoneConnected = true;
+      //     $rootScope.$broadcast('deviceReady');
+      //   });
+      // });
 
       $rootScope.$on('deviceRemoved', function() {
         $rootScope.phoneConnected = false;
@@ -78,33 +78,33 @@
         active: false
       };
 
-      var gpio = require('rpi-gpio');
-      var shell = require('shelljs');
-
-      var _shutdown = false;
-
-      gpio.on('change', function(channel, value) {
-        if (!value && channel === 7 && !_shutdown) {
-          _shutdown = true;
-          shell.echo('Shutting down Petron!');
-          shell.exec('sudo shutdown -h now');
-        }
-      });
-
-      gpio.setup(11, gpio.DIR_HIGH, function() {
-        shell.echo('Power supply to on for shutdown routine.');
-      });
-
-      gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH, function() {
-        gpio.read(7, function(err) {
-          if (err) {
-            console.log(err);
-          } else {
-            shell.echo(
-              'Watching PIN for automatic shutdown.');
-          }
-        });
-      });
+      // var gpio = require('rpi-gpio');
+      // var shell = require('shelljs');
+      //
+      // var _shutdown = false;
+      //
+      // gpio.on('change', function(channel, value) {
+      //   if (!value && channel === 7 && !_shutdown) {
+      //     _shutdown = true;
+      //     shell.echo('Shutting down Petron!');
+      //     shell.exec('sudo shutdown -h now');
+      //   }
+      // });
+      //
+      // gpio.setup(11, gpio.DIR_HIGH, function() {
+      //   shell.echo('Power supply to on for shutdown routine.');
+      // });
+      //
+      // gpio.setup(7, gpio.DIR_IN, gpio.EDGE_BOTH, function() {
+      //   gpio.read(7, function(err) {
+      //     if (err) {
+      //       console.log(err);
+      //     } else {
+      //       shell.echo(
+      //         'Watching PIN for automatic shutdown.');
+      //     }
+      //   });
+      // });
 
       $rootScope.OBDisConnected = false;
       $rootScope.OBDhasError = false;
@@ -113,8 +113,8 @@
       var getConnector = require('obd-parser-bluetooth-connection');
       var connect = getConnector({
         name: 'OBDII',
-        address: '',
-        channel: 0
+        address: 'AB:90:78:56:34:12',
+        channel: 1
       });
 
       OBD.init(connect)

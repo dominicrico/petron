@@ -102,7 +102,9 @@
     "lights": "Lights",
     "fuel": "Fuel level",
     "scanning": "Seeking OBDII adapter",
-    "scan_error": "Could not connect to OBDII adapter!"
+    "scan_error": "Could not connect to OBDII adapter!",
+    "reconnect": "Erneut versuchen",
+    "temp": "Temperature"
   },
 
   "phone": {
