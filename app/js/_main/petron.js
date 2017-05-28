@@ -14,7 +14,7 @@
     '$translate',
     'tmhDynamicLocale',
     '$state',
-    // 'petron.phony',
+    'petron.phony',
     'SweetAlert',
     function(
       $rootScope,
@@ -23,19 +23,19 @@
       $translate,
       tmhDynamicLocale,
       $state,
-      // petronPhony,
+      petronPhony,
       SweetAlert) {
       $rootScope.daemon = {};
 
-      // petronPhony.init();
-      //
-      // $rootScope.phoneConnected = false;
-      // $rootScope.$on('deviceFound', function(event, device) {
-      //   petronPhony.selectDevice(device).then(function() {
-      //     $rootScope.phoneConnected = true;
-      //     $rootScope.$broadcast('deviceReady');
-      //   });
-      // });
+      petronPhony.init();
+
+      $rootScope.phoneConnected = false;
+      $rootScope.$on('deviceFound', function(event, device) {
+        petronPhony.selectDevice(device).then(function() {
+          $rootScope.phoneConnected = true;
+          $rootScope.$broadcast('deviceReady');
+        });
+      });
 
       $rootScope.$on('deviceRemoved', function() {
         $rootScope.phoneConnected = false;
