@@ -45,14 +45,14 @@
         });
 
         $scope.localMusic = true;
-        $scope.useBluetooth = function() {
+        $scope.useUpnp = function() {
           $scope.localMusic = false;
-          $scope.btMusic = true;
+          $scope.upnpMusic = true;
         };
 
         $scope.useLocal = function() {
           $scope.localMusic = true;
-          $scope.btMusic = false;
+          $scope.upnpMusic = true;
         };
 
         $scope.func = {

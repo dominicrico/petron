@@ -5,6 +5,7 @@
   "clock_unit": "",
   "on": "on",
   "off": "off",
+  "no": "No errors",
   "metric": "metric",
   "miles": "miles",
   "gallons": "Gallons",
@@ -81,7 +82,8 @@
     "should_start_routing": "Start routing now?",
     "start_routing_btn": "Start now",
     "new_dest_btn": "New destination",
-    "save_favourite_btn": "Save destination"
+    "save_favourite_btn": "Save destination",
+    "show_map": "Show map"
   },
 
   "keyboard": {
@@ -99,7 +101,7 @@
     "tachometer": "Tachometer",
     "battery_1": "Battery I",
     "battery_2": "Battery II",
-    "lights": "Lights",
+    "errors": "Errors",
     "fuel": "Fuel level",
     "scanning": "Seeking OBDII adapter",
     "scan_error": "Could not connect to OBDII adapter!",
@@ -113,6 +115,8 @@
   },
 
   "settings": {
+    "general": "General",
+    "health": "Health",
     "language": "Language",
     "language_hint": "Choose the systemwide language for Petron. More languages on www.petron.io",
     "clock": "Clock",
@@ -120,6 +124,10 @@
     "distance": "Distances",
     "distance_hint": "Select which system to use to display consumption and distances?",
     "fuel": "Fuel",
-    "fuel_hint": "Gallones or liter?"
+    "fuel_hint": "Gallones or liter?",
+    "OBD_address": "OBDII",
+    "OBD_address_hint": "Enter the MAC-Address and channel of your OBD device for quick connection.",
+    "OBD_address_ph": "XX:XX:XX:XX",
+    "OBD_channel_hint": "Default is 1"
   }
 }

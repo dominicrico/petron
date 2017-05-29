@@ -125,7 +125,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <script type=\"text/javascript\" src=\"js/_modules/navigation_module/_provider/petron.navi.provider.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/fm_module/_factory/petron.tuner.factory.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/audio_module/_directive/petron.audio.directive.js\"></script>\n" +
-    "    <script type=\"text/javascript\" src=\"js/_modules/audio_module/_directive/petron.bluetooth.directive.js\"></script>\n" +
+    "    <script type=\"text/javascript\" src=\"js/_modules/audio_module/_directive/petron.upnp.directive.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/video_module/_directive/petron.video.directive.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/audio_module/_controller/petron.main.controller.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/fm_module/_controller/petron.main.controller.js\"></script>\n" +
@@ -686,9 +686,9 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templa
     "<section class=\"columns u--max-height__100 u--margin-top__none\">\n" +
     "\n" +
     "	<aside class=\"c--filetree column is-7\">\n" +
-    "		<div class=\"columns\" ng-if=\"$root.phoneConnected\">\n" +
+    "		<div class=\"columns\">\n" +
     "			<div class=\"column\" ng-click=\"useLocal()\">{{ 'use_local_audio' | translate }}</div>\n" +
-    "			<div class=\"column\" ng-click=\"useBluetooth()\">{{ 'use_bluetooth_audio' | translate }}</div>\n" +
+    "			<div class=\"column\" ng-click=\"useUpnp()\">{{ 'use_upnp_audio' | translate }}</div>\n" +
     "		</div>\n" +
     "		<div class=\"tabs\">\n" +
     "		  <ul class=\"is-left\">\n" +
@@ -723,8 +723,8 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templa
     "	<main class=\"c--audio__main column is-5\" ng-if=\"localMusic\">\n" +
     "		<petron-audio></petron-audio>\n" +
     "	</main>\n" +
-    "  <main class=\"c--audio__main column\" ng-if=\"btMusic\">\n" +
-    "		<petron-bluetooth-audio></petron-bluetooth-audio>\n" +
+    "  <main class=\"c--audio__main column\" ng-if=\"upnpMusic\">\n" +
+    "		<petron-upnp-audio></petron-upnp-audio>\n" +
     "	</main>\n" +
     "\n" +
     "</section>\n" +
@@ -855,29 +855,27 @@ angular.module("js/_modules/health_module/_template/main.html", []).run(["$templ
     "\n" +
     "	<div class=\"columns c--obd-container  has-text-centered\" ng-if=\"hasError && !isConnected\">\n" +
     "		<h2 class=\"title is-3 c--obd__error\">{{ 'health.scan_error' | translate}}</h2>\n" +
-    "		<button class=\"button button is-outlined is-primary\" ng-click=\"connectToOBD()\">{{ 'health.reconnect' | translate }}</button>\n" +
+    "		<button class=\"button button is-outlined is-primary\" ng-click=\"reconnect()\">{{ 'health.reconnect' | translate }}</button>\n" +
     "	</div>\n" +
     "	<div class=\"column\" ng-if=\"!hasError\">\n" +
     "		<div class=\"columns\">\n" +
     "			<div class=\"column is-vcentered\">\n" +
-    "\n" +
-    "						<span class=\"door-lock fr closed\">\n" +
-    "							<i class=\"icon-lock-closed\"></i>\n" +
-    "						</span>\n" +
-    "						<span class=\"door-lock br open\">\n" +
-    "							<i class=\"icon-lock-open\"></i>\n" +
-    "						</span>\n" +
-    "						<img src=\"images/car.svg\" alt=\"\">\n" +
-    "						<span class=\"door-lock trunk closed\">\n" +
-    "							<i class=\"icon-lock-closed\"></i>\n" +
-    "						</span>\n" +
-    "						<span class=\"door-lock bl open\">\n" +
-    "							<i class=\"icon-lock-open\"></i>\n" +
-    "						</span>\n" +
-    "						<span class=\"door-lock fl open\">\n" +
-    "							<i class=\"icon-lock-open\"></i>\n" +
-    "						</span>\n" +
-    "\n" +
+    "  			<!-- <span class=\"door-lock fr closed\">\n" +
+    "  				<i class=\"icon-lock-closed\"></i>\n" +
+    "  			</span>\n" +
+    "  			<span class=\"door-lock br open\">\n" +
+    "  				<i class=\"icon-lock-open\"></i>\n" +
+    "  			</span> -->\n" +
+    "  			<img src=\"images/car.svg\" alt=\"\">\n" +
+    "  			<!-- <span class=\"door-lock trunk closed\">\n" +
+    "  				<i class=\"icon-lock-closed\"></i>\n" +
+    "  			</span>\n" +
+    "  			<span class=\"door-lock bl open\">\n" +
+    "  				<i class=\"icon-lock-open\"></i>\n" +
+    "  			</span>\n" +
+    "  			<span class=\"door-lock fl open\">\n" +
+    "  				<i class=\"icon-lock-open\"></i>\n" +
+    "  			</span> -->\n" +
     "			</div>\n" +
     "			<div class=\"column\">\n" +
     "				<div class=\"columns\">\n" +
@@ -911,8 +909,8 @@ angular.module("js/_modules/health_module/_template/main.html", []).run(["$templ
     "				<div class=\"columns\">\n" +
     "					<div class=\"column\">\n" +
     "						<div class=\"box\">\n" +
-    "							<h5>{{ 'health.lights' | translate }}</h5>\n" +
-    "							<h2>{{ ((lights) ? 'on' : 'off') | translate}}</h2>\n" +
+    "							<h5>{{ 'health.errors' | translate }}</h5>\n" +
+    "							<h2>{{ ((!errors) ? 'no' : errors) | translate}}</h2>\n" +
     "						</div>\n" +
     "					</div>\n" +
     "					<div class=\"column\">\n" +
@@ -994,6 +992,13 @@ angular.module("js/_modules/navigation_module/_template/main.html", []).run(["$t
     "				</div>\n" +
     "			</div>\n" +
     "		</div>\n" +
+    "    <div class=\"columns\">\n" +
+    "      <div class=\"column has-text-centered\">\n" +
+    "        <a class=\"button is-primary\" ui-sref=\"petron.navigationbox.map\">\n" +
+    "          {{ 'navi.show_map' | translate }}\n" +
+    "        </a>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
     "	</div>\n" +
     "\n" +
     "</section>\n" +
@@ -1115,76 +1120,93 @@ angular.module("js/_modules/settings_module/_template/main.html", []).run(["$tem
   $templateCache.put("js/_modules/settings_module/_template/main.html",
     "<section class=\"columns u--max-height__100 u--margin-top__none c--settings\">\n" +
     "	<div class=\"column\">\n" +
-    "		<div class=\"columns is-vcentered\">\n" +
-    "			<div class=\"column\">\n" +
-    "				<h5 class=\"title is-5\">{{ 'settings.language' | translate }}</h5>\n" +
-    "				<p>{{ 'settings.language_hint' | translate }}</p>\n" +
-    "			</div>\n" +
-    "			<div class=\"column has-text-right\">\n" +
-    "				<span class=\"select\">\n" +
-    "					<select name=\"locale\" id=\"locale\" ng-model=\"settings.locale\">\n" +
-    "						<option value=\"en\">EN</option>\n" +
-    "						<option value=\"de\">DE</option>\n" +
-    "					</select>\n" +
-    "				</span>\n" +
-    "			</div>\n" +
-    "		</div>\n" +
-    "		<div class=\"columns is-vcentered\">\n" +
-    "			<div class=\"column\">\n" +
-    "				<h5 class=\"title is-5\">{{ 'settings.distance' | translate }}</h5>\n" +
-    "				<p>{{ 'settings.distance_hint' | translate }}</p>\n" +
-    "			</div>\n" +
-    "			<div class=\"column has-text-right\">\n" +
-    "				<span class=\"select\">\n" +
-    "					<select name=\"distance\" id=\"distance\" ng-model=\"settings.distance\">\n" +
-    "						<option value=\"km\">{{ 'metric' | translate }}</option>\n" +
-    "						<option value=\"mi\">{{ 'miles' | translate }}</option>\n" +
-    "					</select>\n" +
-    "				</span>\n" +
-    "			</div>\n" +
-    "		</div>\n" +
-    "		<div class=\"columns is-vcentered\">\n" +
-    "			<div class=\"column\">\n" +
-    "				<h5 class=\"title is-5\">{{ 'settings.fuel' | translate }}</h5>\n" +
-    "				<p>{{ 'settings.fuel_hint' | translate }}</p>\n" +
-    "			</div>\n" +
-    "			<div class=\"column has-text-right\">\n" +
-    "				<span class=\"select\">\n" +
-    "					<select name=\"fuel\" id=\"fuel\" ng-model=\"settings.fuel\">\n" +
-    "						<option value=\"l\">{{ 'liter' | translate }}</option>\n" +
-    "						<option value=\"gal\">{{ 'gallons' | translate }}</option>\n" +
-    "					</select>\n" +
-    "				</span>\n" +
-    "			</div>\n" +
-    "		</div>\n" +
-    "		<div class=\"columns is-vcentered\">\n" +
-    "			<div class=\"column\">\n" +
-    "				<h5 class=\"title is-5\">{{ 'settings.clock' | translate }}</h5>\n" +
-    "				<p>{{ 'settings.clock_hint' | translate }}</p>\n" +
-    "			</div>\n" +
-    "			<div class=\"column has-text-right\">\n" +
-    "				<span class=\"select\">\n" +
-    "					<select name=\"clock\" id=\"clock\" ng-model=\"settings.clock\">\n" +
-    "						<option value=\"dd. MMMM yyyy - HH:mm\">{{ '24h' | translate }}</option>\n" +
-    "						<option value=\"dd. MMMM yyyy - h:mm a\">{{ '12h' | translate }}</option>\n" +
-    "					</select>\n" +
-    "				</span>\n" +
-    "			</div>\n" +
-    "		</div>\n" +
-    "		<div class=\"columns is-vcentered\">\n" +
-    "			<div class=\"column\">\n" +
-    "				<h5 class=\"title is-5\">{{ 'settings.keyboard' | translate }}</h5>\n" +
-    "				<p>{{ 'settings.keyboard_hint' | translate }}</p>\n" +
-    "			</div>\n" +
-    "			<div class=\"column has-text-right\">\n" +
-    "				<span class=\"select\">\n" +
-    "					<select name=\"layout\" id=\"layout\" ng-model=\"settings.keyboard\">\n" +
-    "						<option value=\"qwertz\">{{ 'QWERTZ' | translate }}</option>\n" +
-    "						<option value=\"qwerty\">{{ 'QWERTY' | translate }}</option>\n" +
-    "					</select>\n" +
-    "				</span>\n" +
-    "			</div>\n" +
-    "		</div>\n" +
+    "    <div class=\"tabs\">\n" +
+    "      <ul>\n" +
+    "        <li ng-class=\"{'is-active': tab === 'general'}\" ng-click=\"tab = 'general'\">\n" +
+    "          <a>\n" +
+    "            <span class=\"icon\"><i class=\"fa icon-cog\"></i></span>\n" +
+    "            <span>{{ 'settings.general' | translate }}</span>\n" +
+    "          </a>\n" +
+    "        </li>\n" +
+    "        <li ng-class=\"{'is-active': tab === 'health'}\"  ng-click=\"tab = 'health'\">\n" +
+    "          <a>\n" +
+    "            <span class=\"icon\"><i class=\"fa icon-heart\"></i></span>\n" +
+    "            <span>{{ 'settings.health' | translate }}</span>\n" +
+    "          </a>\n" +
+    "        </li>\n" +
+    "      </ul>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <span ng-show=\"tab === 'general'\">\n" +
+    "      <div class=\"columns is-vcentered\">\n" +
+    "  			<div class=\"column\">\n" +
+    "  				<h5 class=\"title is-5\">{{ 'settings.language' | translate }}</h5>\n" +
+    "  				<p>{{ 'settings.language_hint' | translate }}</p>\n" +
+    "  			</div>\n" +
+    "  			<div class=\"column has-text-right\">\n" +
+    "  				<span class=\"select\">\n" +
+    "  					<select name=\"locale\" id=\"locale\" ng-model=\"settings.locale\">\n" +
+    "  						<option value=\"en\">EN</option>\n" +
+    "  						<option value=\"de\">DE</option>\n" +
+    "  					</select>\n" +
+    "  				</span>\n" +
+    "  			</div>\n" +
+    "  		</div>\n" +
+    "  		<div class=\"columns is-vcentered\">\n" +
+    "  			<div class=\"column\">\n" +
+    "  				<h5 class=\"title is-5\">{{ 'settings.distance' | translate }}</h5>\n" +
+    "  				<p>{{ 'settings.distance_hint' | translate }}</p>\n" +
+    "  			</div>\n" +
+    "  			<div class=\"column has-text-right\">\n" +
+    "  				<span class=\"select\">\n" +
+    "  					<select name=\"distance\" id=\"distance\" ng-model=\"settings.distance\">\n" +
+    "  						<option value=\"km\">{{ 'metric' | translate }}</option>\n" +
+    "  						<option value=\"mi\">{{ 'miles' | translate }}</option>\n" +
+    "  					</select>\n" +
+    "  				</span>\n" +
+    "  			</div>\n" +
+    "  		</div>\n" +
+    "  		<div class=\"columns is-vcentered\">\n" +
+    "  			<div class=\"column\">\n" +
+    "  				<h5 class=\"title is-5\">{{ 'settings.clock' | translate }}</h5>\n" +
+    "  				<p>{{ 'settings.clock_hint' | translate }}</p>\n" +
+    "  			</div>\n" +
+    "  			<div class=\"column has-text-right\">\n" +
+    "  				<span class=\"select\">\n" +
+    "  					<select name=\"clock\" id=\"clock\" ng-model=\"settings.clock\">\n" +
+    "  						<option value=\"dd. MMMM yyyy - HH:mm\">{{ '24h' | translate }}</option>\n" +
+    "  						<option value=\"dd. MMMM yyyy - h:mm a\">{{ '12h' | translate }}</option>\n" +
+    "  					</select>\n" +
+    "  				</span>\n" +
+    "  			</div>\n" +
+    "  		</div>\n" +
+    "  		<div class=\"columns is-vcentered\">\n" +
+    "  			<div class=\"column\">\n" +
+    "  				<h5 class=\"title is-5\">{{ 'settings.keyboard' | translate }}</h5>\n" +
+    "  				<p>{{ 'settings.keyboard_hint' | translate }}</p>\n" +
+    "  			</div>\n" +
+    "  			<div class=\"column has-text-right\">\n" +
+    "  				<span class=\"select\">\n" +
+    "  					<select name=\"layout\" id=\"layout\" ng-model=\"settings.keyboard\">\n" +
+    "  						<option value=\"qwertz\">{{ 'QWERTZ' | translate }}</option>\n" +
+    "  						<option value=\"qwerty\">{{ 'QWERTY' | translate }}</option>\n" +
+    "  					</select>\n" +
+    "  				</span>\n" +
+    "  			</div>\n" +
+    "  		</div>\n" +
+    "    </span>\n" +
+    "    <span ng-show=\"tab === 'health'\">\n" +
+    "      <div class=\"columns is-vcentered\">\n" +
+    "  			<div class=\"column is-6\">\n" +
+    "  				<h5 class=\"title is-5\">{{ 'settings.OBD_address' | translate }}</h5>\n" +
+    "  				<p>{{ 'settings.OBD_address_hint' | translate }}</p>\n" +
+    "  			</div>\n" +
+    "  			<div class=\"column is-offset-3 is-3 has-text-right\">\n" +
+    "          <input class=\"input\" type=\"text\" ng-model=\"settings.OBD.address\" placeholder=\"{{ 'OBD_address_ph' | translate }}\">\n" +
+    "          <input class=\"input\" type=\"number\" ng-model=\"settings.OBD.channel\" placeholder=\"{{ 'OBD_channel_ph' | translate }}\">\n" +
+    "  			</div>\n" +
+    "  		</div>\n" +
+    "    </span>\n" +
     "	</div>\n" +
     "</section>\n" +
     "");

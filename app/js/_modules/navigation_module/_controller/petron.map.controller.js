@@ -8,7 +8,7 @@
         $rootScope.title = 'navigation_module';
 
         $scope.defaults = {
-          tileLayer: 'http://{s}.localhost:1337/styles/petron/rendered/{z}/{x}/{y}@2x.png',
+          tileLayer: 'http://localhost:1337/styles/petron/rendered/{z}/{x}/{y}.png',
           maxZoom: 18,
           path: {
             weight: 10,

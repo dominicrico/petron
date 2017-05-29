@@ -1,74 +1,91 @@
 <section class="columns u--max-height__100 u--margin-top__none c--settings">
 	<div class="column">
-		<div class="columns is-vcentered">
-			<div class="column">
-				<h5 class="title is-5">{{ 'settings.language' | translate }}</h5>
-				<p>{{ 'settings.language_hint' | translate }}</p>
-			</div>
-			<div class="column has-text-right">
-				<span class="select">
-					<select name="locale" id="locale" ng-model="settings.locale">
-						<option value="en">EN</option>
-						<option value="de">DE</option>
-					</select>
-				</span>
-			</div>
-		</div>
-		<div class="columns is-vcentered">
-			<div class="column">
-				<h5 class="title is-5">{{ 'settings.distance' | translate }}</h5>
-				<p>{{ 'settings.distance_hint' | translate }}</p>
-			</div>
-			<div class="column has-text-right">
-				<span class="select">
-					<select name="distance" id="distance" ng-model="settings.distance">
-						<option value="km">{{ 'metric' | translate }}</option>
-						<option value="mi">{{ 'miles' | translate }}</option>
-					</select>
-				</span>
-			</div>
-		</div>
-		<div class="columns is-vcentered">
-			<div class="column">
-				<h5 class="title is-5">{{ 'settings.fuel' | translate }}</h5>
-				<p>{{ 'settings.fuel_hint' | translate }}</p>
-			</div>
-			<div class="column has-text-right">
-				<span class="select">
-					<select name="fuel" id="fuel" ng-model="settings.fuel">
-						<option value="l">{{ 'liter' | translate }}</option>
-						<option value="gal">{{ 'gallons' | translate }}</option>
-					</select>
-				</span>
-			</div>
-		</div>
-		<div class="columns is-vcentered">
-			<div class="column">
-				<h5 class="title is-5">{{ 'settings.clock' | translate }}</h5>
-				<p>{{ 'settings.clock_hint' | translate }}</p>
-			</div>
-			<div class="column has-text-right">
-				<span class="select">
-					<select name="clock" id="clock" ng-model="settings.clock">
-						<option value="dd. MMMM yyyy - HH:mm">{{ '24h' | translate }}</option>
-						<option value="dd. MMMM yyyy - h:mm a">{{ '12h' | translate }}</option>
-					</select>
-				</span>
-			</div>
-		</div>
-		<div class="columns is-vcentered">
-			<div class="column">
-				<h5 class="title is-5">{{ 'settings.keyboard' | translate }}</h5>
-				<p>{{ 'settings.keyboard_hint' | translate }}</p>
-			</div>
-			<div class="column has-text-right">
-				<span class="select">
-					<select name="layout" id="layout" ng-model="settings.keyboard">
-						<option value="qwertz">{{ 'QWERTZ' | translate }}</option>
-						<option value="qwerty">{{ 'QWERTY' | translate }}</option>
-					</select>
-				</span>
-			</div>
-		</div>
+    <div class="tabs">
+      <ul>
+        <li ng-class="{'is-active': tab === 'general'}" ng-click="tab = 'general'">
+          <a>
+            <span class="icon"><i class="fa icon-cog"></i></span>
+            <span>{{ 'settings.general' | translate }}</span>
+          </a>
+        </li>
+        <li ng-class="{'is-active': tab === 'health'}"  ng-click="tab = 'health'">
+          <a>
+            <span class="icon"><i class="fa icon-heart"></i></span>
+            <span>{{ 'settings.health' | translate }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <span ng-show="tab === 'general'">
+      <div class="columns is-vcentered">
+  			<div class="column">
+  				<h5 class="title is-5">{{ 'settings.language' | translate }}</h5>
+  				<p>{{ 'settings.language_hint' | translate }}</p>
+  			</div>
+  			<div class="column has-text-right">
+  				<span class="select">
+  					<select name="locale" id="locale" ng-model="settings.locale">
+  						<option value="en">EN</option>
+  						<option value="de">DE</option>
+  					</select>
+  				</span>
+  			</div>
+  		</div>
+  		<div class="columns is-vcentered">
+  			<div class="column">
+  				<h5 class="title is-5">{{ 'settings.distance' | translate }}</h5>
+  				<p>{{ 'settings.distance_hint' | translate }}</p>
+  			</div>
+  			<div class="column has-text-right">
+  				<span class="select">
+  					<select name="distance" id="distance" ng-model="settings.distance">
+  						<option value="km">{{ 'metric' | translate }}</option>
+  						<option value="mi">{{ 'miles' | translate }}</option>
+  					</select>
+  				</span>
+  			</div>
+  		</div>
+  		<div class="columns is-vcentered">
+  			<div class="column">
+  				<h5 class="title is-5">{{ 'settings.clock' | translate }}</h5>
+  				<p>{{ 'settings.clock_hint' | translate }}</p>
+  			</div>
+  			<div class="column has-text-right">
+  				<span class="select">
+  					<select name="clock" id="clock" ng-model="settings.clock">
+  						<option value="dd. MMMM yyyy - HH:mm">{{ '24h' | translate }}</option>
+  						<option value="dd. MMMM yyyy - h:mm a">{{ '12h' | translate }}</option>
+  					</select>
+  				</span>
+  			</div>
+  		</div>
+  		<div class="columns is-vcentered">
+  			<div class="column">
+  				<h5 class="title is-5">{{ 'settings.keyboard' | translate }}</h5>
+  				<p>{{ 'settings.keyboard_hint' | translate }}</p>
+  			</div>
+  			<div class="column has-text-right">
+  				<span class="select">
+  					<select name="layout" id="layout" ng-model="settings.keyboard">
+  						<option value="qwertz">{{ 'QWERTZ' | translate }}</option>
+  						<option value="qwerty">{{ 'QWERTY' | translate }}</option>
+  					</select>
+  				</span>
+  			</div>
+  		</div>
+    </span>
+    <span ng-show="tab === 'health'">
+      <div class="columns is-vcentered">
+  			<div class="column is-6">
+  				<h5 class="title is-5">{{ 'settings.OBD_address' | translate }}</h5>
+  				<p>{{ 'settings.OBD_address_hint' | translate }}</p>
+  			</div>
+  			<div class="column is-offset-3 is-3 has-text-right">
+          <input class="input" type="text" ng-model="settings.OBD.address" placeholder="{{ 'OBD_address_ph' | translate }}">
+          <input class="input" type="number" ng-model="settings.OBD.channel" placeholder="{{ 'OBD_channel_ph' | translate }}">
+  			</div>
+  		</div>
+    </span>
 	</div>
 </section>

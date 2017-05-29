@@ -14,7 +14,7 @@
     '$translate',
     'tmhDynamicLocale',
     '$state',
-    'petron.phony',
+    // 'petron.phony',
     'SweetAlert',
     function(
       $rootScope,
@@ -23,19 +23,19 @@
       $translate,
       tmhDynamicLocale,
       $state,
-      petronPhony,
+      // petronPhony,
       SweetAlert) {
       $rootScope.daemon = {};
 
-      petronPhony.init();
+      // petronPhony.init();
 
-      $rootScope.phoneConnected = false;
-      $rootScope.$on('deviceFound', function(event, device) {
-        petronPhony.selectDevice(device).then(function() {
-          $rootScope.phoneConnected = true;
-          $rootScope.$broadcast('deviceReady');
-        });
-      });
+      // $rootScope.phoneConnected = false;
+      // $rootScope.$on('deviceFound', function(event, device) {
+      //   petronPhony.selectDevice(device).then(function() {
+      //     $rootScope.phoneConnected = true;
+      //     $rootScope.$broadcast('deviceReady');
+      //   });
+      // });
 
       $rootScope.$on('deviceRemoved', function() {
         $rootScope.phoneConnected = false;
@@ -44,7 +44,9 @@
       $rootScope.leftMenuShow = false;
 
       $rootScope.goHome = function() {
-        $state.go('petron.home');
+        if (!$state.is('petron.navigationbox.map')) {
+          $state.go('petron.home');
+        }
       };
 
       $rootScope.settings = {
@@ -52,7 +54,11 @@
         fuel: 'l',
         locale: 'de',
         clock: 'dd. MMMM yyyy - HH:mm',
-        keyboard: "qwertz"
+        keyboard: "qwertz",
+        OBD: {
+          address: 'AB:90:78:56:34:12',
+          channel: 1
+        }
       };
 
       petronStorage.get('petron.settings')
@@ -113,8 +119,8 @@
       var getConnector = require('obd-parser-bluetooth-connection');
       var connect = getConnector({
         name: 'OBDII',
-        address: 'AB:90:78:56:34:12',
-        channel: 1
+        address: $rootScope.settings.OBD.address,
+        channel: $rootScope.settings.OBD.channel
       });
 
       OBD.init(connect)
@@ -128,30 +134,6 @@
           });
           console.log('OBD ERROR', err);
         });
-
-      // var OBDReader = require('bluetooth-obd');
-      // $rootScope.btOBDReader = new OBDReader();
-      //
-
-      //
-      // $rootScope.btOBDReader.on('error', function(error) {
-      //   console.log(error);
-      // });
-      // $rootScope.btOBDReader.on('debug', function(error) {
-      //   console.log(error);
-      // });
-      //
-      // $rootScope.btOBDReader.on('connected', function() {
-      //
-      //   $rootScope.$apply(function() {
-      //     $rootScope.OBDisConnected = true;
-      //   });
-      //
-      // }, function() {
-      //   $rootScope.OBDhasError = true;
-      // });
-      //
-      // $rootScope.btOBDReader.autoconnect('OBDII');
 
       $rootScope.$onMany = function(events, fn) {
         for (var i = 0; i < events.length; i = i + 1) {

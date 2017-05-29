@@ -5,29 +5,27 @@
 
 	<div class="columns c--obd-container  has-text-centered" ng-if="hasError && !isConnected">
 		<h2 class="title is-3 c--obd__error">{{ 'health.scan_error' | translate}}</h2>
-		<button class="button button is-outlined is-primary" ng-click="connectToOBD()">{{ 'health.reconnect' | translate }}</button>
+		<button class="button button is-outlined is-primary" ng-click="reconnect()">{{ 'health.reconnect' | translate }}</button>
 	</div>
 	<div class="column" ng-if="!hasError">
 		<div class="columns">
 			<div class="column is-vcentered">
-
-						<span class="door-lock fr closed">
-							<i class="icon-lock-closed"></i>
-						</span>
-						<span class="door-lock br open">
-							<i class="icon-lock-open"></i>
-						</span>
-						<img src="images/car.svg" alt="">
-						<span class="door-lock trunk closed">
-							<i class="icon-lock-closed"></i>
-						</span>
-						<span class="door-lock bl open">
-							<i class="icon-lock-open"></i>
-						</span>
-						<span class="door-lock fl open">
-							<i class="icon-lock-open"></i>
-						</span>
-
+  			<!-- <span class="door-lock fr closed">
+  				<i class="icon-lock-closed"></i>
+  			</span>
+  			<span class="door-lock br open">
+  				<i class="icon-lock-open"></i>
+  			</span> -->
+  			<img src="images/car.svg" alt="">
+  			<!-- <span class="door-lock trunk closed">
+  				<i class="icon-lock-closed"></i>
+  			</span>
+  			<span class="door-lock bl open">
+  				<i class="icon-lock-open"></i>
+  			</span>
+  			<span class="door-lock fl open">
+  				<i class="icon-lock-open"></i>
+  			</span> -->
 			</div>
 			<div class="column">
 				<div class="columns">
@@ -61,8 +59,8 @@
 				<div class="columns">
 					<div class="column">
 						<div class="box">
-							<h5>{{ 'health.lights' | translate }}</h5>
-							<h2>{{ ((lights) ? 'on' : 'off') | translate}}</h2>
+							<h5>{{ 'health.errors' | translate }}</h5>
+							<h2>{{ ((!errors) ? 'no' : errors) | translate}}</h2>
 						</div>
 					</div>
 					<div class="column">

@@ -2,17 +2,17 @@
   'use strict';
 
   angular.module('petron.core')
-    .directive('petronVolumeIndicator', ['$rootScope',
-      function($rootScope) {
+    .directive('petronVolumeIndicator', ['$rootScope', 'petron.storage',
+      function($rootScope, petronStorage) {
         return {
           templateUrl: 'js/_main/_directive/volume/petron.volume-indicator.html',
           restrict: 'E',
           link: function(scope) {
 
-            scope.volume = 50;
+            scope.volume = 10;
 
             if (!$rootScope.settings.volume) {
-              $rootScope.settings.volume = 0.5;
+              $rootScope.settings.volume = 0.1;
             }
 
             var wHeight = $('.c--volume-indicator').outerHeight();
@@ -34,6 +34,8 @@
               delta = 0;
               startVolume = angular.copy(scope.volume);
               $rootScope.showVolumeIndicator = false;
+
+              petronStorage.set('petron.settings', $rootScope.settings);
             };
 
             // TODO Check why the indicator is jumping

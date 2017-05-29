@@ -30,51 +30,9 @@
         $scope.battery1 = 0;
         $scope.battery2 = 0;
 
-        $scope.lights = false;
+        $scope.errors = 0;
         $scope.temp = 0;
 
-        // var timer = setTimeout(function() {
-        //   console.log('restart')
-        //   $rootScope.btOBDReader.stopPolling();
-        //   $rootScope.btOBDReader.removeAllPollers();
-        //   startPollers();
-        // }, 15000);
-        //
-        // function startPollers() {
-        //   console.log('start')
-        //   $rootScope.btOBDReader.addPoller("vss");
-        //   $rootScope.btOBDReader.addPoller("rpm");
-        //   $rootScope.btOBDReader.addPoller("temp");
-        //
-        //   $rootScope.btOBDReader.startPolling(1000);
-        //   clearTimeout(timer);
-        //   timer = setTimeout(function() {
-        //     console.log('restart')
-        //     $rootScope.btOBDReader.stopPolling();
-        //     $rootScope.btOBDReader.removeAllPollers();
-        //     startPollers();
-        //   }, 15000);
-        // }
-        // $scope.$watch('time', function(time) {
-        //   clearTimeout(timer);
-        //   timer = setTimeout(function() {
-        //     console.log('restart')
-        //     $rootScope.btOBDReader.stopPolling();
-        //     $rootScope.btOBDReader.removeAllPollers();
-        //     startPollers();
-        //   }, 15000);
-        //   console.log('all good');
-        // });
-        //
-        // $rootScope.btOBDReader.on('dataReceived', function(data) {
-        //   if (['vss', 'rpm', 'temp'].indexOf(data.name) !== -1) $scope.time =
-        //     new Date().getTime();
-        //   if (data.name === 'vss') $scope.speed = data.value;
-        //   if (data.name === 'rpm') $scope.tacho = parseInt(data.value);
-        //   if (data.name === 'temp') $scope.temp = data.value;
-        // });
-        //
-        //
         var OBD = require('obd-parser');
 
         var rpmPoller = new OBD.ECUPoller({
@@ -130,11 +88,41 @@
           tempPoller.startPolling();
         }
 
+        function stopPolling() {
+          rpmPoller.stopPolling();
+          speedPoller.stopPolling();
+          tempPoller.stopPolling();
+        }
+
+        $scope.reconnect = function() {
+          $scope.hasError = false;
+          $rootScope.OBDisConnected = false;
+          $rootScope.OBDhasError = false;
+
+          var getConnector = require('obd-parser-bluetooth-connection');
+          var connect = getConnector({
+            name: 'OBDII',
+            address: $rootScope.settings.OBD.address,
+            channel: $rootScope.settings.OBD.channel
+          });
+
+          OBD.init(connect)
+            .then(function() {
+              $rootScope.$apply(function() {
+                $rootScope.OBDisConnected = true;
+              });
+            }, function(err) {
+              $rootScope.$apply(function() {
+                $rootScope.OBDhasError = true;
+              });
+              console.log('OBD ERROR', err);
+            });
+        };
+
         $rootScope.$watch('OBDisConnected', function(conn) {
           if (conn) {
             $scope.isConnected = true;
             clearInterval(dotInterval);
-            // startPollers();
             startPolling();
           }
         });
@@ -143,6 +131,10 @@
           if (err) {
             $scope.hasError = true;
           }
+        });
+
+        $rootScope.$on('routeStateChangeStart', function() {
+          stopPolling();
         });
       }
     ]);

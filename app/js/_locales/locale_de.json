@@ -5,6 +5,7 @@
   "clock_unit": "Uhr",
   "on": "an",
   "off": "aus",
+  "no": "keine",
   "metric": "metrisch",
   "miles": "meilen",
   "gallons": "Gallonen",
@@ -83,7 +84,8 @@
     "should_start_routing": "Zielführung starten?",
     "start_routing_btn": "Jetzt starten",
     "new_dest_btn": "Neues Ziel",
-    "save_favourite_btn": "Ziel speichern"
+    "save_favourite_btn": "Ziel speichern",
+    "show_map": "Karte anzeigen"
   },
 
   "keyboard": {
@@ -101,7 +103,7 @@
     "tachometer": "Drehzahl",
     "battery_1": "Batterie I",
     "battery_2": "Batterie II",
-    "lights": "Licht",
+    "errors": "Fehler",
     "fuel": "Tank",
     "scanning": "Suche OBDII-Adapter",
     "scan_error": "Petron konnte sich nicht zu OBDII-Adapter verbinden!",
@@ -115,6 +117,8 @@
   },
 
   "settings": {
+    "general": "Allgemein",
+    "health": "Health",
     "language": "Sprache",
     "language_hint": "Wähle die Systemsprache von Petron. Weitere übersetzungen findest du auf www.petron.io",
     "clock": "Uhr",
@@ -124,6 +128,10 @@
     "fuel": "Tank",
     "fuel_hint": "Tankst du in Gallonen oder Litern?",
     "keyboard": "Tastatur-Layout",
-    "keyboard_hint": "Welches Tastatur-Layout willst du verwerden?"
+    "keyboard_hint": "Welches Tastatur-Layout willst du verwerden?",
+    "OBD_address": "OBDII",
+    "OBD_address_hint": "Trage die MAC-Addresse und den Channel des OBDII Adapters ein um dich direkt zu verbinden",
+    "OBD_address_ph": "XX:XX:XX:XX",
+    "OBD_channel_hint": "Standart ist 1"
   }
 }
