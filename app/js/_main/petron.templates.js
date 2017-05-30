@@ -1,4 +1,4 @@
-angular.module('petron.core.templates', ['index.html', 'js/_main/_directive/daemon/petron.daemon.html', 'js/_main/_directive/filetree/audio_popout.html', 'js/_main/_directive/filetree/petron.filetree.html', 'js/_main/_directive/keyboard/layout_qwerty.html', 'js/_main/_directive/keyboard/layout_qwertz.html', 'js/_main/_directive/volume/petron.volume-indicator.html', 'js/_main/_template/petron.confirm.html', 'js/_main/_template/petron.content.html', 'js/_main/_template/petron.header.html', 'js/_main/_template/petron.home.html', 'js/_modules/audio_module/_template/_directive.html', 'js/_modules/audio_module/_template/add_to_playlist_modal.html', 'js/_modules/audio_module/_template/main.html', 'js/_modules/audio_module/_template/new_playlist_modal.html', 'js/_modules/audio_module/_template/playlists.html', 'js/_modules/fm_module/_template/main.html', 'js/_modules/fm_module/_template/stations.html', 'js/_modules/health_module/_template/main.html', 'js/_modules/navigation_module/_template/main.html', 'js/_modules/navigation_module/_template/map.html', 'js/_modules/navigation_module/_template/menu.html', 'js/_modules/phone_module/_template/calls.html', 'js/_modules/phone_module/_template/main.html', 'js/_modules/phone_module/_template/messages.html', 'js/_modules/settings_module/_template/main.html', 'js/_modules/video_module/_template/_directive.html', 'js/_modules/video_module/_template/add_to_playlist_modal.html', 'js/_modules/video_module/_template/main.html', 'js/_modules/video_module/_template/new_playlist_modal.html', 'js/_modules/video_module/_template/player.html', 'loader.html']);
+angular.module('petron.core.templates', ['index.html', 'js/_main/_directive/daemon/petron.daemon.html', 'js/_main/_directive/filetree/audio_popout.html', 'js/_main/_directive/filetree/petron.filetree.html', 'js/_main/_directive/keyboard/layout_qwerty.html', 'js/_main/_directive/keyboard/layout_qwertz.html', 'js/_main/_directive/volume/petron.volume-indicator.html', 'js/_main/_template/petron.confirm.html', 'js/_main/_template/petron.content.html', 'js/_main/_template/petron.header.html', 'js/_main/_template/petron.home.html', 'js/_modules/audio_module/_template/_directive_upnp.html', 'js/_modules/audio_module/_template/_directive.html', 'js/_modules/audio_module/_template/add_to_playlist_modal.html', 'js/_modules/audio_module/_template/main.html', 'js/_modules/audio_module/_template/new_playlist_modal.html', 'js/_modules/audio_module/_template/playlists.html', 'js/_modules/fm_module/_template/main.html', 'js/_modules/fm_module/_template/stations.html', 'js/_modules/health_module/_template/main.html', 'js/_modules/navigation_module/_template/main.html', 'js/_modules/navigation_module/_template/map.html', 'js/_modules/navigation_module/_template/menu.html', 'js/_modules/phone_module/_template/calls.html', 'js/_modules/phone_module/_template/main.html', 'js/_modules/phone_module/_template/messages.html', 'js/_modules/settings_module/_template/main.html', 'js/_modules/video_module/_template/_directive.html', 'js/_modules/video_module/_template/add_to_playlist_modal.html', 'js/_modules/video_module/_template/main.html', 'js/_modules/video_module/_template/new_playlist_modal.html', 'js/_modules/video_module/_template/player.html', 'loader.html']);
 
 angular.module("index.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
@@ -560,24 +560,119 @@ angular.module("js/_main/_template/petron.home.html", []).run(["$templateCache",
     "");
 }]);
 
+angular.module("js/_modules/audio_module/_template/_directive_upnp.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/audio_module/_template/_directive_upnp.html",
+    "<div class=\"columns\">\n" +
+    "	<div class=\"column is-5\">\n" +
+    "		<div class=\"columns\">\n" +
+    "			<div class=\"column\">\n" +
+    "				<figure class=\"image is-square\">\n" +
+    "				  <img ng-if=\"playlist.tracks[current].image\" ng-src=\"{{ 'data:image/' + playlist.tracks[current].image_type + ';base64,' + playlist.tracks[current].image }}\" alt=\"\">\n" +
+    "				  <img ng-if=\"!playlist.tracks[current].image\" src=\"./images/music_cover_ph.svg\" alt=\"\">\n" +
+    "				</figure>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "	<div class=\"column is-6 is-offset-1\">\n" +
+    "		<div class=\"columns\">\n" +
+    "			<div class=\"column has-text-centered c--audio__title\">\n" +
+    "				<h1 class=\"title is-4\">\n" +
+    "					{{ playlist.tracks[current].title ||  playlist.tracks[current].name }}\n" +
+    "				</h1>\n" +
+    "\n" +
+    "				<h2 class=\"subtitle is-6\">\n" +
+    "					{{ playlist.tracks[current].artist }} {{ (playlist.tracks[current].album) ? '- ' + (playlist.tracks[current].album) : '' }}\n" +
+    "				</h2>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "\n" +
+    "		<div class=\"columns\">\n" +
+    "			<div class=\"column has-text-centered\">\n" +
+    "				<section class=\"c--audio__controls\">\n" +
+    "					<button class=\"button\" ng-click=\"shuffle()\" ng-class=\"{'is-active': controls.shuffle}\">\n" +
+    "						<i class=\"icon-shuffle\"></i>\n" +
+    "					</button>\n" +
+    "					<button class=\"button c--audio__controls-l\" ng-click=\"prev()\">\n" +
+    "						<i class=\"icon-media-rewind\"></i>\n" +
+    "					</button>\n" +
+    "					<button class=\"button c--audio__controls-xl\" ng-click=\"play()\" ng-class=\"{'is-active': controls.play}\">\n" +
+    "						<i class=\"icon-media-play\" ng-if=\"!controls.play\"></i>\n" +
+    "						<i class=\"icon-media-pause\" ng-if=\"controls.play\"></i>\n" +
+    "					</button>\n" +
+    "					<button class=\"button c--audio__controls-l\" ng-click=\"next()\">\n" +
+    "						<i class=\"icon-media-forward\"></i>\n" +
+    "					</button>\n" +
+    "					<button class=\"button\" ng-click=\"toggleRepeat()\" ng-class=\"{'is-active': controls.loop || controls.repeat}\">\n" +
+    "						<i ng-class=\"{'icon-loop': controls.loop || (!controls.loop && !controls.repeat) , 'icon-repeat': controls.repeat}\"></i>\n" +
+    "					</button>\n" +
+    "				</section>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "\n" +
+    "		<div class=\"columns c--audio__timetrack\">\n" +
+    "			<div class=\"column has-text-centered\">\n" +
+    "				<input ng-model=\"controls.time\" onchange=\"angular.element(this).scope().seek()\" type=\"range\" min=\"0\" max=\"{{ controls.duration }}\" step=\"1\" />\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "\n" +
+    "		<div class=\"columns c--audio__time\">\n" +
+    "			<div class=\"column has-text-left\">\n" +
+    "				{{ controls.time | buildTime }}\n" +
+    "			</div>\n" +
+    "			<div class=\"column has-text-right\">\n" +
+    "				{{ controls.duration | buildTime }}\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "\n" +
+    "<audio class=\"c--audio__player\" preload=\"auto\">\n" +
+    "	<source ng-repeat=\"file in playlist.tracks\" ng-if=\"playlist.tracks && file.play\" ng-src=\"{{ file.path }}\" type=\"audio/{{ file.type}}\">\n" +
+    "</audio>\n" +
+    "<!--\n" +
+    "<button class=\"button\" ng-click=\"player.audio.daemonize()\">\n" +
+    "	<i class=\"icon-home\"></i>\n" +
+    "</button>\n" +
+    "\n" +
+    "\n" +
+    "<i class=\"icon-volume-down\"></i>\n" +
+    "<input ng-model=\"player.audio.controls.volume\" ng-change=\"player.audio.setVolume()\" type=\"range\" min=\"0\" max=\"1\" step=\"0.01\" />\n" +
+    "<i class=\"icon-volume-up\"></i>\n" +
+    "\n" +
+    "<section class=\"c--audio__playlist\">\n" +
+    "	<ul>\n" +
+    "		<li ng-repeat=\"file in player.audio.playlist\" ng-click=\"player.audio.playFile($index)\">{{ file.name }}</li>\n" +
+    "	</ul>\n" +
+    "</section>\n" +
+    "-->\n" +
+    "");
+}]);
+
 angular.module("js/_modules/audio_module/_template/_directive.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/audio_module/_template/_directive.html",
     "<div class=\"columns\">\n" +
     "	<div class=\"column has-text-centered c--audio__title\">\n" +
     "		<h1 class=\"title is-4\">\n" +
-    "			{{ playlist.tracks[current].title ||  playlist.tracks[current].name || btAudio.Title }}\n" +
+    "			{{ playlist.tracks[current].title ||  playlist.tracks[current].name }}\n" +
     "		</h1>\n" +
     "\n" +
     "		<h2 class=\"subtitle is-6\">\n" +
-    "			{{ playlist.tracks[current].artist || btAudio.Artist }} {{ (playlist.tracks[current].album || btAudio.Album) ? '- ' + (playlist.tracks[current].album  || btAudio.Album) : '' }}\n" +
+    "			{{ playlist.tracks[current].artist }} {{ (playlist.tracks[current].album) ? '- ' + (playlist.tracks[current].album) : '' }}\n" +
     "		</h2>\n" +
     "	</div>\n" +
     "</div>\n" +
     "\n" +
     "<div class=\"columns\">\n" +
-    "	<div class=\"column is-8 is-offset-2\">\n" +
+    "	<div class=\"column is-8 is-offset-2\" ng-if=\"!upnp_music\">\n" +
     "		<figure class=\"image is-square\">\n" +
+    "		  <img ng-if=\"playlist.tracks[current].image\" ng-src=\"{{ 'data:image/' + playlist.tracks[current].image_type + ';base64,' + playlist.tracks[current].image }}\" alt=\"\">\n" +
+    "		  <img ng-if=\"!playlist.tracks[current].image\" src=\"./images/music_cover_ph.svg\" alt=\"\">\n" +
+    "		</figure>\n" +
+    "	</div>\n" +
+    "  <div class=\"column is-4 is-offset-4\" ng-if=\"upnp_music\">\n" +
+    "		<figure class=\"image is-square c--cover\">\n" +
     "		  <img ng-if=\"playlist.tracks[current].image\" ng-src=\"{{ 'data:image/' + playlist.tracks[current].image_type + ';base64,' + playlist.tracks[current].image }}\" alt=\"\">\n" +
     "		  <img ng-if=\"!playlist.tracks[current].image\" src=\"./images/music_cover_ph.svg\" alt=\"\">\n" +
     "		</figure>\n" +
@@ -685,8 +780,8 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templa
   $templateCache.put("js/_modules/audio_module/_template/main.html",
     "<section class=\"columns u--max-height__100 u--margin-top__none\">\n" +
     "\n" +
-    "	<aside class=\"c--filetree column is-7\">\n" +
-    "		<div class=\"columns\">\n" +
+    "	<aside class=\"c--filetree column is-7\" ng-if=\"localMusic\">\n" +
+    "    <div class=\"columns\">\n" +
     "			<div class=\"column\" ng-click=\"useLocal()\">{{ 'use_local_audio' | translate }}</div>\n" +
     "			<div class=\"column\" ng-click=\"useUpnp()\">{{ 'use_upnp_audio' | translate }}</div>\n" +
     "		</div>\n" +
@@ -724,6 +819,10 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templa
     "		<petron-audio></petron-audio>\n" +
     "	</main>\n" +
     "  <main class=\"c--audio__main column\" ng-if=\"upnpMusic\">\n" +
+    "    <div class=\"columns\">\n" +
+    "			<div class=\"column\" ng-click=\"useLocal()\">{{ 'use_local_audio' | translate }}</div>\n" +
+    "			<div class=\"column is-active\" ng-click=\"useUpnp()\">{{ 'use_upnp_audio' | translate }}</div>\n" +
+    "		</div>\n" +
     "		<petron-upnp-audio></petron-upnp-audio>\n" +
     "	</main>\n" +
     "\n" +

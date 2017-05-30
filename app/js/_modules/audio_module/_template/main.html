@@ -1,7 +1,7 @@
 <section class="columns u--max-height__100 u--margin-top__none">
 
-	<aside class="c--filetree column is-7">
-		<div class="columns">
+	<aside class="c--filetree column is-7" ng-if="localMusic">
+    <div class="columns">
 			<div class="column" ng-click="useLocal()">{{ 'use_local_audio' | translate }}</div>
 			<div class="column" ng-click="useUpnp()">{{ 'use_upnp_audio' | translate }}</div>
 		</div>
@@ -39,6 +39,10 @@
 		<petron-audio></petron-audio>
 	</main>
   <main class="c--audio__main column" ng-if="upnpMusic">
+    <div class="columns">
+			<div class="column" ng-click="useLocal()">{{ 'use_local_audio' | translate }}</div>
+			<div class="column is-active" ng-click="useUpnp()">{{ 'use_upnp_audio' | translate }}</div>
+		</div>
 		<petron-upnp-audio></petron-upnp-audio>
 	</main>
 

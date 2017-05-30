@@ -1,18 +1,24 @@
 <div class="columns">
 	<div class="column has-text-centered c--audio__title">
 		<h1 class="title is-4">
-			{{ playlist.tracks[current].title ||  playlist.tracks[current].name || btAudio.Title }}
+			{{ playlist.tracks[current].title ||  playlist.tracks[current].name }}
 		</h1>
 
 		<h2 class="subtitle is-6">
-			{{ playlist.tracks[current].artist || btAudio.Artist }} {{ (playlist.tracks[current].album || btAudio.Album) ? '- ' + (playlist.tracks[current].album  || btAudio.Album) : '' }}
+			{{ playlist.tracks[current].artist }} {{ (playlist.tracks[current].album) ? '- ' + (playlist.tracks[current].album) : '' }}
 		</h2>
 	</div>
 </div>
 
 <div class="columns">
-	<div class="column is-8 is-offset-2">
+	<div class="column is-8 is-offset-2" ng-if="!upnp_music">
 		<figure class="image is-square">
+		  <img ng-if="playlist.tracks[current].image" ng-src="{{ 'data:image/' + playlist.tracks[current].image_type + ';base64,' + playlist.tracks[current].image }}" alt="">
+		  <img ng-if="!playlist.tracks[current].image" src="./images/music_cover_ph.svg" alt="">
+		</figure>
+	</div>
+  <div class="column is-4 is-offset-4" ng-if="upnp_music">
+		<figure class="image is-square c--cover">
 		  <img ng-if="playlist.tracks[current].image" ng-src="{{ 'data:image/' + playlist.tracks[current].image_type + ';base64,' + playlist.tracks[current].image }}" alt="">
 		  <img ng-if="!playlist.tracks[current].image" src="./images/music_cover_ph.svg" alt="">
 		</figure>
