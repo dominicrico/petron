@@ -43,6 +43,9 @@
   "choose_playlist_label": "Choose playlist",
   "create_new_playlist": "new Playlist",
 
+  "use_local_audio": "Local Music",
+  "use_upnp_audio": "Music Streaming",
+
   "modal": {
     "button_confirm": "Yes",
     "button_delete": "Delete",
@@ -128,6 +131,13 @@
     "OBD_address": "OBDII",
     "OBD_address_hint": "Enter the MAC-Address and channel of your OBD device for quick connection.",
     "OBD_address_ph": "XX:XX:XX:XX",
-    "OBD_channel_hint": "Default is 1"
+    "OBD_channel_hint": "Default is 1",
+    "audio": "Sound",
+    "init_volume": "Power on volume",
+    "init_volume_hint": "Default volume after power on.",
+    "media_renderer": "Wifi streaming",
+    "media_renderer_hint": "IP and Port to communicate with the media renderer.",
+    "media_renderer_ip_ph": "XXX:XXX:XXX:XXX",
+    "media_renderer_port_ph": "XXXXX"
   }
 }

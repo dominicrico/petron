@@ -48,11 +48,13 @@
         $scope.useUpnp = function() {
           $scope.localMusic = false;
           $scope.upnpMusic = true;
+          $rootScope.rightMenuShow = false;
         };
 
         $scope.useLocal = function() {
           $scope.localMusic = true;
-          $scope.upnpMusic = true;
+          $scope.upnpMusic = false;
+          $rootScope.rightMenuShow = true;
         };
 
         $scope.func = {

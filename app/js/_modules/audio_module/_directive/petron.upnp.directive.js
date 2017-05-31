@@ -6,9 +6,8 @@
       return {
         templateUrl: 'js/_modules/audio_module/_template/_directive_upnp.html',
         restrict: 'E',
-        controller: ['$scope', '$rootScope', '$element',
-          '$translatePartialLoader', '$translate', '$timeout',
-          function($scope) {
+        controller: ['$scope', '$rootScope',
+          function($scope, $rootScope) {
             var parser = require('xml2json');
             var timeInterval;
             $scope.upnp_music = true;
@@ -28,10 +27,12 @@
 
             var MediaRendererClient = require(
               'upnp-mediarenderer-client');
-            // var client = new MediaRendererClient(
-            //   'http://10.0.39.109:49495/description.xml');
             var client = new MediaRendererClient(
-              'http://192.168.0.227:49495/description.xml');
+              'http://' + $rootScope.settings.media_renderer.ip + ':' +
+              $rootScope.settings.media_renderer.port +
+              '/description.xml');
+            // var client = new MediaRendererClient(
+            //   'http://192.168.0.227:49495/description.xml');
 
             function timer() {
               clearInterval(timeInterval);
@@ -48,7 +49,13 @@
 
                 var metadata = parser.toJson((meta.CurrentURIMetaData), {
                   object: true
-                })['DIDL-Lite'].item;
+                })['DIDL-Lite'];
+
+                if (metadata && metadata.item !== undefined) {
+                  metadata = metadata.item;
+                } else {
+                  return;
+                }
 
                 var dur = metadata.res.duration.split('.')[
                   0];
@@ -95,20 +102,20 @@
                     $scope.track;
                 });
 
-                client.getPosition(function(err, position) {
-                  $scope.$apply(function() {
-                    $scope.controls.time = position;
-                    timer();
-                  });
-                });
-
                 client.callAction('AVTransport', 'GetTransportInfo', {
                     'InstanceID': 0
                   },
                   function(err, res) {
                     if (res.CurrentTransportState === 'PLAYING') {
                       $scope.controls.play = true;
+                      client.getPosition(function(err, position) {
+                        $scope.$apply(function() {
+                          $scope.controls.time = position;
+                          timer();
+                        });
+                      });
                     } else {
+                      clearInterval(timeInterval);
                       $scope.controls.play = false;
                     }
                   });
@@ -144,17 +151,6 @@
                   var timestamp2 = parseInt(dur2[0] * 60 * 60);
                   timestamp2 += parseInt(dur2[1] * 60);
                   timestamp2 += parseInt(dur2[2]);
-                  $scope.$apply(function() {
-                    $scope.controls.time = timestamp2 + 1;
-                    timer();
-                  });
-                } else {
-                  client.getPosition(function(err, position) {
-                    $scope.$apply(function() {
-                      $scope.controls.time = position;
-                      timer();
-                    });
-                  });
                 }
 
                 if (status.CurrentTrackMetaData || status.AVTransportURIMetaData ||
@@ -163,7 +159,13 @@
                     status.AVTransportURIMetaData || meta.CurrentURIMetaData
                   ), {
                     object: true
-                  })['DIDL-Lite'].item;
+                  })['DIDL-Lite'];
+
+                  if (metadata && metadata.item !== undefined) {
+                    metadata = metadata.item;
+                  } else {
+                    return;
+                  }
 
                   var dur3 = metadata.res.duration.split('.')[0];
                   dur3 = dur3.split(':');
@@ -209,6 +211,28 @@
                     $scope.playlist.tracks[$scope.current] =
                       $scope.track;
                   });
+
+                  client.callAction('AVTransport',
+                    'GetTransportInfo', {
+                      'InstanceID': 0
+                    },
+                    function(err, res) {
+                      if (res.CurrentTransportState ===
+                        'PLAYING') {
+                        $scope.controls.play = true;
+                        client.getPosition(function(err,
+                          position) {
+                          $scope.$apply(function() {
+                            $scope.controls.time =
+                              position;
+                            timer();
+                          });
+                        });
+                      } else {
+                        clearInterval(timeInterval);
+                        $scope.controls.play = false;
+                      }
+                    });
                 }
               });
             });
@@ -227,19 +251,15 @@
             });
 
             $scope.next = function() {
-              client.seek($scope.controls.duration, function(err,
-                data) {
+              client.seek($scope.controls.duration, function() {
                 setTimeout(function() {
                   getMediaInfo();
                 }, 1500);
-
               });
             };
 
             function resetPlayMode() {
-              client.normal(function(err, data) {
-                console.log(err, data)
-              });
+              client.normal();
               $scope.controls.shuffle = false;
               $scope.controls.repeat = false;
               $scope.controls.loop = false;
@@ -280,12 +300,6 @@
               }
               $scope.controls.play = !$scope.controls.play;
             };
-
-            client.getServiceDescription('AVTransport', function(err,
-              service) {
-              console.log(err, service)
-            })
-
           }
         ]
       };

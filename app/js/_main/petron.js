@@ -58,15 +58,18 @@
         OBD: {
           address: 'AB:90:78:56:34:12',
           channel: 1
-        }
+        },
+        volume: 0.1
       };
 
       petronStorage.get('petron.settings')
         .then(function(settings) {
+            console.log(settings)
             $rootScope.settings = angular.merge($rootScope.settings,
               settings);
             tmhDynamicLocale.set($rootScope.settings.locale);
             $translate.use($rootScope.settings.locale);
+            console.log($rootScope.settings)
           },
           function() {
             throw new Error('Could not load settings');

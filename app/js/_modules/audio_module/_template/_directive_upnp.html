@@ -1,4 +1,4 @@
-<div class="columns">
+<div class="columns u--padding-top__20">
 	<div class="column is-5">
 		<div class="columns">
 			<div class="column">
@@ -9,7 +9,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="column is-6 is-offset-1">
+	<div class="column is-6 is-offset-1 c--audio__upnp">
 		<div class="columns">
 			<div class="column has-text-centered c--audio__title">
 				<h1 class="title is-4">
@@ -25,10 +25,10 @@
 		<div class="columns">
 			<div class="column has-text-centered">
 				<section class="c--audio__controls">
-					<button class="button" ng-click="shuffle()" ng-class="{'is-active': controls.shuffle}">
+					<button class="button" ng-click="shuffle()" ng-class="{'is-active': controls.shuffle}" disabled>
 						<i class="icon-shuffle"></i>
 					</button>
-					<button class="button c--audio__controls-l" ng-click="prev()">
+					<button class="button c--audio__controls-l" ng-click="prev()" disabled>
 						<i class="icon-media-rewind"></i>
 					</button>
 					<button class="button c--audio__controls-xl" ng-click="play()" ng-class="{'is-active': controls.play}">
@@ -38,29 +38,34 @@
 					<button class="button c--audio__controls-l" ng-click="next()">
 						<i class="icon-media-forward"></i>
 					</button>
-					<button class="button" ng-click="toggleRepeat()" ng-class="{'is-active': controls.loop || controls.repeat}">
+					<button class="button" ng-click="toggleRepeat()" ng-class="{'is-active': controls.loop || controls.repeat}" disabled>
 						<i ng-class="{'icon-loop': controls.loop || (!controls.loop && !controls.repeat) , 'icon-repeat': controls.repeat}"></i>
 					</button>
 				</section>
 			</div>
 		</div>
 
-		<div class="columns c--audio__timetrack">
-			<div class="column has-text-centered">
-				<input ng-model="controls.time" onchange="angular.element(this).scope().seek()" type="range" min="0" max="{{ controls.duration }}" step="1" />
-			</div>
-		</div>
+    <div class="columns">
+      <div class="column">
+        <div class="columns c--audio__timetrack">
+    			<div class="column has-text-centered">
+    				<input ng-model="controls.time" onchange="angular.element(this).scope().seek()" type="range" min="0" max="{{ controls.duration }}" step="1" disabled />
+    			</div>
+    		</div>
 
-		<div class="columns c--audio__time">
-			<div class="column has-text-left">
-				{{ controls.time | buildTime }}
-			</div>
-			<div class="column has-text-right">
-				{{ controls.duration | buildTime }}
-			</div>
-		</div>
-		</div>
+    		<div class="columns c--audio__time">
+    			<div class="column has-text-left">
+    				{{ controls.time | buildTime }}
+    			</div>
+    			<div class="column has-text-right">
+    				{{ controls.duration | buildTime }}
+    			</div>
+    		</div>
+      </div>
+    </div>
+
 	</div>
+</div>
 
 <audio class="c--audio__player" preload="auto">
 	<source ng-repeat="file in playlist.tracks" ng-if="playlist.tracks && file.play" ng-src="{{ file.path }}" type="audio/{{ file.type}}">

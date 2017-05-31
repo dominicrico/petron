@@ -175,3 +175,10 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   margin: 0 auto;
   padding: 0 !important;
 }
+
+.c--audio__upnp {
+  align-items: stretch;
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex;
+}

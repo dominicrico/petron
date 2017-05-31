@@ -45,6 +45,9 @@
   "choose_playlist_label": "Playlist wählen",
   "create_new_playlist": "neue Playlist",
 
+  "use_local_audio": "Lokale Musik",
+  "use_upnp_audio": "Musik Streaming",
+
   "modal": {
     "button_confirm": "Ja",
     "button_delete": "Löschen",
@@ -132,6 +135,14 @@
     "OBD_address": "OBDII",
     "OBD_address_hint": "Trage die MAC-Addresse und den Channel des OBDII Adapters ein um dich direkt zu verbinden",
     "OBD_address_ph": "XX:XX:XX:XX",
-    "OBD_channel_hint": "Standart ist 1"
+    "OBD_channel_hint": "Standart ist 1",
+    "OBD_channel_ph": "1",
+    "audio": "Ton",
+    "init_volume": "Einschalt-Lautstärke",
+    "init_volume_hint": "Standart-Lautstärke nach dem einschalten.",
+    "media_renderer": "Wifi Streaming",
+    "media_renderer_hint": "IP und Port zur Kommunikation mit dem Media Renderer.",
+    "media_renderer_ip_ph": "XXX:XXX:XXX:XXX",
+    "media_renderer_port_ph": "XXXXX"
   }
 }

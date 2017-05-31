@@ -2,7 +2,7 @@
 
 	<aside class="c--filetree column is-7" ng-if="localMusic">
     <div class="columns">
-			<div class="column" ng-click="useLocal()">{{ 'use_local_audio' | translate }}</div>
+			<div class="column u--active" ng-click="useLocal()">{{ 'use_local_audio' | translate }}</div>
 			<div class="column" ng-click="useUpnp()">{{ 'use_upnp_audio' | translate }}</div>
 		</div>
 		<div class="tabs">
@@ -38,10 +38,14 @@
 	<main class="c--audio__main column is-5" ng-if="localMusic">
 		<petron-audio></petron-audio>
 	</main>
-  <main class="c--audio__main column" ng-if="upnpMusic">
+  <main class="c--audio__main u--padding-10 column" ng-if="upnpMusic">
     <div class="columns">
-			<div class="column" ng-click="useLocal()">{{ 'use_local_audio' | translate }}</div>
-			<div class="column is-active" ng-click="useUpnp()">{{ 'use_upnp_audio' | translate }}</div>
+      <div class="column is-7">
+        <div class="columns">
+          <div class="column" ng-click="useLocal()">{{ 'use_local_audio' | translate }}</div>
+    			<div class="column u--active" ng-click="useUpnp()">{{ 'use_upnp_audio' | translate }}</div>
+        </div>
+      </div>
 		</div>
 		<petron-upnp-audio></petron-upnp-audio>
 	</main>

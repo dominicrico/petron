@@ -9,11 +9,19 @@
           restrict: 'E',
           link: function(scope) {
 
-            scope.volume = 10;
-
             if (!$rootScope.settings.volume) {
               $rootScope.settings.volume = 0.1;
+              scope.volume = 10;
+            } else {
+              scope.volume = angular.copy($rootScope.settings.volume) *
+                100;
             }
+
+            $rootScope.$watch('settings.volume', function(vol) {
+              $rootScope.settings.volume = vol;
+              scope.volume = angular.copy(vol) *
+                100;
+            });
 
             var wHeight = $('.c--volume-indicator').outerHeight();
             $rootScope.showVolumeIndicator =

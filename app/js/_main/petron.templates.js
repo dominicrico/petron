@@ -563,7 +563,7 @@ angular.module("js/_main/_template/petron.home.html", []).run(["$templateCache",
 angular.module("js/_modules/audio_module/_template/_directive_upnp.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/audio_module/_template/_directive_upnp.html",
-    "<div class=\"columns\">\n" +
+    "<div class=\"columns u--padding-top__20\">\n" +
     "	<div class=\"column is-5\">\n" +
     "		<div class=\"columns\">\n" +
     "			<div class=\"column\">\n" +
@@ -574,7 +574,7 @@ angular.module("js/_modules/audio_module/_template/_directive_upnp.html", []).ru
     "			</div>\n" +
     "		</div>\n" +
     "	</div>\n" +
-    "	<div class=\"column is-6 is-offset-1\">\n" +
+    "	<div class=\"column is-6 is-offset-1 c--audio__upnp\">\n" +
     "		<div class=\"columns\">\n" +
     "			<div class=\"column has-text-centered c--audio__title\">\n" +
     "				<h1 class=\"title is-4\">\n" +
@@ -590,10 +590,10 @@ angular.module("js/_modules/audio_module/_template/_directive_upnp.html", []).ru
     "		<div class=\"columns\">\n" +
     "			<div class=\"column has-text-centered\">\n" +
     "				<section class=\"c--audio__controls\">\n" +
-    "					<button class=\"button\" ng-click=\"shuffle()\" ng-class=\"{'is-active': controls.shuffle}\">\n" +
+    "					<button class=\"button\" ng-click=\"shuffle()\" ng-class=\"{'is-active': controls.shuffle}\" disabled>\n" +
     "						<i class=\"icon-shuffle\"></i>\n" +
     "					</button>\n" +
-    "					<button class=\"button c--audio__controls-l\" ng-click=\"prev()\">\n" +
+    "					<button class=\"button c--audio__controls-l\" ng-click=\"prev()\" disabled>\n" +
     "						<i class=\"icon-media-rewind\"></i>\n" +
     "					</button>\n" +
     "					<button class=\"button c--audio__controls-xl\" ng-click=\"play()\" ng-class=\"{'is-active': controls.play}\">\n" +
@@ -603,29 +603,34 @@ angular.module("js/_modules/audio_module/_template/_directive_upnp.html", []).ru
     "					<button class=\"button c--audio__controls-l\" ng-click=\"next()\">\n" +
     "						<i class=\"icon-media-forward\"></i>\n" +
     "					</button>\n" +
-    "					<button class=\"button\" ng-click=\"toggleRepeat()\" ng-class=\"{'is-active': controls.loop || controls.repeat}\">\n" +
+    "					<button class=\"button\" ng-click=\"toggleRepeat()\" ng-class=\"{'is-active': controls.loop || controls.repeat}\" disabled>\n" +
     "						<i ng-class=\"{'icon-loop': controls.loop || (!controls.loop && !controls.repeat) , 'icon-repeat': controls.repeat}\"></i>\n" +
     "					</button>\n" +
     "				</section>\n" +
     "			</div>\n" +
     "		</div>\n" +
     "\n" +
-    "		<div class=\"columns c--audio__timetrack\">\n" +
-    "			<div class=\"column has-text-centered\">\n" +
-    "				<input ng-model=\"controls.time\" onchange=\"angular.element(this).scope().seek()\" type=\"range\" min=\"0\" max=\"{{ controls.duration }}\" step=\"1\" />\n" +
-    "			</div>\n" +
-    "		</div>\n" +
+    "    <div class=\"columns\">\n" +
+    "      <div class=\"column\">\n" +
+    "        <div class=\"columns c--audio__timetrack\">\n" +
+    "    			<div class=\"column has-text-centered\">\n" +
+    "    				<input ng-model=\"controls.time\" onchange=\"angular.element(this).scope().seek()\" type=\"range\" min=\"0\" max=\"{{ controls.duration }}\" step=\"1\" disabled />\n" +
+    "    			</div>\n" +
+    "    		</div>\n" +
     "\n" +
-    "		<div class=\"columns c--audio__time\">\n" +
-    "			<div class=\"column has-text-left\">\n" +
-    "				{{ controls.time | buildTime }}\n" +
-    "			</div>\n" +
-    "			<div class=\"column has-text-right\">\n" +
-    "				{{ controls.duration | buildTime }}\n" +
-    "			</div>\n" +
-    "		</div>\n" +
-    "		</div>\n" +
+    "    		<div class=\"columns c--audio__time\">\n" +
+    "    			<div class=\"column has-text-left\">\n" +
+    "    				{{ controls.time | buildTime }}\n" +
+    "    			</div>\n" +
+    "    			<div class=\"column has-text-right\">\n" +
+    "    				{{ controls.duration | buildTime }}\n" +
+    "    			</div>\n" +
+    "    		</div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "\n" +
     "	</div>\n" +
+    "</div>\n" +
     "\n" +
     "<audio class=\"c--audio__player\" preload=\"auto\">\n" +
     "	<source ng-repeat=\"file in playlist.tracks\" ng-if=\"playlist.tracks && file.play\" ng-src=\"{{ file.path }}\" type=\"audio/{{ file.type}}\">\n" +
@@ -782,7 +787,7 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templa
     "\n" +
     "	<aside class=\"c--filetree column is-7\" ng-if=\"localMusic\">\n" +
     "    <div class=\"columns\">\n" +
-    "			<div class=\"column\" ng-click=\"useLocal()\">{{ 'use_local_audio' | translate }}</div>\n" +
+    "			<div class=\"column u--active\" ng-click=\"useLocal()\">{{ 'use_local_audio' | translate }}</div>\n" +
     "			<div class=\"column\" ng-click=\"useUpnp()\">{{ 'use_upnp_audio' | translate }}</div>\n" +
     "		</div>\n" +
     "		<div class=\"tabs\">\n" +
@@ -818,10 +823,14 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templa
     "	<main class=\"c--audio__main column is-5\" ng-if=\"localMusic\">\n" +
     "		<petron-audio></petron-audio>\n" +
     "	</main>\n" +
-    "  <main class=\"c--audio__main column\" ng-if=\"upnpMusic\">\n" +
+    "  <main class=\"c--audio__main u--padding-10  column\" ng-if=\"upnpMusic\">\n" +
     "    <div class=\"columns\">\n" +
-    "			<div class=\"column\" ng-click=\"useLocal()\">{{ 'use_local_audio' | translate }}</div>\n" +
-    "			<div class=\"column is-active\" ng-click=\"useUpnp()\">{{ 'use_upnp_audio' | translate }}</div>\n" +
+    "      <div class=\"column is-7\">\n" +
+    "        <div class=\"columns\">\n" +
+    "          <div class=\"column\" ng-click=\"useLocal()\">{{ 'use_local_audio' | translate }}</div>\n" +
+    "    			<div class=\"column u--active\" ng-click=\"useUpnp()\">{{ 'use_upnp_audio' | translate }}</div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
     "		</div>\n" +
     "		<petron-upnp-audio></petron-upnp-audio>\n" +
     "	</main>\n" +
@@ -1227,6 +1236,12 @@ angular.module("js/_modules/settings_module/_template/main.html", []).run(["$tem
     "            <span>{{ 'settings.general' | translate }}</span>\n" +
     "          </a>\n" +
     "        </li>\n" +
+    "        <li ng-class=\"{'is-active': tab === 'audio'}\"  ng-click=\"tab = 'audio'\">\n" +
+    "          <a>\n" +
+    "            <span class=\"icon\"><i class=\"fa icon-notes\"></i></span>\n" +
+    "            <span>{{ 'settings.audio' | translate }}</span>\n" +
+    "          </a>\n" +
+    "        </li>\n" +
     "        <li ng-class=\"{'is-active': tab === 'health'}\"  ng-click=\"tab = 'health'\">\n" +
     "          <a>\n" +
     "            <span class=\"icon\"><i class=\"fa icon-heart\"></i></span>\n" +
@@ -1294,6 +1309,28 @@ angular.module("js/_modules/settings_module/_template/main.html", []).run(["$tem
     "  			</div>\n" +
     "  		</div>\n" +
     "    </span>\n" +
+    "    <span ng-show=\"tab === 'audio'\">\n" +
+    "      <div class=\"columns is-vcentered\">\n" +
+    "  			<div class=\"column is-6\">\n" +
+    "  				<h5 class=\"title is-5\">{{ 'settings.init_volume' | translate }}</h5>\n" +
+    "  				<p>{{ 'settings.init_volume_hint' | translate }}</p>\n" +
+    "  			</div>\n" +
+    "  			<div class=\"column is-offset-3 is-3 has-text-right\">\n" +
+    "          <span>{{ settings.volume }}%</span>\n" +
+    "          <input type=\"range\" ng-model=\"settings.volume\" min=\"0\" max=\"100\" step=\"1\">\n" +
+    "  			</div>\n" +
+    "  		</div>\n" +
+    "      <div class=\"columns is-vcentered\">\n" +
+    "  			<div class=\"column is-6\">\n" +
+    "  				<h5 class=\"title is-5\">{{ 'settings.media_renderer' | translate }}</h5>\n" +
+    "  				<p>{{ 'settings.media_renderer_hint' | translate }}</p>\n" +
+    "  			</div>\n" +
+    "  			<div class=\"column is-offset-3 is-3 has-text-right\">\n" +
+    "          <input class=\"input\" type=\"text\" ng-model=\"settings.media_renderer.ip\" placeholder=\"{{ 'settings.media_renderer_ip_ph' | translate }}\">\n" +
+    "          <input class=\"input\" type=\"number\" ng-model=\"settings.media_renderer.port\" placeholder=\"{{ 'settings.media_renderer_port_ph' | translate }}\">\n" +
+    "  			</div>\n" +
+    "  		</div>\n" +
+    "    </span>\n" +
     "    <span ng-show=\"tab === 'health'\">\n" +
     "      <div class=\"columns is-vcentered\">\n" +
     "  			<div class=\"column is-6\">\n" +
@@ -1301,8 +1338,8 @@ angular.module("js/_modules/settings_module/_template/main.html", []).run(["$tem
     "  				<p>{{ 'settings.OBD_address_hint' | translate }}</p>\n" +
     "  			</div>\n" +
     "  			<div class=\"column is-offset-3 is-3 has-text-right\">\n" +
-    "          <input class=\"input\" type=\"text\" ng-model=\"settings.OBD.address\" placeholder=\"{{ 'OBD_address_ph' | translate }}\">\n" +
-    "          <input class=\"input\" type=\"number\" ng-model=\"settings.OBD.channel\" placeholder=\"{{ 'OBD_channel_ph' | translate }}\">\n" +
+    "          <input class=\"input\" type=\"text\" ng-model=\"settings.OBD.address\" placeholder=\"{{ 'settings.OBD_address_ph' | translate }}\">\n" +
+    "          <input class=\"input\" type=\"number\" ng-model=\"settings.OBD.channel\" placeholder=\"{{ 'settings.OBD_channel_ph' | translate }}\">\n" +
     "  			</div>\n" +
     "  		</div>\n" +
     "    </span>\n" +

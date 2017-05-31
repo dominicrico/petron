@@ -4018,6 +4018,15 @@ a.panel-block:hover {
 .u--margin__auto {
   margin: 0 auto; }
 
+.u--padding-top__20 {
+  padding-top: 20px !important; }
+
+.u--padding-10 {
+  padding: 10px !important; }
+
+.u--active {
+  color: #11B8BC; }
+
 * {
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent; }
@@ -5095,6 +5104,12 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   height: 190px;
   margin: 0 auto;
   padding: 0 !important; }
+
+.c--audio__upnp {
+  align-items: stretch;
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex; }
 
 petron-video {
   position: fixed;

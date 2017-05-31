@@ -8,6 +8,12 @@
             <span>{{ 'settings.general' | translate }}</span>
           </a>
         </li>
+        <li ng-class="{'is-active': tab === 'audio'}"  ng-click="tab = 'audio'">
+          <a>
+            <span class="icon"><i class="fa icon-notes"></i></span>
+            <span>{{ 'settings.audio' | translate }}</span>
+          </a>
+        </li>
         <li ng-class="{'is-active': tab === 'health'}"  ng-click="tab = 'health'">
           <a>
             <span class="icon"><i class="fa icon-heart"></i></span>
@@ -75,6 +81,28 @@
   			</div>
   		</div>
     </span>
+    <span ng-show="tab === 'audio'">
+      <div class="columns is-vcentered">
+  			<div class="column is-6">
+  				<h5 class="title is-5">{{ 'settings.init_volume' | translate }}</h5>
+  				<p>{{ 'settings.init_volume_hint' | translate }}</p>
+  			</div>
+  			<div class="column is-offset-3 is-3 has-text-right">
+          <span>{{ settings.volume }}%</span>
+          <input type="range" ng-model="settings.volume" min="0" max="100" step="1">
+  			</div>
+  		</div>
+      <div class="columns is-vcentered">
+  			<div class="column is-6">
+  				<h5 class="title is-5">{{ 'settings.media_renderer' | translate }}</h5>
+  				<p>{{ 'settings.media_renderer_hint' | translate }}</p>
+  			</div>
+  			<div class="column is-offset-3 is-3 has-text-right">
+          <input class="input" type="text" ng-model="settings.media_renderer.ip" placeholder="{{ 'settings.media_renderer_ip_ph' | translate }}">
+          <input class="input" type="number" ng-model="settings.media_renderer.port" placeholder="{{ 'settings.media_renderer_port_ph' | translate }}">
+  			</div>
+  		</div>
+    </span>
     <span ng-show="tab === 'health'">
       <div class="columns is-vcentered">
   			<div class="column is-6">
@@ -82,8 +110,8 @@
   				<p>{{ 'settings.OBD_address_hint' | translate }}</p>
   			</div>
   			<div class="column is-offset-3 is-3 has-text-right">
-          <input class="input" type="text" ng-model="settings.OBD.address" placeholder="{{ 'OBD_address_ph' | translate }}">
-          <input class="input" type="number" ng-model="settings.OBD.channel" placeholder="{{ 'OBD_channel_ph' | translate }}">
+          <input class="input" type="text" ng-model="settings.OBD.address" placeholder="{{ 'settings.OBD_address_ph' | translate }}">
+          <input class="input" type="number" ng-model="settings.OBD.channel" placeholder="{{ 'settings.OBD_channel_ph' | translate }}">
   			</div>
   		</div>
     </span>
