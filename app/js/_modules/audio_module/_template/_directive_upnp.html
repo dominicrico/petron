@@ -1,4 +1,8 @@
 <div class="columns u--padding-top__20">
+  <div class="c--audio-upnp__error" ng-if="error">
+			<h1 class="title is-3 c--audio-upnp__message has-text-centered" data-ng-bind-html="'audio.error_renderer' | translate | htmlSafe"></h1>
+	</div>
+
 	<div class="column is-5">
 		<div class="columns">
 			<div class="column">

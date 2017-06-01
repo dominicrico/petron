@@ -47,11 +47,11 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "                        <span class=\"icon\"><i class=\"fa icon-heart\"></i></span>\n" +
     "                        <span>{{ 'health_module' | translate }}</span>\n" +
     "                    </a>\n" +
-    "                    <a ui-sref=\"petron.phonebox.main\" ui-sref-active=\"is-active\" ng-if=\"phoneConnected\">\n" +
+    "                    <a ui-sref=\"petron.phonebox.main\" ui-sref-active=\"u--active\" ng-if=\"phoneConnected\">\n" +
     "                        <span class=\"icon\"><i class=\"fa icon-phone\"></i></span>\n" +
     "                        <span>{{ 'phone_module' | translate }}</span>\n" +
     "                    </a>\n" +
-    "                    <a ui-sref=\"petron.settingsbox\" ui-sref-active=\"is-active\">\n" +
+    "                    <a ui-sref=\"petron.settingsbox\" ui-sref-active=\"u--active\">\n" +
     "                        <span class=\"icon\"><i class=\"fa icon-cog\"></i></span>\n" +
     "                        <span>{{ 'settings_module' | translate }}</span>\n" +
     "                    </a>\n" +
@@ -150,6 +150,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <script type=\"text/javascript\" src=\"js/_main/_factory/petron.playlist.factory.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_filter/petron.buildTime.filter.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_filter/petron.frequency.filter.js\"></script>\n" +
+    "    <script type=\"text/javascript\" src=\"js/_main/_filter/petron.htmlSafe.filter.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_filter/petron.trust.filter.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_filter/petron.unit.filter.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_service/petron.fs.service.js\"></script>\n" +
@@ -564,6 +565,10 @@ angular.module("js/_modules/audio_module/_template/_directive_upnp.html", []).ru
   "use strict";
   $templateCache.put("js/_modules/audio_module/_template/_directive_upnp.html",
     "<div class=\"columns u--padding-top__20\">\n" +
+    "  <div class=\"c--audio-upnp__error\" ng-if=\"error\">\n" +
+    "			<h1 class=\"title is-3 c--audio-upnp__message has-text-centered\" data-ng-bind-html=\"'audio.error_renderer' | translate | htmlSafe\"></h1>\n" +
+    "	</div>\n" +
+    "\n" +
     "	<div class=\"column is-5\">\n" +
     "		<div class=\"columns\">\n" +
     "			<div class=\"column\">\n" +
@@ -787,8 +792,8 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templa
     "\n" +
     "	<aside class=\"c--filetree column is-7\" ng-if=\"localMusic\">\n" +
     "    <div class=\"columns\">\n" +
-    "			<div class=\"column u--active\" ng-click=\"useLocal()\">{{ 'use_local_audio' | translate }}</div>\n" +
-    "			<div class=\"column\" ng-click=\"useUpnp()\">{{ 'use_upnp_audio' | translate }}</div>\n" +
+    "			<div class=\"column u--active\" ng-click=\"useLocal()\">{{ 'audio.use_local_audio' | translate }}</div>\n" +
+    "			<div class=\"column\" ng-click=\"useUpnp()\">{{ 'audio.use_upnp_audio' | translate }}</div>\n" +
     "		</div>\n" +
     "		<div class=\"tabs\">\n" +
     "		  <ul class=\"is-left\">\n" +
@@ -823,12 +828,12 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templa
     "	<main class=\"c--audio__main column is-5\" ng-if=\"localMusic\">\n" +
     "		<petron-audio></petron-audio>\n" +
     "	</main>\n" +
-    "  <main class=\"c--audio__main u--padding-10  column\" ng-if=\"upnpMusic\">\n" +
+    "  <main class=\"c--audio__main u--padding-10 column\" ng-if=\"upnpMusic\">\n" +
     "    <div class=\"columns\">\n" +
     "      <div class=\"column is-7\">\n" +
     "        <div class=\"columns\">\n" +
-    "          <div class=\"column\" ng-click=\"useLocal()\">{{ 'use_local_audio' | translate }}</div>\n" +
-    "    			<div class=\"column u--active\" ng-click=\"useUpnp()\">{{ 'use_upnp_audio' | translate }}</div>\n" +
+    "          <div class=\"column\" ng-click=\"useLocal()\">{{ 'audio.use_local_audio' | translate }}</div>\n" +
+    "    			<div class=\"column u--active\" ng-click=\"useUpnp()\">{{ 'audio.use_upnp_audio' | translate }}</div>\n" +
     "        </div>\n" +
     "      </div>\n" +
     "		</div>\n" +
@@ -1316,8 +1321,8 @@ angular.module("js/_modules/settings_module/_template/main.html", []).run(["$tem
     "  				<p>{{ 'settings.init_volume_hint' | translate }}</p>\n" +
     "  			</div>\n" +
     "  			<div class=\"column is-offset-3 is-3 has-text-right\">\n" +
-    "          <span>{{ settings.volume }}%</span>\n" +
-    "          <input type=\"range\" ng-model=\"settings.volume\" min=\"0\" max=\"100\" step=\"1\">\n" +
+    "          <span>{{ settings.init_volume }}%</span>\n" +
+    "          <input type=\"range\" ng-model=\"settings.init_volume\" min=\"0\" max=\"100\" step=\"1\">\n" +
     "  			</div>\n" +
     "  		</div>\n" +
     "      <div class=\"columns is-vcentered\">\n" +

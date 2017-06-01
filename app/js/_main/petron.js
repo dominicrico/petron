@@ -59,19 +59,20 @@
           address: 'AB:90:78:56:34:12',
           channel: 1
         },
-        volume: 0.1
+        init_volume: 30
       };
 
       petronStorage.get('petron.settings')
         .then(function(settings) {
-            console.log(settings)
             $rootScope.settings = angular.merge($rootScope.settings,
               settings);
+            $rootScope.settings.volume = $rootScope.settings.init_volume /
+              100;
             tmhDynamicLocale.set($rootScope.settings.locale);
             $translate.use($rootScope.settings.locale);
-            console.log($rootScope.settings)
           },
-          function() {
+          function(err) {
+            console.log(err);
             throw new Error('Could not load settings');
           });
 

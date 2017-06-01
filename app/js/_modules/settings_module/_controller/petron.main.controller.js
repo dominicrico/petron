@@ -4,35 +4,35 @@
   angular.module('petron.modules.settings')
     .controller('controller.settingsbox.main', ['$scope', '$rootScope',
       'petron.storage',
-      '$translate', 'tmhDynamicLocale',
+      '$translate', 'tmhDynamicLocale', '$stateParams',
       function($scope, $rootScope, petronStorage, $translate,
-        tmhDynamicLocale) {
+        tmhDynamicLocale, $stateParams) {
         var firstCycle = true;
         $rootScope.title = 'health_module';
         $rootScope.rightMenuShow = false;
 
         $scope.tab = 'general';
-        var volume = angular.copy($rootScope.settings.volume) *
-          100;
+
+        if ($stateParams.tab !== undefined && $stateParams.tab.length) {
+          $scope.tab = $stateParams.tab;
+        }
 
         $scope.settings = angular.copy($rootScope.settings);
-        $scope.settings.volume = volume;
+        $scope.settings.init_volume = $scope.settings.init_volume * 100;
 
-        $rootScope.$watch('settings.volume', function(vol) {
-          $rootScope.settings.volume = vol;
-          $scope.settings.volume = angular.copy(vol) *
-            100;
-        });
+        if ($scope.settings.init_volume === undefined) {
+          $scope.settings.init_volume = 30;
+        }
 
         $scope.$watch('settings', function() {
           if (!firstCycle) {
-            $scope.settings.volume = $scope.settings.volume / 100;
+            var volume = angular.copy($scope.settings.init_volume) /
+              100;
             $translate.use($scope.settings.locale);
             tmhDynamicLocale.set($scope.settings.locale);
+            $rootScope.settings.init_volume = volume;
             petronStorage.set('petron.settings', $scope.settings);
             $rootScope.settings = angular.copy($scope.settings);
-            console.log($rootScope.settings, $scope.settings);
-            $scope.settings.volume = $scope.settings.volume * 100;
           }
 
           firstCycle = false;

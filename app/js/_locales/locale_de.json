@@ -45,9 +45,6 @@
   "choose_playlist_label": "Playlist wählen",
   "create_new_playlist": "neue Playlist",
 
-  "use_local_audio": "Lokale Musik",
-  "use_upnp_audio": "Musik Streaming",
-
   "modal": {
     "button_confirm": "Ja",
     "button_delete": "Löschen",
@@ -63,13 +60,14 @@
   "treeview_playlist": "Playlist",
   "treeview_playall": "Alle abspielen",
 
-  "videoplayer": {
+  "video": {
 
   },
 
-  "audioplayer": {
-    "use_local_audio": "Musik von Festplatte",
-    "use_bluetooth_audio": "Musik über Bleutooth"
+  "audio": {
+    "error_renderer": "Fehlende Mediarenderer-Einstellungen! <br><br> <a href=\"#!/settingsbox/audio\">zu den Einstellungen</a>",
+    "use_local_audio": "Lokale Musik",
+    "use_upnp_audio": "Musik Streaming"
   },
 
   "audio_popout": {

@@ -43,9 +43,6 @@
   "choose_playlist_label": "Choose playlist",
   "create_new_playlist": "new Playlist",
 
-  "use_local_audio": "Local Music",
-  "use_upnp_audio": "Music Streaming",
-
   "modal": {
     "button_confirm": "Yes",
     "button_delete": "Delete",
@@ -61,13 +58,14 @@
   "treeview_playlist": "Playlist",
   "treeview_playall": "Play all",
 
-  "videoplayer": {
+  "video": {
 
   },
 
-  "audioplayer": {
-    "use_local_audio": "Local music",
-    "use_bluetooth_audio": "Bleutooth music"
+  "audio": {
+    "error_renderer": "Missing Mediarenderer settings! <br><br> <a href=\"#!/settingsbox/audio\">to Mediarenderer settings</a>",
+    "use_local_audio": "Local Music",
+    "use_upnp_audio": "Music Streaming"
   },
 
   "audio_popout": {
