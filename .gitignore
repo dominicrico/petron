@@ -13,3 +13,5 @@ coverage
 navigation/germany.mbtiles
 .ftpconfig
 /librespot
+/settings
+/cache
