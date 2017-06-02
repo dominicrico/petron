@@ -65,6 +65,7 @@
   "audio": {
     "error_renderer": "Missing Mediarenderer settings! <br><br> <a href=\"#!/settingsbox/audio\">to Mediarenderer settings</a>",
     "error_online": "To use Spotify you need a internet connection.",
+    "error_device": "Looking for Spotify devices...",
     "use_local_audio": "Local Music",
     "use_upnp_audio": "Music Streaming",
     "use_spotify_audio": "Spotify Connect"

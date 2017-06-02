@@ -129,6 +129,7 @@
             var checkForDevice = function() {
               spotifyApi.getMyDevices().then(
                 function(data) {
+                  console.log(data);
                   data.body.devices.forEach(function(
                     device) {
                     if (device.name === 'Petron') {
@@ -169,13 +170,14 @@
                 refreshToken();
               }
 
-              shell.exec('ps -ax | grep librespot', function(code,
+              shell.exec('ps -aux | grep librespot', function(code,
                 stdout) {
                 if (stdout.indexOf(
                     './librespot/librespot --name Petron --cache /tmp'
                   ) !== -1) {
                   return;
                 } else {
+                  console.log('starting librespit')
                   $rootScope.librespot = shell.exec(
                     './librespot/librespot --name Petron --cache /tmp', {
                       async: true

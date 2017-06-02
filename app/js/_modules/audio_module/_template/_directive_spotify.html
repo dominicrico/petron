@@ -2,6 +2,9 @@
   <div class="c--audio-upnp__error" ng-if="error_online">
 			<h1 class="title is-3 c--audio-upnp__message has-text-centered" data-ng-bind-html="'audio.error_online' | translate | htmlSafe"></h1>
 	</div>
+  <div class="c--audio-upnp__error" ng-if="!deviceFound">
+			<h1 class="title is-3 c--audio-upnp__message has-text-centered" data-ng-bind-html="'audio.error_device' | translate | htmlSafe"></h1>
+	</div>
 
 	<div class="column is-5">
 		<div class="columns">

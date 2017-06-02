@@ -28,7 +28,10 @@ let windowParams = {
   resizable: false,
   fullscreen: false, // should be true in production
   kiosk: false, // should be true in production
-  title: 'Petron'
+  title: 'Petron',
+  webPreferences: {
+    webSecurity: false
+  }
 };
 
 app.commandLine.appendSwitch('--touch-devices', 8);
