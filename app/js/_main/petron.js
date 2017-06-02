@@ -39,6 +39,9 @@
       //   });
       // });
 
+      var shell = require('shelljs');
+      shell.exec('kill $pgrep omxplayer');
+
       $rootScope.$on('deviceRemoved', function() {
         $rootScope.phoneConnected = false;
       });
