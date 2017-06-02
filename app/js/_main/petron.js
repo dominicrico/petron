@@ -16,6 +16,7 @@
     '$state',
     // 'petron.phony',
     'SweetAlert',
+    '$interval',
     function(
       $rootScope,
       petronDaemon,
@@ -24,7 +25,8 @@
       tmhDynamicLocale,
       $state,
       // petronPhony,
-      SweetAlert) {
+      SweetAlert,
+      $interval) {
       $rootScope.daemon = {};
 
       // petronPhony.init();
@@ -40,6 +42,22 @@
       $rootScope.$on('deviceRemoved', function() {
         $rootScope.phoneConnected = false;
       });
+      var onlineCheck = function() {
+        var i = new Image();
+        i.onload = function() {
+          $rootScope.$apply(function() {
+            $rootScope.online = true;
+          });
+        };
+        i.onerror = function() {
+          $rootScope.$apply(function() {
+            $rootScope.online = false;
+          });
+        };
+        i.src = 'https://placekitten.com/10/10?' + new Date().getTime();
+      };
+      onlineCheck();
+      $interval(onlineCheck, 10000);
 
       $rootScope.leftMenuShow = false;
 

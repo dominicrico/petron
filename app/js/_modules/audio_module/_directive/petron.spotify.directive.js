@@ -13,6 +13,7 @@
             $scope.track = {
               artist: ''
             };
+            $scope.error_online = !angular.copy($rootScope.online);
             $scope.deviceFound = false;
             $scope.current = 0;
             $scope.controls = {
@@ -154,18 +155,54 @@
                 });
             };
 
-            if ($rootScope.settings.spotify && !$rootScope.settings.spotify
-              .access_token && !$rootScope.settings.spotify.refresh_token
-            ) {
-              spotiAuth.getAccessToken(options)
-                .then(function(token) {
-                  $rootScope.settings.spotify.access_token = token.access_token;
-                  $rootScope.settings.spotify.refresh_token = token
-                    .refresh_token;
-                  refreshToken();
-                });
+            function init() {
+              if ($rootScope.settings.spotify && !$rootScope.settings.spotify
+                .access_token && !$rootScope.settings.spotify.refresh_token
+              ) {
+                spotiAuth.getAccessToken(options)
+                  .then(function(token) {
+                    $rootScope.settings.spotify.access_token = token.access_token;
+                    $rootScope.settings.spotify.refresh_token = token
+                      .refresh_token;
+                    refreshToken();
+                  });
+              } else {
+                refreshToken();
+              }
+
+              shell.exec('ps -ax | grep librespot', function(code,
+                stdout,
+                stderr) {
+                if (stdout.indexOf(
+                    './librespot/librespot --name Petron --cache /tmp'
+                  ) !== -1) {
+                  return;
+                } else {
+                  $rootScope.librespot = shell.exec(
+                    './librespot/librespot --name Petron --cache /tmp', {
+                      async: true
+                    });
+                  $rootScope.librespot.stdout.on('data', function(
+                    data) {
+                    console.log(data);
+                  });
+                }
+              });
+            }
+
+            if ($rootScope.online) {
+              init();
             } else {
-              refreshToken();
+              $rootScope.$watch('online', function() {
+                if (!$rootScope.online) {
+                  $scope.error_online = true;
+                } else {
+                  if (!_inititalized) {
+                    init();
+                  }
+                  $scope.error_online = false;
+                }
+              });
             }
 
             var _inititalized = false;
@@ -191,24 +228,6 @@
                   });
 
                 _inititalized = true;
-              }
-            });
-
-            shell.exec('ps -ax | grep librespot', function(code, stdout,
-              stderr) {
-              if (stdout.indexOf(
-                  './librespot/librespot --name Petron --cache /tmp'
-                ) !== -1) {
-                return;
-              } else {
-                $rootScope.librespot = shell.exec(
-                  './librespot/librespot --name Petron --cache /tmp', {
-                    async: true
-                  });
-                $rootScope.librespot.stdout.on('data', function(
-                  data) {
-                  console.log(data);
-                });
               }
             });
 

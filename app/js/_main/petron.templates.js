@@ -566,8 +566,8 @@ angular.module("js/_modules/audio_module/_template/_directive_spotify.html", [])
   "use strict";
   $templateCache.put("js/_modules/audio_module/_template/_directive_spotify.html",
     "<div class=\"columns u--padding-top__20\">\n" +
-    "  <div class=\"c--audio-upnp__error\" ng-if=\"error\">\n" +
-    "			<h1 class=\"title is-3 c--audio-upnp__message has-text-centered\" data-ng-bind-html=\"'audio.error_spotify' | translate | htmlSafe\"></h1>\n" +
+    "  <div class=\"c--audio-upnp__error\" ng-if=\"error_online\">\n" +
+    "			<h1 class=\"title is-3 c--audio-upnp__message has-text-centered\" data-ng-bind-html=\"'audio.error_online' | translate | htmlSafe\"></h1>\n" +
     "	</div>\n" +
     "\n" +
     "	<div class=\"column is-5\">\n" +
