@@ -1,0 +1,3 @@
+cargo:rerun-if-changed=src/lib.in.rs
+cargo:rerun-if-changed=src/spirc.rs
+cargo:rerun-if-changed=src/connection

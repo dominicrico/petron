@@ -1,0 +1,37 @@
+Ok("/Users/coderocket/.cargo/registry/src/github.com-1ecc6299db9ec823/vorbis-sys-0.0.8/libvorbis/include")
+cargo:rustc-flags=-l vorbis -l ogg
+TARGET = Some("x86_64-apple-darwin")
+OPT_LEVEL = Some("3")
+TARGET = Some("x86_64-apple-darwin")
+HOST = Some("x86_64-apple-darwin")
+TARGET = Some("x86_64-apple-darwin")
+TARGET = Some("x86_64-apple-darwin")
+HOST = Some("x86_64-apple-darwin")
+CC_x86_64-apple-darwin = None
+CC_x86_64_apple_darwin = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-apple-darwin")
+TARGET = Some("x86_64-apple-darwin")
+HOST = Some("x86_64-apple-darwin")
+CFLAGS_x86_64-apple-darwin = None
+CFLAGS_x86_64_apple_darwin = None
+HOST_CFLAGS = None
+CFLAGS = None
+PROFILE = Some("release")
+running: "cc" "-O3" "-ffunction-sections" "-fdata-sections" "-fPIC" "-m64" "-I" "/Users/coderocket/.cargo/registry/src/github.com-1ecc6299db9ec823/vorbis-sys-0.0.8/libvorbis/include" "-I" "/Users/coderocket/.cargo/registry/src/github.com-1ecc6299db9ec823/vorbis-sys-0.0.8/libvorbis/lib" "-I" "/Users/coderocket/.cargo/registry/src/github.com-1ecc6299db9ec823/ogg-sys-0.0.9/libogg/include" "-D_USRDLL" "-DLIBVORBIS_EXPORTS" "-o" "/Users/coderocket/Development/librespot/target/release/build/vorbis-encoder-fa98d8aa0f194fbf/out/libvorbis-encoder/vorbis-encoder.o" "-c" "libvorbis-encoder/vorbis-encoder.c"
+ExitStatus(ExitStatus(0))
+TARGET = Some("x86_64-apple-darwin")
+TARGET = Some("x86_64-apple-darwin")
+HOST = Some("x86_64-apple-darwin")
+AR_x86_64-apple-darwin = None
+AR_x86_64_apple_darwin = None
+HOST_AR = None
+AR = None
+TARGET = Some("x86_64-apple-darwin")
+TARGET = Some("x86_64-apple-darwin")
+running: "ar" "crs" "/Users/coderocket/Development/librespot/target/release/build/vorbis-encoder-fa98d8aa0f194fbf/out/libvorbis-encoder.a" "/Users/coderocket/Development/librespot/target/release/build/vorbis-encoder-fa98d8aa0f194fbf/out/libvorbis-encoder/vorbis-encoder.o"
+ExitStatus(ExitStatus(0))
+TARGET = Some("x86_64-apple-darwin")
+cargo:rustc-link-lib=static=vorbis-encoder
+cargo:rustc-link-search=native=/Users/coderocket/Development/librespot/target/release/build/vorbis-encoder-fa98d8aa0f194fbf/out

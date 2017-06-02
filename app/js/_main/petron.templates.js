@@ -27,23 +27,23 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "        <div class=\"menu-wrap is-left\">\n" +
     "            <nav class=\"menu\">\n" +
     "                <div class=\"nav-list\">\n" +
-    "                    <a ui-sref=\"petron.fmbox\" ui-sref-active=\"is-active\">\n" +
+    "                    <a ui-sref=\"petron.fmbox\" ui-sref-active=\"u--active\">\n" +
     "                        <span class=\"icon\"><i class=\"fa icon-radio\"></i></span>\n" +
     "                        <span>{{ 'radio_module' | translate }}</span>\n" +
     "                    </a>\n" +
-    "                    <a ui-sref=\"petron.audiobox\" ui-sref-active=\"is-active\">\n" +
+    "                    <a ui-sref=\"petron.audiobox\" ui-sref-active=\"u--active\">\n" +
     "                        <span class=\"icon\"><i class=\"fa icon-notes\"></i></span>\n" +
     "                        <span>{{ 'music_module' | translate }}</span>\n" +
     "                    </a>\n" +
-    "                    <a ui-sref=\"petron.videobox.main\" ui-sref-active=\"is-active\">\n" +
+    "                    <a ui-sref=\"petron.videobox.main\" ui-sref-active=\"u--active\">\n" +
     "                        <span class=\"icon\"><i class=\"fa icon-video\"></i></span>\n" +
     "                        <span>{{ 'video_module' | translate }}</span>\n" +
     "                    </a>\n" +
-    "                    <a ui-sref=\"petron.navigationbox.main\" ui-sref-active=\"is-active\">\n" +
+    "                    <a ui-sref=\"petron.navigationbox.main\" ui-sref-active=\"u--active\">\n" +
     "                        <span class=\"icon\"><i class=\"fa icon-location-arrow\"></i></span>\n" +
     "                        <span>{{ 'navigation_module' | translate }}</span>\n" +
     "                    </a>\n" +
-    "                    <a ui-sref=\"petron.healthbox\" ui-sref-active=\"is-active\">\n" +
+    "                    <a ui-sref=\"petron.healthbox\" ui-sref-active=\"u--active\">\n" +
     "                        <span class=\"icon\"><i class=\"fa icon-heart\"></i></span>\n" +
     "                        <span>{{ 'health_module' | translate }}</span>\n" +
     "                    </a>\n" +
@@ -837,7 +837,7 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templa
     "        </div>\n" +
     "      </div>\n" +
     "		</div>\n" +
-    "		<petron-upnp-audio></petron-upnp-audio>\n" +
+    "		<petron-spotify-audio></petron-spotify-audio>\n" +
     "	</main>\n" +
     "\n" +
     "</section>\n" +
