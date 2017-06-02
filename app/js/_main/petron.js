@@ -59,7 +59,11 @@
           address: 'AB:90:78:56:34:12',
           channel: 1
         },
-        init_volume: 30
+        init_volume: 30,
+        spotify: {
+          clientId: '7f8ab25b456f4d0abd50d1ad09e955bf',
+          clientSecret: '266595d1940c493f8f06646022bbdf6b'
+        }
       };
 
       petronStorage.get('petron.settings')

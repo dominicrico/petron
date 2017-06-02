@@ -1,4 +1,4 @@
-angular.module('petron.core.templates', ['index.html', 'js/_main/_directive/daemon/petron.daemon.html', 'js/_main/_directive/filetree/audio_popout.html', 'js/_main/_directive/filetree/petron.filetree.html', 'js/_main/_directive/keyboard/layout_qwerty.html', 'js/_main/_directive/keyboard/layout_qwertz.html', 'js/_main/_directive/volume/petron.volume-indicator.html', 'js/_main/_template/petron.confirm.html', 'js/_main/_template/petron.content.html', 'js/_main/_template/petron.header.html', 'js/_main/_template/petron.home.html', 'js/_modules/audio_module/_template/_directive_upnp.html', 'js/_modules/audio_module/_template/_directive.html', 'js/_modules/audio_module/_template/add_to_playlist_modal.html', 'js/_modules/audio_module/_template/main.html', 'js/_modules/audio_module/_template/new_playlist_modal.html', 'js/_modules/audio_module/_template/playlists.html', 'js/_modules/fm_module/_template/main.html', 'js/_modules/fm_module/_template/stations.html', 'js/_modules/health_module/_template/main.html', 'js/_modules/navigation_module/_template/main.html', 'js/_modules/navigation_module/_template/map.html', 'js/_modules/navigation_module/_template/menu.html', 'js/_modules/phone_module/_template/calls.html', 'js/_modules/phone_module/_template/main.html', 'js/_modules/phone_module/_template/messages.html', 'js/_modules/settings_module/_template/main.html', 'js/_modules/video_module/_template/_directive.html', 'js/_modules/video_module/_template/add_to_playlist_modal.html', 'js/_modules/video_module/_template/main.html', 'js/_modules/video_module/_template/new_playlist_modal.html', 'js/_modules/video_module/_template/player.html', 'loader.html']);
+angular.module('petron.core.templates', ['index.html', 'js/_main/_directive/daemon/petron.daemon.html', 'js/_main/_directive/filetree/audio_popout.html', 'js/_main/_directive/filetree/petron.filetree.html', 'js/_main/_directive/keyboard/layout_qwerty.html', 'js/_main/_directive/keyboard/layout_qwertz.html', 'js/_main/_directive/volume/petron.volume-indicator.html', 'js/_main/_template/petron.confirm.html', 'js/_main/_template/petron.content.html', 'js/_main/_template/petron.header.html', 'js/_main/_template/petron.home.html', 'js/_modules/audio_module/_template/_directive_spotify.html', 'js/_modules/audio_module/_template/_directive_upnp.html', 'js/_modules/audio_module/_template/_directive.html', 'js/_modules/audio_module/_template/add_to_playlist_modal.html', 'js/_modules/audio_module/_template/main.html', 'js/_modules/audio_module/_template/new_playlist_modal.html', 'js/_modules/audio_module/_template/playlists.html', 'js/_modules/fm_module/_template/main.html', 'js/_modules/fm_module/_template/stations.html', 'js/_modules/health_module/_template/main.html', 'js/_modules/navigation_module/_template/main.html', 'js/_modules/navigation_module/_template/map.html', 'js/_modules/navigation_module/_template/menu.html', 'js/_modules/phone_module/_template/calls.html', 'js/_modules/phone_module/_template/main.html', 'js/_modules/phone_module/_template/messages.html', 'js/_modules/settings_module/_template/main.html', 'js/_modules/video_module/_template/_directive.html', 'js/_modules/video_module/_template/add_to_playlist_modal.html', 'js/_modules/video_module/_template/main.html', 'js/_modules/video_module/_template/new_playlist_modal.html', 'js/_modules/video_module/_template/player.html', 'loader.html']);
 
 angular.module("index.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
@@ -125,6 +125,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <script type=\"text/javascript\" src=\"js/_modules/navigation_module/_provider/petron.navi.provider.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/fm_module/_factory/petron.tuner.factory.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/audio_module/_directive/petron.audio.directive.js\"></script>\n" +
+    "    <script type=\"text/javascript\" src=\"js/_modules/audio_module/_directive/petron.spotify.directive.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/audio_module/_directive/petron.upnp.directive.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/video_module/_directive/petron.video.directive.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_modules/audio_module/_controller/petron.main.controller.js\"></script>\n" +
@@ -561,6 +562,84 @@ angular.module("js/_main/_template/petron.home.html", []).run(["$templateCache",
     "");
 }]);
 
+angular.module("js/_modules/audio_module/_template/_directive_spotify.html", []).run(["$templateCache", function ($templateCache) {
+  "use strict";
+  $templateCache.put("js/_modules/audio_module/_template/_directive_spotify.html",
+    "<div class=\"columns u--padding-top__20\">\n" +
+    "  <div class=\"c--audio-upnp__error\" ng-if=\"error\">\n" +
+    "			<h1 class=\"title is-3 c--audio-upnp__message has-text-centered\" data-ng-bind-html=\"'audio.error_spotify' | translate | htmlSafe\"></h1>\n" +
+    "	</div>\n" +
+    "\n" +
+    "	<div class=\"column is-5\">\n" +
+    "		<div class=\"columns\">\n" +
+    "			<div class=\"column\">\n" +
+    "				<figure class=\"image is-square\">\n" +
+    "				  <img ng-if=\"track.image\" ng-src=\"{{ track.image }}\" alt=\"\">\n" +
+    "				  <img ng-if=\"!track.image\" src=\"./images/music_cover_ph.svg\" alt=\"\">\n" +
+    "				</figure>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "	<div class=\"column is-6 is-offset-1 c--audio__upnp\">\n" +
+    "		<div class=\"columns\">\n" +
+    "			<div class=\"column has-text-centered c--audio__title\">\n" +
+    "				<h1 class=\"title is-4\">\n" +
+    "					{{ track.title ||  track.name }}\n" +
+    "				</h1>\n" +
+    "\n" +
+    "				<h2 class=\"subtitle is-6\">\n" +
+    "					{{ track.artist }} {{ (track.album) ? '- ' + (track.album) : '' }}\n" +
+    "				</h2>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "\n" +
+    "		<div class=\"columns\">\n" +
+    "			<div class=\"column has-text-centered\">\n" +
+    "				<section class=\"c--audio__controls\">\n" +
+    "					<button class=\"button\" ng-click=\"shuffle()\" ng-class=\"{'is-active': controls.shuffle}\">\n" +
+    "						<i class=\"icon-shuffle\"></i>\n" +
+    "					</button>\n" +
+    "					<button class=\"button c--audio__controls-l\" ng-click=\"prev()\">\n" +
+    "						<i class=\"icon-media-rewind\"></i>\n" +
+    "					</button>\n" +
+    "					<button class=\"button c--audio__controls-xl\" ng-click=\"play()\" ng-class=\"{'is-active': controls.play}\">\n" +
+    "						<i class=\"icon-media-play\" ng-if=\"!controls.play\"></i>\n" +
+    "						<i class=\"icon-media-pause\" ng-if=\"controls.play\"></i>\n" +
+    "					</button>\n" +
+    "					<button class=\"button c--audio__controls-l\" ng-click=\"next()\">\n" +
+    "						<i class=\"icon-media-forward\"></i>\n" +
+    "					</button>\n" +
+    "					<button class=\"button\" ng-click=\"toggleRepeat()\" ng-class=\"{'is-active': controls.loop || controls.repeat}\">\n" +
+    "						<i ng-class=\"{'icon-loop': controls.loop || (!controls.loop && !controls.repeat) , 'icon-repeat': controls.repeat}\"></i>\n" +
+    "					</button>\n" +
+    "				</section>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "\n" +
+    "    <div class=\"columns\">\n" +
+    "      <div class=\"column\">\n" +
+    "        <div class=\"columns c--audio__timetrack\">\n" +
+    "    			<div class=\"column has-text-centered\">\n" +
+    "    				<input ng-model=\"controls.time\" onchange=\"angular.element(this).scope().seek()\" type=\"range\" min=\"0\" max=\"{{ controls.duration }}\" step=\"1\" />\n" +
+    "    			</div>\n" +
+    "    		</div>\n" +
+    "\n" +
+    "    		<div class=\"columns c--audio__time\">\n" +
+    "    			<div class=\"column has-text-left\">\n" +
+    "    				{{ controls.time | buildTime }}\n" +
+    "    			</div>\n" +
+    "    			<div class=\"column has-text-right\">\n" +
+    "    				{{ controls.duration | buildTime }}\n" +
+    "    			</div>\n" +
+    "    		</div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "	</div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
 angular.module("js/_modules/audio_module/_template/_directive_upnp.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/audio_module/_template/_directive_upnp.html",
@@ -794,6 +873,7 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templa
     "    <div class=\"columns\">\n" +
     "			<div class=\"column u--active\" ng-click=\"useLocal()\">{{ 'audio.use_local_audio' | translate }}</div>\n" +
     "			<div class=\"column\" ng-click=\"useUpnp()\">{{ 'audio.use_upnp_audio' | translate }}</div>\n" +
+    "			<div class=\"column\" ng-click=\"useSpotify()\">{{ 'audio.use_spotify_audio' | translate }}</div>\n" +
     "		</div>\n" +
     "		<div class=\"tabs\">\n" +
     "		  <ul class=\"is-left\">\n" +
@@ -834,6 +914,19 @@ angular.module("js/_modules/audio_module/_template/main.html", []).run(["$templa
     "        <div class=\"columns\">\n" +
     "          <div class=\"column\" ng-click=\"useLocal()\">{{ 'audio.use_local_audio' | translate }}</div>\n" +
     "    			<div class=\"column u--active\" ng-click=\"useUpnp()\">{{ 'audio.use_upnp_audio' | translate }}</div>\n" +
+    "    			<div class=\"column\" ng-click=\"useSpotify()\">{{ 'audio.use_spotify_audio' | translate }}</div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "		</div>\n" +
+    "		<petron-upnp-audio></petron-upnp-audio>\n" +
+    "	</main>\n" +
+    "  <main class=\"c--audio__main u--padding-10 column\" ng-if=\"spotifyMusic\">\n" +
+    "    <div class=\"columns\">\n" +
+    "      <div class=\"column is-7\">\n" +
+    "        <div class=\"columns\">\n" +
+    "          <div class=\"column\" ng-click=\"useLocal()\">{{ 'audio.use_local_audio' | translate }}</div>\n" +
+    "    			<div class=\"column\" ng-click=\"useUpnp()\">{{ 'audio.use_upnp_audio' | translate }}</div>\n" +
+    "    			<div class=\"column u--active\" ng-click=\"useSpotify()\">{{ 'audio.use_spotify_audio' | translate }}</div>\n" +
     "        </div>\n" +
     "      </div>\n" +
     "		</div>\n" +

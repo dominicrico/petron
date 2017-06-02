@@ -67,7 +67,8 @@
   "audio": {
     "error_renderer": "Fehlende Mediarenderer-Einstellungen! <br><br> <a href=\"#!/settingsbox/audio\">zu den Einstellungen</a>",
     "use_local_audio": "Lokale Musik",
-    "use_upnp_audio": "Musik Streaming"
+    "use_upnp_audio": "Musik Streaming",
+    "use_spotify_audio": "Spotify Connect"
   },
 
   "audio_popout": {

@@ -4,6 +4,7 @@
     <div class="columns">
 			<div class="column u--active" ng-click="useLocal()">{{ 'audio.use_local_audio' | translate }}</div>
 			<div class="column" ng-click="useUpnp()">{{ 'audio.use_upnp_audio' | translate }}</div>
+			<div class="column" ng-click="useSpotify()">{{ 'audio.use_spotify_audio' | translate }}</div>
 		</div>
 		<div class="tabs">
 		  <ul class="is-left">
@@ -44,6 +45,19 @@
         <div class="columns">
           <div class="column" ng-click="useLocal()">{{ 'audio.use_local_audio' | translate }}</div>
     			<div class="column u--active" ng-click="useUpnp()">{{ 'audio.use_upnp_audio' | translate }}</div>
+    			<div class="column" ng-click="useSpotify()">{{ 'audio.use_spotify_audio' | translate }}</div>
+        </div>
+      </div>
+		</div>
+		<petron-upnp-audio></petron-upnp-audio>
+	</main>
+  <main class="c--audio__main u--padding-10 column" ng-if="spotifyMusic">
+    <div class="columns">
+      <div class="column is-7">
+        <div class="columns">
+          <div class="column" ng-click="useLocal()">{{ 'audio.use_local_audio' | translate }}</div>
+    			<div class="column" ng-click="useUpnp()">{{ 'audio.use_upnp_audio' | translate }}</div>
+    			<div class="column u--active" ng-click="useSpotify()">{{ 'audio.use_spotify_audio' | translate }}</div>
         </div>
       </div>
 		</div>

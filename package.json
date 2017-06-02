@@ -43,6 +43,7 @@
     "electron": "^1.0.1",
     "electron-connect": "^0.6.0",
     "electron-json-storage": "^2.0.0",
+    "electron-oauth2": "^2.4.1",
     "ffmpeg": "0.0.4",
     "ffprobe": "^1.1.0",
     "ffprobe-static": "^2.0.0",
@@ -57,6 +58,7 @@
     "remote": "^0.2.6",
     "rpi-gpio": "^0.8.1",
     "shelljs": "^0.7.7",
+    "spotify-web-api-node": "^2.4.0",
     "upnp-mediarenderer-client": "^1.2.4",
     "xml2json": "^0.11.0"
   },
