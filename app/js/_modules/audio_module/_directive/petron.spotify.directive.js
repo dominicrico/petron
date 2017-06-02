@@ -26,7 +26,6 @@
             };
 
             timer = function() {
-              console.log('timer')
               clearInterval(timeInterval);
               timeInterval = setInterval(function() {
                 $scope.$apply(function() {
@@ -171,8 +170,7 @@
               }
 
               shell.exec('ps -ax | grep librespot', function(code,
-                stdout,
-                stderr) {
+                stdout) {
                 if (stdout.indexOf(
                     './librespot/librespot --name Petron --cache /tmp'
                   ) !== -1) {
