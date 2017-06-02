@@ -41,7 +41,7 @@
 
       var shell = require('shelljs');
       shell.config.execPath = shell.which('node');
-      shell.exec('kill $pgrep omxplayer');
+      shell.exec('kill $(pgrep omxplayer)');
 
       $rootScope.$on('deviceRemoved', function() {
         $rootScope.phoneConnected = false;
