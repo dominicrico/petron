@@ -50,7 +50,7 @@
     "install": "^0.8.7",
     "ipc": "0.0.1",
     "musicmetadata": "^2.0.4",
-    "node-phony": "git+https://github.com/dominicrico/node-phony.git",
+    "node-phony": "git://github.com/dominicrico/node-phony.git",
     "node-spotify": "^0.8.1",
     "node-upnp-client": "0.0.2",
     "obd-parser": "^0.3.0",
