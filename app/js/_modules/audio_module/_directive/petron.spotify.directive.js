@@ -173,13 +173,13 @@
               shell.exec('ps -aux | grep librespot', function(code,
                 stdout) {
                 if (stdout.indexOf(
-                    './librespot/librespot --name Petron --cache /tmp'
+                    '/Petron/librespot/librespot --backend alsa --name Petron --cache /tmp --device=hw:0'
                   ) !== -1) {
                   return;
                 } else {
                   console.log('starting librespit')
                   $rootScope.librespot = shell.exec(
-                    './librespot/librespot --name Petron --cache /tmp', {
+                    '/Petron/librespot/librespot --backend alsa --name Petron --cache /tmp --device=hw:0', {
                       async: true
                     });
                   $rootScope.librespot.stdout.on('data', function(
