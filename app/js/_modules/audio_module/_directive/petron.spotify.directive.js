@@ -6,8 +6,8 @@
       return {
         templateUrl: 'js/_modules/audio_module/_template/_directive_spotify.html',
         restrict: 'E',
-        controller: ['$scope', '$rootScope', '$http',
-          function($scope, $rootScope, $http) {
+        controller: ['$scope', '$rootScope', '$http', '$interval',
+          function($scope, $rootScope, $http, $interval) {
             var shell = require('shelljs');
             var timer, timeInterval, trackId, deviceCheck;
             $scope.track = {
@@ -34,7 +34,7 @@
                   }
                   if ($scope.controls.time >= $scope.controls
                     .duration) {
-                    getPlayerState();
+                    checkForUpdate();
                   }
                 });
               }, 1000);
@@ -47,52 +47,6 @@
               clientId: $rootScope.settings.spotify.clientId,
               clientSecret: $rootScope.settings.spotify.clientSecret
             });
-
-            function getPlayerState() {
-              spotifyApi.getMyCurrentPlaybackState().then(
-                function(data) {
-                  if (data.body.context && data.body.context.uri) {
-                    trackId = data.body.context.uri;
-                  }
-                  $scope.controls.play = data.body.is_playing;
-                  $scope.controls.repeat = (data.body.repeat_state !==
-                    'off' && data.body.repeat_state ===
-                    'track') ? true : false;
-                  $scope.controls.loop = (data.body.repeat_state !==
-                    'off' && data.body.repeat_state ===
-                    'context') ? true : false;
-                  $scope.controls.shuffle = data.body.shuffle_state;
-
-                  if (data.body.progress_ms && data.body.item.duration_ms) {
-                    $scope.controls.time = data.body.progress_ms /
-                      1000;
-                    $scope.controls.duration = (data.body.item
-                      .duration_ms / 1000);
-                  }
-
-                  if (data.body.item) {
-                    $scope.track.artist = '';
-                    $scope.track.album = data.body.item.album
-                      .name;
-                    $scope.track.title = data.body.item.name;
-                    $scope.track.image = data.body.item.album
-                      .images[1].url;
-                    data.body.item.artists.forEach(function(
-                      artist, i) {
-                      $scope.track.artist += artist.name;
-                      if (artist.length > 1 && i >
-                        artist.length) {
-                        $scope.track.artist +=
-                          ', ';
-                      }
-                    });
-                  }
-
-                  if (data.body.is_playling) {
-                    timer();
-                  }
-                });
-            }
 
             var electronOauth2 = require('electron-oauth2');
             var config = {
@@ -129,7 +83,6 @@
             var checkForDevice = function() {
               spotifyApi.getMyDevices().then(
                 function(data) {
-                  console.log(data);
                   data.body.devices.forEach(function(
                     device) {
                     if (device.name === 'Petron') {
@@ -147,7 +100,10 @@
                             true;
                           $scope.deviceFound = true;
                           clearInterval(deviceCheck);
-                          getPlayerState();
+                          $interval(function() {
+                            checkForUpdate();
+                          }, 2000);
+
                         });
                       }
                     }
@@ -156,41 +112,24 @@
             };
 
             function init() {
-              if ($rootScope.settings.spotify && !$rootScope.settings.spotify
-                .access_token && !$rootScope.settings.spotify.refresh_token
-              ) {
-                spotiAuth.getAccessToken(options)
-                  .then(function(token) {
-                    $rootScope.settings.spotify.access_token = token.access_token;
-                    $rootScope.settings.spotify.refresh_token = token
-                      .refresh_token;
-                    refreshToken();
-                  });
-              } else {
-                refreshToken();
-              }
-
-              shell.exec('ps -aux | grep librespot', function(code,
-                stdout) {
-                console.log(stdout)
-                if (stdout.indexOf(
-                    '/Petron/librespot/ --name Petron --cache /tmp'
-                  ) !== -1) {
-                  return;
-                } else {
-                  console.log('starting librespit')
-                  $rootScope.librespot = shell.exec(
-                    '/Petron/librespot --name Petron --cache /tmp', {
-                      async: true
-                    }, function(stdout, err, bla){
-                      console.log(stdout, err, bla)
+              if (!_inititalized) {
+                if ($rootScope.settings.spotify && !$rootScope.settings
+                  .spotify
+                  .access_token && !$rootScope.settings.spotify.refresh_token
+                ) {
+                  spotiAuth.getAccessToken(options)
+                    .then(function(token) {
+                      $rootScope.settings.spotify.access_token =
+                        token.access_token;
+                      $rootScope.settings.spotify.refresh_token =
+                        token
+                        .refresh_token;
+                      refreshToken();
                     });
-                  $rootScope.librespot.stdout.on('data', function(
-                    data) {
-                    console.log(data);
-                  });
+                } else {
+                  refreshToken();
                 }
-              });
+              }
             }
 
             if ($rootScope.online) {
@@ -200,9 +139,7 @@
                 if (!$rootScope.online) {
                   $scope.error_online = true;
                 } else {
-                  if (!_inititalized) {
-                    init();
-                  }
+                  init();
                   $scope.error_online = false;
                 }
               });
@@ -224,7 +161,7 @@
                         checkForDevice();
                       }, 5000);
                     } else {
-                      getPlayerState();
+                      checkForUpdate();
                     }
                   }, function(err) {
                     console.log('Something went wrong!', err);
@@ -233,6 +170,53 @@
                 _inititalized = true;
               }
             });
+            var _newTrack = true;
+
+            function checkForUpdate() {
+              $http.get('http://192.168.0.248:4000/api/info/metadata').then(
+                function(data) {
+                  if (data && data.data) {
+                    if ((data.data.artist_name !== $scope.track.artist ||
+                        data.data.album_name !== $scope.track.album ||
+                        data.data.track_name !== $scope.track.title) ||
+                      _newTrack) {
+                      _newTrack = true;
+                      $scope.track.artist = data.data.artist_name;
+                      $scope.track.album = data.data.album_name;
+                      $scope.track.title = data.data.track_name;
+                      $scope.track.image =
+                        'http://192.168.0.248:4000/api/info/image_url/' +
+                        data.data.cover_uri;
+                      trackId = data.data.context_uri;
+                      $scope.controls.duration = data.data.duration /
+                        1000;
+                      if (_inititalized && _newTrack) {
+                        _newTrack = false;
+                        spotifyApi.getMyCurrentPlaybackState().then(
+                          function(data) {
+                            if (data.body.progress_ms && data.body.item
+                              .duration_ms) {
+                              $interval.cancel(timer);
+                              $scope.controls.time = (data.body.progress_ms /
+                                1000);
+                              $scope.controls.duration = (data.body
+                                .item
+                                .duration_ms / 1000);
+                              timer = $interval(function() {
+                                if ($scope.controls.play) {
+                                  $scope.controls.time += 1;
+                                }
+                              }, 1000)
+                            }
+                          });
+                      }
+                    }
+
+                  }
+                });
+            }
+
+            checkForUpdate();
 
             $scope.seek = function() {
               $http.put(
@@ -253,7 +237,7 @@
                       .spotify.access_token
                   }
                 }).then(function() {
-                getPlayerState();
+                checkForUpdate();
               });
             };
 
@@ -265,7 +249,7 @@
                       .spotify.access_token
                   }
                 }).then(function() {
-                getPlayerState();
+                checkForUpdate();
               });
             };
 
@@ -293,7 +277,7 @@
                       .spotify.access_token
                   }
                 }).then(function() {
-                getPlayerState();
+                checkForUpdate();
               });
             };
 
@@ -309,7 +293,7 @@
                       .spotify.access_token
                   }
                 }).then(function() {
-                getPlayerState();
+                checkForUpdate();
               });
             };
 
@@ -324,7 +308,7 @@
                         .spotify.access_token
                     }
                   }).then(function() {
-                  getPlayerState();
+                  checkForUpdate();
                 });
               } else {
                 $http.put(
