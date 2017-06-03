@@ -172,15 +172,18 @@
 
               shell.exec('ps -aux | grep librespot', function(code,
                 stdout) {
+                console.log(stdout)
                 if (stdout.indexOf(
-                    './librespot/librespot --name Petron --cache /tmp'
+                    '/Petron/librespot/ --name Petron --cache /tmp'
                   ) !== -1) {
                   return;
                 } else {
                   console.log('starting librespit')
                   $rootScope.librespot = shell.exec(
-                    './librespot/librespot --name Petron --cache /tmp', {
+                    '/Petron/librespot --name Petron --cache /tmp', {
                       async: true
+                    }, function(stdout, err, bla){
+                      console.log(stdout, err, bla)
                     });
                   $rootScope.librespot.stdout.on('data', function(
                     data) {
