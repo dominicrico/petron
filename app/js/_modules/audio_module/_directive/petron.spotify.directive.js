@@ -208,12 +208,20 @@
                                 if ($scope.controls.play) {
                                   $scope.controls.time += 1;
                                 }
-                              }, 1000)
+                              }, 1000);
                             }
                           });
                       }
-                    }
 
+                      if (!_inititalized) {
+                        //playback
+                        $http.put('http://' + $rootScope.settings.spotify
+                          .url +
+                          ':4000/api/playback/volume', {
+                            value: Math.round(50 * 655.35)
+                          });
+                      }
+                    }
                   }
                 });
             }
@@ -261,7 +269,8 @@
                 $scope.controls.repeat = true;
                 $scope.controls.loop = false;
                 state = 'context';
-              } else if (!$scope.controls.repeat && !$scope.controls.loop) {
+              } else if (!$scope.controls.repeat && !$scope.controls
+                .loop) {
                 $scope.controls.repeat = false;
                 $scope.controls.loop = true;
                 state = 'track';
@@ -325,6 +334,21 @@
 
               }
             };
+
+            $rootScope.$on('stateChangeStart', function() {
+              if (!_inititalized) {
+                //playback
+                $http.put('http://' + $rootScope.settings.spotify
+                  .url +
+                  ':4000/api/playback/volume', {
+                    value: Math.round(95 * 655.35)
+                  });
+              }
+
+              if ($scope.controls.play) {
+                $scope.play();
+              }
+            });
           }
         ]
       };
