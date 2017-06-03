@@ -102,6 +102,15 @@
           <input class="input" type="number" ng-model="settings.media_renderer.port" placeholder="{{ 'settings.media_renderer_port_ph' | translate }}">
   			</div>
   		</div>
+			<div class="columns is-vcentered">
+  			<div class="column is-6">
+  				<h5 class="title is-5">{{ 'settings.spotify_url' | translate }}</h5>
+  				<p>{{ 'settings.spotify_url_hint' | translate }}</p>
+  			</div>
+  			<div class="column is-offset-3 is-3 has-text-right">
+          <input class="input" type="text" ng-model="settings.spotify.url" placeholder="{{ 'settings.spotify_url_ph' | translate }}">
+  			</div>
+  		</div>
     </span>
     <span ng-show="tab === 'health'">
       <div class="columns is-vcentered">

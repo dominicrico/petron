@@ -173,7 +173,8 @@
             var _newTrack = true;
 
             function checkForUpdate() {
-              $http.get('http://192.168.0.248:4000/api/info/metadata').then(
+              $http.get('http://' + $rootScope.settings.spotify.url +
+                ':4000/api/info/metadata').then(
                 function(data) {
                   if (data && data.data) {
                     if ((data.data.artist_name !== $scope.track.artist ||
@@ -185,7 +186,8 @@
                       $scope.track.album = data.data.album_name;
                       $scope.track.title = data.data.track_name;
                       $scope.track.image =
-                        'http://192.168.0.248:4000/api/info/image_url/' +
+                        'http://' + $rootScope.settings.spotify.url +
+                        ':4000/api/info/image_url/' +
                         data.data.cover_uri;
                       trackId = data.data.context_uri;
                       $scope.controls.duration = data.data.duration /

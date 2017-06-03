@@ -144,6 +144,9 @@
     "media_renderer": "Wifi Streaming",
     "media_renderer_hint": "IP und Port zur Kommunikation mit dem Media Renderer.",
     "media_renderer_ip_ph": "XXX:XXX:XXX:XXX",
-    "media_renderer_port_ph": "XXXXX"
+    "media_renderer_port_ph": "XXXXX",
+    "spotify_url": "Spotify Connect Web",
+    "spotify_url_hint": "Host unter dem der Soptify Connect Web Server erreichbar ist.",
+    "spotify_url_ph": "localhost"
   }
 }
