@@ -3,18 +3,31 @@
 
   angular.module('petron.modules.fm')
     .controller('controller.fmbox.main', ['$scope', '$rootScope', 'ngDialog',
-      '$state', '$timeout', 'petron.tuner',
+      '$state', '$timeout', 'petron.tuner', 'petron.storage',
       function($scope, $rootScope,
-        ngDialog, $state, $timeout, PetronTuner) {
+        ngDialog, $state, $timeout, PetronTuner, petronStorage) {
         $rootScope.title = 'fm_module';
 
-        // var tuner = new PetronTuner();
-        // tuner.turnOn();
+        //PetronTuner.turnOn();
 
         $rootScope.rightMenuShow = true;
         $rootScope.rightMenuLabel = 'menu_label_favourites';
 
-        $scope.stations = {};
+        $scope.favourites = [];
+
+        $rootScope.$watch('settings', function() {
+          console.log('settings');
+          if ($rootScope.settings.fmLast) {
+            $scope.current = $rootScope.settings.fmLast;
+          }
+        });
+
+        $scope.$watch('current', function() {
+          console.log('current');
+          $scope.isFav = isFav($scope.current);
+          $rootScope.settings.fmLast = $scope.current;
+          petronStorage.set('petron.settings', $rootScope.settings);
+        });
 
         $scope.frequency = {
           min: 87.5,
@@ -22,10 +35,17 @@
           current: 87.5
         };
 
+        $scope.current = {
+          channel: 'SWR3',
+          rds: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente atque hic labore veniam',
+          frequency: $scope.frequency.current
+        };
+
         $scope.freqUp = function() {
           var res = ($scope.frequency.current * 100 + 5) / 100;
           if (res <= $scope.frequency.max) {
             $scope.frequency.current = res;
+            $scope.isFav = false;
           }
         };
 
@@ -33,7 +53,27 @@
           var res = ($scope.frequency.current * 100 - 5) / 100;
           if (res >= $scope.frequency.min) {
             $scope.frequency.current = res;
+            $scope.isFav = false;
           }
+        };
+
+        $scope.seekUp = function() {
+          PetronTuner.seekUp().then(function(chan) {
+            PetronTuner.readRDS().then(function(rds) {
+              $scope.current.channel = rds;
+              $scope.current.rds = rds;
+            });
+            $scope.current.frequency = chan / 10;
+          });
+        };
+        $scope.seekDown = function() {
+          PetronTuner.seekDown().then(function(chan) {
+            PetronTuner.readRDS().then(function(rds) {
+              $scope.current.channel = rds;
+              $scope.current.rds = rds;
+            });
+            $scope.current.frequency = chan / 10;
+          });
         };
 
         function fillArrayRange(start, end) {
@@ -52,12 +92,51 @@
         $timeout(function() {
           var labels = document.getElementsByClassName('is-label');
           for (var i = labels.length; i >= labels.length; i = i - 1) {
-            var ml = labels[i].offsetWidth;
-            angular.element(labels[i]).css({
-              'margin-left': (ml / 2) * -1 + 'px'
-            });
+            if (labels && labels[i] && labels[i].offsetWidth) {
+              var ml = labels[i].offsetWidth;
+              angular.element(labels[i]).css({
+                'margin-left': (ml / 2) * -1 + 'px'
+              });
+            }
           }
         });
+
+        function isFav(channel) {
+          var _fav = false;
+          $scope.favourites.forEach(function(chan) {
+            if (chan.channel === channel.channel) {
+              _fav = true;
+            }
+          });
+          return _fav;
+        }
+
+        PetronTuner.getFavourites().then(function(favourites) {
+          $scope.favourites = favourites;
+          $scope.isFav = isFav($scope.current);
+        });
+
+        // PetronTuner.readRDS().then(function(rds) {
+        //   $scope.current.channel = rds;
+        //   $scope.current.rds = rds;
+        // });
+
+        $scope.toggleFav = function() {
+          if (!$scope.isFav) {
+            PetronTuner.setFavourite($scope.current).then(function(
+              favourites) {
+              $scope.favourites = favourites;
+              $scope.isFav = true;
+            });
+          } else {
+            PetronTuner.removeFavourite($scope.current).then(function(
+              favourites) {
+              $scope.favourites = favourites;
+              $scope.isFav = false;
+            });
+          }
+
+        };
       }
     ]);
 })();

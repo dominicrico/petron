@@ -71,7 +71,7 @@
         }
       };
 
-      $rootScope.mode = 'night';
+      $rootScope.mode = 'day';
       $rootScope.toggleMode = function() {
         console.log($rootScope.mode);
         $rootScope.mode = ($rootScope.mode !== 'day') ? 'day' :

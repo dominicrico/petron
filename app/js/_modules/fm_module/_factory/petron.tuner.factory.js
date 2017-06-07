@@ -1,143 +1,164 @@
 (function() {
-	"use strict";
+  "use strict";
 
-	angular.module('petron.modules.fm')
-		.factory('petron.tuner', ['petron.storage', '$q', function(petronStorage,
-			$q) {
-			var _channels = [];
-			var _favourites = [];
-			var _tuner;
-			return {
+  angular.module('petron.modules.fm')
+    .factory('petron.tuner', ['petron.storage', '$q', function(petronStorage,
+      $q) {
+      var _channels = [];
+      var _favourites = [];
+      var _tuner;
+      return {
 
-				turnOn: function() {
-					var deferred = $q.defer();
+        turnOn: function() {
+          var deferred = $q.defer();
 
-					_tuner = angular.noop(); // TODO: add "node-rpi-si4703" when on raspberry
-					_tuner.powerOn(function(err) {
-						if (err) {
-							deferred.reject(err);
-						} else {
-							deferred.resolve(_tuner);
-						}
-					});
+          _tuner = angular.noop(); // TODO: add "node-rpi-si4703" when on raspberry
+          _tuner.powerOn(function(err) {
+            if (err) {
+              deferred.reject(err);
+            } else {
+              deferred.resolve(_tuner);
+            }
+          });
 
-					return deferred.promise;
-				},
+          return deferred.promise;
+        },
 
-				turnOff: function() {
-					var deferred = $q.defer();
+        turnOff: function() {
+          var deferred = $q.defer();
 
-					_tuner.powerOff(function(err) {
-						if (err) {
-							deferred.reject(err);
-						} else {
-							deferred.resolve(_tuner);
-						}
-					});
+          _tuner.powerOff(function(err) {
+            if (err) {
+              deferred.reject(err);
+            } else {
+              deferred.resolve(_tuner);
+            }
+          });
 
-					return deferred.promise;
-				},
+          return deferred.promise;
+        },
 
-				seekUp: function() {
-					var deferred = $q.defer();
+        seekUp: function() {
+          var deferred = $q.defer();
 
-					_tuner.seekUp(function(channel, err) {
-						if (err) {
-							deferred.reject(err);
-						} else {
-							deferred.resolve(channel);
-						}
-					});
+          _tuner.seekUp(function(channel, err) {
+            if (err) {
+              deferred.reject(err);
+            } else {
+              deferred.resolve(channel);
+            }
+          });
 
-					return deferred.promise;
-				},
+          return deferred.promise;
+        },
 
-				seekDown: function() {
-					var deferred = $q.defer();
+        seekDown: function() {
+          var deferred = $q.defer();
 
-					_tuner.seekDown(function(channel, err) {
-						if (err) {
-							deferred.reject(err);
-						} else {
-							deferred.resolve(channel);
-						}
-					});
+          _tuner.seekDown(function(channel, err) {
+            if (err) {
+              deferred.reject(err);
+            } else {
+              deferred.resolve(channel);
+            }
+          });
 
-					return deferred.promise;
-				},
+          return deferred.promise;
+        },
 
-				readRDS: function() {
-					var deferred = $q.defer();
+        readRDS: function() {
+          var deferred = $q.defer();
 
-					_tuner.readRDS(function(rds, err) {
-						if (err) {
-							deferred.reject(err);
-						} else {
-							deferred.resolve(rds);
-						}
-					});
+          _tuner.readRDS(function(rds, err) {
+            if (err) {
+              deferred.reject(err);
+            } else {
+              deferred.resolve(rds);
+            }
+          });
 
-					return deferred.promise;
-				},
+          return deferred.promise;
+        },
 
-				getChannels: function() {
-					var deferred = $q.defer();
+        listen: function(freq) {
+          var deferred = $q.defer();
 
-					deferred.resolve(_channels);
+          _tuner.setChannel(freq * 10, function(err) {
+            if (err) {
+              deferred.reject(err);
+            } else {
+              _tuner.setVolume(10);
+              deferred.resolve(true);
+            }
+          });
 
-					return deferred.promise;
-				},
+          return deferred.promise;
+        },
 
-				getFavourites: function() {
-					var deferred = $q.defer();
+        getChannels: function() {
+          var deferred = $q.defer();
 
-					petronStorage.get('petron.fm.favourites').then(function(favs) {
-						_favourites = favs;
-						deferred.resolve(_favourites);
-					});
+          deferred.resolve(_channels);
 
-					return deferred.promies;
-				},
+          return deferred.promise;
+        },
 
-				setFavourite: function(channel) {
-					var deferred = $q.defer();
+        getFavourites: function() {
+          var deferred = $q.defer();
 
-					_favourites.push(channel);
+          petronStorage.get('petron.fm.favourites').then(function(favs) {
+            _favourites = favs;
+            deferred.resolve(_favourites);
+          });
 
-					petronStorage.set('petron.fm.favourites', _favourites).then(function(
-						favs) {
-						_favourites = favs;
-						deferred.resolve(_favourites);
-					});
+          return deferred.promise;
+        },
 
-					return deferred.promies;
-				},
+        setFavourite: function(channel) {
+          var deferred = $q.defer();
 
-				setChannels: function(channels) {
-					var deferred = $q.defer();
+          _favourites.push(channel);
 
-					_channels = channels;
+          petronStorage.set('petron.fm.favourites', _favourites).then(
+            function(
+              favs) {
+              _favourites = favs;
+              deferred.resolve(_favourites);
+            });
 
-					deferred.resolve(_channels);
+          return deferred.promise;
+        },
 
-					return deferred.promise;
-				},
+        setChannels: function(channels) {
+          var deferred = $q.defer();
 
-				removeFavourite: function(channel) {
-					var deferred = $q.defer();
+          _channels = channels;
 
-					_favourites.splice(channel, 1);
+          deferred.resolve(_channels);
 
-					petronStorage.set('petron.fm.favourites', _favourites).then(function(
-						favs) {
-						_favourites = favs;
-						deferred.resolve(_favourites);
-					});
+          return deferred.promise;
+        },
 
-					return deferred.promies;
-				}
+        removeFavourite: function(channel) {
+          var deferred = $q.defer();
 
-			};
+          _favourites.forEach(function(chan, i) {
+            if (chan.channel === channel.channel) {
+              _favourites.splice(i, 1);
+            }
+          });
 
-		}]);
+          petronStorage.set('petron.fm.favourites', _favourites).then(
+            function(
+              favs) {
+              _favourites = favs;
+              deferred.resolve(_favourites);
+            });
+
+          return deferred.promise;
+        }
+
+      };
+
+    }]);
 })();

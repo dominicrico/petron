@@ -22,7 +22,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <link rel=\"stylesheet\" ng-href=\"css/petron-{{ mode }}.css\">\n" +
     "</head>\n" +
     "\n" +
-    "<body ng-cloak=\"\" hm-swipeup=\"$root.goHome\" hm-swipeleft=\"$root.toggleMode\" hm-swiperight=\"$root.toggleMode\" hm-panend=\"setVolume\" hm-panstart=\"getVolume\" hm-panup=\"volumeIndicator\" hm-pandown=\"volumeIndicator\" hm-recognizer-options='[{\"type\": \"swipe\", \"enable\": true, \"directions\": \"DIRECTION_ALL\", \"threshold\": 400},{\"type\":\"pan\",\"enable\": true, \"directions\": \"DIRECTION_VERTICAL\", \"threshold\": 50, \"pointers\": 2 }]'>\n" +
+    "<body ng-cloak=\"\" hm-swipeup=\"$root.goHome\" hm-swipeleft=\"$root.toggleMode\" hm-swiperight=\"$root.toggleMode\" hm-panend=\"setVolume\" hm-panstart=\"getVolume\" hm-panup=\"volumeIndicator\" hm-pandown=\"volumeIndicator\" hm-recognizer-options='[{\"type\": \"swipe\", \"enable\": true, \"directions\": \"DIRECTION_ALL\", \"threshold\": 500},{\"type\":\"pan\",\"enable\": true, \"directions\": \"DIRECTION_VERTICAL\", \"threshold\": 50, \"pointers\": 2 }]'>\n" +
     "    <div class=\"petron-wrap\" ng-class=\"{'show-left-menu': $root.left_toggle, 'show-right-menu': $root.right_toggle, 'c--volume-indicator__blur': showVolumeIndicator}\">\n" +
     "        <div class=\"menu-wrap is-left\">\n" +
     "            <nav class=\"menu\">\n" +
@@ -995,8 +995,8 @@ angular.module("js/_modules/fm_module/_template/main.html", []).run(["$templateC
     "			<section class=\"column c--fm__display\">\n" +
     "				<div class=\"columns\">\n" +
     "					<div class=\"column is-10 is-offset-1\">\n" +
-    "						<span class=\"icon\">\n" +
-    "							<i class=\"fa icon-heart-outline\"></i>\n" +
+    "						<span class=\"icon\" ng-click=\"toggleFav()\">\n" +
+    "							<i class=\"fa\" ng-class=\"{'icon-heart-outline': !isFav, 'icon-heart': isFav}\"></i>\n" +
     "						</span>\n" +
     "						<h1 class=\"is-1 title\" ng-bind-html=\"frequency.current | frequency\">\n" +
     "						</h1>\n" +
@@ -1008,10 +1008,10 @@ angular.module("js/_modules/fm_module/_template/main.html", []).run(["$templateC
     "				<div class=\"columns\">\n" +
     "					<div class=\"column\">\n" +
     "						<h2 class=\"is-2 title\">\n" +
-    "							SWR3\n" +
+    "							{{ current.channel }}\n" +
     "						</h2>\n" +
     "						<p class=\"marquee\">\n" +
-    "							<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente atque hic labore veniam</span>\n" +
+    "							<span>{{ current.rds }}</span>\n" +
     "						</p>\n" +
     "					</div>\n" +
     "				</div>\n" +
@@ -1044,14 +1044,14 @@ angular.module("js/_modules/fm_module/_template/main.html", []).run(["$templateC
 angular.module("js/_modules/fm_module/_template/stations.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/fm_module/_template/stations.html",
-    "<a ng-repeat=\"station in fm.stations\" ng-click=\"func.play(station)\">\n" +
+    "<a ng-repeat=\"station in favourites\" ng-click=\"play(station)\">\n" +
     "	<span class=\"icon\">\n" +
     "		<i class=\"fa icon-heart-outline\"></i>\n" +
     "	</span>\n" +
-    "	<span>{{ station.name }}</span>\n" +
+    "	<span>{{ station.channel }}</span>\n" +
     "</a>\n" +
     "\n" +
-    "<span ng-show=\"!fm.stations.length\">{{ 'no_stations' | translate }}</span>\n" +
+    "<span ng-show=\"!favourites.length\">{{ 'no_stations' | translate }}</span>\n" +
     "");
 }]);
 
@@ -1076,7 +1076,7 @@ angular.module("js/_modules/health_module/_template/main.html", []).run(["$templ
     "  			<span class=\"door-lock br open\">\n" +
     "  				<i class=\"icon-lock-open\"></i>\n" +
     "  			</span> -->\n" +
-    "  			<img src=\"images/car.svg\" alt=\"\">\n" +
+    "  			<img src=\"images/car-{{ $root.mode }}.svg\" alt=\"\">\n" +
     "  			<!-- <span class=\"door-lock trunk closed\">\n" +
     "  				<i class=\"icon-lock-closed\"></i>\n" +
     "  			</span>\n" +

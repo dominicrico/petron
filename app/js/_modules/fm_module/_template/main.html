@@ -5,8 +5,8 @@
 			<section class="column c--fm__display">
 				<div class="columns">
 					<div class="column is-10 is-offset-1">
-						<span class="icon">
-							<i class="fa icon-heart-outline"></i>
+						<span class="icon" ng-click="toggleFav()">
+							<i class="fa" ng-class="{'icon-heart-outline': !isFav, 'icon-heart': isFav}"></i>
 						</span>
 						<h1 class="is-1 title" ng-bind-html="frequency.current | frequency">
 						</h1>
@@ -18,10 +18,10 @@
 				<div class="columns">
 					<div class="column">
 						<h2 class="is-2 title">
-							SWR3
+							{{ current.channel }}
 						</h2>
 						<p class="marquee">
-							<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente atque hic labore veniam</span>
+							<span>{{ current.rds }}</span>
 						</p>
 					</div>
 				</div>

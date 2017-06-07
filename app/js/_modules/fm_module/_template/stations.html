@@ -1,8 +1,8 @@
-<a ng-repeat="station in fm.stations" ng-click="func.play(station)">
+<a ng-repeat="station in favourites" ng-click="play(station)">
 	<span class="icon">
 		<i class="fa icon-heart-outline"></i>
 	</span>
-	<span>{{ station.name }}</span>
+	<span>{{ station.channel }}</span>
 </a>
 
-<span ng-show="!fm.stations.length">{{ 'no_stations' | translate }}</span>
+<span ng-show="!favourites.length">{{ 'no_stations' | translate }}</span>

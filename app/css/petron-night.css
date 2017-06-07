@@ -4025,7 +4025,7 @@ a.panel-block:hover {
   padding: 10px !important; }
 
 .u--active {
-  color: #11B8BC !important; }
+  color: #0B8386 !important; }
 
 * {
   -webkit-user-select: none;
@@ -4990,7 +4990,7 @@ input[type=range]:focus {
 
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  border: 3px solid #11B8BC;
+  border: 3px solid #0B8386;
   height: 16px;
   width: 16px;
   border-radius: 50%;
@@ -5026,7 +5026,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
   .c--audio__controls button:hover, .c--audio__controls button:focus {
     color: #0B8386; }
   .c--audio__controls button.is-active {
-    color: #11B8BC; }
+    color: #0B8386; }
   .c--audio__controls button.c--audio__controls-l {
     font-size: 36px;
     position: relative;
@@ -5415,7 +5415,8 @@ petron-filetree {
     .c--range__labels li .is-label {
       position: absolute;
       bottom: -50px;
-      font-size: 24px; }
+      font-size: 24px;
+      transform: translateX(-50%); }
 
 @keyframes marquee {
   0% {
