@@ -8,7 +8,6 @@
         restrict: 'E',
         controller: ['$scope', '$rootScope', '$http', '$interval',
           function($scope, $rootScope, $http, $interval) {
-            var shell = require('shelljs');
             var timer, timeInterval, trackId, deviceCheck;
             $scope.track = {
               artist: ''
@@ -41,12 +40,7 @@
             };
 
             $scope.spotify_music = true;
-            var SpotifyWebApi = require('spotify-web-api-node');
-            // // Create the api object with the credentials
-            var spotifyApi = new SpotifyWebApi({
-              clientId: $rootScope.settings.spotify.clientId,
-              clientSecret: $rootScope.settings.spotify.clientSecret
-            });
+
 
             var electronOauth2 = require('electron-oauth2');
             var config = {
@@ -103,7 +97,6 @@
                           $interval(function() {
                             checkForUpdate();
                           }, 2000);
-
                         });
                       }
                     }

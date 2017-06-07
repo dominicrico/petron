@@ -1,18 +1,18 @@
 $highlight:    #11B8BC;
 
-$black:        #242222;
-$black-bis:    lighten(#242222, 7%);
-$black-ter:    lighten(#242222, 14%);
+$black:        #242222 !default;
+$black-bis:    lighten(#242222, 7%) !default;
+$black-ter:    lighten(#242222, 14%) !default;
 
-$grey-darker:  #252627;
-$grey-dark:    lighten(#252627, 5%);
-$grey:         lighten(#252627, 15%);
-$grey-light:   lighten(#252627, 25%);
-$grey-lighter: lighten(#252627, 35%);
+$grey-darker:  #252627 !default;
+$grey-dark:    lighten(#252627, 5%) !default;
+$grey:         lighten(#252627, 15%) !default;
+$grey-light:   lighten(#252627, 25%) !default;
+$grey-lighter: lighten(#252627, 35%) !default;
 
-$white-ter:    darken(#F9F8F5, 8%);
-$white-bis:    darken(#F9F8F5, 4%);
-$white:        #F9F8F5;
+$white-ter:    darken(#F9F8F5, 8%) !default;
+$white-bis:    darken(#F9F8F5, 4%) !default;
+$white:        #F9F8F5 !default;
 
 $orange:       hsl(14,  100%, 53%);
 $yellow:       hsl(48,  100%, 67%);
@@ -66,7 +66,7 @@ $dark: $grey-darker;
 // 3. Applied variables
 
 // General colors
-$background_image: url('../images/petron_bg.png');
+$background_image: url('../images/petron_bg.png') !default;
 
 $body-background: $black;
 $background: $black;

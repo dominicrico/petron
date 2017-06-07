@@ -1,0 +1,23 @@
+$white:        #151618;
+$white-bis:    lighten(#151618, 7%);
+$white-ter:    lighten(#151618, 14%);
+
+$grey-lighter:  #61656a;
+$grey-light:    lighten(#61656a, 15%);
+$grey:         lighten(#61656a, 25%);
+$grey-dark:   lighten(#61656a, 35%);
+$grey-darker: lighten(#61656a, 45%);
+
+$black-ter:    darken(#F9F8F5, 8%);
+$black-bis:    darken(#F9F8F5, 4%);
+$black:        #F9F8F5;
+
+$background_image: url('../images/petron_bg_day.png');
+
+@import '../../app/vendor/bulma/sass/utilities/variables.sass';
+
+@import 'modules/manifest';
+
+@import '../../app/vendor/bulma/bulma.sass';
+
+@import 'partials/manifest';

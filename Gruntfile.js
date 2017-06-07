@@ -85,7 +85,8 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'app/css/petron.css': 'src/sass/petron.scss'
+          'app/css/petron-night.css': 'src/sass/petron.scss',
+          'app/css/petron-day.css': 'src/sass/petron-day.scss',
         }
       }
     },

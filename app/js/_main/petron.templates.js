@@ -4,7 +4,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
   "use strict";
   $templateCache.put("index.html",
     "<!doctype html>\n" +
-    "<html>\n" +
+    "<html ng-app=\"petron\">\n" +
     "\n" +
     "<head>\n" +
     "    <meta charset=\"utf-8\">\n" +
@@ -19,10 +19,10 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <link rel=\"stylesheet\" href=\"../app/vendor/sweetalert2/dist/sweetalert2.css\" />\n" +
     "    <!-- endbower -->\n" +
     "\n" +
-    "    <link rel=\"stylesheet\" href=\"css/petron.css\">\n" +
+    "    <link rel=\"stylesheet\" ng-href=\"css/petron-{{ mode }}.css\">\n" +
     "</head>\n" +
     "\n" +
-    "<body ng-app=\"petron\" ng-cloak=\"\" hm-swipeup=\"$root.goHome\" hm-panend=\"setVolume\" hm-panstart=\"getVolume\" hm-pan=\"volumeIndicator\" hm-recognizer-options='[{\"type\": \"swipeup\", \"treshold\": 400},{\"type\":\"pan\",\"enable\": true, \"directions\": \"DIRECTION_VERTICAL\", \"threshold\": 50, \"pointers\": 2 }]'>\n" +
+    "<body ng-cloak=\"\" hm-swipeup=\"$root.goHome\" hm-swipeleft=\"$root.toggleMode\" hm-swiperight=\"$root.toggleMode\" hm-panend=\"setVolume\" hm-panstart=\"getVolume\" hm-panup=\"volumeIndicator\" hm-pandown=\"volumeIndicator\" hm-recognizer-options='[{\"type\": \"swipe\", \"enable\": true, \"directions\": \"DIRECTION_ALL\", \"threshold\": 400},{\"type\":\"pan\",\"enable\": true, \"directions\": \"DIRECTION_VERTICAL\", \"threshold\": 50, \"pointers\": 2 }]'>\n" +
     "    <div class=\"petron-wrap\" ng-class=\"{'show-left-menu': $root.left_toggle, 'show-right-menu': $root.right_toggle, 'c--volume-indicator__blur': showVolumeIndicator}\">\n" +
     "        <div class=\"menu-wrap is-left\">\n" +
     "            <nav class=\"menu\">\n" +
@@ -149,6 +149,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <script type=\"text/javascript\" src=\"js/_main/_factory/petron.daemon.factory.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_factory/petron.phony.factory.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_factory/petron.playlist.factory.js\"></script>\n" +
+    "    <script type=\"text/javascript\" src=\"js/_main/_factory/petron.spotify.factory.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_filter/petron.buildTime.filter.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_filter/petron.frequency.filter.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_filter/petron.htmlSafe.filter.js\"></script>\n" +
@@ -568,6 +569,9 @@ angular.module("js/_modules/audio_module/_template/_directive_spotify.html", [])
     "<div class=\"columns u--padding-top__20\">\n" +
     "  <div class=\"c--audio-upnp__error\" ng-if=\"error_online\">\n" +
     "			<h1 class=\"title is-3 c--audio-upnp__message has-text-centered\" data-ng-bind-html=\"'audio.error_online' | translate | htmlSafe\"></h1>\n" +
+    "	</div>\n" +
+    "  <div class=\"c--audio-upnp__error\" ng-if=\"!deviceFound\">\n" +
+    "			<h1 class=\"title is-3 c--audio-upnp__message has-text-centered\" data-ng-bind-html=\"'audio.error_device' | translate | htmlSafe\"></h1>\n" +
     "	</div>\n" +
     "\n" +
     "	<div class=\"column is-5\">\n" +
@@ -1426,6 +1430,15 @@ angular.module("js/_modules/settings_module/_template/main.html", []).run(["$tem
     "  			<div class=\"column is-offset-3 is-3 has-text-right\">\n" +
     "          <input class=\"input\" type=\"text\" ng-model=\"settings.media_renderer.ip\" placeholder=\"{{ 'settings.media_renderer_ip_ph' | translate }}\">\n" +
     "          <input class=\"input\" type=\"number\" ng-model=\"settings.media_renderer.port\" placeholder=\"{{ 'settings.media_renderer_port_ph' | translate }}\">\n" +
+    "  			</div>\n" +
+    "  		</div>\n" +
+    "			<div class=\"columns is-vcentered\">\n" +
+    "  			<div class=\"column is-6\">\n" +
+    "  				<h5 class=\"title is-5\">{{ 'settings.spotify_url' | translate }}</h5>\n" +
+    "  				<p>{{ 'settings.spotify_url_hint' | translate }}</p>\n" +
+    "  			</div>\n" +
+    "  			<div class=\"column is-offset-3 is-3 has-text-right\">\n" +
+    "          <input class=\"input\" type=\"text\" ng-model=\"settings.spotify.url\" placeholder=\"{{ 'settings.spotify_url_ph' | translate }}\">\n" +
     "  			</div>\n" +
     "  		</div>\n" +
     "    </span>\n" +

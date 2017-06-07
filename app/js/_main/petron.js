@@ -39,9 +39,9 @@
       //   });
       // });
 
-      var shell = require('shelljs');
-      shell.config.execPath = shell.which('node');
-      shell.exec('kill $(pgrep omxplayer)');
+      // var shell = require('shelljs');
+      // shell.config.execPath = shell.which('node');
+      // shell.exec('kill $(pgrep omxplayer)');
 
       $rootScope.$on('deviceRemoved', function() {
         $rootScope.phoneConnected = false;
@@ -69,6 +69,14 @@
         if (!$state.is('petron.navigationbox.map')) {
           $state.go('petron.home');
         }
+      };
+
+      $rootScope.mode = 'night';
+      $rootScope.toggleMode = function() {
+        console.log($rootScope.mode);
+        $rootScope.mode = ($rootScope.mode !== 'day') ? 'day' :
+          'night';
+
       };
 
       $rootScope.settings = {
