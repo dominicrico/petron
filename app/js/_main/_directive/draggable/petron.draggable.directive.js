@@ -12,6 +12,8 @@
             var x = 525;
 
             function mousemove(event) {
+              event.preventDefault();
+              event.stopPropagation();
               var pageX = event.originalEvent.touches[0].pageX;
               x = pageX - startX;
               if (pageX - startX > 525) {
@@ -22,6 +24,9 @@
             }
 
             function mouseup(event) {
+              $rootScope.enableTouchSwipeEvents = true;
+              event.preventDefault();
+              event.stopPropagation();
               var pageX = event.originalEvent.changedTouches[0].pageX;
               x = pageX - startX;
               if (x <= 720) {
@@ -46,8 +51,9 @@
             }
 
             elem.on('touchstart', function(event) {
-              //event.preventDefault();
-              //event.stopPropagation();
+              $rootScope.enableTouchSwipeEvents = false;
+              event.preventDefault();
+              event.stopPropagation();
               var pageX = event.originalEvent.touches[0].pageX;
 
               angular.element(elem).css({

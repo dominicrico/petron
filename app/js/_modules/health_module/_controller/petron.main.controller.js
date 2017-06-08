@@ -118,7 +118,7 @@
               console.log('OBD ERROR', err);
             });
         };
-        $scope.isConnected = true;
+        $scope.isConnected = false;
         $rootScope.$watch('OBDisConnected', function(conn) {
           if (conn) {
             $scope.isConnected = true;

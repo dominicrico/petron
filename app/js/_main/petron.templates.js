@@ -22,7 +22,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <link rel=\"stylesheet\" ng-href=\"css/petron-{{ mode }}.css\">\n" +
     "</head>\n" +
     "\n" +
-    "<body ng-cloak=\"\" hm-swipeup=\"$root.goHome\" hm-swipeleft=\"$root.toggleMode\" hm-swiperight=\"$root.toggleMode\" hm-panend=\"setVolume\" hm-panstart=\"getVolume\" hm-panup=\"volumeIndicator\" hm-pandown=\"volumeIndicator\" hm-recognizer-options='[{\"type\": \"swipe\", \"enable\": true, \"directions\": \"DIRECTION_ALL\", \"threshold\": 500},{\"type\":\"pan\",\"enable\": true, \"directions\": \"DIRECTION_VERTICAL\", \"threshold\": 50, \"pointers\": 2 }]'>\n" +
+    "<body ng-cloak=\"\" hm-Swipeup=\"$root.goHome\" hm-Swipeleft=\"$root.toggleMode\" hm-Swiperight=\"$root.toggleMode\" hm-panend=\"setVolume\" hm-panstart=\"getVolume\" hm-panup=\"volumeIndicator\" hm-pandown=\"volumeIndicator\" hm-recognizer-options='[{\"type\": \"swipe\", \"enable\": true, \"directions\": \"DIRECTION_HORIZONTAL|DIRECTION_UP\", \"threshold\": 200},{\"type\":\"pan\",\"enable\": true, \"directions\": \"DIRECTION_VERTICAL\", \"threshold\": 50, \"pointers\": 2 }]'>\n" +
     "    <div class=\"petron-wrap\" ng-class=\"{'show-left-menu': $root.left_toggle, 'show-right-menu': $root.right_toggle, 'c--volume-indicator__blur': showVolumeIndicator}\">\n" +
     "        <div class=\"menu-wrap is-left\">\n" +
     "            <nav class=\"menu\">\n" +

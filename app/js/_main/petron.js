@@ -28,6 +28,7 @@
       SweetAlert,
       $interval) {
       $rootScope.daemon = {};
+      $rootScope.enableTouchSwipeEvents = true;
 
       // petronPhony.init();
 
