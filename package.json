@@ -1,7 +1,7 @@
 {
   "name": "petron",
   "productName": "Petron",
-  "version": "0.1.0",
+  "version": "0.8.0",
   "description": "Raspberry Pi Car Computer",
   "license": "MIT",
   "repository": "https://github.com/dominic.rico/petron",

@@ -15,6 +15,16 @@
 
         $scope.favourites = [];
 
+        function isFav(channel) {
+          var _fav = false;
+          $scope.favourites.forEach(function(chan) {
+            if (chan.channel === channel.channel) {
+              _fav = true;
+            }
+          });
+          return _fav;
+        }
+
         $rootScope.$watch('settings', function() {
           console.log('settings');
           if ($rootScope.settings.fmLast) {
@@ -100,16 +110,6 @@
             }
           }
         });
-
-        function isFav(channel) {
-          var _fav = false;
-          $scope.favourites.forEach(function(chan) {
-            if (chan.channel === channel.channel) {
-              _fav = true;
-            }
-          });
-          return _fav;
-        }
 
         PetronTuner.getFavourites().then(function(favourites) {
           $scope.favourites = favourites;
