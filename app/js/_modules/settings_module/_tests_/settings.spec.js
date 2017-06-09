@@ -36,12 +36,14 @@ describe('Module: Settings', function() {
 
   it('should change the locale to "en" and back to "de"', function() {
     scope.settings.locale = 'en';
-    scope.$apply();
+    scope.$apply(function() {
+      expect(scope.settings.locale).toEqual('en');
+      expect(rootScope.settings.locale).toEqual('en');
+    });
     scope.settings.locale = 'de';
-    scope.$apply();
-    setTimeout(function() {
+    scope.$apply(function() {
       expect(scope.settings.locale).toEqual('de');
       expect(rootScope.settings.locale).toEqual('de');
-    }, 25);
+    });
   });
 });

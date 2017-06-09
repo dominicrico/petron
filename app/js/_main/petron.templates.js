@@ -1,4 +1,4 @@
-angular.module('petron.core.templates', ['index.html', 'js/_main/_directive/daemon/petron.daemon.html', 'js/_main/_directive/filetree/audio_popout.html', 'js/_main/_directive/filetree/petron.filetree.html', 'js/_main/_directive/keyboard/layout_qwerty.html', 'js/_main/_directive/keyboard/layout_qwertz.html', 'js/_main/_directive/volume/petron.volume-indicator.html', 'js/_main/_template/petron.confirm.html', 'js/_main/_template/petron.content.html', 'js/_main/_template/petron.header.html', 'js/_main/_template/petron.home.html', 'js/_modules/audio_module/_template/_directive_spotify.html', 'js/_modules/audio_module/_template/_directive_upnp.html', 'js/_modules/audio_module/_template/_directive.html', 'js/_modules/audio_module/_template/add_to_playlist_modal.html', 'js/_modules/audio_module/_template/main.html', 'js/_modules/audio_module/_template/new_playlist_modal.html', 'js/_modules/audio_module/_template/playlists.html', 'js/_modules/fm_module/_template/main.html', 'js/_modules/fm_module/_template/stations.html', 'js/_modules/health_module/_template/main.html', 'js/_modules/navigation_module/_template/main.html', 'js/_modules/navigation_module/_template/map.html', 'js/_modules/navigation_module/_template/menu.html', 'js/_modules/phone_module/_template/calls.html', 'js/_modules/phone_module/_template/main.html', 'js/_modules/phone_module/_template/messages.html', 'js/_modules/settings_module/_template/main.html', 'js/_modules/video_module/_template/_directive.html', 'js/_modules/video_module/_template/add_to_playlist_modal.html', 'js/_modules/video_module/_template/main.html', 'js/_modules/video_module/_template/new_playlist_modal.html', 'js/_modules/video_module/_template/player.html', 'loader.html']);
+angular.module('petron.core.templates', ['index.html', 'js/_main/_directive/daemon/petron.daemon.html', 'js/_main/_directive/filetree/audio_popout.html', 'js/_main/_directive/filetree/petron.filetree.html', 'js/_main/_directive/keyboard/layout_qwerty.html', 'js/_main/_directive/keyboard/layout_qwertz.html', 'js/_main/_directive/volume/petron.volume-indicator.html', 'js/_main/_template/petron.confirm.html', 'js/_main/_template/petron.content.html', 'js/_main/_template/petron.header.html', 'js/_main/_template/petron.home.html', 'js/_modules/audio_module/_template/_directive_spotify.html', 'js/_modules/audio_module/_template/_directive_upnp.html', 'js/_modules/audio_module/_template/_directive.html', 'js/_modules/audio_module/_template/add_to_playlist_modal.html', 'js/_modules/audio_module/_template/main.html', 'js/_modules/audio_module/_template/new_playlist_modal.html', 'js/_modules/audio_module/_template/playlists.html', 'js/_modules/fm_module/_template/main.html', 'js/_modules/fm_module/_template/stations.html', 'js/_modules/health_module/_template/main.html', 'js/_modules/navigation_module/_template/main.html', 'js/_modules/navigation_module/_template/map.html', 'js/_modules/navigation_module/_template/menu.html', 'js/_modules/phone_module/_template/calls.html', 'js/_modules/phone_module/_template/main.html', 'js/_modules/phone_module/_template/messages.html', 'js/_modules/settings_module/_template/main.html', 'js/_modules/video_module/_template/_directive.html', 'js/_modules/video_module/_template/add_to_playlist_modal.html', 'js/_modules/video_module/_template/main.html', 'js/_modules/video_module/_template/new_playlist_modal.html', 'js/_modules/video_module/_template/player.html']);
 
 angular.module("index.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
@@ -571,7 +571,7 @@ angular.module("js/_modules/audio_module/_template/_directive_spotify.html", [])
     "			<h1 class=\"title is-3 c--audio-upnp__message has-text-centered\" data-ng-bind-html=\"'audio.error_online' | translate | htmlSafe\"></h1>\n" +
     "	</div>\n" +
     "  <div class=\"c--audio-upnp__error\" ng-if=\"!deviceFound\">\n" +
-    "			<h1 class=\"title is-3 c--audio-upnp__message has-text-centered\" data-ng-bind-html=\"'audio.error_device' | translate | htmlSafe\"></h1>\n" +
+    "			<h1 class=\"title is-3 c--audio-upnp__message has-text-centered\">{{ 'audio.error_device' | translate }}{{ dots }}</h1>\n" +
     "	</div>\n" +
     "\n" +
     "	<div class=\"column is-5\">\n" +
@@ -1590,43 +1590,4 @@ angular.module("js/_modules/video_module/_template/player.html", []).run(["$temp
   $templateCache.put("js/_modules/video_module/_template/player.html",
     "<petron-video></petron-video>\n" +
     "");
-}]);
-
-angular.module("loader.html", []).run(["$templateCache", function ($templateCache) {
-  "use strict";
-  $templateCache.put("loader.html",
-    "<!doctype html>\n" +
-    "<html>\n" +
-    "\n" +
-    "<head>\n" +
-    "    <meta charset=\"utf-8\">\n" +
-    "    <title>Petron</title>\n" +
-    "\n" +
-    "    <!-- bower:css -->\n" +
-    "    <link rel=\"stylesheet\" href=\"../app/vendor/ng-dialog/css/ngDialog.css\" />\n" +
-    "    <link rel=\"stylesheet\" href=\"../app/vendor/ng-dialog/css/ngDialog-theme-default.css\" />\n" +
-    "    <link rel=\"stylesheet\" href=\"../app/vendor/angular-rangeslider-directive/angular-range-slider.css\" />\n" +
-    "    <link rel=\"stylesheet\" href=\"../app/vendor/leaflet/dist/leaflet.css\" />\n" +
-    "    <link rel=\"stylesheet\" href=\"../app/vendor/mapbox-gl-js/mapbox-gl.css\" />\n" +
-    "    <link rel=\"stylesheet\" href=\"../app/vendor/sweetalert2/dist/sweetalert2.css\" />\n" +
-    "    <!-- endbower -->\n" +
-    "\n" +
-    "    <link rel=\"stylesheet\" href=\"petron.css\">\n" +
-    "</head>\n" +
-    "\n" +
-    "<body>\n" +
-    "    <div class=\"container\">\n" +
-    "        <header>\n" +
-    "            <h1>\n" +
-    "                Petron is loading...<br>\n" +
-    "                <small>All in One Car System</small>\n" +
-    "            </h1>\n" +
-    "\n" +
-    "        </header>\n" +
-    "        <section class=\"main\"></section>\n" +
-    "        <footer></footer>\n" +
-    "    </div>\n" +
-    "</body>\n" +
-    "\n" +
-    "</html>");
 }]);

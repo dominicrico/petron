@@ -86,10 +86,11 @@
 
           searchDevice: function(name) {
             var deferred = $q.defer();
-
+            console.log('searching Device');
             var _deviceCheck = $interval(function() {
               _spotifyApi.getMyDevices().then(
                 function(data) {
+                  console.log(data)
                   data.body.devices.forEach(function(
                     device) {
                     if (device.name === name) {
@@ -109,6 +110,10 @@
                       }
                     }
                   });
+                },
+                function(err) {
+                  $interval.cancel(_deviceCheck);
+                  deferred.reject(err);
                 });
             }, 2000);
 

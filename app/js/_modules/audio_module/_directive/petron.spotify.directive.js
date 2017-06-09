@@ -17,6 +17,21 @@
             $scope.error_online = !angular.copy($rootScope.online);
             $scope.deviceFound = false;
 
+            $scope.dots = '.\u00A0\u00A0';
+            var dotCount = 1;
+            var dotInterval = $interval(function() {
+              if (dotCount === 1) {
+                $scope.dots = '..\u00A0';
+              } else if (dotCount === 2) {
+                $scope.dots = '...';
+              } else {
+                $scope.dots = '.\u00A0\u00A0';
+                dotCount = 0;
+              }
+
+              dotCount = dotCount + 1;
+            }, 500);
+
             $scope.controls = {
               time: 0,
               duration: 0,
@@ -122,13 +137,16 @@
             };
 
             var checkForDevice = function() {
-              petronSpotify.searchDevice().then(function(device) {
+              petronSpotify.searchDevice('Petron').then(function(
+                device) {
                 if (device) {
                   petronSpotify.setVolume(55);
                   $interval(function() {
                     checkForUpdate();
                   }, 2000);
                   $scope.deviceFound = true;
+
+                  $interval.cancel(dotInterval);
                 }
               });
             };
@@ -170,18 +188,17 @@
             $scope.$on('token', function() {
               if (!_inititalized) {
                 petronSpotify.init().then(function(state) {
+                  console.log(state)
                   if (state) {
-                    checkForDevice();
-                  } else {
                     checkForUpdate();
+                  } else {
+                    checkForDevice();
                   }
                 });
 
                 _inititalized = true;
               }
             });
-
-            checkForUpdate();
 
             $scope.seek = function() {
               $http.put(
