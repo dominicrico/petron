@@ -14,7 +14,7 @@
             $rootScope, $element) {
             $scope._video = $element.find('video')[0];
             $scope.$video = $element.find('video');
-
+            var _ended = false;
             var _prepare = function() {
               petronDaemon.disable();
               petronDaemon.register('video', $state.current.name);
@@ -146,11 +146,9 @@
             });
 
             $scope.$video.on('ended', function() {
-              if ($scope.controls.repeat) {
-                $scope._video.load();
-              } else {
-                $scope.next();
-              }
+              _ended = true;
+              petronDaemon.disable();
+              $state.go('petron.videobox.main');
             });
 
             $scope.seek = function() {
@@ -251,7 +249,7 @@
                 $rootScope.video.player.playlist = $rootScope.video.queue;
               }
 
-              if ($scope.controls.play) {
+              if ($scope.controls.play && !_ended) {
                 petronDaemon.enable('video', 'petron.videobox.player');
               }
               $state.go('petron.videobox.main');

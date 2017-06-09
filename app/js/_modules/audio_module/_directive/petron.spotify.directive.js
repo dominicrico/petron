@@ -7,13 +7,17 @@
         templateUrl: 'js/_modules/audio_module/_template/_directive_spotify.html',
         restrict: 'E',
         controller: ['$scope', '$rootScope', '$http', '$interval',
-          'petron.spotify',
-          function($scope, $rootScope, $http, $interval, petronSpotify) {
+          'petron.spotify', 'petron.daemon',
+          function($scope, $rootScope, $http, $interval, petronSpotify,
+            petronDaemon) {
             var timer, timeInterval, trackId, _newTrack = true,
               _inititalized = false;
             $scope.track = {
               artist: ''
             };
+
+            petronDaemon.disable();
+
             $scope.error_online = !angular.copy($rootScope.online);
             $scope.deviceFound = false;
 
