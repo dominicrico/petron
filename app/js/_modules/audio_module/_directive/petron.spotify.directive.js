@@ -39,7 +39,7 @@
             $scope.controls = {
               time: 0,
               duration: 0,
-              play: true,
+              play: false,
               shuffle: false,
               repeat: false,
               loop: false
@@ -102,8 +102,10 @@
                         ':4000/api/info/image_url/' +
                         data.data.cover_uri;
                       trackId = data.data.context_uri;
-                      $scope.controls.duration = data.data.duration /
-                        1000;
+		      if (data.data.duration) {
+                        $scope.controls.duration = data.data.duration /
+                          1000;
+                      }
                       if (_inititalized && _newTrack) {
                         _newTrack = false;
                         petronSpotify.getPlaybackState().then(
@@ -111,8 +113,6 @@
                             if (data.progress_ms && data.item.duration_ms) {
                               $interval.cancel(timer);
                               $scope.controls.time = (data.progress_ms /
-                                1000);
-                              $scope.controls.duration = (data.duration_ms /
                                 1000);
                               timer = $interval(function() {
                                 if ($scope.controls.play) {
