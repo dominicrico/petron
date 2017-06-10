@@ -90,6 +90,10 @@
                   $scope.controls.play = status.playing;
                   $scope.controls.shuffle = status.shuffle;
                   $scope.controls.repeat = status.repeat;
+ 
+                  if (!$scope.deviceFound) {
+                    $scope.deviceFound = true; 
+                  }
 		} else {
 		  $scope.controls.play = false;
 		}
