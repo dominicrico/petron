@@ -90,7 +90,6 @@
             var _deviceCheck = $interval(function() {
               _spotifyApi.getMyDevices().then(
                 function(data) {
-                  console.log(data)
                   data.body.devices.forEach(function(
                     device) {
                     if (device.name === name) {

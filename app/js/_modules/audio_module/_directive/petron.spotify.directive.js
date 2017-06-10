@@ -192,7 +192,6 @@
             $scope.$on('token', function() {
               if (!_inititalized) {
                 petronSpotify.init().then(function(state) {
-                  console.log(state)
                   if (state) {
                     checkForUpdate();
                   } else {
