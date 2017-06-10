@@ -84,6 +84,22 @@
               }, 3600 * 1000);
             };
 
+            function checkStatus() {
+              petronSpotify.getStatus().then(function(status) {
+                if (status.active) {
+                  $scope.controls.play = status.playing;
+                  $scope.controls.shuffle = status.shuffle;
+                  $scope.controls.repeat = status.repeat;
+		} else {
+		  $scope.controls.play = false;
+		}
+              });
+            }
+
+            var status = $interval(function(){
+              checkStatus();
+            },1000);
+
             function checkForUpdate() {
               $http.get('http://' + $rootScope.settings.spotify.url +
                 ':4000/api/info/metadata').then(
@@ -105,7 +121,8 @@
 		      if (data.data.duration) {
                         $scope.controls.duration = data.data.duration /
                           1000;
-                      }
+                      } 
+
                       if (_inititalized && _newTrack) {
                         _newTrack = false;
                         petronSpotify.getPlaybackState().then(
@@ -308,6 +325,8 @@
                     value: Math.round(95 * 655.35)
                   });
               }
+              
+              $interval.cancel(status);
 
               if ($scope.controls.play) {
                 $scope.play();
