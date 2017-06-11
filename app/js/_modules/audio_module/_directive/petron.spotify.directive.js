@@ -10,7 +10,7 @@
           'petron.spotify', 'petron.daemon',
           function($scope, $rootScope, $http, $interval, petronSpotify,
             petronDaemon) {
-            var timer, timeInterval, trackId, _newTrack = true,
+            var timeInterval, trackId, _newTrack = true,
               _inititalized = false;
             $scope.track = {
               artist: ''
@@ -83,6 +83,19 @@
                 getToken();
               }, 3600 * 1000);
             };
+            function timer() {
+              if(timeInterval) {
+                $interval.cancel(timeInterval);
+              }
+              timeInterval = $interval(function(){
+                if ($scope.controls.play) {
+                  $scope.controls.time += 1;
+                }
+                if ($scope.controls.time >= $scope.controls.duration){
+                  checkForUpdate();     
+                }
+              }, 1000);
+            }
 
             function checkStatus() {
               petronSpotify.getStatus().then(function(status) {
@@ -92,7 +105,8 @@
                   $scope.controls.repeat = status.repeat;
  
                   if (!$scope.deviceFound) {
-                    $scope.deviceFound = true; 
+                    $scope.deviceFound = true;
+                    timer();
                   }
 		} else {
 		  $scope.controls.play = false;
@@ -132,14 +146,9 @@
                         petronSpotify.getPlaybackState().then(
                           function(data) {
                             if (data.progress_ms && data.item.duration_ms) {
-                              $interval.cancel(timer);
                               $scope.controls.time = (data.progress_ms /
                                 1000);
-                              timer = $interval(function() {
-                                if ($scope.controls.play) {
-                                  $scope.controls.time += 1;
-                                }
-                              }, 1000);
+                              timer();
                             }
                           });
                       }
@@ -147,19 +156,6 @@
                   }
                 });
             }
-
-            timer = function() {
-              $interval.clear(timeInterval);
-              timeInterval = $interval(function() {
-                if ($scope.controls.play) {
-                  $scope.controls.time += 1;
-                }
-                if ($scope.controls.time >= $scope.controls
-                  .duration) {
-                  checkForUpdate();
-                }
-              }, 1000);
-            };
 
             var checkForDevice = function() {
               petronSpotify.searchDevice('Petron').then(function(
@@ -213,8 +209,11 @@
             $scope.$on('token', function() {
               if (!_inititalized) {
                 petronSpotify.init().then(function(state) {
-                  if (state) {
-                    checkForUpdate();
+                  if (state) { 
+		    petronSpotify.setVolume(55);
+                    $interval(function(){
+                      checkForUpdate();
+                    }, 2000);
                   } else {
                     checkForDevice();
                   }
