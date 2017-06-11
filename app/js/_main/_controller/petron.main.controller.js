@@ -14,7 +14,7 @@
 
         $interval(function() {
           $rootScope.date = new Date();
-          if ($rootScope.date > $scope.sunrise && $rootScope.date <
+          if ($rootScope.date >= $scope.sunrise && $rootScope.date <=
             $scope.sunset) {
             $rootScope.mode = 'day';
           } else {
