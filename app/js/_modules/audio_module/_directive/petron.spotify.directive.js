@@ -90,19 +90,19 @@
                   $scope.controls.play = status.playing;
                   $scope.controls.shuffle = status.shuffle;
                   $scope.controls.repeat = status.repeat;
- 
+
                   if (!$scope.deviceFound) {
-                    $scope.deviceFound = true; 
+                    $scope.deviceFound = true;
                   }
-		} else {
-		  $scope.controls.play = false;
-		}
+                } else {
+                  $scope.controls.play = false;
+                }
               });
             }
 
-            var status = $interval(function(){
+            var status = $interval(function() {
               checkStatus();
-            },1000);
+            }, 1000);
 
             function checkForUpdate() {
               $http.get('http://' + $rootScope.settings.spotify.url +
@@ -122,10 +122,10 @@
                         ':4000/api/info/image_url/' +
                         data.data.cover_uri;
                       trackId = data.data.context_uri;
-		      if (data.data.duration) {
+                      if (data.data.duration) {
                         $scope.controls.duration = data.data.duration /
                           1000;
-                      } 
+                      }
 
                       if (_inititalized && _newTrack) {
                         _newTrack = false;
@@ -214,6 +214,7 @@
               if (!_inititalized) {
                 petronSpotify.init().then(function(state) {
                   if (state) {
+                    petronSpotify.setVolume(55);
                     checkForUpdate();
                   } else {
                     checkForDevice();
@@ -329,7 +330,7 @@
                     value: Math.round(95 * 655.35)
                   });
               }
-              
+
               $interval.cancel(status);
 
               if ($scope.controls.play) {
