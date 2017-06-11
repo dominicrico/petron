@@ -45,7 +45,7 @@
               }
             });
 
-            return deferred.resolve;
+            return deferred.promise;
           },
 
           getMetaData: function() {

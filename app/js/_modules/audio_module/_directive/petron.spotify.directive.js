@@ -39,7 +39,7 @@
             $scope.controls = {
               time: 0,
               duration: 0,
-              play: true,
+              play: false,
               shuffle: false,
               repeat: false,
               loop: false
@@ -84,6 +84,26 @@
               }, 3600 * 1000);
             };
 
+            function checkStatus() {
+              petronSpotify.getStatus().then(function(status) {
+                if (status.active) {
+                  $scope.controls.play = status.playing;
+                  $scope.controls.shuffle = status.shuffle;
+                  $scope.controls.repeat = status.repeat;
+ 
+                  if (!$scope.deviceFound) {
+                    $scope.deviceFound = true; 
+                  }
+		} else {
+		  $scope.controls.play = false;
+		}
+              });
+            }
+
+            var status = $interval(function(){
+              checkStatus();
+            },1000);
+
             function checkForUpdate() {
               $http.get('http://' + $rootScope.settings.spotify.url +
                 ':4000/api/info/metadata').then(
@@ -102,8 +122,11 @@
                         ':4000/api/info/image_url/' +
                         data.data.cover_uri;
                       trackId = data.data.context_uri;
-                      $scope.controls.duration = data.data.duration /
-                        1000;
+		      if (data.data.duration) {
+                        $scope.controls.duration = data.data.duration /
+                          1000;
+                      } 
+
                       if (_inititalized && _newTrack) {
                         _newTrack = false;
                         petronSpotify.getPlaybackState().then(
@@ -111,8 +134,6 @@
                             if (data.progress_ms && data.item.duration_ms) {
                               $interval.cancel(timer);
                               $scope.controls.time = (data.progress_ms /
-                                1000);
-                              $scope.controls.duration = (data.duration_ms /
                                 1000);
                               timer = $interval(function() {
                                 if ($scope.controls.play) {
@@ -308,6 +329,8 @@
                     value: Math.round(95 * 655.35)
                   });
               }
+              
+              $interval.cancel(status);
 
               if ($scope.controls.play) {
                 $scope.play();
