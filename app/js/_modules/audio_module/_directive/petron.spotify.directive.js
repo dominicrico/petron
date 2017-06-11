@@ -83,16 +83,17 @@
                 getToken();
               }, 3600 * 1000);
             };
+
             function timer() {
-              if(timeInterval) {
+              if (timeInterval) {
                 $interval.cancel(timeInterval);
               }
-              timeInterval = $interval(function(){
+              timeInterval = $interval(function() {
                 if ($scope.controls.play) {
                   $scope.controls.time += 1;
                 }
-                if ($scope.controls.time >= $scope.controls.duration){
-                  checkForUpdate();     
+                if ($scope.controls.time >= $scope.controls.duration) {
+                  checkForUpdate();
                 }
               }, 1000);
             }
@@ -103,20 +104,20 @@
                   $scope.controls.play = status.playing;
                   $scope.controls.shuffle = status.shuffle;
                   $scope.controls.repeat = status.repeat;
- 
+
                   if (!$scope.deviceFound) {
                     $scope.deviceFound = true;
                     timer();
                   }
-		} else {
-		  $scope.controls.play = false;
-		}
+                } else {
+                  $scope.controls.play = false;
+                }
               });
             }
 
-            var status = $interval(function(){
+            var status = $interval(function() {
               checkStatus();
-            },1000);
+            }, 1000);
 
             function checkForUpdate() {
               $http.get('http://' + $rootScope.settings.spotify.url +
@@ -136,10 +137,10 @@
                         ':4000/api/info/image_url/' +
                         data.data.cover_uri;
                       trackId = data.data.context_uri;
-		      if (data.data.duration) {
+                      if (data.data.duration) {
                         $scope.controls.duration = data.data.duration /
                           1000;
-                      } 
+                      }
 
                       if (_inititalized && _newTrack) {
                         _newTrack = false;
@@ -209,9 +210,9 @@
             $scope.$on('token', function() {
               if (!_inititalized) {
                 petronSpotify.init().then(function(state) {
-                  if (state) { 
-		    petronSpotify.setVolume(55);
-                    $interval(function(){
+                  if (state) {
+                    petronSpotify.setVolume(55);
+                    $interval(function() {
                       checkForUpdate();
                     }, 2000);
                   } else {
@@ -328,7 +329,7 @@
                     value: Math.round(95 * 655.35)
                   });
               }
-              
+
               $interval.cancel(status);
 
               if ($scope.controls.play) {
