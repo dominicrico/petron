@@ -52,7 +52,7 @@
                 $event.preventDefault();
                 $event.deltaY = $event.deltaY * -1;
                 $event.deltaY = $event.deltaY + delta;
-                volume = ((($event.deltaY / wHeight)) * 100) +
+                volume = ((($event.deltaY / wHeight)) * 4) +
                   startVolume;
 
                 if ($event.direction !== 16) {
