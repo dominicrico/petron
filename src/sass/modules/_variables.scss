@@ -75,9 +75,9 @@ $border: $grey-lighter;
 $border-hover: $grey-light;
 
 // Text colors
-$text: $white;
+$text: $white !default;
 $text-light: $grey;
-$text-strong: $grey-darker;
+$text-strong: $grey-darker !default;
 
 // Code colors
 $code: $red;

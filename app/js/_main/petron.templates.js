@@ -157,6 +157,7 @@ angular.module("index.html", []).run(["$templateCache", function ($templateCache
     "    <script type=\"text/javascript\" src=\"js/_main/_filter/petron.unit.filter.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_service/petron.fs.service.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/_service/petron.storage.service.js\"></script>\n" +
+    "    <script type=\"text/javascript\" src=\"js/_main/_service/petron.sun.service.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/petron.config.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/petron.core.routes.js\"></script>\n" +
     "    <script type=\"text/javascript\" src=\"js/_main/petron.js\"></script>\n" +
@@ -1350,6 +1351,12 @@ angular.module("js/_modules/settings_module/_template/main.html", []).run(["$tem
     "            <span>{{ 'settings.health' | translate }}</span>\n" +
     "          </a>\n" +
     "        </li>\n" +
+    "        <li ng-class=\"{'is-active': tab === 'info'}\"  ng-click=\"tab = 'info'\">\n" +
+    "          <a>\n" +
+    "            <span class=\"icon\"><i class=\"fa icon-flash\"></i></span>\n" +
+    "            <span>{{ 'settings.info' | translate }}</span>\n" +
+    "          </a>\n" +
+    "        </li>\n" +
     "      </ul>\n" +
     "    </div>\n" +
     "\n" +
@@ -1451,6 +1458,28 @@ angular.module("js/_modules/settings_module/_template/main.html", []).run(["$tem
     "  			<div class=\"column is-offset-3 is-3 has-text-right\">\n" +
     "          <input class=\"input\" type=\"text\" ng-model=\"settings.OBD.address\" placeholder=\"{{ 'settings.OBD_address_ph' | translate }}\">\n" +
     "          <input class=\"input\" type=\"number\" ng-model=\"settings.OBD.channel\" placeholder=\"{{ 'settings.OBD_channel_ph' | translate }}\">\n" +
+    "  			</div>\n" +
+    "  		</div>\n" +
+    "    </span>\n" +
+    "    <span ng-show=\"tab === 'info'\">\n" +
+    "      <div class=\"columns is-vcentered\" ng-class=\"{'is-disabled': !$root.online}\">\n" +
+    "  			<div class=\"column is-6\">\n" +
+    "  				<h5 class=\"title is-5\">{{ 'settings.update_petron' | translate }}</h5>\n" +
+    "  				<p>{{ 'settings.update_petron_hint' | translate }}</p>\n" +
+    "  			</div>\n" +
+    "  			<div class=\"column has-text-right\">\n" +
+    "          <button class=\"button is-primary\" ng-class=\"{'is-loading': updateInProgress}\" ng-if=\"hasUpdate\" ng-click=\"startUpdate()\">{{ 'settings.update_now' | translate }}</button>\n" +
+    "          <span ng-if=\"!hasUpdate\" ng-click=\"restartPetron()\">{{ 'settings.uptodate' | translate }}</span>\n" +
+    "  			</div>\n" +
+    "  		</div>\n" +
+    "      <div class=\"columns is-vcentered u--margin-top__40\">\n" +
+    "  			<div class=\"column has-text-centered\">\n" +
+    "  				<h4 class=\"title is-4 text-primary\"><strong>{{ info.productName }}</strong></h4>\n" +
+    "  				<h5 class=\"subtitle is-5\">{{ info.description }}</h5>\n" +
+    "  				<p>{{ 'settings.info_version' | translate }} <strong>v{{ info.version }}</strong></p>\n" +
+    "  				<p>{{ 'settings.info_author' | translate }} <strong>{{ info.author.name }}</strong></p>\n" +
+    "  				<p>{{ 'settings.info_mail' | translate }} <strong>{{ info.author.email }}</strong></p>\n" +
+    "  				<p>{{ 'settings.info_web' | translate }} <strong>{{ info.author.url }}</strong></p>\n" +
     "  			</div>\n" +
     "  		</div>\n" +
     "    </span>\n" +

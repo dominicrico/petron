@@ -110,7 +110,7 @@ pre {
   line-height: 1.25; }
 
 body {
-  color: white;
+  color: #4a4a4a;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.42857; }
@@ -157,12 +157,12 @@ strong {
 
 pre {
   background-color: #0a0a0a;
-  color: white;
+  color: #4a4a4a;
   white-space: pre;
   word-wrap: normal; }
   pre code {
     background-color: #0a0a0a;
-    color: white;
+    color: #4a4a4a;
     display: block;
     overflow-x: auto;
     padding: 16px 20px; }
@@ -716,7 +716,7 @@ a.box:active {
   .button.is-link {
     background-color: transparent;
     border-width: 0;
-    color: white;
+    color: #4a4a4a;
     text-decoration: underline; }
     .button.is-link:hover, .button.is-link:focus {
       background-color: #0a0a0a;
@@ -765,7 +765,7 @@ a.box:active {
       position: absolute !important; }
 
 .content {
-  color: white; }
+  color: #4a4a4a; }
   .content:not(:last-child) {
     margin-bottom: 20px; }
   .content a:not(.button) {
@@ -1415,9 +1415,9 @@ a.box:active {
   .progress::-webkit-progress-bar {
     background-color: #dbdbdb; }
   .progress::-webkit-progress-value {
-    background-color: white; }
+    background-color: #4a4a4a; }
   .progress::-moz-progress-bar {
-    background-color: white; }
+    background-color: #4a4a4a; }
   .progress.is-white::-webkit-progress-value {
     background-color: white; }
   .progress.is-white::-moz-progress-bar {
@@ -1631,7 +1631,7 @@ a.box:active {
       margin-top: -15px; } }
 
 .subtitle {
-  color: white;
+  color: #4a4a4a;
   font-size: 18px;
   line-height: 1.125; }
   .subtitle code {
@@ -1822,7 +1822,7 @@ a.box:active {
   align-items: center;
   background-color: #0a0a0a;
   border-radius: 290486px;
-  color: white;
+  color: #4a4a4a;
   display: inline-flex;
   font-size: 12px;
   height: 24px;
@@ -1929,7 +1929,7 @@ a.box:active {
 .card {
   background-color: white;
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
-  color: white;
+  color: #4a4a4a;
   max-width: 100%;
   position: relative;
   width: 300px; }
@@ -2188,7 +2188,7 @@ a.box:active {
 
 .menu-list a {
   border-radius: 2px;
-  color: white;
+  color: #4a4a4a;
   display: block;
   padding: 5px 10px; }
   .menu-list a:hover {
@@ -2219,7 +2219,7 @@ a.box:active {
     color: inherit; }
 
 .message-header {
-  background-color: white;
+  background-color: #4a4a4a;
   border-radius: 3px 3px 0 0;
   color: white;
   padding: 7px 10px; }
@@ -2454,7 +2454,7 @@ a.box:active {
   position: relative;
   width: 50px; }
   .nav-toggle span {
-    background-color: white;
+    background-color: #4a4a4a;
     display: block;
     height: 1px;
     left: 50%;
@@ -2679,7 +2679,7 @@ a.nav-item {
   padding: 10px; }
 
 .panel-list a {
-  color: white; }
+  color: #4a4a4a; }
   .panel-list a:hover {
     color: #0B8386; }
 
@@ -2738,7 +2738,7 @@ a.panel-block:hover {
   .tabs a {
     align-items: center;
     border-bottom: 1px solid #dbdbdb;
-    color: white;
+    color: #4a4a4a;
     display: flex;
     justify-content: center;
     margin-bottom: -1px;
@@ -3971,7 +3971,7 @@ a.panel-block:hover {
   background-color: #0a0a0a;
   padding: 40px 20px 80px; }
   .footer a, .footer a:visited {
-    color: white; }
+    color: #4a4a4a; }
     .footer a:hover, .footer a:visited:hover {
       color: #363636; }
     .footer a:not(.icon), .footer a:visited:not(.icon) {
@@ -4026,6 +4026,9 @@ a.panel-block:hover {
 
 .u--active {
   color: #0B8386 !important; }
+
+.is-disabled {
+  opacity: 0.5; }
 
 * {
   -webkit-user-select: none;

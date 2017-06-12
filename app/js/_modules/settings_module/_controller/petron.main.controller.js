@@ -4,14 +4,17 @@
   angular.module('petron.modules.settings')
     .controller('controller.settingsbox.main', ['$scope', '$rootScope',
       'petron.storage',
-      '$translate', 'tmhDynamicLocale', '$stateParams',
+      '$translate', 'tmhDynamicLocale', '$stateParams', '$timeout',
       function($scope, $rootScope, petronStorage, $translate,
-        tmhDynamicLocale, $stateParams) {
+        tmhDynamicLocale, $stateParams, $timeout) {
         var firstCycle = true;
+        var shell = require('shelljs');
         $rootScope.title = 'health_module';
         $rootScope.rightMenuShow = false;
 
         $scope.tab = 'general';
+        $scope.hasUpdate = false;
+        $scope.updateInProgress = false;
 
         if ($stateParams.tab !== undefined && $stateParams.tab.length) {
           $scope.tab = $stateParams.tab;
@@ -23,6 +26,31 @@
         if ($scope.settings.init_volume === undefined) {
           $scope.settings.init_volume = 30;
         }
+
+        $scope.checkUpdate = function() {
+          // shell.exec('$(cd /Petron && ./checkupdate)', function(code,
+          shell.exec('$(cd ~/Development/petron && ./checkupdate.sh)',
+            function(code) {
+              if (code === 1) {
+                $scope.hasUpdate = true;
+              }
+            });
+        };
+
+        $scope.checkUpdate();
+
+        $scope.startUpdate = function() {
+          $scope.updateInProgress = true;
+          shell.exec('cd ~/Development/petron && git pull', function() {
+            // shell.exec('$(cd /Petron && git pull)', function() {
+            var app = require('electron').remote.app;
+            app.relaunch();
+            $timeout(
+              function() {
+                app.exit(0);
+              }, 5000);
+          });
+        };
 
         $scope.$watch('settings', function() {
           if (!firstCycle) {
@@ -37,6 +65,8 @@
 
           firstCycle = false;
         }, true);
+
+        $scope.info = require('../package.json');
       }
     ]);
 })();

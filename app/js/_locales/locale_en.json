@@ -142,6 +142,15 @@
     "media_renderer_port_ph": "XXXXX",
     "spotify_url": "Spotify Connect Web",
     "spotify_url_hint": "Host of the Soptify Connect Web Server.",
-    "spotify_url_ph": "localhost"
+    "spotify_url_ph": "localhost",
+    "info": "Info",
+    "update_petron": "Update",
+    "update_petron_hint": "Update Petron to the newest version.",
+    "update_now": "Start update",
+    "uptodate": "No update available",
+    "info_version": "Version",
+    "info_author": "Made with Love and Coffe by",
+    "info_mail": "Email",
+    "info_web": "Web"
   }
 }

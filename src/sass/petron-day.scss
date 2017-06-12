@@ -14,7 +14,9 @@ $black:        #F9F8F5;
 
 $background_image: url('../images/petron_bg_day.png');
 
-$text: $grey-darker;
+$text: $white;
+
+$text-strong: $grey-lighter;
 
 @import '../../app/vendor/bulma/sass/utilities/variables.sass';
 
