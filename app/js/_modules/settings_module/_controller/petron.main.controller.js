@@ -28,8 +28,8 @@
         }
 
         $scope.checkUpdate = function() {
-          // shell.exec('$(cd /Petron && ./checkupdate)', function(code,
-          shell.exec('$(cd ~/Development/petron && ./checkupdate.sh)',
+          shell.exec('$(cd /Petron && ./checkupdate)',
+            // shell.exec('$(cd ~/Development/petron && ./checkupdate.sh)',
             function(code) {
               if (code === 1) {
                 $scope.hasUpdate = true;
@@ -41,8 +41,8 @@
 
         $scope.startUpdate = function() {
           $scope.updateInProgress = true;
-          shell.exec('cd ~/Development/petron && git pull', function() {
-            // shell.exec('$(cd /Petron && git pull)', function() {
+          // shell.exec('cd ~/Development/petron && git pull', function() {
+          shell.exec('$(cd /Petron && git pull)', function() {
             var app = require('electron').remote.app;
             app.relaunch();
             $timeout(
