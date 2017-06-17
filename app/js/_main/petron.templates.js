@@ -721,7 +721,7 @@ angular.module("js/_modules/audio_module/_template/_directive_upnp.html", []).ru
     "	</div>\n" +
     "</div>\n" +
     "\n" +
-    "<audio class=\"c--audio__player\" preload=\"auto\">\n" +
+    "<audio class=\"c--audio__player\" preload=\"metadata\">\n" +
     "	<source ng-repeat=\"file in playlist.tracks\" ng-if=\"playlist.tracks && file.play\" ng-src=\"{{ file.path }}\" type=\"audio/{{ file.type}}\">\n" +
     "</audio>\n" +
     "<!--\n" +
@@ -811,7 +811,7 @@ angular.module("js/_modules/audio_module/_template/_directive.html", []).run(["$
     "	</div>\n" +
     "</div>\n" +
     "\n" +
-    "<audio class=\"c--audio__player\" preload=\"auto\">\n" +
+    "<audio class=\"c--audio__player\" preload=\"metadata\">\n" +
     "	<source ng-repeat=\"file in playlist.tracks\" ng-if=\"playlist.tracks && file.play\" ng-src=\"{{ file.path }}\" type=\"audio/{{ file.type}}\">\n" +
     "</audio>\n" +
     "<!--\n" +
@@ -1491,7 +1491,7 @@ angular.module("js/_modules/settings_module/_template/main.html", []).run(["$tem
 angular.module("js/_modules/video_module/_template/_directive.html", []).run(["$templateCache", function ($templateCache) {
   "use strict";
   $templateCache.put("js/_modules/video_module/_template/_directive.html",
-    "<video class=\"c--video__player\" hm-tap=\"play()\" hm-press=\"getControls()\" hm-recognizer-options='[{\"type\": \"press\", \"time\": 500, \"enable\": true}, {\"type\":\"tap\",\"enable\": true}]'>\n" +
+    "<video preload=\"metadata\"class=\"c--video__player\" hm-tap=\"play()\" hm-press=\"getControls()\" hm-recognizer-options='[{\"type\": \"press\", \"time\": 500, \"enable\": true}, {\"type\":\"tap\",\"enable\": true}]'>\n" +
     "	<source ng-repeat=\"file in playlist.tracks\" ng-if=\"playlist.tracks && file.play\" ng-src=\"{{ file.path }}\" type=\"video/{{ file.type}}\">\n" +
     "</video>\n" +
     "<section class=\"c--video__controls c--controls__top\" ng-class=\"{'c--controls__show': showControls}\" hm-tap=\"resetInterval\">\n" +

@@ -63,7 +63,7 @@
 	</div>
 </div>
 
-<audio class="c--audio__player" preload="auto">
+<audio class="c--audio__player" preload="metadata">
 	<source ng-repeat="file in playlist.tracks" ng-if="playlist.tracks && file.play" ng-src="{{ file.path }}" type="audio/{{ file.type}}">
 </audio>
 <!--
